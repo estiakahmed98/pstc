@@ -148,14 +148,14 @@ export default function PSTCLandingPage() {
       short:
         "Inclusive quality health, SRHR, nutrition, and community-based service access.",
       icon: "heart" as IconName,
-      gradient: "from-emerald-500/20 via-teal-500/10 to-cyan-500/20",
+      gradient: "from-[#009FE3]/20 via-[#ea4335]/10 to-[#ffd54f]/20",
     },
     {
       title: "Youth and Adolescent Development",
       short:
         "Youth voice, adolescent wellbeing, life skills, advocacy, and safe learning spaces.",
       icon: "users" as IconName,
-      gradient: "from-blue-500/20 via-sky-500/10 to-indigo-500/20",
+      gradient: "from-[#ea4335]/20 via-[#7cb342]/10 to-[#009FE3]/20",
     },
     {
       title: "Gender and Governance",
@@ -169,7 +169,7 @@ export default function PSTCLandingPage() {
       short:
         "Preparedness, resilient communities, inclusion, and climate-sensitive development.",
       icon: "leaf" as IconName,
-      gradient: "from-lime-500/20 via-green-500/10 to-emerald-500/20",
+      gradient: "from-[#ffd54f]/20 via-[#009FE3]/10 to-[#7cb342]/20",
     },
     {
       title: "Skills Education and Training",
@@ -560,8 +560,8 @@ export default function PSTCLandingPage() {
         align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"
       }
     >
-      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200">
-        <span className="h-2 w-2 rounded-full bg-amber-400" />
+      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#009FE3]/20 bg-[#009FE3]/8 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-[#009FE3] dark:border-[#ffd54f]/20 dark:bg-white/10 dark:text-[#ffd54f]">
+        <span className="h-2 w-2 rounded-full bg-[#ea4335]" />
         {eyebrow}
       </div>
       <h2 className="text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
@@ -583,12 +583,12 @@ export default function PSTCLandingPage() {
     className?: string;
   }) => (
     <div
-      className={`group relative overflow-hidden rounded-[2rem] border border-dashed border-emerald-300/80 bg-gradient-to-br from-emerald-50 via-white to-sky-50 shadow-inner dark:border-emerald-400/25 dark:from-slate-900 dark:via-slate-950 dark:to-emerald-950/40 ${className}`}
+      className={`group relative overflow-hidden rounded-[2rem] border border-dashed border-[#009FE3]/25 bg-gradient-to-br from-[#009FE3]/10 via-white to-[#ffd54f]/10 shadow-inner dark:border-[#ffd54f]/25 dark:from-slate-900 dark:via-slate-950 dark:to-[#009FE3]/10 ${className}`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(16,185,129,0.22),transparent_32%),radial-gradient(circle_at_75%_70%,rgba(14,165,233,0.18),transparent_34%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(0,159,227,0.22),transparent_32%),radial-gradient(circle_at_75%_70%,rgba(234,67,53,0.16),transparent_34%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(180deg,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:28px_28px] opacity-50 dark:opacity-20" />
       <div className="relative flex h-full min-h-[220px] flex-col items-center justify-center p-8 text-center">
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/85 text-emerald-700 shadow-lg shadow-emerald-900/5 ring-1 ring-emerald-100 dark:bg-white/10 dark:text-emerald-200 dark:ring-white/10">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/85 text-[#009FE3] shadow-lg shadow-slate-950/5 ring-1 ring-[#009FE3]/10 dark:bg-white/10 dark:text-[#ffd54f] dark:ring-white/10">
           <Icon name="spark" className="h-6 w-6" />
         </div>
         <p className="text-sm font-black uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
@@ -617,11 +617,11 @@ export default function PSTCLandingPage() {
       "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-extrabold transition-all duration-300 focus:outline-none focus:ring-4";
     const variants = {
       primary:
-        "bg-emerald-600 text-white shadow-xl shadow-emerald-700/20 hover:-translate-y-0.5 hover:bg-emerald-700 focus:ring-emerald-200 dark:bg-emerald-400 dark:text-slate-950 dark:hover:bg-emerald-300 dark:focus:ring-emerald-900",
+        "bg-[#009FE3] text-white shadow-xl shadow-[#009FE3]/25 hover:-translate-y-0.5 hover:bg-[#0085c1] focus:ring-[#009FE3]/20 dark:bg-[#00b0f0] dark:text-slate-950 dark:hover:bg-[#28bbf3] dark:focus:ring-[#00b0f0]/30",
       secondary:
-        "border border-slate-200 bg-white text-slate-900 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-emerald-700 focus:ring-slate-200 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-emerald-300/40 dark:hover:text-emerald-200",
+        "border border-slate-200 bg-white text-slate-900 hover:-translate-y-0.5 hover:border-[#ea4335] hover:text-[#ea4335] focus:ring-slate-200 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-[#ea4335]/40 dark:hover:text-[#ffd54f]",
       ghost:
-        "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-emerald-700 focus:ring-slate-200 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-emerald-200",
+        "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-[#009FE3] focus:ring-slate-200 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-[#ffd54f]",
     };
 
     return (
@@ -635,26 +635,26 @@ export default function PSTCLandingPage() {
   return (
     <main>
       <div className="min-h-screen overflow-hidden bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
-        <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.16),transparent_30%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.11),transparent_34%)]" />
+        <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.12),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.14),transparent_30%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.1),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_28%)]" />
 
         <div className="relative z-10">
-          <div className="bg-emerald-950 text-white dark:bg-slate-900">
+          <div className="bg-[#009FE3] text-white dark:bg-slate-900">
             <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs font-semibold sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
               <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-200">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-white">
                   <Icon name="spark" className="h-4 w-4" />
                 </span>
                 <span>{currentCopy.announcement}</span>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-emerald-100/90">
+              <div className="flex flex-wrap items-center gap-3 text-white/90">
                 <a href="#publications" className="transition hover:text-white">
                   Publications
                 </a>
-                <span className="h-1 w-1 rounded-full bg-emerald-300/50" />
+                <span className="h-1 w-1 rounded-full bg-white/50" />
                 <a href="#contact" className="transition hover:text-white">
                   Contact
                 </a>
-                <span className="h-1 w-1 rounded-full bg-emerald-300/50" />
+                <span className="h-1 w-1 rounded-full bg-white/50" />
                 <a href="#ucon" className="transition hover:text-white">
                   uCon
                 </a>
@@ -679,24 +679,11 @@ export default function PSTCLandingPage() {
 
           <header className="sticky top-0 z-50 border-b border-white/50 bg-white/78 backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/70">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-              <a
-                href="#"
-                className="flex items-center gap-3"
-                aria-label="PSTC home"
-              >
-                <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 to-sky-600 text-lg font-black text-white shadow-lg shadow-emerald-900/20">
-                  P
-                  <span className="absolute -right-2 -top-2 h-5 w-5 rounded-full bg-amber-300" />
-                </div>
-                <div>
-                  <p className="text-lg font-black leading-none tracking-tight">
-                    PSTC
-                  </p>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-                    Bangladesh
-                  </p>
-                </div>
-              </a>
+              <img
+                src="/pstc.jpeg"
+                alt="PSTC Logo"
+                className="h-12 w-28 rounded-2xl object-cover"
+              />
 
               <nav
                 className="hidden items-center gap-1 lg:flex"
@@ -706,7 +693,7 @@ export default function PSTCLandingPage() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="rounded-full px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-emerald-200"
+                    className="rounded-full px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-[#ea4335]/10 hover:text-[#ea4335] dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-[#ffd54f]"
                   >
                     {item.label}
                   </a>
@@ -716,7 +703,7 @@ export default function PSTCLandingPage() {
               <div className="hidden items-center gap-2 lg:flex">
                 <button
                   type="button"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-emerald-300 hover:text-emerald-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
                   aria-label="Open search"
                 >
                   <Icon name="search" className="h-5 w-5" />
@@ -742,7 +729,7 @@ export default function PSTCLandingPage() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 dark:text-slate-200 dark:hover:bg-white/10"
+                      className="rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 hover:bg-[#009FE3]/10 hover:text-[#009FE3] dark:text-slate-200 dark:hover:bg-white/10"
                     >
                       {item.label}
                     </a>
@@ -750,7 +737,7 @@ export default function PSTCLandingPage() {
                   <a
                     href="#get-involved"
                     onClick={() => setMobileOpen(false)}
-                    className="mt-2 rounded-2xl bg-emerald-600 px-4 py-3 text-center text-sm font-black text-white"
+                    className="mt-2 rounded-2xl bg-[#ea4335] px-4 py-3 text-center text-sm font-black text-white"
                   >
                     {currentCopy.donate}
                   </a>
@@ -762,13 +749,13 @@ export default function PSTCLandingPage() {
           <section className="relative px-4 pb-20 pt-14 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20">
             <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
               <div>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-emerald-700 shadow-sm dark:border-emerald-400/20 dark:bg-white/10 dark:text-emerald-200">
-                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#009FE3]/20 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#009FE3] shadow-sm dark:border-[#ffd54f]/20 dark:bg-white/10 dark:text-[#ffd54f]">
+                  <span className="h-2 w-2 rounded-full bg-[#ea4335]" />
                   {currentCopy.heroLabel}
                 </div>
                 <h1 className="max-w-5xl text-5xl font-black leading-[0.98] tracking-tight text-slate-950 dark:text-white sm:text-6xl lg:text-7xl">
                   Advancing{" "}
-                  <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-sky-600 bg-clip-text text-transparent dark:from-emerald-300 dark:via-teal-200 dark:to-sky-300">
+                  <span className="bg-gradient-to-r from-[#009FE3] via-[#ea4335] to-[#7cb342] bg-clip-text text-transparent dark:from-[#009FE3] dark:via-[#ffd54f] dark:to-[#7cb342]">
                     health, rights
                   </span>{" "}
                   and resilience.
@@ -796,7 +783,7 @@ export default function PSTCLandingPage() {
                       key={item}
                       className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm font-bold text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
                     >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-200">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#009FE3]/10 text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                         <Icon name="check" className="h-4 w-4" />
                       </span>
                       {item}
@@ -807,28 +794,15 @@ export default function PSTCLandingPage() {
 
               <div className="relative">
                 <div className="absolute -left-10 top-10 hidden h-28 w-28 rounded-full bg-amber-300/30 blur-2xl lg:block" />
-                <div className="absolute -right-10 bottom-10 hidden h-32 w-32 rounded-full bg-emerald-500/20 blur-2xl lg:block" />
+                <div className="absolute -right-10 bottom-10 hidden h-32 w-32 rounded-full bg-[#7cb342]/20 blur-2xl lg:block" />
                 <img src="/assets/1.png" alt="PSTC Logo" />
 
-                <div className="absolute left-4 top-6 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-2xl shadow-emerald-950/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/90">
-                  <p className="text-3xl font-black text-emerald-700 dark:text-emerald-300">
+                <div className="absolute left-4 top-6 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-2xl shadow-slate-950/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/90">
+                  <p className="text-3xl font-black text-[#009FE3] dark:text-[#ffd54f]">
                     48+
                   </p>
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                     Years
-                  </p>
-                </div>
-
-                <div className="absolute bottom-6 right-4 max-w-[240px] rounded-3xl border border-white/70 bg-slate-950/90 p-5 text-white shadow-2xl shadow-slate-950/20 backdrop-blur dark:border-white/10">
-                  <div className="mb-3 flex items-center gap-2 text-emerald-200">
-                    <Icon name="map" className="h-5 w-5" />
-                    <span className="text-xs font-bold uppercase tracking-[0.2em]">
-                      Bangladesh
-                    </span>
-                  </div>
-                  <p className="text-sm leading-6 text-slate-200">
-                    Health, youth, gender, climate resilience, and skills
-                    training in one integrated impact story.
                   </p>
                 </div>
               </div>
@@ -841,9 +815,9 @@ export default function PSTCLandingPage() {
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-2xl hover:shadow-emerald-900/10 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-emerald-400/30"
+                    className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#009FE3]/30 hover:shadow-2xl hover:shadow-slate-950/10 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-[#ffd54f]/30"
                   >
-                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 transition group-hover:scale-110 dark:bg-emerald-400/10 dark:text-emerald-200">
+                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] transition group-hover:scale-110 dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                       <Icon name={stat.icon} />
                     </div>
                     <p className="text-3xl font-black tracking-tight text-slate-950 dark:text-white">
@@ -868,8 +842,8 @@ export default function PSTCLandingPage() {
                   src="/assets/organization history image.jpg"
                   alt="About PSTC / organization history image"
                 />
-                <div className="absolute -bottom-6 left-8 right-8 rounded-3xl border border-white/70 bg-white p-6 shadow-2xl shadow-emerald-950/10 dark:border-white/10 dark:bg-slate-900">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">
+                <div className="absolute -bottom-6 left-8 right-8 rounded-3xl border border-white/70 bg-white p-6 shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-slate-900">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#ea4335] dark:text-[#ffd54f]">
                     Since 1978
                   </p>
                   <p className="mt-2 text-2xl font-black text-slate-950 dark:text-white">
@@ -908,7 +882,7 @@ export default function PSTCLandingPage() {
                       key={item.title}
                       className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04]"
                     >
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-emerald-700 dark:bg-white/10 dark:text-emerald-200">
+                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-[#009FE3] dark:bg-white/10 dark:text-[#ffd54f]">
                         <Icon name={item.icon} />
                       </div>
                       <h3 className="font-black text-slate-950 dark:text-white">
@@ -925,7 +899,7 @@ export default function PSTCLandingPage() {
                   {values.map((value) => (
                     <span
                       key={value}
-                      className="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-800 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200"
+                      className="rounded-full border border-[#009FE3]/20 bg-[#009FE3]/8 px-4 py-2 text-xs font-bold text-[#009FE3] dark:border-[#ffd54f]/20 dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]"
                     >
                       {value}
                     </span>
@@ -954,20 +928,44 @@ export default function PSTCLandingPage() {
                   <a
                     key={area.title}
                     href="#projects"
-                    className={`group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-gradient-to-br ${area.gradient} p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-950/10 dark:border-white/10 dark:bg-white/[0.04]`}
+                    className="
+            group
+            relative
+            overflow-hidden
+            rounded-[1.75rem]
+            border
+            border-[#77B151]/25
+            bg-[linear-gradient(135deg,#F3FAEF_0%,#E4F4DA_45%,#D6EDC9_100%)]
+            p-6
+            shadow-sm
+            shadow-[#77B151]/10
+            transition
+            duration-300
+            hover:-translate-y-1
+            hover:border-[#77B151]/60
+            hover:shadow-2xl
+            hover:shadow-[#77B151]/25
+            dark:border-[#77B151]/25
+            dark:bg-[linear-gradient(135deg,#102314_0%,#16361C_45%,#1E4425_100%)]
+          "
                   >
-                    <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-white/40 blur-2xl dark:bg-white/10" />
+                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#77B151]/30 blur-2xl dark:bg-[#77B151]/20" />
+                    <div className="absolute bottom-0 left-0 h-1 w-full bg-[#77B151] opacity-0 transition group-hover:opacity-100" />
+
                     <div className="relative">
-                      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-emerald-700 shadow-lg shadow-slate-950/5 dark:bg-slate-950/70 dark:text-emerald-200">
+                      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#77B151] text-white shadow-lg shadow-[#77B151]/30 transition group-hover:scale-105">
                         <Icon name={area.icon} />
                       </div>
-                      <h3 className="text-lg font-black leading-tight text-slate-950 dark:text-white">
+
+                      <h3 className="text-lg font-black leading-tight text-[#244A22] dark:text-white">
                         {area.title}
                       </h3>
-                      <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+
+                      <p className="mt-4 text-sm leading-7 text-[#3F5F38] dark:text-[#D9F2CF]">
                         {area.short}
                       </p>
-                      <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-emerald-700 dark:text-emerald-200">
+
+                      <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#77B151] dark:text-[#A9D98D]">
                         Explore area{" "}
                         <Icon
                           name="arrow"
@@ -1011,8 +1009,8 @@ export default function PSTCLandingPage() {
                       onClick={() => setActiveFilter(filter)}
                       className={`rounded-full px-4 py-2 text-sm font-black transition ${
                         activeFilter === filter
-                          ? "bg-emerald-600 text-white shadow-lg shadow-emerald-700/20 dark:bg-emerald-400 dark:text-slate-950"
-                          : "border border-slate-200 bg-white text-slate-700 hover:border-emerald-300 hover:text-emerald-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:text-emerald-200"
+                          ? "bg-[#009FE3] text-white shadow-lg shadow-[#009FE3]/20 dark:bg-[#ffd54f] dark:text-slate-950"
+                          : "border border-slate-200 bg-white text-slate-700 hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:text-[#ffd54f]"
                       }`}
                     >
                       {filter}
@@ -1025,10 +1023,10 @@ export default function PSTCLandingPage() {
                 {filteredProjects.map((project) => (
                   <article
                     key={project.title}
-                    className="group rounded-[1.75rem] border border-slate-200 bg-slate-50 p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-2xl hover:shadow-slate-950/10 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-emerald-400/30 dark:hover:bg-white/[0.06]"
+                    className="group rounded-[1.75rem] border border-slate-200 bg-slate-50 p-5 transition duration-300 hover:-translate-y-1 hover:border-[#ea4335]/30 hover:bg-white hover:shadow-2xl hover:shadow-slate-950/10 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-[#ffd54f]/30 dark:hover:bg-white/[0.06]"
                   >
                     <div className="mb-5 flex items-center justify-between">
-                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-200">
+                      <span className="rounded-full bg-[#009FE3]/10 px-3 py-1 text-xs font-black text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                         {project.tag}
                       </span>
                       <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-500 dark:border-white/10 dark:bg-white/10 dark:text-slate-300">
@@ -1060,7 +1058,7 @@ export default function PSTCLandingPage() {
                       </span>
                       <a
                         href="#"
-                        className="text-sm font-black text-emerald-700 hover:text-emerald-900 dark:text-emerald-300 dark:hover:text-emerald-200"
+                        className="text-sm font-black text-[#009FE3] hover:text-[#ea4335] dark:text-[#ffd54f] dark:hover:text-white"
                       >
                         View
                       </a>
@@ -1096,7 +1094,7 @@ export default function PSTCLandingPage() {
                         <div className="min-w-[118px] text-5xl font-black leading-none sm:text-6xl">
                           {item.value}
                         </div>
-                        <div className="ml-4 max-w-[260px] text-[1.7rem] font-extrabold leading-[1.05] sm:text-[2rem]">
+                        <div className="ml-4 max-w-[360px] text-[1.7rem] font-extrabold leading-[1.05] sm:text-[2rem]">
                           {item.label}
                         </div>
                       </div>
@@ -1123,37 +1121,6 @@ export default function PSTCLandingPage() {
                         Presence
                       </p>
                     </div>
-
-                    <div className="relative mx-auto translate-x-12 sm:translate-x-16 lg:translate-x-10">
-                      <div className="h-[300px] w-[235px] rounded-[2.25rem] bg-[#f2ab0f] p-3 shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
-                        <div className="relative h-full w-full overflow-hidden rounded-[1.7rem] bg-[#ef9f00]">
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,255,255,0.18),transparent_24%),radial-gradient(circle_at_80%_78%,rgba(255,255,255,0.08),transparent_24%)]" />
-                          <div className="absolute left-3 top-4 flex h-[228px] w-[168px] flex-wrap gap-1">
-                            {Array.from({ length: 5 }).map((_, row) =>
-                              Array.from({ length: 4 }).map((__, col) => {
-                                const key = `${row}-${col}`;
-                                const faded = row === 0 || col === 3;
-                                const lighter = row === 1 || row === 2;
-                                return (
-                                  <span
-                                    key={key}
-                                    className={`h-[40px] w-[34px] rounded-md ${
-                                      faded
-                                        ? "bg-white/55"
-                                        : lighter
-                                          ? "bg-[#f7c84f]/80"
-                                          : "bg-[#e99e00]/90"
-                                    }`}
-                                  />
-                                );
-                              }),
-                            )}
-                          </div>
-                          <div className="absolute -left-3 top-6 h-9 w-9 rounded-full border border-white/20 bg-white/10" />
-                          <div className="absolute -right-2 bottom-8 h-5 w-5 rounded-full bg-amber-300/80 shadow-[0_0_0_8px_rgba(255,255,255,0.08)]" />
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1168,7 +1135,7 @@ export default function PSTCLandingPage() {
                 className="min-h-[500px] rounded-2xl border-slate-200 bg-white dark:border-white/15 dark:bg-slate-900"
               />
               <div>
-                <div className="mb-4 inline-flex rounded-full bg-emerald-50 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-700 dark:bg-white/10 dark:text-emerald-200">
+                <div className="mb-4 inline-flex rounded-full bg-[#ea4335]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#ea4335] dark:bg-white/10 dark:text-[#ffd54f]">
                   Impact Story
                 </div>
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
@@ -1181,7 +1148,7 @@ export default function PSTCLandingPage() {
                   resilience.
                 </p>
                 <div className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
-                  <p className="text-2xl font-black text-emerald-700 dark:text-emerald-200">
+                  <p className="text-2xl font-black text-[#009FE3] dark:text-[#ffd54f]">
                     “Design for dignity first. Then make every pathway simple,
                     safe, and useful.”
                   </p>
@@ -1201,7 +1168,7 @@ export default function PSTCLandingPage() {
                     >
                       <Icon
                         name="check"
-                        className="mb-3 h-5 w-5 text-emerald-600 dark:text-emerald-300"
+                        className="mb-3 h-5 w-5 text-[#7cb342] dark:text-[#ffd54f]"
                       />
                       <p className="text-sm font-black">{item}</p>
                     </div>
@@ -1212,16 +1179,16 @@ export default function PSTCLandingPage() {
           </section>
 
           <section id="ucon" className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-emerald-200 bg-gradient-to-br from-emerald-600 via-teal-600 to-sky-700 p-6 shadow-2xl shadow-emerald-900/20 dark:border-white/10 lg:p-10">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#009FE3]/25 bg-gradient-to-br from-[#009FE3] via-[#ea4335] to-[#7cb342] p-6 shadow-2xl shadow-slate-950/20 dark:border-white/10 lg:p-10">
               <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
                 <div className="text-white">
-                  <div className="mb-4 inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-50">
+                  <div className="mb-4 inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-white">
                     Youth Platform
                   </div>
                   <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
                     uCon: youth voice, learning, and advocacy.
                   </h2>
-                  <p className="mt-6 text-lg leading-9 text-emerald-50/90">
+                  <p className="mt-6 text-lg leading-9 text-white/90">
                     Explore ideas, ask questions, access CSE modules, join
                     advocacy, and complete assessment-based certification
                     through a youth-friendly learning gateway.
@@ -1229,7 +1196,7 @@ export default function PSTCLandingPage() {
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                     <a
                       href="#"
-                      className="rounded-full bg-white px-5 py-3 text-center text-sm font-black text-emerald-800 transition hover:-translate-y-0.5"
+                      className="rounded-full bg-white px-5 py-3 text-center text-sm font-black text-[#009FE3] transition hover:-translate-y-0.5"
                     >
                       Explore uCon
                     </a>
@@ -1273,7 +1240,7 @@ export default function PSTCLandingPage() {
                         <Icon name={item.icon} />
                       </div>
                       <h3 className="font-black">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-emerald-50/85">
+                      <p className="mt-2 text-sm leading-6 text-white/85">
                         {item.text}
                       </p>
                     </div>
@@ -1330,11 +1297,11 @@ export default function PSTCLandingPage() {
                     key={publication.title}
                     className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.04]"
                   >
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 dark:bg-amber-400/10 dark:text-amber-200">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ffd54f]/15 text-[#ea4335] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                       <Icon name="file" className="h-7 w-7" />
                     </div>
                     <div className="mb-4 flex items-center gap-2">
-                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-200">
+                      <span className="rounded-full bg-[#009FE3]/10 px-3 py-1 text-xs font-black text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                         {publication.type}
                       </span>
                       <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">
@@ -1350,13 +1317,13 @@ export default function PSTCLandingPage() {
                     <div className="mt-6 flex gap-3">
                       <a
                         href="#"
-                        className="rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-700 hover:border-emerald-300 hover:text-emerald-700 dark:border-white/10 dark:text-slate-200"
+                        className="rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-700 hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:text-slate-200"
                       >
                         View
                       </a>
                       <a
                         href="#"
-                        className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-black text-white hover:bg-emerald-700 dark:bg-emerald-400 dark:text-slate-950"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#ea4335] px-4 py-2 text-sm font-black text-white hover:bg-[#d93025] dark:bg-[#ffd54f] dark:text-slate-950"
                       >
                         <Icon name="download" className="h-4 w-4" />
                         Download
@@ -1377,7 +1344,7 @@ export default function PSTCLandingPage() {
                   </h2>
                   <a
                     href="#"
-                    className="text-sm font-black text-emerald-700 dark:text-emerald-300"
+                    className="text-sm font-black text-[#009FE3] dark:text-[#ffd54f]"
                   >
                     View all
                   </a>
@@ -1391,7 +1358,7 @@ export default function PSTCLandingPage() {
                       <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
                         <span>{item.date}</span>
                         <span className="h-1 w-1 rounded-full bg-slate-300" />
-                        <span className="text-emerald-700 dark:text-emerald-300">
+                        <span className="text-[#ea4335] dark:text-[#ffd54f]">
                           {item.label}
                         </span>
                       </div>
@@ -1410,7 +1377,7 @@ export default function PSTCLandingPage() {
                   </h2>
                   <a
                     href="#"
-                    className="text-sm font-black text-emerald-700 dark:text-emerald-300"
+                    className="text-sm font-black text-[#009FE3] dark:text-[#ffd54f]"
                   >
                     Calendar
                   </a>
@@ -1421,7 +1388,7 @@ export default function PSTCLandingPage() {
                       key={event.title}
                       className="flex gap-4 rounded-3xl bg-white p-5 ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-xl dark:bg-white/[0.05] dark:ring-white/10"
                     >
-                      <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-emerald-600 text-white dark:bg-emerald-400 dark:text-slate-950">
+                      <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#7cb342] text-white dark:bg-[#ffd54f] dark:text-slate-950">
                         <Icon name="calendar" className="h-5 w-5" />
                         <span className="mt-1 text-xs font-black">
                           {event.date}
@@ -1455,7 +1422,7 @@ export default function PSTCLandingPage() {
                 {partners.map((partner) => (
                   <div
                     key={partner}
-                    className="flex h-28 items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-white px-5 text-center text-sm font-black uppercase tracking-[0.12em] text-slate-500 transition hover:border-emerald-300 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400 dark:hover:text-emerald-200"
+                    className="flex h-28 items-center justify-center rounded-[1.5rem] border border-dashed border-slate-300 bg-white px-5 text-center text-sm font-black uppercase tracking-[0.12em] text-slate-500 transition hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-400 dark:hover:text-[#ffd54f]"
                   >
                     {partner}
                   </div>
@@ -1465,30 +1432,33 @@ export default function PSTCLandingPage() {
           </section>
 
           <section id="get-involved" className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/20 lg:p-10">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[linear-gradient(135deg,#E5A923_0%,#F1C64A_50%,#E5A923_100%)] p-6 text-[#0B2E68] shadow-2xl shadow-[#E5A923]/30 lg:p-10">
               <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
                 <div>
-                  <div className="mb-4 inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-200">
+                  <div className="mb-4 inline-flex rounded-full bg-[#0B2E68]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#0B2E68]">
                     Get Involved
                   </div>
-                  <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+
+                  <h2 className="text-4xl font-black tracking-tight text-[#0B2E68] sm:text-5xl">
                     Help create impact that lasts.
                   </h2>
-                  <p className="mt-6 text-lg leading-9 text-slate-300">
+
+                  <p className="mt-6 text-lg leading-9 text-[#3D2F0A]">
                     Give today, join a training, apply for opportunities, or
                     partner with PSTC to expand inclusive community services.
                   </p>
 
-                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
-                    <p className="text-sm font-black uppercase tracking-[0.2em] text-slate-400">
+                  <div className="mt-8 rounded-[2rem] border border-[#0B2E68]/15 bg-[#F8E4A8] p-5 shadow-lg shadow-[#0B2E68]/5">
+                    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0B2E68]/70">
                       Donation amount UI
                     </p>
+
                     <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                       {["৳500", "৳1000", "৳5000", "Custom"].map((amount) => (
                         <button
                           key={amount}
                           type="button"
-                          className="rounded-2xl border border-white/15 px-4 py-3 text-sm font-black transition hover:border-emerald-300 hover:bg-emerald-300 hover:text-slate-950"
+                          className="rounded-2xl border border-[#0B2E68]/15 bg-white/70 px-4 py-3 text-sm font-black text-[#0B2E68] transition hover:bg-[#0B2E68] hover:text-white"
                         >
                           {amount}
                         </button>
@@ -1517,18 +1487,23 @@ export default function PSTCLandingPage() {
                   ].map((item) => (
                     <div
                       key={item.title}
-                      className="rounded-[1.5rem] bg-white/[0.07] p-5 ring-1 ring-white/10"
+                      className="rounded-[1.5rem] bg-[#F8E4A8] p-5 shadow-lg shadow-[#0B2E68]/5 ring-1 ring-[#0B2E68]/10 transition hover:-translate-y-1 hover:bg-white/80"
                     >
-                      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400 text-slate-950">
+                      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B2E68] text-white shadow-lg shadow-[#0B2E68]/20">
                         <Icon name={item.icon} />
                       </div>
-                      <h3 className="font-black">{item.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-300">
+
+                      <h3 className="font-black text-[#0B2E68]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-3 text-sm leading-6 text-[#3D2F0A]">
                         {item.text}
                       </p>
+
                       <a
                         href="#"
-                        className="mt-6 inline-flex items-center gap-2 text-sm font-black text-emerald-200"
+                        className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0B2E68] transition hover:gap-3"
                       >
                         Start <Icon name="arrow" className="h-4 w-4" />
                       </a>
@@ -1541,7 +1516,7 @@ export default function PSTCLandingPage() {
 
           <section className="px-4 py-20 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-slate-200 bg-white p-6 text-center shadow-xl shadow-slate-950/5 dark:border-white/10 dark:bg-white/[0.04] lg:p-10">
-              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-200">
+              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                 <Icon name="mail" className="h-7 w-7" />
               </div>
               <h2 className="text-3xl font-black text-slate-950 dark:text-white sm:text-4xl">
@@ -1568,13 +1543,13 @@ export default function PSTCLandingPage() {
                 />
                 <button
                   type="submit"
-                  className="rounded-2xl bg-emerald-600 px-6 py-4 text-sm font-black text-white transition hover:bg-emerald-700 dark:bg-emerald-400 dark:text-slate-950"
+                  className="rounded-2xl bg-[#009FE3] px-6 py-4 text-sm font-black text-white transition hover:bg-[#007db3] dark:bg-[#ffd54f] dark:text-slate-950"
                 >
                   Subscribe
                 </button>
               </form>
               {subscribed ? (
-                <p className="mt-4 text-sm font-bold text-emerald-700 dark:text-emerald-300">
+                <p className="mt-4 text-sm font-bold text-[#ea4335] dark:text-[#ffd54f]">
                   Thank you. This is a frontend-only success message.
                 </p>
               ) : (
@@ -1591,7 +1566,7 @@ export default function PSTCLandingPage() {
               <div>
                 <div className="mb-5 flex items-center gap-3">
                   <img
-                    src="/pstc.jpeg"
+                    src="/logo-white.png"
                     alt="PSTC Logo"
                     className="rounded-xl"
                   />
