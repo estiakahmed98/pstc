@@ -1,6 +1,9 @@
 "use client";
 
-import React, { FormEvent, useMemo, useState } from "react";
+import React, { FormEvent, useContext, useMemo, useState } from "react";
+import { ThemeContext } from "@/components/shared/theme-provider";
+import Image from "next/image";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 type ProjectFilter =
   | "All"
@@ -37,7 +40,8 @@ type IconName =
   | "hand";
 
 export default function PSTCLandingPage() {
-  const [isDark, setIsDark] = useState(false);
+  const themeContext = useContext(ThemeContext);
+  const isDark = themeContext?.theme === "dark";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [language, setLanguage] = useState<"en" | "bn">("en");
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
@@ -183,6 +187,7 @@ export default function PSTCLandingPage() {
       status: "Active",
       place: "Urban communities",
       text: "Strengthening primary health access and referral support for underserved people.",
+      image: "/assets/Urban Health Care project image.jpeg",
     },
     {
       title: "FOCUS",
@@ -190,6 +195,7 @@ export default function PSTCLandingPage() {
       status: "Active",
       place: "Bangladesh",
       text: "Fortifying organizational capacity to uphold the SRHR movement in Bangladesh.",
+      image: "/assets/FOCUS project image.jpg",
     },
     {
       title: "PUD",
@@ -197,6 +203,7 @@ export default function PSTCLandingPage() {
       status: "Program",
       place: "Community based",
       text: "Supportive service pathways for persons who use drugs and vulnerable populations.",
+      image: "/assets/Supportive service pathways for persons.jpg",
     },
     {
       title: "CMP",
@@ -204,6 +211,7 @@ export default function PSTCLandingPage() {
       status: "Community",
       place: "Local networks",
       text: "Community mobilization for rights, protection, awareness, and access to services.",
+      image: "/assets/Community mobilization for rights.jpg",
     },
     {
       title: "SUFASEC",
@@ -211,6 +219,7 @@ export default function PSTCLandingPage() {
       status: "Protection",
       place: "Target communities",
       text: "A child protection initiative against sexual exploitation of children.",
+      image: "/assets/A child protection initiative against.webp",
     },
     {
       title: "LEVIS",
@@ -218,6 +227,8 @@ export default function PSTCLandingPage() {
       status: "Training",
       place: "Institutional",
       text: "Learning, employability, vocational readiness, and practical skills development.",
+      image:
+        "/assets/Learning, employability, vocational readiness, and practical skills.jpg",
     },
     {
       title: "HOPE",
@@ -225,6 +236,8 @@ export default function PSTCLandingPage() {
       status: "Outreach",
       place: "Community clinics",
       text: "Health Outreach and Protection Effort for inclusive health service access.",
+      image:
+        "/assets/Health Outreach and Protection Effort for inclusive health service access.webp",
     },
     {
       title: "SPRINT",
@@ -232,6 +245,7 @@ export default function PSTCLandingPage() {
       status: "Response",
       place: "Crisis contexts",
       text: "Preparedness and response support for resilient community systems.",
+      image: "/assets/Preparedness and response support.jpeg",
     },
   ];
 
@@ -316,6 +330,10 @@ export default function PSTCLandingPage() {
     if (!email.trim()) return;
     setSubscribed(true);
     setEmail("");
+  }
+
+  function handleThemeToggle() {
+    themeContext?.toggleTheme();
   }
 
   const Icon = ({
@@ -615,7 +633,7 @@ export default function PSTCLandingPage() {
   };
 
   return (
-    <main className={isDark ? "dark" : ""}>
+    <main>
       <div className="min-h-screen overflow-hidden bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
         <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.16),transparent_30%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.11),transparent_34%)]" />
 
@@ -649,7 +667,7 @@ export default function PSTCLandingPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setIsDark(!isDark)}
+                  onClick={handleThemeToggle}
                   aria-label="Toggle theme"
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
                 >
@@ -790,10 +808,7 @@ export default function PSTCLandingPage() {
               <div className="relative">
                 <div className="absolute -left-10 top-10 hidden h-28 w-28 rounded-full bg-amber-300/30 blur-2xl lg:block" />
                 <div className="absolute -right-10 bottom-10 hidden h-32 w-32 rounded-full bg-emerald-500/20 blur-2xl lg:block" />
-                <ImageSlot
-                  label="Hero community photo / PSTC field activity image"
-                  className="min-h-[560px]"
-                />
+                <img src="/assets/1.png" alt="PSTC Logo" />
 
                 <div className="absolute left-4 top-6 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-2xl shadow-emerald-950/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/90">
                   <p className="text-3xl font-black text-emerald-700 dark:text-emerald-300">
@@ -849,9 +864,9 @@ export default function PSTCLandingPage() {
           <section id="about" className="px-4 py-20 sm:px-6 lg:px-8">
             <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative">
-                <ImageSlot
-                  label="About PSTC / organization history image"
-                  className="min-h-[500px]"
+                <img
+                  src="/assets/organization history image.jpg"
+                  alt="About PSTC / organization history image"
                 />
                 <div className="absolute -bottom-6 left-8 right-8 rounded-3xl border border-white/70 bg-white p-6 shadow-2xl shadow-emerald-950/10 dark:border-white/10 dark:bg-slate-900">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">
@@ -1021,10 +1036,16 @@ export default function PSTCLandingPage() {
                       </span>
                     </div>
                     <div className="mb-5">
-                      <ImageSlot
-                        label={`${project.title} project image`}
-                        className="min-h-[170px] rounded-3xl"
-                      />
+                      <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-slate-900">
+                        <Image
+                          src={project.image}
+                          alt={`${project.title} project image`}
+                          width={800}
+                          height={420}
+                          className="h-44 w-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent" />
+                      </div>
                     </div>
                     <h3 className="text-xl font-black text-slate-950 dark:text-white">
                       {project.title}
@@ -1051,67 +1072,120 @@ export default function PSTCLandingPage() {
           </section>
 
           <section className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr]">
-              <div>
-                <SectionHeading
-                  align="left"
-                  eyebrow="Where We Work"
-                  title="Local presence with a national development lens."
-                  text="A location-driven section helps partners, donors, and communities understand PSTC’s footprint and service points."
-                />
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                  {locations.map((location) => (
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-[3rem] border border-slate-200 bg-[#f8edd6] shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#151631]">
+              <div className="grid min-h-[500px] lg:grid-cols-[0.95fr_1.05fr_1.1fr]">
+                <div className="flex items-center justify-center px-8 py-12 text-center lg:px-10">
+                  <h2 className="text-[clamp(3rem,5vw,5.8rem)] font-black uppercase leading-[0.9] tracking-tight text-[#0b2e68]">
+                    Our
+                    <br />
+                    Reach
+                  </h2>
+                </div>
+
+                <div className="flex flex-col justify-center gap-6 px-4 py-8 sm:px-6 lg:px-0">
+                  {[
+                    { value: "4.7+", label: "Million people directly reached" },
+                    { value: "41+", label: "Projects" },
+                    { value: "36", label: "Districts" },
+                  ].map((item, index) => (
                     <div
-                      key={location}
-                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.04]"
+                      key={item.label}
+                      className="relative flex min-h-[92px] items-center overflow-hidden bg-[#f7b521] pr-12 text-[#0b2e68] shadow-[0_1px_0_rgba(11,46,104,0.06)]"
                     >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-200">
-                        <Icon name="pin" className="h-4 w-4" />
-                      </span>
-                      <span className="font-extrabold text-slate-800 dark:text-slate-100">
-                        {location}
-                      </span>
+                      <div className="flex w-full items-center px-5 py-4 sm:px-6">
+                        <div className="min-w-[118px] text-5xl font-black leading-none sm:text-6xl">
+                          {item.value}
+                        </div>
+                        <div className="ml-4 max-w-[260px] text-[1.7rem] font-extrabold leading-[1.05] sm:text-[2rem]">
+                          {item.label}
+                        </div>
+                      </div>
+                      <div className="absolute right-0 top-0 h-full w-14 bg-[#0b2e68] [clip-path:polygon(0_0,100%_50%,0_100%,28%_50%)]" />
+                      {index < 2 ? (
+                        <div className="absolute bottom-0 left-0 right-14 h-px bg-[#0b2e68]/10" />
+                      ) : null}
                     </div>
                   ))}
+                  <p className="mt-1 pr-1 text-right text-sm font-semibold text-[#0b2e68]">
+                    *Data from FY25 (July '24 - June '25)
+                  </p>
                 </div>
-                <div className="mt-8">
-                  <CtaButton href="#contact" variant="secondary">
-                    View all locations
-                  </CtaButton>
+
+                <div className="relative overflow-hidden bg-[#171934] px-6 py-6 text-white sm:px-8">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.16),transparent_0_16%),radial-gradient(circle_at_74%_50%,rgba(255,255,255,0.06),transparent_0_48%)]" />
+                  <div className="absolute inset-0 bg-[repeating-radial-gradient(circle_at_72%_18%,rgba(255,255,255,0.08)_0px,rgba(255,255,255,0.08)_1px,transparent_1px,transparent_11px)] opacity-45" />
+
+                  <div className="relative flex min-h-[440px] items-center">
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 text-left sm:left-8">
+                      <p className="text-[clamp(3rem,4.6vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-white">
+                        Our
+                        <br />
+                        Presence
+                      </p>
+                    </div>
+
+                    <div className="relative mx-auto translate-x-12 sm:translate-x-16 lg:translate-x-10">
+                      <div className="h-[300px] w-[235px] rounded-[2.25rem] bg-[#f2ab0f] p-3 shadow-[0_18px_40px_rgba(0,0,0,0.28)]">
+                        <div className="relative h-full w-full overflow-hidden rounded-[1.7rem] bg-[#ef9f00]">
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,255,255,0.18),transparent_24%),radial-gradient(circle_at_80%_78%,rgba(255,255,255,0.08),transparent_24%)]" />
+                          <div className="absolute left-3 top-4 flex h-[228px] w-[168px] flex-wrap gap-1">
+                            {Array.from({ length: 5 }).map((_, row) =>
+                              Array.from({ length: 4 }).map((__, col) => {
+                                const key = `${row}-${col}`;
+                                const faded = row === 0 || col === 3;
+                                const lighter = row === 1 || row === 2;
+                                return (
+                                  <span
+                                    key={key}
+                                    className={`h-[40px] w-[34px] rounded-md ${
+                                      faded
+                                        ? "bg-white/55"
+                                        : lighter
+                                          ? "bg-[#f7c84f]/80"
+                                          : "bg-[#e99e00]/90"
+                                    }`}
+                                  />
+                                );
+                              }),
+                            )}
+                          </div>
+                          <div className="absolute -left-3 top-6 h-9 w-9 rounded-full border border-white/20 bg-white/10" />
+                          <div className="absolute -right-2 bottom-8 h-5 w-5 rounded-full bg-amber-300/80 shadow-[0_0_0_8px_rgba(255,255,255,0.08)]" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <ImageSlot
-                label="Bangladesh map / district presence visualization"
-                className="min-h-[520px]"
-              />
             </div>
           </section>
 
-          <section className="bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-8">
+          <section className="bg-gradient-to-b from-slate-50 to-white px-4 py-20 text-slate-950 dark:from-slate-950 dark:to-slate-900 dark:text-white sm:px-6 lg:px-8">
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-              <ImageSlot
-                label="Impact story / beneficiary-safe image placeholder"
-                className="min-h-[500px] border-white/15 dark:border-white/15"
+              <img
+                src="/assets/beneficiary-safe image placeholder.jpg"
+                alt="Impact story / beneficiary-safe image placeholder"
+                className="min-h-[500px] rounded-2xl border-slate-200 bg-white dark:border-white/15 dark:bg-slate-900"
               />
               <div>
-                <div className="mb-4 inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-200">
+                <div className="mb-4 inline-flex rounded-full bg-emerald-50 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-700 dark:bg-white/10 dark:text-emerald-200">
                   Impact Story
                 </div>
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
                   Community-centered change, built with trust.
                 </h2>
-                <p className="mt-6 text-lg leading-9 text-slate-300">
+                <p className="mt-6 text-lg leading-9 text-slate-600 dark:text-slate-300">
                   PSTC works alongside communities to make services more
                   inclusive, accessible, and sustainable—from health and
                   protection to skills, youth engagement, and climate
                   resilience.
                 </p>
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
-                  <p className="text-2xl font-black text-emerald-200">
+                <div className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
+                  <p className="text-2xl font-black text-emerald-700 dark:text-emerald-200">
                     “Design for dignity first. Then make every pathway simple,
                     safe, and useful.”
                   </p>
-                  <p className="mt-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-400">
+                  <p className="mt-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
                     Landing page design principle
                   </p>
                 </div>
@@ -1123,11 +1197,11 @@ export default function PSTCLandingPage() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10"
+                      className="rounded-2xl bg-white p-4 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
                     >
                       <Icon
                         name="check"
-                        className="mb-3 h-5 w-5 text-emerald-300"
+                        className="mb-3 h-5 w-5 text-emerald-600 dark:text-emerald-300"
                       />
                       <p className="text-sm font-black">{item}</p>
                     </div>
@@ -1512,24 +1586,17 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <footer
-            id="contact"
-            className="bg-slate-950 px-4 py-14 text-white sm:px-6 lg:px-8"
-          >
+          <footer className="bg-[#E53B51] px-4 py-14 text-white sm:px-6 lg:px-8">
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
               <div>
                 <div className="mb-5 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-400 text-lg font-black text-slate-950">
-                    P
-                  </div>
-                  <div>
-                    <p className="text-xl font-black">PSTC</p>
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                      Bangladesh
-                    </p>
-                  </div>
+                  <img
+                    src="/pstc.jpeg"
+                    alt="PSTC Logo"
+                    className="rounded-xl"
+                  />
                 </div>
-                <p className="max-w-md text-sm leading-7 text-slate-300">
+                <p className="max-w-md text-sm leading-7 text-red-100">
                   Population Services and Training Center works to improve
                   quality of life through health, rights, youth engagement,
                   climate resilience, training, and inclusive community
@@ -1540,7 +1607,7 @@ export default function PSTCLandingPage() {
                     <a
                       key={social}
                       href="#"
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-black uppercase text-white transition hover:bg-emerald-400 hover:text-slate-950"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-black uppercase text-white transition hover:bg-white hover:text-red-700"
                     >
                       {social}
                     </a>
@@ -1549,34 +1616,22 @@ export default function PSTCLandingPage() {
               </div>
 
               <div>
-                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-slate-400">
+                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
                   Quick Links
                 </h3>
-                <div className="grid gap-3 text-sm font-semibold text-slate-300">
-                  {navItems.slice(0, 5).map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="hover:text-emerald-200"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-slate-400">
-                  Policies
-                </h3>
-                <div className="grid gap-3 text-sm font-semibold text-slate-300">
+                <div className="grid gap-3 text-sm font-semibold text-red-100">
                   {[
-                    "Privacy Policy",
-                    "Safeguarding Policy",
-                    "Gender Policy",
-                    "SHaPE Policy",
+                    "Who We Are",
+                    "What We Do",
+                    "Impact",
+                    "Publications",
+                    "uCon",
                   ].map((item) => (
-                    <a key={item} href="#" className="hover:text-emerald-200">
+                    <a
+                      key={item}
+                      href="#"
+                      className="hover:text-white transition-colors"
+                    >
                       {item}
                     </a>
                   ))}
@@ -1584,32 +1639,51 @@ export default function PSTCLandingPage() {
               </div>
 
               <div>
-                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-slate-400">
+                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
+                  Policies
+                </h3>
+                <div className="grid gap-3 text-sm font-semibold text-red-100">
+                  {[
+                    "Privacy Policy",
+                    "Safeguarding Policy",
+                    "Gender Policy",
+                    "SHaPE Policy",
+                  ].map((item) => (
+                    <a
+                      key={item}
+                      href="#"
+                      className="hover:text-white transition-colors"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
                   Contact
                 </h3>
-                <div className="grid gap-4 text-sm leading-7 text-slate-300">
+                <div className="grid gap-4 text-sm leading-7 text-red-100">
                   <p className="flex gap-3">
-                    <Icon
-                      name="pin"
-                      className="mt-1 h-5 w-5 shrink-0 text-emerald-300"
-                    />
+                    <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-200" />
                     PSTC Bhaban, House #5, Main Road, Block B, Aftabnagar,
                     Badda, Dhaka-1212, Bangladesh
                   </p>
                   <p className="flex items-center gap-3">
-                    <Icon name="phone" className="h-5 w-5 text-emerald-300" />
+                    <Phone className="h-5 w-5 text-red-200" />
                     +88 02 222 6602372-5
                   </p>
                   <p className="flex items-center gap-3">
-                    <Icon name="mail" className="h-5 w-5 text-emerald-300" />
+                    <Mail className="h-5 w-5 text-red-200" />
                     pstc@pstc-bgd.org
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 text-xs font-semibold text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-              <p>© 2026 PSTC. Landing page concept UI.</p>
+            <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/20 pt-6 text-xs font-semibold text-red-200 sm:flex-row sm:items-center sm:justify-between">
+              <p>© 2026 PSTC. All rights reserved.</p>
               <p>
                 Frontend only • No backend • Replace image slots with approved
                 media
