@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useEffect, useState, type ReactNode } from 'react';
+import React, { createContext, useLayoutEffect, useState, type ReactNode } from 'react';
 
 export type Theme = 'light' | 'dark';
 
@@ -20,7 +20,7 @@ interface ThemeProviderProps {
 export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const storedTheme = localStorage.getItem('pstc_theme') as Theme | null;
     const nextTheme = storedTheme ?? defaultTheme;
     setThemeState(nextTheme);
@@ -29,6 +29,7 @@ export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProvide
 
   const applyTheme = (newTheme: Theme) => {
     const html = document.documentElement;
+    html.style.colorScheme = newTheme;
     if (newTheme === 'dark') {
       html.classList.add('dark');
     } else {

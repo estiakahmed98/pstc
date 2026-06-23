@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import Link from "next/link";
 import { ThemeContext } from "@/components/shared/theme-provider";
 import { useTranslation } from "@/hooks/use-translation";
 import Image from "next/image";
@@ -692,6 +693,12 @@ export default function PSTCLandingPage() {
                 >
                   <Icon name="search" className="h-5 w-5" />
                 </button>
+                <Link
+                  href="/login"
+                  className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:border-[#ffd54f]/40 dark:hover:text-[#ffd54f]"
+                >
+                  {t("nav.login")}
+                </Link>
                 <CtaButton href="#get-involved">{t("nav.donate")}</CtaButton>
               </div>
 
@@ -725,6 +732,13 @@ export default function PSTCLandingPage() {
                   >
                     {t("nav.donate")}
                   </a>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-center text-sm font-bold text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
+                  >
+                    {t("nav.login")}
+                  </Link>
                 </nav>
               </div>
             ) : null}
