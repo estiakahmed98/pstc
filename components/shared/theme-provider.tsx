@@ -22,10 +22,7 @@ export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProvide
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('pstc_theme') as Theme | null;
-    const systemTheme: Theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-    const nextTheme = storedTheme ?? systemTheme ?? defaultTheme;
+    const nextTheme = storedTheme ?? defaultTheme;
     setThemeState(nextTheme);
     applyTheme(nextTheme);
   }, [defaultTheme]);
