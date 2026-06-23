@@ -97,10 +97,9 @@ export function DashboardTopbar() {
         <ThemeToggle />
 
         <Button
-          variant="outline"
-          size="sm"
           onClick={handleLogout}
           disabled={isLoggingOut}
+          className="ml-4 bg-red-500 text-white hover:bg-red-600"
         >
           {isLoggingOut ? "Logging out..." : "Logout"}
         </Button>
