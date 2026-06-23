@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Who We Are",
+    "programs": "What We Do",
+    "impact": "Impact",
+    "publications": "Publications",
+    "events": "Events & Media",
+    "ucon": "uCon",
+    "jobs": "Get Involved",
+    "contact": "Contact",
+    "donate": "Give Today"
+  },
+  "landing": {
+    "announcement": "48+ years of community service",
+    "hero_label": "Since 1978",
+    "hero_title": "Building an inclusive society for a healthier future",
+    "hero_text": "PSTC works to improve the quality of life of poor and socially disadvantaged people through inclusive services, rights-based action, training, and partnerships.",
+    "primary_cta": "Explore Programs",
+    "secondary_cta": "Our Publications",
+    "years_impact": "Years of service",
+    "lives_reached": "People reached",
+    "impact_title": "Our Progress",
+    "impact_text": "For more than four decades, PSTC has helped transform communities through health, rights, and sustainable development.",
+    "stats_years_label": "Years of service",
+    "stats_years_caption": "Since 1978",
+    "stats_thematic_label": "Thematic areas",
+    "stats_thematic_caption": "Health, youth, gender, climate, skills",
+    "stats_projects_label": "Projects",
+    "stats_projects_caption": "Active initiatives",
+    "stats_locations_label": "Locations",
+    "stats_locations_caption": "Across Bangladesh",
+    "stats_people_label": "People reached",
+    "stats_people_caption": "Lives impacted",
+    "stats_partners_label": "Partners",
+    "stats_partners_caption": "Collaboration for impact"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Who We Are",
+    "heading": "A trusted community partner for health, rights, and inclusion.",
+    "description": "PSTC is a non-government, not-for-profit voluntary organization working to improve the quality of life of poor and socially disadvantaged people through inclusive services, advocacy, training, and partnerships.",
+    "mission": "Mission",
+    "mission_text": "Deliver inclusive, innovative, quality services and rights-based advocacy.",
+    "vision": "Vision",
+    "vision_text": "A society where everyone can live with dignity, rights, and opportunity.",
+    "values": "Values",
+    "values_text": "Commitment, integrity, transparency, accountability, and team spirit.",
+    "values_list": [
+      "Commitment",
+      "Integrity",
+      "Transparency",
+      "Accountability",
+      "Team Spirit"
+    ],
+    "cta": "Learn About PSTC",
+    "since": "Since 1978",
+    "tagline": "Rooted in trust. Built for future impact."
+  },
+  "programs": {
+    "title": "Our Focus Areas",
+    "subtitle": "Programs",
+    "description": "PSTC works across health, youth, gender, climate, skills, advocacy, and community development to create sustainable impact.",
+    "areas": {
+      "health": {
+        "title": "Population Health and Nutrition",
+        "description": "Inclusive quality health, SRHR, nutrition, and community-based service access."
+      },
+      "youth": {
+        "title": "Youth and Adolescent Development",
+        "description": "Youth voice, adolescent wellbeing, life skills, advocacy, and safe learning spaces."
+      },
+      "gender": {
+        "title": "Gender and Governance",
+        "description": "Rights-based governance, gender equity, protection, safeguarding, and inclusion."
+      },
+      "climate": {
+        "title": "Climate Change and Adaptation",
+        "description": "Preparedness, resilient communities, inclusion, and climate-sensitive development."
+      },
+      "skills": {
+        "title": "Skills Education and Training",
+        "description": "Practical training, certification, employment support, and institution-based learning."
+      }
+    },
+    "learn_more": "Learn More"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Projects",
+    "heading": "Program cards designed for discovery, trust, and conversion.",
+    "description": "Inspired by global NGO sites, the project area uses filters, tags, and short outcomes so visitors can scan quickly.",
+    "filters": {
+      "all": "All",
+      "health": "Health",
+      "youth": "Youth",
+      "gender": "Gender",
+      "climate": "Climate",
+      "skills": "Skills"
+    },
+    "projects": {
+      "urban_health": {
+        "title": "Urban Health Care",
+        "tag": "Health",
+        "status": "Active",
+        "place": "Urban communities",
+        "text": "Strengthening inclusive primary health access and referral support."
+      },
+      "focus": {
+        "title": "FOCUS",
+        "tag": "Youth",
+        "status": "Active",
+        "place": "Bangladesh",
+        "text": "Fortifying organizational capacity to uphold the SRHR movement in Bangladesh."
+      },
+      "pud": {
+        "title": "PUD",
+        "tag": "Health",
+        "status": "Program",
+        "place": "Community based",
+        "text": "Supportive service pathways for people who use drugs and vulnerable populations."
+      },
+      "cmp": {
+        "title": "CMP",
+        "tag": "Gender",
+        "status": "Community",
+        "place": "Local networks",
+        "text": "Community mobilization for rights, protection, awareness, and service access."
+      },
+      "sufasec": {
+        "title": "SUFASEC",
+        "tag": "Gender",
+        "status": "Protection",
+        "place": "Target communities",
+        "text": "A child protection initiative against sexual exploitation of children."
+      },
+      "levis": {
+        "title": "LEVIS",
+        "tag": "Skills",
+        "status": "Training",
+        "place": "Institutional",
+        "text": "Learning, employability, vocational readiness, and practical skills development."
+      },
+      "hope": {
+        "title": "HOPE",
+        "tag": "Health",
+        "status": "Outreach",
+        "place": "Community clinics",
+        "text": "Health outreach and protection for inclusive service access."
+      },
+      "sprint": {
+        "title": "SPRINT",
+        "tag": "Climate",
+        "status": "Response",
+        "place": "Crisis contexts",
+        "text": "Preparedness and response support for resilient community systems."
+      }
+    }
+  },
+  "impact": {
+    "title": "Our Presence",
+    "subtitle": "Impact",
+    "heading": "Community-centered change, built with trust.",
+    "description": "PSTC works alongside communities to make services more inclusive, accessible, and sustainable across health, protection, skills, youth engagement, and climate resilience.",
+    "design_principle": "Design for dignity first. Then make every pathway simple, safe, and useful.",
+    "design_label": "Landing page design principle",
+    "stats": {
+      "people_reached": "Million people directly reached",
+      "projects": "Projects",
+      "districts": "Districts",
+      "data_note": "*Data from FY25 (July '24 - June '25)"
+    },
+    "features": [
+      "Inclusive services",
+      "Youth voice",
+      "Transparent impact"
+    ]
+  },
+  "ucon": {
+    "title": "uCon: youth voice, learning, and advocacy.",
+    "subtitle": "Youth Platform",
+    "description": "Explore ideas, ask questions, access CSE modules, join advocacy, and complete assessment-based certification through a youth-friendly learning gateway.",
+    "cta_primary": "Explore uCon",
+    "cta_secondary": "Start Learning",
+    "features": {
+      "ask": {
+        "title": "Ask Questions",
+        "text": "Safe query submission and helpful youth-friendly guidance."
+      },
+      "explore": {
+        "title": "Explore Ideas",
+        "text": "Community ideas, youth action, and innovation prompts."
+      },
+      "cse": {
+        "title": "CSE Modules",
+        "text": "Modules 1 to 8 designed as learning cards."
+      },
+      "certification": {
+        "title": "Certification",
+        "text": "Assessment and certificate preview experience."
+      }
+    }
+  },
+  "publications": {
+    "title": "Publications & Knowledge Hub",
+    "subtitle": "Publications",
+    "heading": "Turn reports, research, and newsletters into a searchable trust center.",
+    "description": "Global NGO sites use reports, resources, and stories to build credibility. PSTC can make publications one of the homepage's strongest trust signals.",
+    "search_placeholder": "Search reports, research, newsletters...",
+    "search_button": "Search",
+    "categories": [
+      "Annual Report",
+      "Audit Report",
+      "Research",
+      "Projanmo Kotha"
+    ],
+    "publications": {
+      "annual_report": {
+        "title": "Annual Report 2025",
+        "type": "Annual Report",
+        "year": "2025",
+        "text": "A complete snapshot of PSTC programs, reach, governance, and organizational progress."
+      },
+      "projanmo_kotha": {
+        "title": "Projanmo Kotha",
+        "type": "Newsletter",
+        "year": "Latest",
+        "text": "Stories, program updates, youth engagement highlights, and field-level learning."
+      },
+      "research_brief": {
+        "title": "Research Brief: Youth Health & Rights",
+        "type": "Research",
+        "year": "2026",
+        "text": "Evidence summary on adolescent health, SRHR awareness, and service access."
+      }
+    }
+  },
+  "updates": {
+    "title": "Updates",
+    "items": {
+      "health_initiative": {
+        "date": "June 10, 2026",
+        "title": "PSTC launches integrated community health initiative",
+        "text": "Strengthening inclusive primary health access and referral support across Bangladesh."
+      },
+      "youth_dialogue": {
+        "date": "June 10, 2026",
+        "title": "Youth dialogue on SRHR, climate resilience, and inclusion",
+        "text": "Young people joined community dialogue sessions focused on rights, resilience, and inclusive development."
+      },
+      "paramedic_training": {
+        "date": "June 10, 2026",
+        "title": "New community paramedic training cohort opens",
+        "text": "Training opportunities continue to build practical skills, employment readiness, and community care capacity."
+      }
+    }
+  },
+  "partners": {
+    "title": "Partners & Networks",
+    "subtitle": "Partners",
+    "heading": "Credibility through collaboration.",
+    "description": "A logo-cloud area builds confidence for donors, communities, affiliates, and technical partners.",
+    "list": [
+      "IPPF",
+      "Government Affiliates",
+      "Development Partners",
+      "Community Networks",
+      "Youth Networks",
+      "Health Partners"
+    ]
+  },
+  "get_involved": {
+    "title": "Get Involved",
+    "subtitle": "Get Involved",
+    "heading": "Help create impact that lasts.",
+    "description": "Give today, join a training, apply for opportunities, or partner with PSTC to expand inclusive community services.",
+    "donation_ui": "Donation Amount UI",
+    "donation_amounts": {
+      "five_hundred": "৳500",
+      "thousand": "৳1000",
+      "five_thousand": "৳5000",
+      "custom": "Custom"
+    },
+    "options": {
+      "give_today": {
+        "title": "Give Today",
+        "text": "Support inclusive services and community impact."
+      },
+      "join_training": {
+        "title": "Join Training",
+        "text": "Explore certification, policy, and skills learning."
+      },
+      "work_with_us": {
+        "title": "Work With Us",
+        "text": "Careers, volunteering, consultancy, and partnership."
+      }
+    }
+  },
+  "footer": {
+    "newsletter": "Stay connected with PSTC",
+    "subscribe": "Get updates on programs, publications, and stories of impact.",
+    "subscribe_success": "Thank you. This is a frontend-only success message.",
+    "privacy_notice": "We respect your privacy. This demo does not send data anywhere.",
+    "quick_links": "Quick Links",
+    "quick_links_items": [
+      "Who We Are",
+      "What We Do",
+      "Impact",
+      "Publications",
+      "uCon"
+    ],
+    "policies": "Policies",
+    "policies_items": [
+      "Privacy Policy",
+      "Safeguarding Policy",
+      "Gender Policy",
+      "SHaPE Policy"
+    ],
+    "contact": "Contact",
+    "address": "PSTC Bhaban, House #5, Main Road, Block B, Aftabnagar, Badda, Dhaka-1212, Bangladesh",
+    "phone": "+88 02 222 6602372-5",
+    "email": "pstc@pstc-bgd.org",
+    "rights": "All rights reserved.",
+    "frontend_notice": "Frontend only • No backend • Replace image slots with approved media"
+  },
+  "btn": {
+    "language": "বাংলা",
+    "learn_more": "Learn More",
+    "view": "View",
+    "download": "Download",
+    "search": "Search",
+    "subscribe": "Subscribe",
+    "start": "Start",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "explore": "Explore"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success!",
+    "no_results": "No results found",
+    "read_more": "Read More",
+    "show_less": "Show Less",
+    "all": "All",
+    "active": "Active",
+    "program": "Program",
+    "community": "Community",
+    "protection": "Protection",
+    "training": "Training",
+    "outreach": "Outreach",
+    "response": "Response"
+  }
+}

@@ -1,10 +1,36 @@
 'use client';
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { LanguageCode, translations } from '@/lib/i18n/translations';
-import { I18nContextType } from '@/lib/i18n/types';
+import enMessages from '@/locales/en.json';
+import bnMessages from '@/locales/bn.json';
+import { LanguageCode, translations as legacyTranslations } from '@/lib/i18n/translations';
+import { I18nContextType, TranslationOptions } from '@/lib/i18n/types';
 
 export const TranslationContext = createContext<I18nContextType | undefined>(undefined);
+
+const localeMessages: Partial<Record<LanguageCode, unknown>> = {
+  en: enMessages,
+  bn: bnMessages,
+};
+
+function getNestedValue(source: unknown, key: string): unknown {
+  if (!source || typeof source !== 'object') {
+    return undefined;
+  }
+
+  return key.split('.').reduce<unknown>((current, part) => {
+    if (Array.isArray(current)) {
+      const index = Number(part);
+      return Number.isInteger(index) ? current[index] : undefined;
+    }
+
+    if (current && typeof current === 'object' && part in current) {
+      return (current as Record<string, unknown>)[part];
+    }
+
+    return undefined;
+  }, source);
+}
 
 interface TranslationProviderProps {
   children: ReactNode;
@@ -13,13 +39,12 @@ interface TranslationProviderProps {
 
 export function TranslationProvider({ children, defaultLanguage = 'en' }: TranslationProviderProps) {
   const [language, setLanguageState] = useState<LanguageCode>(defaultLanguage);
-  const [mounted, setMounted] = useState(true);
 
   // Load language from localStorage on client
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedLang = localStorage.getItem('pstc_language') as LanguageCode | null;
-      if (storedLang && translations[storedLang]) {
+      if (storedLang && (localeMessages[storedLang] || legacyTranslations[storedLang])) {
         setLanguageState(storedLang);
         applyLanguage(storedLang);
       } else {
@@ -39,17 +64,30 @@ export function TranslationProvider({ children, defaultLanguage = 'en' }: Transl
   };
 
   const setLanguage = (newLang: LanguageCode) => {
-    if (translations[newLang]) {
+    if (localeMessages[newLang] || legacyTranslations[newLang]) {
       setLanguageState(newLang);
       localStorage.setItem('pstc_language', newLang);
       applyLanguage(newLang);
     }
   };
 
-  const t = (key: string): string => {
-    const translationMap = translations[language];
-    const value = translationMap[key];
-    return typeof value === 'string' ? value : key;
+  const t = (key: string, options?: TranslationOptions): unknown => {
+    const localeValue = getNestedValue(localeMessages[language], key);
+
+    if (localeValue !== undefined) {
+      if (options?.returnObjects) {
+        return localeValue;
+      }
+
+      return typeof localeValue === 'string' ? localeValue : key;
+    }
+
+    const legacyValue = legacyTranslations[language]?.[key];
+    if (legacyValue !== undefined) {
+      return legacyValue;
+    }
+
+    return key;
   };
 
   return (

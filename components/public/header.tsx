@@ -26,7 +26,7 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
@@ -50,10 +50,10 @@ export function Header() {
             <Button
               variant="default"
               size="sm"
-              asChild
               className="hidden sm:inline-flex"
+              onClick={() => (window.location.href = "/give-today")}
             >
-              <Link href="/give-today">{t("nav.donate")}</Link>
+              {t("nav.donate")}
             </Button>
 
             {/* Mobile menu button */}

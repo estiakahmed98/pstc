@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import { ThemeContext } from "@/components/shared/theme-provider";
+import { useTranslation } from "@/hooks/use-translation";
 import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 
@@ -58,9 +59,9 @@ type IconName =
 
 export default function PSTCLandingPage() {
   const themeContext = useContext(ThemeContext);
+  const { t, language, setLanguage } = useTranslation();
   const isDark = themeContext?.theme === "dark";
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [language, setLanguage] = useState<"en" | "bn">("en");
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -74,133 +75,85 @@ export default function PSTCLandingPage() {
     return () => clearInterval(timer);
   }, []);
 
-  const copy = {
-    en: {
-      announcement:
-        "Advancing health, rights, resilience, and opportunity across Bangladesh",
-      donate: "Give Today",
-      heroLabel: "Population Services and Training Center",
-      heroTitle:
-        "Advancing health, rights, and resilience for communities across Bangladesh",
-      heroText:
-        "For nearly five decades, PSTC has worked with communities, partners, and young people to improve access to health, rights, skills, protection, and opportunity.",
-      primaryCta: "Explore Our Work",
-      secondaryCta: "View Publications",
-      tertiaryCta: "Help Create Impact",
-      newsletterTitle: "Stay connected with PSTC",
-      newsletterText:
-        "Get updates on publications, programs, training, events, and community impact.",
-    },
-    bn: {
-      announcement:
-        "বাংলাদেশজুড়ে স্বাস্থ্য, অধিকার, স্থিতিস্থাপকতা ও সুযোগ এগিয়ে নেওয়া",
-      donate: "সহায়তা করুন",
-      heroLabel: "পপুলেশন সার্ভিসেস অ্যান্ড ট্রেনিং সেন্টার",
-      heroTitle:
-        "বাংলাদেশের মানুষের স্বাস্থ্য, অধিকার ও স্থিতিস্থাপকতার জন্য কাজ",
-      heroText:
-        "প্রায় পাঁচ দশক ধরে PSTC কমিউনিটি, অংশীদার ও তরুণদের সঙ্গে স্বাস্থ্য, অধিকার, দক্ষতা, সুরক্ষা ও সুযোগ বৃদ্ধিতে কাজ করছে।",
-      primaryCta: "আমাদের কাজ দেখুন",
-      secondaryCta: "প্রকাশনা দেখুন",
-      tertiaryCta: "Impact তৈরি করুন",
-      newsletterTitle: "PSTC-এর সঙ্গে যুক্ত থাকুন",
-      newsletterText:
-        "প্রকাশনা, প্রোগ্রাম, ট্রেনিং, ইভেন্ট এবং কমিউনিটি impact আপডেট পান।",
-    },
-  };
-
-  const currentCopy = copy[language];
-
   const navItems = [
-    { label: "Who We Are", href: "#about" },
-    { label: "What We Do", href: "#programs" },
-    { label: "Impact", href: "#impact" },
-    { label: "Publications", href: "#publications" },
-    { label: "uCon", href: "#ucon" },
-    { label: "Get Involved", href: "#get-involved" },
-    { label: "Contact", href: "#contact" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.programs"), href: "#programs" },
+    { label: t("nav.impact"), href: "#impact" },
+    { label: t("nav.publications"), href: "#publications" },
+    { label: t("nav.ucon"), href: "#ucon" },
+    { label: t("nav.jobs"), href: "#get-involved" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   const stats = [
     {
       value: "48+",
-      label: "Years of service",
-      caption: "Continuing from FPSTC since 1978",
+      label: t("landing.stats_years_label"),
+      caption: t("landing.stats_years_caption"),
       icon: "spark" as IconName,
     },
     {
       value: "5",
-      label: "Thematic areas",
-      caption: "Health, youth, gender, climate, skills",
+      label: t("landing.stats_thematic_label"),
+      caption: t("landing.stats_thematic_caption"),
       icon: "leaf" as IconName,
     },
     {
       value: "8+",
-      label: "Major projects",
-      caption: "Community-focused initiatives",
+      label: t("landing.stats_projects_label"),
+      caption: t("landing.stats_projects_caption"),
       icon: "briefcase" as IconName,
     },
     {
       value: "3",
-      label: "Model clinic locations",
-      caption: "Aftabnagar, Gazipur, Kushtia",
+      label: t("landing.stats_locations_label"),
+      caption: t("landing.stats_locations_caption"),
       icon: "heart" as IconName,
     },
     {
       value: "100K+",
-      label: "People reached",
-      caption: "Dummy figure for visual demo",
+      label: t("landing.stats_people_label"),
+      caption: t("landing.stats_people_caption"),
       icon: "users" as IconName,
     },
     {
       value: "25+",
-      label: "Partners & networks",
-      caption: "Collaboration for greater impact",
+      label: t("landing.stats_partners_label"),
+      caption: t("landing.stats_partners_caption"),
       icon: "globe" as IconName,
     },
   ];
 
-  const values = [
-    "Commitment",
-    "Integrity",
-    "Transparency",
-    "Accountability",
-    "Team Spirit",
-  ];
+  const values = t("about.values_list", { returnObjects: true }) as string[];
 
   const thematicAreas = [
     {
-      title: "Population Health and Nutrition",
-      short:
-        "Inclusive quality health, SRHR, nutrition, and community-based service access.",
+      title: t("programs.areas.health.title"),
+      short: t("programs.areas.health.description"),
       icon: "heart" as IconName,
       gradient: "from-[#009FE3]/20 via-[#ea4335]/10 to-[#ffd54f]/20",
     },
     {
-      title: "Youth and Adolescent Development",
-      short:
-        "Youth voice, adolescent wellbeing, life skills, advocacy, and safe learning spaces.",
+      title: t("programs.areas.youth.title"),
+      short: t("programs.areas.youth.description"),
       icon: "users" as IconName,
       gradient: "from-[#ea4335]/20 via-[#7cb342]/10 to-[#009FE3]/20",
     },
     {
-      title: "Gender and Governance",
-      short:
-        "Rights-based governance, gender equity, protection, safeguarding, and inclusion.",
+      title: t("programs.areas.gender.title"),
+      short: t("programs.areas.gender.description"),
       icon: "shield" as IconName,
       gradient: "from-violet-500/20 via-fuchsia-500/10 to-rose-500/20",
     },
     {
-      title: "Climate Change and Adaptation",
-      short:
-        "Preparedness, resilient communities, inclusion, and climate-sensitive development.",
+      title: t("programs.areas.climate.title"),
+      short: t("programs.areas.climate.description"),
       icon: "leaf" as IconName,
       gradient: "from-[#ffd54f]/20 via-[#009FE3]/10 to-[#7cb342]/20",
     },
     {
-      title: "Skills Education and Training",
-      short:
-        "Practical training, certification, employment support, and institution-based learning.",
+      title: t("programs.areas.skills.title"),
+      short: t("programs.areas.skills.description"),
       icon: "graduation" as IconName,
       gradient: "from-amber-500/20 via-orange-500/10 to-yellow-500/20",
     },
@@ -208,69 +161,69 @@ export default function PSTCLandingPage() {
 
   const projects = [
     {
-      title: "Urban Health Care",
-      tag: "Health",
-      status: "Active",
-      place: "Urban communities",
-      text: "Strengthening primary health access and referral support for underserved people.",
+      title: t("projects.projects.urban_health.title"),
+      tag: t("projects.filters.health"),
+      status: t("common.active"),
+      place: t("projects.projects.urban_health.place"),
+      text: t("projects.projects.urban_health.text"),
       image: "/assets/Urban Health Care project image.jpeg",
     },
     {
-      title: "FOCUS",
-      tag: "Youth",
-      status: "Active",
-      place: "Bangladesh",
-      text: "Fortifying organizational capacity to uphold the SRHR movement in Bangladesh.",
+      title: t("projects.projects.focus.title"),
+      tag: t("projects.filters.youth"),
+      status: t("common.active"),
+      place: t("projects.projects.focus.place"),
+      text: t("projects.projects.focus.text"),
       image: "/assets/FOCUS project image.jpg",
     },
     {
-      title: "PUD",
-      tag: "Health",
-      status: "Program",
-      place: "Community based",
-      text: "Supportive service pathways for persons who use drugs and vulnerable populations.",
+      title: t("projects.projects.pud.title"),
+      tag: t("projects.filters.health"),
+      status: t("common.program"),
+      place: t("projects.projects.pud.place"),
+      text: t("projects.projects.pud.text"),
       image: "/assets/Supportive service pathways for persons.jpg",
     },
     {
-      title: "CMP",
-      tag: "Gender",
-      status: "Community",
-      place: "Local networks",
-      text: "Community mobilization for rights, protection, awareness, and access to services.",
+      title: t("projects.projects.cmp.title"),
+      tag: t("projects.filters.gender"),
+      status: t("common.community"),
+      place: t("projects.projects.cmp.place"),
+      text: t("projects.projects.cmp.text"),
       image: "/assets/Community mobilization for rights.jpg",
     },
     {
-      title: "SUFASEC",
-      tag: "Gender",
-      status: "Protection",
-      place: "Target communities",
-      text: "A child protection initiative against sexual exploitation of children.",
+      title: t("projects.projects.sufasec.title"),
+      tag: t("projects.filters.gender"),
+      status: t("common.protection"),
+      place: t("projects.projects.sufasec.place"),
+      text: t("projects.projects.sufasec.text"),
       image: "/assets/A child protection initiative against.webp",
     },
     {
-      title: "LEVIS",
-      tag: "Skills",
-      status: "Training",
-      place: "Institutional",
-      text: "Learning, employability, vocational readiness, and practical skills development.",
+      title: t("projects.projects.levis.title"),
+      tag: t("projects.filters.skills"),
+      status: t("common.training"),
+      place: t("projects.projects.levis.place"),
+      text: t("projects.projects.levis.text"),
       image:
         "/assets/Learning, employability, vocational readiness, and practical skills.jpg",
     },
     {
-      title: "HOPE",
-      tag: "Health",
-      status: "Outreach",
-      place: "Community clinics",
-      text: "Health Outreach and Protection Effort for inclusive health service access.",
+      title: t("projects.projects.hope.title"),
+      tag: t("projects.filters.health"),
+      status: t("common.outreach"),
+      place: t("projects.projects.hope.place"),
+      text: t("projects.projects.hope.text"),
       image:
         "/assets/Health Outreach and Protection Effort for inclusive health service access.webp",
     },
     {
-      title: "SPRINT",
-      tag: "Climate",
-      status: "Response",
-      place: "Crisis contexts",
-      text: "Preparedness and response support for resilient community systems.",
+      title: t("projects.projects.sprint.title"),
+      tag: t("projects.filters.climate"),
+      status: t("common.response"),
+      place: t("projects.projects.sprint.place"),
+      text: t("projects.projects.sprint.text"),
       image: "/assets/Preparedness and response support.jpeg",
     },
   ];
@@ -286,40 +239,40 @@ export default function PSTCLandingPage() {
 
   const publications = [
     {
-      title: "Annual Report 2025",
-      type: "Annual Report",
-      year: "2025",
-      text: "A complete snapshot of PSTC programs, reach, governance, and organizational progress.",
+      title: t("publications.publications.annual_report.title"),
+      type: t("publications.categories.0"),
+      year: t("publications.publications.annual_report.year"),
+      text: t("publications.publications.annual_report.text"),
     },
     {
-      title: "Projanmo Kotha",
-      type: "Newsletter",
-      year: "Latest",
-      text: "Stories, program updates, youth engagement highlights, and field-level learning.",
+      title: t("publications.publications.projanmo_kotha.title"),
+      type: t("publications.categories.3"),
+      year: t("publications.publications.projanmo_kotha.year"),
+      text: t("publications.publications.projanmo_kotha.text"),
     },
     {
-      title: "Research Brief: Youth Health & Rights",
-      type: "Research",
-      year: "2026",
-      text: "Evidence summary on adolescent health, SRHR awareness, and service access.",
+      title: t("publications.publications.research_brief.title"),
+      type: t("publications.categories.2"),
+      year: t("publications.publications.research_brief.year"),
+      text: t("publications.publications.research_brief.text"),
     },
   ];
 
   const news = [
     {
-      date: "22 Jun 2026",
-      label: "Program Update",
-      title: "PSTC launches integrated community health initiative",
+      date: t("updates.items.health_initiative.date"),
+      label: t("common.program"),
+      title: t("updates.items.health_initiative.title"),
     },
     {
-      date: "18 Jun 2026",
-      label: "Youth",
-      title: "Youth dialogue on SRHR, climate resilience, and inclusion",
+      date: t("updates.items.youth_dialogue.date"),
+      label: t("common.active"),
+      title: t("updates.items.youth_dialogue.title"),
     },
     {
-      date: "12 Jun 2026",
-      label: "Training",
-      title: "New community paramedic training cohort opens",
+      date: t("updates.items.paramedic_training.date"),
+      label: t("common.training"),
+      title: t("updates.items.paramedic_training.title"),
     },
   ];
 
@@ -337,19 +290,22 @@ export default function PSTCLandingPage() {
     },
   ];
 
-  const partners = [
-    "IPPF",
-    "Govt. Affiliates",
-    "Development Partners",
-    "Community Networks",
-    "Youth Networks",
-    "Health Partners",
-  ];
+  const partners = t("partners.list", { returnObjects: true }) as string[];
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
-    return projects.filter((project) => project.tag === activeFilter);
-  }, [activeFilter]);
+    return projects.filter((project) => {
+      const filterMap: Record<string, string> = {
+        All: "All",
+        Health: t("projects.filters.health"),
+        Youth: t("projects.filters.youth"),
+        Gender: t("projects.filters.gender"),
+        Climate: t("projects.filters.climate"),
+        Skills: t("projects.filters.skills"),
+      };
+      return project.tag === filterMap[activeFilter];
+    });
+  }, [activeFilter, t, projects]);
 
   function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -664,32 +620,33 @@ export default function PSTCLandingPage() {
         <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.12),transparent_28%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.08),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.14),transparent_30%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.1),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_28%)]" />
 
         <div className="relative z-10">
+          {/* Top Bar */}
           <div className="bg-[#009FE3] text-white dark:bg-slate-900">
             <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs font-semibold sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
               <div className="flex items-center gap-2">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-white">
                   <Icon name="spark" className="h-4 w-4" />
                 </span>
-                <span>{currentCopy.announcement}</span>
+                <span>{t("landing.announcement")}</span>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-white/90">
                 <a href="#publications" className="transition hover:text-white">
-                  Publications
+                  {t("nav.publications")}
                 </a>
                 <span className="h-1 w-1 rounded-full bg-white/50" />
                 <a href="#contact" className="transition hover:text-white">
-                  Contact
+                  {t("nav.contact")}
                 </a>
                 <span className="h-1 w-1 rounded-full bg-white/50" />
                 <a href="#ucon" className="transition hover:text-white">
-                  uCon
+                  {t("nav.ucon")}
                 </a>
                 <button
                   type="button"
                   onClick={() => setLanguage(language === "en" ? "bn" : "en")}
                   className="rounded-full bg-white/10 px-3 py-1.5 text-white transition hover:bg-white/20"
                 >
-                  {language === "en" ? "বাংলা" : "EN"}
+                  {t("btn.language")}
                 </button>
                 <button
                   type="button"
@@ -703,6 +660,7 @@ export default function PSTCLandingPage() {
             </div>
           </div>
 
+          {/* Header */}
           <header className="sticky top-0 z-50 border-b border-white/50 bg-white/78 backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/70">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
               <img
@@ -734,7 +692,7 @@ export default function PSTCLandingPage() {
                 >
                   <Icon name="search" className="h-5 w-5" />
                 </button>
-                <CtaButton href="#get-involved">{currentCopy.donate}</CtaButton>
+                <CtaButton href="#get-involved">{t("nav.donate")}</CtaButton>
               </div>
 
               <button
@@ -765,13 +723,14 @@ export default function PSTCLandingPage() {
                     onClick={() => setMobileOpen(false)}
                     className="mt-2 rounded-2xl bg-[#ea4335] px-4 py-3 text-center text-sm font-black text-white"
                   >
-                    {currentCopy.donate}
+                    {t("nav.donate")}
                   </a>
                 </nav>
               </div>
             ) : null}
           </header>
 
+          {/* Hero Section */}
           <section
             aria-label="Hero carousel"
             className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-950 text-white"
@@ -802,22 +761,23 @@ export default function PSTCLandingPage() {
                 <div className="w-full px-5 pb-7 pt-20 sm:px-8 sm:pb-10 lg:px-12 lg:pb-14 xl:px-16 xl:pb-16">
                   <div className="max-w-3xl">
                     <span className="inline-flex rounded-full bg-[#009FE3] px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-white shadow-lg shadow-[#009FE3]/30">
-                      Population Services and Training Center
+                      {t("landing.hero_label")}
                     </span>
 
                     <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                      Advancing health, rights, and resilience for communities
+                      {t("landing.hero_title")}
                     </h1>
 
                     <p className="mt-5 max-w-xl text-base leading-8 text-white/90 sm:text-lg">
-                      For nearly five decades, PSTC has worked with communities,
-                      partners, and young peoples.
+                      {t("landing.hero_text")}
                     </p>
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                      <CtaButton href="#programs">Explore Our Work</CtaButton>
+                      <CtaButton href="#programs">
+                        {t("landing.primary_cta")}
+                      </CtaButton>
                       <CtaButton href="#publications" variant="secondary">
-                        View Publications
+                        {t("landing.secondary_cta")}
                       </CtaButton>
                     </div>
                   </div>
@@ -827,14 +787,14 @@ export default function PSTCLandingPage() {
               <div className="absolute right-4 top-4 z-20 rounded-[1.5rem] border border-white/60 bg-white/90 px-5 py-4 shadow-[0_24px_80px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:right-6 sm:top-6 sm:px-6 sm:py-5 dark:border-white/10 dark:bg-slate-900/70">
                 <p className="text-3xl font-black text-[#009FE3]">48+</p>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
-                  Years Impact
+                  {t("landing.years_impact")}
                 </p>
               </div>
 
               <div className="absolute bottom-20 right-4 z-20 rounded-[1.5rem] bg-[#009FE3] px-5 py-4 text-white shadow-[0_24px_80px_rgba(0,159,227,0.32)] sm:bottom-6 sm:right-6 sm:px-6 sm:py-5">
                 <p className="text-2xl font-black sm:text-3xl">100K+</p>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-                  Lives Reached
+                  {t("landing.lives_reached")}
                 </p>
               </div>
 
@@ -856,6 +816,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Impact Section */}
           <section
             id="impact"
             className="relative z-30 bg-[linear-gradient(180deg,#f6fafc_0%,#edf5f8_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
@@ -864,13 +825,11 @@ export default function PSTCLandingPage() {
               <div className="mx-auto max-w-4xl text-center">
                 <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                   <span className="mr-3 text-[#009FE3]">||</span>
-                  Our Impact in Numbers
+                  {t("landing.impact_title")}
                 </h2>
 
                 <p className="mx-auto mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
-                  PSTC works with communities, partners, and young people to
-                  improve access to health, rights, skills, protection, and
-                  opportunity across Bangladesh.
+                  {t("landing.impact_text")}
                 </p>
               </div>
 
@@ -920,6 +879,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* About Section */}
           <section
             id="about"
             className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-20 sm:px-6 lg:px-8"
@@ -932,17 +892,17 @@ export default function PSTCLandingPage() {
                 <div className="overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-2xl shadow-slate-950/10">
                   <img
                     src="/assets/organization history.jpeg"
-                    alt="About PSTC / organization history image"
+                    alt={t("about.title")}
                     className="h-[460px] w-full object-cover"
                   />
                 </div>
 
                 <div className="absolute -bottom-8 left-8 right-8 rounded-3xl border border-white/80 bg-white/95 p-6 shadow-2xl backdrop-blur">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-[#E53B51]">
-                    Since 1978
+                    {t("about.since")}
                   </p>
                   <p className="mt-2 text-2xl font-black text-[#009FE3]">
-                    Rooted in trust. Built for future impact.
+                    {t("about.tagline")}
                   </p>
                 </div>
               </div>
@@ -950,30 +910,30 @@ export default function PSTCLandingPage() {
               <div>
                 <SectionHeading
                   align="left"
-                  eyebrow="Who We Are"
-                  title="A trusted community partner for health, rights, and inclusion."
-                  text="PSTC is a non-government, not-for-profit voluntary organization working to improve the quality of life of poor and socially disadvantaged people through inclusive services, advocacy, training, and partnerships."
+                  eyebrow={t("about.subtitle")}
+                  title={t("about.heading")}
+                  text={t("about.description")}
                 />
 
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {[
                     {
-                      title: "Mission",
-                      text: "Deliver inclusive, innovative, quality services and rights-based advocacy.",
+                      title: t("about.mission"),
+                      text: t("about.mission_text"),
                       icon: "spark" as IconName,
                       color: "#009FE3",
                       bg: "bg-[#009FE3]/10",
                     },
                     {
-                      title: "Vision",
-                      text: "A society where everyone can live with dignity, rights, and opportunity.",
+                      title: t("about.vision"),
+                      text: t("about.vision_text"),
                       icon: "globe" as IconName,
                       color: "#77B151",
                       bg: "bg-[#77B151]/10",
                     },
                     {
-                      title: "Values",
-                      text: "Commitment, integrity, transparency, accountability, and team spirit.",
+                      title: t("about.values"),
+                      text: t("about.values_text"),
                       icon: "shield" as IconName,
                       color: "#E53B51",
                       bg: "bg-[#E53B51]/10",
@@ -1002,7 +962,7 @@ export default function PSTCLandingPage() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {values.map((value, index) => {
+                  {values.map((value: string, index: number) => {
                     const colors = [
                       "border-[#009FE3]/30 bg-[#009FE3]/10 text-[#009FE3]",
                       "border-[#E53B51]/30 bg-[#E53B51]/10 text-[#E53B51]",
@@ -1023,147 +983,54 @@ export default function PSTCLandingPage() {
 
                 <div className="mt-8">
                   <CtaButton href="#contact" variant="secondary">
-                    Learn About PSTC
+                    {t("about.cta")}
                   </CtaButton>
                 </div>
               </div>
             </div>
           </section>
 
+          {/* Programs Section */}
           <section
             id="programs"
             className="bg-[linear-gradient(180deg,#f9fbfc_0%,#f4f8fa_100%)] px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="grid gap-5 lg:grid-cols-3">
-                {/* Left Feature Card */}
                 <div className="flex min-h-[320px] flex-col justify-center rounded-[2rem] bg-[#F4B41A] p-8 text-slate-950 shadow-xl shadow-[#F4B41A]/20 lg:p-10">
-                  <p className="text-3xl font-light">Our</p>
+                  <p className="text-3xl font-light">{t("programs.title")}</p>
 
                   <h2 className="mt-3 text-4xl font-black leading-tight">
-                    Focus Areas
+                    {t("programs.subtitle")}
                   </h2>
 
                   <p className="mt-6 max-w-sm text-sm font-medium leading-7 text-slate-800">
-                    PSTC works across health, youth, gender, climate, skills,
-                    advocacy and community development to create sustainable
-                    impact.
+                    {t("programs.description")}
                   </p>
                 </div>
 
-                {/* Focus Area Cards */}
                 {thematicAreas.map((area) => (
                   <a
                     key={area.title}
                     href="#projects"
-                    className="
-            group
-            min-h-[320px]
-            rounded-[2rem]
-            border
-            border-slate-200
-            bg-white
-            p-8
-            shadow-xl
-            shadow-slate-950/5
-            transition-all
-            duration-300
-            hover:-translate-y-1
-            hover:border-[#009FE3]
-            hover:bg-[#009FE3]
-            hover:shadow-2xl
-            hover:shadow-[#009FE3]/25
-          "
+                    className="group min-h-[320px] rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-950/5 transition-all duration-300 hover:-translate-y-1 hover:border-[#009FE3] hover:bg-[#009FE3] hover:shadow-2xl hover:shadow-[#009FE3]/25"
                   >
-                    <div
-                      className="
-              h-full
-              rounded-[1.5rem]
-              border
-              border-dashed
-              border-slate-300
-              p-6
-              transition-colors
-              duration-300
-              group-hover:border-white/40
-            "
-                    >
-                      {/* Icon */}
-                      <div
-                        className="
-                mb-7
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                bg-[#009FE3]/10
-                text-[#009FE3]
-                transition-all
-                duration-300
-                group-hover:bg-white/20
-                group-hover:text-white
-              "
-                      >
+                    <div className="h-full rounded-[1.5rem] border border-dashed border-slate-300 p-6 transition-colors duration-300 group-hover:border-white/40">
+                      <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] transition-all duration-300 group-hover:bg-white/20 group-hover:text-white">
                         <Icon name={area.icon} className="h-8 w-8" />
                       </div>
 
-                      {/* Title */}
-                      <h3
-                        className="
-                max-w-xs
-                text-2xl
-                font-black
-                uppercase
-                leading-snug
-                text-slate-950
-                transition-colors
-                duration-300
-                group-hover:text-white
-              "
-                      >
+                      <h3 className="max-w-xs text-2xl font-black uppercase leading-snug text-slate-950 transition-colors duration-300 group-hover:text-white">
                         {area.title}
                       </h3>
 
-                      {/* Description */}
-                      <p
-                        className="
-                mt-6
-                text-sm
-                leading-7
-                text-slate-600
-                transition-colors
-                duration-300
-                group-hover:text-white/90
-              "
-                      >
+                      <p className="mt-6 text-sm leading-7 text-slate-600 transition-colors duration-300 group-hover:text-white/90">
                         {area.short}
                       </p>
 
-                      {/* Button */}
                       <div className="mt-8">
-                        <span
-                          className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-[#009FE3]
-                  px-5
-                  py-3
-                  text-sm
-                  font-black
-                  text-[#009FE3]
-                  transition-all
-                  duration-300
-                  group-hover:border-white
-                  group-hover:bg-white
-                  group-hover:text-[#009FE3]
-                "
-                        >
-                          Learn More
+                        <span className="inline-flex items-center gap-2 rounded-full border border-[#009FE3] px-5 py-3 text-sm font-black text-[#009FE3] transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[#009FE3]">
+                          {t("programs.learn_more")}
                           <Icon
                             name="arrow"
                             className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -1177,6 +1044,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Projects Section */}
           <section
             id="projects"
             className="bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-20 sm:px-6 lg:px-8"
@@ -1185,9 +1053,9 @@ export default function PSTCLandingPage() {
               <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
                 <SectionHeading
                   align="left"
-                  eyebrow="Featured Projects"
-                  title="Program cards designed for discovery, trust, and conversion."
-                  text="Inspired by global NGO sites, the project area uses filters, tags, and short outcomes so visitors can scan quickly without getting lost."
+                  eyebrow={t("projects.subtitle")}
+                  title={t("projects.heading")}
+                  text={t("projects.description")}
                 />
 
                 <div className="flex flex-wrap gap-2">
@@ -1211,7 +1079,9 @@ export default function PSTCLandingPage() {
                           : "border border-slate-200 bg-white text-slate-700 hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:text-[#ffd54f]"
                       }`}
                     >
-                      {filter}
+                      {filter === "All"
+                        ? t("projects.filters.all")
+                        : t(`projects.filters.${filter.toLowerCase()}`)}
                     </button>
                   ))}
                 </div>
@@ -1258,7 +1128,7 @@ export default function PSTCLandingPage() {
                         href="#"
                         className="text-sm font-black text-[#009FE3] hover:text-[#ea4335] dark:text-[#ffd54f] dark:hover:text-white"
                       >
-                        View
+                        {t("btn.view")}
                       </a>
                     </div>
                   </article>
@@ -1267,22 +1137,21 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Reach Section */}
           <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#eef3f7_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-7xl overflow-hidden rounded-[3rem] border border-slate-200 bg-[linear-gradient(135deg,#fff9ea_0%,#f2f7fa_48%,#e9eff8_100%)] shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#151631]">
               <div className="grid min-h-[500px] lg:grid-cols-[0.95fr_1.05fr_1.1fr]">
                 <div className="flex items-center justify-center px-8 py-12 text-center lg:px-10">
                   <h2 className="text-[clamp(3rem,5vw,5.8rem)] font-black uppercase leading-[0.9] tracking-tight text-[#0b2e68]">
-                    Our
-                    <br />
-                    Reach
+                    {t("impact.title")}
                   </h2>
                 </div>
 
                 <div className="flex flex-col justify-center gap-6 px-4 py-8 sm:px-6 lg:px-0">
                   {[
-                    { value: "4.7+", label: "Million people directly reached" },
-                    { value: "41+", label: "Projects" },
-                    { value: "36", label: "Districts" },
+                    { value: "4.7+", label: t("impact.stats.people_reached") },
+                    { value: "41+", label: t("impact.stats.projects") },
+                    { value: "36", label: t("impact.stats.districts") },
                   ].map((item, index) => (
                     <div
                       key={item.label}
@@ -1303,7 +1172,7 @@ export default function PSTCLandingPage() {
                     </div>
                   ))}
                   <p className="mt-1 pr-1 text-right text-sm font-semibold text-[#0b2e68]">
-                    *Data from FY25 (July '24 - June '25)
+                    {t("impact.stats.data_note")}
                   </p>
                 </div>
 
@@ -1314,9 +1183,7 @@ export default function PSTCLandingPage() {
                   <div className="relative flex min-h-[440px] items-center">
                     <div className="absolute left-6 top-1/2 -translate-y-1/2 text-left sm:left-8">
                       <p className="text-[clamp(3rem,4.6vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight text-white">
-                        Our
-                        <br />
-                        Presence
+                        {t("impact.subtitle")}
                       </p>
                     </div>
                   </div>
@@ -1325,6 +1192,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Impact Story Section */}
           <section className="bg-gradient-to-b from-slate-50 to-white px-4 py-20 text-slate-950 dark:from-slate-950 dark:to-slate-900 dark:text-white sm:px-6 lg:px-8">
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
               <img
@@ -1334,75 +1202,68 @@ export default function PSTCLandingPage() {
               />
               <div>
                 <div className="mb-4 inline-flex rounded-full bg-[#ea4335]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#ea4335] dark:bg-white/10 dark:text-[#ffd54f]">
-                  Impact Story
+                  {t("impact.subtitle")}
                 </div>
                 <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-                  Community-centered change, built with trust.
+                  {t("impact.heading")}
                 </h2>
                 <p className="mt-6 text-lg leading-9 text-slate-600 dark:text-slate-300">
-                  PSTC works alongside communities to make services more
-                  inclusive, accessible, and sustainable—from health and
-                  protection to skills, youth engagement, and climate
-                  resilience.
+                  {t("impact.description")}
                 </p>
                 <div className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
                   <p className="text-2xl font-black text-[#009FE3] dark:text-[#ffd54f]">
-                    “Design for dignity first. Then make every pathway simple,
-                    safe, and useful.”
+                    {t("impact.design_principle")}
                   </p>
                   <p className="mt-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                    Landing page design principle
+                    {t("impact.design_label")}
                   </p>
                 </div>
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {[
-                    "Inclusive services",
-                    "Youth voice",
-                    "Transparent impact",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl bg-white p-4 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
-                    >
-                      <Icon
-                        name="check"
-                        className="mb-3 h-5 w-5 text-[#7cb342] dark:text-[#ffd54f]"
-                      />
-                      <p className="text-sm font-black">{item}</p>
-                    </div>
-                  ))}
+                  {t("impact.features", { returnObjects: true }).map(
+                    (item: string) => (
+                      <div
+                        key={item}
+                        className="rounded-2xl bg-white p-4 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
+                      >
+                        <Icon
+                          name="check"
+                          className="mb-3 h-5 w-5 text-[#7cb342] dark:text-[#ffd54f]"
+                        />
+                        <p className="text-sm font-black">{item}</p>
+                      </div>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
           </section>
 
+          {/* uCon Section */}
           <section id="ucon" className="px-4 py-20 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#009FE3]/25 bg-gradient-to-br from-[#009FE3] via-[#ea4335] to-[#7cb342] p-6 shadow-2xl shadow-slate-950/20 dark:border-white/10 lg:p-10">
               <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
                 <div className="text-white">
                   <div className="mb-4 inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-white">
-                    Youth Platform
+                    {t("ucon.subtitle")}
                   </div>
                   <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-                    uCon: youth voice, learning, and advocacy.
+                    {t("ucon.title")}
                   </h2>
                   <p className="mt-6 text-lg leading-9 text-white/90">
-                    Explore ideas, ask questions, access CSE modules, join
-                    advocacy, and complete assessment-based certification
-                    through a youth-friendly learning gateway.
+                    {t("ucon.description")}
                   </p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                     <a
                       href="#"
                       className="rounded-full bg-white px-5 py-3 text-center text-sm font-black text-[#009FE3] transition hover:-translate-y-0.5"
                     >
-                      Explore uCon
+                      {t("ucon.cta_primary")}
                     </a>
                     <a
                       href="#"
                       className="rounded-full border border-white/35 px-5 py-3 text-center text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10"
                     >
-                      Start Learning
+                      {t("ucon.cta_secondary")}
                     </a>
                   </div>
                 </div>
@@ -1410,24 +1271,24 @@ export default function PSTCLandingPage() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
                     {
-                      title: "Ask Questions",
+                      title: t("ucon.features.ask.title"),
                       icon: "mail" as IconName,
-                      text: "Safe query submission and helpful youth-friendly guidance.",
+                      text: t("ucon.features.ask.text"),
                     },
                     {
-                      title: "Explore Ideas",
+                      title: t("ucon.features.explore.title"),
                       icon: "spark" as IconName,
-                      text: "Community ideas, youth action, and innovation prompts.",
+                      text: t("ucon.features.explore.text"),
                     },
                     {
-                      title: "CSE Modules",
+                      title: t("ucon.features.cse.title"),
                       icon: "book" as IconName,
-                      text: "Module 1 to 8 designed as learning cards.",
+                      text: t("ucon.features.cse.text"),
                     },
                     {
-                      title: "Certification",
+                      title: t("ucon.features.certification.title"),
                       icon: "graduation" as IconName,
-                      text: "Assessment and certificate preview experience.",
+                      text: t("ucon.features.certification.text"),
                     },
                   ].map((item) => (
                     <div
@@ -1448,12 +1309,13 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Publications Section */}
           <section id="publications" className="px-4 py-20 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <SectionHeading
-                eyebrow="Publications & Knowledge Hub"
-                title="Turn reports, research, and newsletters into a searchable trust center."
-                text="Global NGO sites use reports, financials, resources, and stories to build credibility. PSTC can make publications one of the homepage’s strongest trust signals."
+                eyebrow={t("publications.subtitle")}
+                title={t("publications.heading")}
+                text={t("publications.description")}
               />
 
               <div className="mx-auto mt-10 flex max-w-3xl items-center gap-3 rounded-full border border-slate-200 bg-white p-2 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
@@ -1462,31 +1324,28 @@ export default function PSTCLandingPage() {
                 </span>
                 <input
                   aria-label="Search publications"
-                  placeholder="Search reports, research, newsletters..."
+                  placeholder={t("publications.search_placeholder")}
                   className="min-w-0 flex-1 bg-transparent px-2 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 dark:text-white"
                 />
                 <button
                   type="button"
                   className="rounded-full bg-slate-950 px-5 py-3 text-sm font-black text-white dark:bg-white dark:text-slate-950"
                 >
-                  Search
+                  {t("publications.search_button")}
                 </button>
               </div>
 
               <div className="mt-6 flex flex-wrap justify-center gap-2">
-                {[
-                  "Annual Report",
-                  "Audit Report",
-                  "Research",
-                  "Projanmo Kotha",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300"
-                  >
-                    {item}
-                  </span>
-                ))}
+                {t("publications.categories", { returnObjects: true }).map(
+                  (item: string) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300"
+                    >
+                      {item}
+                    </span>
+                  ),
+                )}
               </div>
 
               <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -1517,14 +1376,14 @@ export default function PSTCLandingPage() {
                         href="#"
                         className="rounded-full border border-slate-200 px-4 py-2 text-sm font-black text-slate-700 hover:border-[#009FE3] hover:text-[#009FE3] dark:border-white/10 dark:text-slate-200"
                       >
-                        View
+                        {t("btn.view")}
                       </a>
                       <a
                         href="#"
                         className="inline-flex items-center gap-2 rounded-full bg-[#ea4335] px-4 py-2 text-sm font-black text-white hover:bg-[#d93025] dark:bg-[#ffd54f] dark:text-slate-950"
                       >
                         <Icon name="download" className="h-4 w-4" />
-                        Download
+                        {t("btn.download")}
                       </a>
                     </div>
                   </article>
@@ -1533,11 +1392,12 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Updates Section */}
           <section className="bg-[linear-gradient(180deg,#f8fbf9_0%,#eef4f1_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-7xl">
               <div className="mb-12 flex items-center justify-between">
                 <h2 className="text-5xl font-black tracking-tight text-slate-950 sm:text-6xl">
-                  Updates
+                  {t("updates.title")}
                 </h2>
 
                 <div className="hidden gap-5 sm:flex">
@@ -1557,39 +1417,14 @@ export default function PSTCLandingPage() {
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                  {
-                    date: "June 10, 2026",
-                    title:
-                      "PSTC launches integrated community health initiative",
-                    text: "Strengthening primary health access and referral support for underserved communities across Bangladesh.",
-                    image: "/assets/Urban Health Care project image.jpeg",
-                    color: "text-[#77B151]",
-                  },
-                  {
-                    date: "June 10, 2026",
-                    title:
-                      "Youth dialogue on SRHR, climate resilience, and inclusion",
-                    text: "Young people joined community dialogue sessions focused on rights, resilience, and inclusive development.",
-                    image: "/assets/FOCUS project image.jpg",
-                    color: "text-[#F4B41A]",
-                  },
-                  {
-                    date: "June 10, 2026",
-                    title: "New community paramedic training cohort opens",
-                    text: "Training opportunities continue to build practical skills, employment readiness, and community care capacity.",
-                    image:
-                      "/assets/Learning, employability, vocational readiness, and practical skills.jpg",
-                    color: "text-[#E53B51]",
-                  },
-                ].map((item) => (
+                {news.map((item) => (
                   <article
                     key={item.title}
                     className="group overflow-hidden rounded-[2rem] bg-white p-4 shadow-xl shadow-slate-950/5 transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
                   >
                     <div className="relative overflow-hidden rounded-[1.5rem]">
                       <Image
-                        src={item.image}
+                        src="/assets/Urban Health Care project image.jpeg"
                         alt={item.title}
                         width={900}
                         height={560}
@@ -1602,17 +1437,13 @@ export default function PSTCLandingPage() {
                     </div>
 
                     <div className="px-1 pb-4 pt-6">
-                      <p className={`text-lg font-black ${item.color}`}>
+                      <p className="text-lg font-black text-[#77B151]">
                         {item.date}
                       </p>
 
                       <h3 className="mt-4 text-2xl font-black leading-tight text-slate-950">
                         {item.title}
                       </h3>
-
-                      <p className="mt-4 line-clamp-2 text-base leading-7 text-slate-600">
-                        {item.text}
-                      </p>
                     </div>
                   </article>
                 ))}
@@ -1632,12 +1463,13 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Partners Section */}
           <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-7xl">
               <SectionHeading
-                eyebrow="Partners & Networks"
-                title="Credibility through collaboration."
-                text="A logo-cloud area builds confidence for donors, communities, affiliates, and technical partners."
+                eyebrow={t("partners.subtitle")}
+                title={t("partners.heading")}
+                text={t("partners.description")}
               />
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
@@ -1653,30 +1485,38 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section id="get-involved" className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          {/* Get Involved Section */}
+          <section
+            id="get-involved"
+            className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+          >
             <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[linear-gradient(135deg,#f4d36f_0%,#ffe8aa_48%,#f1f5f9_100%)] p-6 text-[#0B2E68] shadow-2xl shadow-[#d8b247]/20 lg:p-10">
               <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
                 <div>
                   <div className="mb-4 inline-flex rounded-full bg-[#0B2E68]/8 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#0B2E68]">
-                    Get Involved
+                    {t("get_involved.subtitle")}
                   </div>
 
                   <h2 className="text-4xl font-black tracking-tight text-[#0B2E68] sm:text-5xl">
-                    Help create impact that lasts.
+                    {t("get_involved.heading")}
                   </h2>
 
                   <p className="mt-6 text-lg leading-9 text-[#3D2F0A]">
-                    Give today, join a training, apply for opportunities, or
-                    partner with PSTC to expand inclusive community services.
+                    {t("get_involved.description")}
                   </p>
 
                   <div className="mt-8 rounded-[2rem] border border-[#0B2E68]/12 bg-white/55 p-5 shadow-lg shadow-[#0B2E68]/5 backdrop-blur">
                     <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0B2E68]/70">
-                      Donation amount UI
+                      {t("get_involved.donation_ui")}
                     </p>
 
                     <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                      {["৳500", "৳1000", "৳5000", "Custom"].map((amount) => (
+                      {[
+                        t("get_involved.donation_amounts.five_hundred"),
+                        t("get_involved.donation_amounts.thousand"),
+                        t("get_involved.donation_amounts.five_thousand"),
+                        t("get_involved.donation_amounts.custom"),
+                      ].map((amount) => (
                         <button
                           key={amount}
                           type="button"
@@ -1692,18 +1532,18 @@ export default function PSTCLandingPage() {
                 <div className="grid gap-4 sm:grid-cols-3">
                   {[
                     {
-                      title: "Give Today",
-                      text: "Support inclusive services and community impact.",
+                      title: t("get_involved.options.give_today.title"),
+                      text: t("get_involved.options.give_today.text"),
                       icon: "hand" as IconName,
                     },
                     {
-                      title: "Join Training",
-                      text: "Explore certification, policy, and skills learning.",
+                      title: t("get_involved.options.join_training.title"),
+                      text: t("get_involved.options.join_training.text"),
                       icon: "graduation" as IconName,
                     },
                     {
-                      title: "Work With Us",
-                      text: "Careers, volunteering, consultancy, and partnership.",
+                      title: t("get_involved.options.work_with_us.title"),
+                      text: t("get_involved.options.work_with_us.text"),
                       icon: "briefcase" as IconName,
                     },
                   ].map((item) => (
@@ -1727,7 +1567,8 @@ export default function PSTCLandingPage() {
                         href="#"
                         className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0B2E68] transition hover:gap-3"
                       >
-                        Start <Icon name="arrow" className="h-4 w-4" />
+                        {t("btn.start")}{" "}
+                        <Icon name="arrow" className="h-4 w-4" />
                       </a>
                     </div>
                   ))}
@@ -1736,16 +1577,17 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
+          {/* Newsletter Section */}
           <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-slate-200 bg-white p-6 text-center shadow-xl shadow-slate-950/5 dark:border-white/10 dark:bg-white/[0.04] lg:p-10">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                 <Icon name="mail" className="h-7 w-7" />
               </div>
               <h2 className="text-3xl font-black text-slate-950 dark:text-white sm:text-4xl">
-                {currentCopy.newsletterTitle}
+                {t("footer.newsletter")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-slate-600 dark:text-slate-300">
-                {currentCopy.newsletterText}
+                {t("footer.subscribe")}
               </p>
 
               <form
@@ -1767,22 +1609,22 @@ export default function PSTCLandingPage() {
                   type="submit"
                   className="rounded-2xl bg-[#009FE3] px-6 py-4 text-sm font-black text-white transition hover:bg-[#007db3] dark:bg-[#ffd54f] dark:text-slate-950"
                 >
-                  Subscribe
+                  {t("btn.subscribe")}
                 </button>
               </form>
               {subscribed ? (
                 <p className="mt-4 text-sm font-bold text-[#ea4335] dark:text-[#ffd54f]">
-                  Thank you. This is a frontend-only success message.
+                  {t("footer.subscribe_success")}
                 </p>
               ) : (
                 <p className="mt-4 text-xs leading-6 text-slate-500 dark:text-slate-400">
-                  We respect your privacy. This demo does not send data
-                  anywhere.
+                  {t("footer.privacy_notice")}
                 </p>
               )}
             </div>
           </section>
 
+          {/* Footer */}
           <footer className="bg-[#E53B51] px-4 py-14 text-white sm:px-6 lg:px-8">
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
               <div>
@@ -1794,10 +1636,7 @@ export default function PSTCLandingPage() {
                   />
                 </div>
                 <p className="max-w-md text-sm leading-7 text-red-100">
-                  Population Services and Training Center works to improve
-                  quality of life through health, rights, youth engagement,
-                  climate resilience, training, and inclusive community
-                  development.
+                  {t("about.description")}
                 </p>
                 <div className="mt-6 flex gap-3">
                   {["f", "in", "x", "yt"].map((social) => (
@@ -1814,77 +1653,66 @@ export default function PSTCLandingPage() {
 
               <div>
                 <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
-                  Quick Links
+                  {t("footer.quick_links")}
                 </h3>
                 <div className="grid gap-3 text-sm font-semibold text-red-100">
-                  {[
-                    "Who We Are",
-                    "What We Do",
-                    "Impact",
-                    "Publications",
-                    "uCon",
-                  ].map((item) => (
-                    <a
-                      key={item}
-                      href="#"
-                      className="hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  ))}
+                  {t("footer.quick_links_items", { returnObjects: true }).map(
+                    (item: string) => (
+                      <a
+                        key={item}
+                        href="#"
+                        className="hover:text-white transition-colors"
+                      >
+                        {item}
+                      </a>
+                    ),
+                  )}
                 </div>
               </div>
 
               <div>
                 <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
-                  Policies
+                  {t("footer.policies")}
                 </h3>
                 <div className="grid gap-3 text-sm font-semibold text-red-100">
-                  {[
-                    "Privacy Policy",
-                    "Safeguarding Policy",
-                    "Gender Policy",
-                    "SHaPE Policy",
-                  ].map((item) => (
-                    <a
-                      key={item}
-                      href="#"
-                      className="hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  ))}
+                  {t("footer.policies_items", { returnObjects: true }).map(
+                    (item: string) => (
+                      <a
+                        key={item}
+                        href="#"
+                        className="hover:text-white transition-colors"
+                      >
+                        {item}
+                      </a>
+                    ),
+                  )}
                 </div>
               </div>
 
               <div>
                 <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
-                  Contact
+                  {t("footer.contact")}
                 </h3>
                 <div className="grid gap-4 text-sm leading-7 text-red-100">
                   <p className="flex gap-3">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-200" />
-                    PSTC Bhaban, House #5, Main Road, Block B, Aftabnagar,
-                    Badda, Dhaka-1212, Bangladesh
+                    {t("footer.address")}
                   </p>
                   <p className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-red-200" />
-                    +88 02 222 6602372-5
+                    {t("footer.phone")}
                   </p>
                   <p className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-red-200" />
-                    pstc@pstc-bgd.org
+                    {t("footer.email")}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/20 pt-6 text-xs font-semibold text-red-200 sm:flex-row sm:items-center sm:justify-between">
-              <p>© 2026 PSTC. All rights reserved.</p>
-              <p>
-                Frontend only • No backend • Replace image slots with approved
-                media
-              </p>
+              <p>© 2026 PSTC. {t("footer.rights")}</p>
+              <p>{t("footer.frontend_notice")}</p>
             </div>
           </footer>
         </div>
