@@ -5,6 +5,7 @@ import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/components/shared/theme-provider'
 import { TranslationProvider } from '@/components/shared/translation-provider'
+import { ScrollToTopButton } from '@/components/shared/scroll-to-top-button'
 import { AuthProvider } from '@/lib/rbac/auth-context'
 import { Toaster } from 'sonner'
 
@@ -80,6 +81,7 @@ export default function RootLayout({
           <TranslationProvider>
             <AuthProvider>
               {children}
+              <ScrollToTopButton />
               <Toaster position="bottom-right" richColors />
             </AuthProvider>
           </TranslationProvider>
