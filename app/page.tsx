@@ -1,9 +1,26 @@
 "use client";
 
-import React, { FormEvent, useContext, useMemo, useState } from "react";
+import React, {
+  FormEvent,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { ThemeContext } from "@/components/shared/theme-provider";
 import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
+
+const heroImages = [
+  "/hero/hero 1.webp",
+  "/hero/hero 2.avif",
+  "/hero/hero 3.jpg",
+  "/hero/hero 4.jpeg",
+  "/hero/hero 5.jpg",
+  "/hero/hero 6.png",
+  "/hero/hero 7.webp",
+  "/hero/hero.jpeg",
+];
 
 type ProjectFilter =
   | "All"
@@ -47,6 +64,15 @@ export default function PSTCLandingPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((current) => (current + 1) % heroImages.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const copy = {
     en: {
@@ -746,107 +772,176 @@ export default function PSTCLandingPage() {
             ) : null}
           </header>
 
-          <section className="relative px-4 pb-20 pt-14 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20">
-            <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-              <div>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#009FE3]/20 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#009FE3] shadow-sm dark:border-[#ffd54f]/20 dark:bg-white/10 dark:text-[#ffd54f]">
-                  <span className="h-2 w-2 rounded-full bg-[#ea4335]" />
-                  {currentCopy.heroLabel}
+          <section
+            aria-label="Hero carousel"
+            className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-950 text-white"
+          >
+            <div className="relative h-[540px] sm:h-[620px] lg:h-[760px]">
+              {heroImages.map((src, index) => (
+                <div
+                  key={src}
+                  className={`absolute inset-0 transition-all duration-700 ease-out ${
+                    active === index
+                      ? "scale-100 opacity-100"
+                      : "pointer-events-none scale-[1.03] opacity-0"
+                  }`}
+                >
+                  <img
+                    src={src}
+                    alt="PSTC Activities"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
-                <h1 className="max-w-5xl text-5xl font-black leading-[0.98] tracking-tight text-slate-950 dark:text-white sm:text-6xl lg:text-7xl">
-                  Advancing{" "}
-                  <span className="bg-gradient-to-r from-[#009FE3] via-[#ea4335] to-[#7cb342] bg-clip-text text-transparent dark:from-[#009FE3] dark:via-[#ffd54f] dark:to-[#7cb342]">
-                    health, rights
-                  </span>{" "}
-                  and resilience.
-                </h1>
-                <p className="mt-7 max-w-2xl text-lg leading-9 text-slate-600 dark:text-slate-300">
-                  {currentCopy.heroText}
-                </p>
+              ))}
 
-                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <CtaButton href="#programs">
-                    {currentCopy.primaryCta}
-                  </CtaButton>
-                  <CtaButton href="#publications" variant="secondary">
-                    {currentCopy.secondaryCta}
-                  </CtaButton>
-                </div>
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,12,25,0.86)_0%,rgba(4,12,25,0.5)_30%,rgba(4,12,25,0.1)_62%,rgba(4,12,25,0.45)_100%)]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 to-transparent" />
 
-                <div className="mt-9 grid gap-3 sm:grid-cols-3">
-                  {[
-                    "IPPF affiliated",
-                    "Community-led programs",
-                    "Evidence-based advocacy",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm font-bold text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
-                    >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#009FE3]/10 text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
-                        <Icon name="check" className="h-4 w-4" />
-                      </span>
-                      {item}
+              <div className="relative z-20 flex h-full items-end">
+                <div className="w-full px-5 pb-7 pt-20 sm:px-8 sm:pb-10 lg:px-12 lg:pb-14 xl:px-16 xl:pb-16">
+                  <div className="max-w-3xl">
+                    <span className="inline-flex rounded-full bg-[#009FE3] px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-white shadow-lg shadow-[#009FE3]/30">
+                      Population Services and Training Center
+                    </span>
+
+                    <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                      Advancing health, rights, and resilience for communities
+                    </h1>
+
+                    <p className="mt-5 max-w-xl text-base leading-8 text-white/90 sm:text-lg">
+                      For nearly five decades, PSTC has worked with communities,
+                      partners, and young peoples.
+                    </p>
+
+                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                      <CtaButton href="#programs">Explore Our Work</CtaButton>
+                      <CtaButton href="#publications" variant="secondary">
+                        View Publications
+                      </CtaButton>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative">
-                <div className="absolute -left-10 top-10 hidden h-28 w-28 rounded-full bg-amber-300/30 blur-2xl lg:block" />
-                <div className="absolute -right-10 bottom-10 hidden h-32 w-32 rounded-full bg-[#7cb342]/20 blur-2xl lg:block" />
-                <img src="/assets/1.png" alt="PSTC Logo" />
-
-                <div className="absolute left-4 top-6 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-2xl shadow-slate-950/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/90">
-                  <p className="text-3xl font-black text-[#009FE3] dark:text-[#ffd54f]">
-                    48+
-                  </p>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                    Years
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="impact" className="px-4 py-16 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl">
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="group rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#009FE3]/30 hover:shadow-2xl hover:shadow-slate-950/10 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-[#ffd54f]/30"
-                  >
-                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] transition group-hover:scale-110 dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
-                      <Icon name={stat.icon} />
-                    </div>
-                    <p className="text-3xl font-black tracking-tight text-slate-950 dark:text-white">
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-sm font-extrabold text-slate-700 dark:text-slate-200">
-                      {stat.label}
-                    </p>
-                    <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">
-                      {stat.caption}
-                    </p>
                   </div>
+                </div>
+              </div>
+
+              <div className="absolute right-4 top-4 z-20 rounded-[1.5rem] border border-white/60 bg-white/90 px-5 py-4 shadow-[0_24px_80px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:right-6 sm:top-6 sm:px-6 sm:py-5 dark:border-white/10 dark:bg-slate-900/70">
+                <p className="text-3xl font-black text-[#009FE3]">48+</p>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
+                  Years Impact
+                </p>
+              </div>
+
+              <div className="absolute bottom-20 right-4 z-20 rounded-[1.5rem] bg-[#009FE3] px-5 py-4 text-white shadow-[0_24px_80px_rgba(0,159,227,0.32)] sm:bottom-6 sm:right-6 sm:px-6 sm:py-5">
+                <p className="text-2xl font-black sm:text-3xl">100K+</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+                  Lives Reached
+                </p>
+              </div>
+
+              <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
+                {heroImages.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => setActive(i)}
+                    className={`rounded-full transition-all duration-300 ${
+                      active === i
+                        ? "h-3.5 w-10 bg-white shadow-lg shadow-black/25"
+                        : "h-3 w-3 bg-white/55 hover:bg-white/85"
+                    }`}
+                  />
                 ))}
               </div>
             </div>
           </section>
 
-          <section id="about" className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <section
+            id="impact"
+            className="relative z-30 bg-[#E7E7E7] px-4 py-20 sm:px-6 lg:px-8"
+          >
+            <div className="mx-auto max-w-7xl">
+              <div className="mx-auto max-w-4xl text-center">
+                <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                  <span className="mr-3 text-[#009FE3]">||</span>
+                  Our Impact in Numbers
+                </h2>
+
+                <p className="mx-auto mt-6 max-w-3xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
+                  PSTC works with communities, partners, and young people to
+                  improve access to health, rights, skills, protection, and
+                  opportunity across Bangladesh.
+                </p>
+              </div>
+
+              <div className="mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+                {stats.map((stat, index) => {
+                  const colors = [
+                    "bg-[#E53B51]",
+                    "bg-[#F4B41A]",
+                    "bg-[#77B151]",
+                    "bg-[#F04B36]",
+                    "bg-[#009FE3]",
+                    "bg-[#0B78A5]",
+                  ];
+
+                  return (
+                    <div
+                      key={stat.label}
+                      className="group relative flex min-h-[170px] flex-col items-center justify-center text-center text-white transition duration-300 hover:-translate-y-2"
+                    >
+                      <div
+                        className={`absolute inset-0 rotate-[-2deg] rounded-[1.2rem] ${colors[index % colors.length]} shadow-xl shadow-slate-950/10`}
+                        style={{
+                          clipPath:
+                            "polygon(5% 8%, 96% 3%, 92% 20%, 99% 38%, 94% 57%, 98% 78%, 88% 96%, 63% 92%, 43% 99%, 20% 92%, 4% 97%, 8% 76%, 1% 58%, 7% 38%, 2% 20%)",
+                        }}
+                      />
+
+                      <div className="relative z-10 px-4">
+                        <div className="mb-3 flex items-start justify-center gap-2">
+                          <span className="text-5xl font-black leading-none">
+                            {stat.value}
+                          </span>
+                        </div>
+
+                        <p className="mx-auto max-w-[130px] text-sm font-black uppercase leading-tight tracking-wide">
+                          {stat.label}
+                        </p>
+
+                        <div className="mx-auto mt-4 flex h-12 w-12 items-center justify-center text-white/95">
+                          <Icon name={stat.icon} className="h-10 w-10" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section
+            id="about"
+            className="relative overflow-hidden bg-gradient-to-br from-[#EAF8FD] via-white to-[#FFF7E3] px-4 py-24 sm:px-6 lg:px-8"
+          >
+            <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[#009FE3]/10 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#E53B51]/10 blur-3xl" />
+
+            <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative">
-                <img
-                  src="/assets/organization history image.jpg"
-                  alt="About PSTC / organization history image"
-                />
-                <div className="absolute -bottom-6 left-8 right-8 rounded-3xl border border-white/70 bg-white p-6 shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-slate-900">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#ea4335] dark:text-[#ffd54f]">
+                <div className="overflow-hidden rounded-[2rem] border-4 border-white bg-white shadow-2xl shadow-slate-950/10">
+                  <img
+                    src="/assets/organization history.jpeg"
+                    alt="About PSTC / organization history image"
+                    className="h-[460px] w-full object-cover"
+                  />
+                </div>
+
+                <div className="absolute -bottom-8 left-8 right-8 rounded-3xl border border-white/80 bg-white/95 p-6 shadow-2xl backdrop-blur">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#E53B51]">
                     Since 1978
                   </p>
-                  <p className="mt-2 text-2xl font-black text-slate-950 dark:text-white">
+                  <p className="mt-2 text-2xl font-black text-[#009FE3]">
                     Rooted in trust. Built for future impact.
                   </p>
                 </div>
@@ -866,29 +961,40 @@ export default function PSTCLandingPage() {
                       title: "Mission",
                       text: "Deliver inclusive, innovative, quality services and rights-based advocacy.",
                       icon: "spark" as IconName,
+                      color: "#009FE3",
+                      bg: "bg-[#009FE3]/10",
                     },
                     {
                       title: "Vision",
                       text: "A society where everyone can live with dignity, rights, and opportunity.",
                       icon: "globe" as IconName,
+                      color: "#77B151",
+                      bg: "bg-[#77B151]/10",
                     },
                     {
                       title: "Values",
                       text: "Commitment, integrity, transparency, accountability, and team spirit.",
                       icon: "shield" as IconName,
+                      color: "#E53B51",
+                      bg: "bg-[#E53B51]/10",
                     },
                   ].map((item) => (
                     <div
                       key={item.title}
-                      className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04]"
+                      className="group rounded-3xl border border-slate-200 bg-white p-5 shadow-lg shadow-slate-950/5 transition hover:-translate-y-1 hover:shadow-2xl"
                     >
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-[#009FE3] dark:bg-white/10 dark:text-[#ffd54f]">
+                      <div
+                        className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${item.bg}`}
+                        style={{ color: item.color }}
+                      >
                         <Icon name={item.icon} />
                       </div>
-                      <h3 className="font-black text-slate-950 dark:text-white">
+
+                      <h3 className="font-black text-slate-950">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
                         {item.text}
                       </p>
                     </div>
@@ -896,14 +1002,23 @@ export default function PSTCLandingPage() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {values.map((value) => (
-                    <span
-                      key={value}
-                      className="rounded-full border border-[#009FE3]/20 bg-[#009FE3]/8 px-4 py-2 text-xs font-bold text-[#009FE3] dark:border-[#ffd54f]/20 dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]"
-                    >
-                      {value}
-                    </span>
-                  ))}
+                  {values.map((value, index) => {
+                    const colors = [
+                      "border-[#009FE3]/30 bg-[#009FE3]/10 text-[#009FE3]",
+                      "border-[#E53B51]/30 bg-[#E53B51]/10 text-[#E53B51]",
+                      "border-[#77B151]/30 bg-[#77B151]/10 text-[#77B151]",
+                      "border-[#F4B41A]/40 bg-[#F4B41A]/15 text-[#B97800]",
+                    ];
+
+                    return (
+                      <span
+                        key={value}
+                        className={`rounded-full border px-4 py-2 text-xs font-black ${colors[index % colors.length]}`}
+                      >
+                        {value}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 <div className="mt-8">
@@ -915,62 +1030,145 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section id="programs" className="px-4 py-20 sm:px-6 lg:px-8">
+          <section
+            id="programs"
+            className="bg-white px-4 py-24 sm:px-6 lg:px-8"
+          >
             <div className="mx-auto max-w-7xl">
-              <SectionHeading
-                eyebrow="What We Do"
-                title="Five thematic areas. One integrated community impact model."
-                text="The landing page organizes PSTC’s work into clear, scannable areas so donors, partners, communities, and young people can quickly understand where PSTC creates value."
-              />
+              <div className="grid gap-5 lg:grid-cols-3">
+                {/* Left Feature Card */}
+                <div className="flex min-h-[320px] flex-col justify-center rounded-[2rem] bg-[#F4B41A] p-8 text-slate-950 shadow-xl shadow-[#F4B41A]/20 lg:p-10">
+                  <p className="text-3xl font-light">Our</p>
 
-              <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+                  <h2 className="mt-3 text-4xl font-black leading-tight">
+                    Focus Areas
+                  </h2>
+
+                  <p className="mt-6 max-w-sm text-sm font-medium leading-7 text-slate-800">
+                    PSTC works across health, youth, gender, climate, skills,
+                    advocacy and community development to create sustainable
+                    impact.
+                  </p>
+                </div>
+
+                {/* Focus Area Cards */}
                 {thematicAreas.map((area) => (
                   <a
                     key={area.title}
                     href="#projects"
                     className="
             group
-            relative
-            overflow-hidden
-            rounded-[1.75rem]
+            min-h-[320px]
+            rounded-[2rem]
             border
-            border-[#77B151]/25
-            bg-[linear-gradient(135deg,#F3FAEF_0%,#E4F4DA_45%,#D6EDC9_100%)]
-            p-6
-            shadow-sm
-            shadow-[#77B151]/10
-            transition
+            border-slate-200
+            bg-white
+            p-8
+            shadow-xl
+            shadow-slate-950/5
+            transition-all
             duration-300
             hover:-translate-y-1
-            hover:border-[#77B151]/60
+            hover:border-[#009FE3]
+            hover:bg-[#009FE3]
             hover:shadow-2xl
-            hover:shadow-[#77B151]/25
-            dark:border-[#77B151]/25
-            dark:bg-[linear-gradient(135deg,#102314_0%,#16361C_45%,#1E4425_100%)]
+            hover:shadow-[#009FE3]/25
           "
                   >
-                    <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#77B151]/30 blur-2xl dark:bg-[#77B151]/20" />
-                    <div className="absolute bottom-0 left-0 h-1 w-full bg-[#77B151] opacity-0 transition group-hover:opacity-100" />
-
-                    <div className="relative">
-                      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#77B151] text-white shadow-lg shadow-[#77B151]/30 transition group-hover:scale-105">
-                        <Icon name={area.icon} />
+                    <div
+                      className="
+              h-full
+              rounded-[1.5rem]
+              border
+              border-dashed
+              border-slate-300
+              p-6
+              transition-colors
+              duration-300
+              group-hover:border-white/40
+            "
+                    >
+                      {/* Icon */}
+                      <div
+                        className="
+                mb-7
+                flex
+                h-14
+                w-14
+                items-center
+                justify-center
+                rounded-2xl
+                bg-[#009FE3]/10
+                text-[#009FE3]
+                transition-all
+                duration-300
+                group-hover:bg-white/20
+                group-hover:text-white
+              "
+                      >
+                        <Icon name={area.icon} className="h-8 w-8" />
                       </div>
 
-                      <h3 className="text-lg font-black leading-tight text-[#244A22] dark:text-white">
+                      {/* Title */}
+                      <h3
+                        className="
+                max-w-xs
+                text-2xl
+                font-black
+                uppercase
+                leading-snug
+                text-slate-950
+                transition-colors
+                duration-300
+                group-hover:text-white
+              "
+                      >
                         {area.title}
                       </h3>
 
-                      <p className="mt-4 text-sm leading-7 text-[#3F5F38] dark:text-[#D9F2CF]">
+                      {/* Description */}
+                      <p
+                        className="
+                mt-6
+                text-sm
+                leading-7
+                text-slate-600
+                transition-colors
+                duration-300
+                group-hover:text-white/90
+              "
+                      >
                         {area.short}
                       </p>
 
-                      <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#77B151] dark:text-[#A9D98D]">
-                        Explore area{" "}
-                        <Icon
-                          name="arrow"
-                          className="h-4 w-4 transition group-hover:translate-x-1"
-                        />
+                      {/* Button */}
+                      <div className="mt-8">
+                        <span
+                          className="
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-[#009FE3]
+                  px-5
+                  py-3
+                  text-sm
+                  font-black
+                  text-[#009FE3]
+                  transition-all
+                  duration-300
+                  group-hover:border-white
+                  group-hover:bg-white
+                  group-hover:text-[#009FE3]
+                "
+                        >
+                          Learn More
+                          <Icon
+                            name="arrow"
+                            className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                          />
+                        </span>
                       </div>
                     </div>
                   </a>
@@ -1335,77 +1533,101 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section className="bg-white px-4 py-20 dark:bg-white/[0.03] sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-              <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-slate-950/60">
-                <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-slate-950 dark:text-white">
-                    Latest News
-                  </h2>
-                  <a
-                    href="#"
-                    className="text-sm font-black text-[#009FE3] dark:text-[#ffd54f]"
+          <section className="bg-[#F3F8F1] px-4 py-20 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+              <div className="mb-12 flex items-center justify-between">
+                <h2 className="text-5xl font-black tracking-tight text-slate-950 sm:text-6xl">
+                  Updates
+                </h2>
+
+                <div className="hidden gap-5 sm:flex">
+                  <button
+                    type="button"
+                    className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-slate-500 text-slate-700 transition hover:border-[#009FE3] hover:bg-[#009FE3] hover:text-white"
                   >
-                    View all
-                  </a>
-                </div>
-                <div className="grid gap-4">
-                  {news.map((item) => (
-                    <article
-                      key={item.title}
-                      className="rounded-3xl bg-white p-5 ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-xl dark:bg-white/[0.05] dark:ring-white/10"
-                    >
-                      <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
-                        <span>{item.date}</span>
-                        <span className="h-1 w-1 rounded-full bg-slate-300" />
-                        <span className="text-[#ea4335] dark:text-[#ffd54f]">
-                          {item.label}
-                        </span>
-                      </div>
-                      <h3 className="font-black leading-7 text-slate-950 dark:text-white">
-                        {item.title}
-                      </h3>
-                    </article>
-                  ))}
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-slate-500 text-slate-700 transition hover:border-[#009FE3] hover:bg-[#009FE3] hover:text-white"
+                  >
+                    →
+                  </button>
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-slate-950/60">
-                <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-slate-950 dark:text-white">
-                    Upcoming Events
-                  </h2>
-                  <a
-                    href="#"
-                    className="text-sm font-black text-[#009FE3] dark:text-[#ffd54f]"
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {[
+                  {
+                    date: "June 10, 2026",
+                    title:
+                      "PSTC launches integrated community health initiative",
+                    text: "Strengthening primary health access and referral support for underserved communities across Bangladesh.",
+                    image: "/assets/Urban Health Care project image.jpeg",
+                    color: "text-[#77B151]",
+                  },
+                  {
+                    date: "June 10, 2026",
+                    title:
+                      "Youth dialogue on SRHR, climate resilience, and inclusion",
+                    text: "Young people joined community dialogue sessions focused on rights, resilience, and inclusive development.",
+                    image: "/assets/FOCUS project image.jpg",
+                    color: "text-[#F4B41A]",
+                  },
+                  {
+                    date: "June 10, 2026",
+                    title: "New community paramedic training cohort opens",
+                    text: "Training opportunities continue to build practical skills, employment readiness, and community care capacity.",
+                    image:
+                      "/assets/Learning, employability, vocational readiness, and practical skills.jpg",
+                    color: "text-[#E53B51]",
+                  },
+                ].map((item) => (
+                  <article
+                    key={item.title}
+                    className="group overflow-hidden rounded-[2rem] bg-white p-4 shadow-xl shadow-slate-950/5 transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
                   >
-                    Calendar
-                  </a>
-                </div>
-                <div className="grid gap-4">
-                  {events.map((event) => (
-                    <article
-                      key={event.title}
-                      className="flex gap-4 rounded-3xl bg-white p-5 ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-xl dark:bg-white/[0.05] dark:ring-white/10"
-                    >
-                      <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-[#7cb342] text-white dark:bg-[#ffd54f] dark:text-slate-950">
-                        <Icon name="calendar" className="h-5 w-5" />
-                        <span className="mt-1 text-xs font-black">
-                          {event.date}
-                        </span>
+                    <div className="relative overflow-hidden rounded-[1.5rem]">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={900}
+                        height={560}
+                        className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
+
+                      <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl font-black text-[#0B6B43] shadow-lg">
+                        ↗
                       </div>
-                      <div>
-                        <h3 className="font-black text-slate-950 dark:text-white">
-                          {event.title}
-                        </h3>
-                        <p className="mt-2 inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                          <Icon name="pin" className="h-4 w-4" />
-                          {event.location}
-                        </p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
+                    </div>
+
+                    <div className="px-1 pb-4 pt-6">
+                      <p className={`text-lg font-black ${item.color}`}>
+                        {item.date}
+                      </p>
+
+                      <h3 className="mt-4 text-2xl font-black leading-tight text-slate-950">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-4 line-clamp-2 text-base leading-7 text-slate-600">
+                        {item.text}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-12 flex justify-center gap-2">
+                {[0, 1, 2, 3].map((dot) => (
+                  <button
+                    key={dot}
+                    type="button"
+                    className={`h-4 w-4 rounded-full border border-[#0B6B43] ${
+                      dot === 0 ? "bg-[#0B6B43]" : "bg-transparent"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </section>
