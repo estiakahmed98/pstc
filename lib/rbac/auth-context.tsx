@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useState, useCallback } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { User, UserRole } from './roles';
 
 export interface AuthContextType {
@@ -55,20 +55,20 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [currentUser, setCurrentUserState] = useState<User | null>(() => {
-    // Initialize with super_admin by default
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('pstc_user');
-      if (stored) {
-        try {
-          return JSON.parse(stored);
-        } catch {
-          return MOCK_USERS.super_admin;
-        }
-      }
+  const [currentUser, setCurrentUserState] = useState<User | null>(
+    MOCK_USERS.super_admin,
+  );
+
+  useEffect(() => {
+    const stored = localStorage.getItem('pstc_user');
+    if (!stored) return;
+
+    try {
+      setCurrentUserState(JSON.parse(stored));
+    } catch {
+      setCurrentUserState(MOCK_USERS.super_admin);
     }
-    return MOCK_USERS.super_admin;
-  });
+  }, []);
 
   const setCurrentUser = useCallback((user: User) => {
     setCurrentUserState(user);

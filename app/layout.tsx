@@ -1,7 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/components/shared/theme-provider'
 import { TranslationProvider } from '@/components/shared/translation-provider'
@@ -59,23 +58,6 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} bg-background`}
     >
-      <head>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`
-            (() => {
-              try {
-                const theme = localStorage.getItem('pstc_theme');
-                const root = document.documentElement;
-                const isDark = theme === 'dark';
-                root.classList.toggle('dark', isDark);
-                root.style.colorScheme = isDark ? 'dark' : 'light';
-              } catch (error) {
-                document.documentElement.style.colorScheme = 'light';
-              }
-            })();
-          `}
-        </Script>
-      </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <TranslationProvider>

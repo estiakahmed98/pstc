@@ -7,6 +7,7 @@ import {
   BookOpen,
   Briefcase,
   Calendar,
+  X,
   ChevronRight,
   FileText,
   Image,
@@ -20,11 +21,20 @@ import {
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { usePermission } from "@/hooks/use-permission";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const PRIMARY_COLOR = "#0193CD";
 const SECONDARY_COLOR = "#D13D34";
 
-export function Sidebar() {
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({
+  mobileOpen = false,
+  onClose,
+}: SidebarProps) {
   const pathname = usePathname();
   const user = useCurrentUser();
   const { can } = usePermission();
@@ -99,22 +109,39 @@ export function Sidebar() {
   ];
 
   const visibleItems = menuItems.filter((item) => can(item.permission as any));
-
-  const getInitials = (name?: string) => {
-    if (!name) return "U";
-
-    return name
-      .split(" ")
-      .map((item) => item[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
-  };
-
   return (
-    <aside className="sticky top-0 h-screen w-72 overflow-y-auto border-r border-slate-200 bg-white p-4 shadow-sm">
-      <div className="mb-8 flex items-center gap-3 rounded-xl">
-        <img src="/pstc.jpeg" alt="PSTC Logo" className="h-24 rounded-xl" />
+    <aside
+      className={cn(
+        "fixed inset-y-0 left-0 z-50 flex h-dvh w-72 flex-col overflow-y-auto border-r border-slate-200 bg-white p-4 shadow-xl transition-transform duration-300 ease-out lg:sticky lg:top-0 lg:z-30 lg:h-screen lg:translate-x-0 lg:shadow-sm",
+        mobileOpen ? "translate-x-0" : "-translate-x-full",
+      )}
+      aria-label="Dashboard sidebar"
+    >
+      <div className="mb-6 flex items-center justify-between gap-3 rounded-xl lg:mb-8 lg:block">
+        <img src="/pstc.jpeg" alt="PSTC Logo" className="h-14 rounded-xl lg:h-24" />
+
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          onClick={onClose}
+          className="rounded-full lg:hidden"
+          aria-label="Close sidebar"
+        >
+          <X className="h-5 w-5" />
+        </Button>
+      </div>
+
+      <div className="mb-5 rounded-2xl border border-slate-200 bg-slate-50 p-3 lg:hidden">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          Signed in
+        </p>
+        <p className="mt-1 text-sm font-bold text-slate-900">
+          {user?.name ?? "Admin User"}
+        </p>
+        <p className="text-xs text-slate-500">
+          {user?.role?.replace("_", " ") ?? "super admin"}
+        </p>
       </div>
 
       <nav className="space-y-1.5">
@@ -135,7 +162,7 @@ export function Sidebar() {
                 />
               )}
 
-              <Link href={item.href}>
+              <Link href={item.href} onClick={onClose}>
                 <Button
                   variant="ghost"
                   className={`group h-11 w-full justify-between rounded-2xl px-3 pl-4 text-sm font-semibold transition-all ${

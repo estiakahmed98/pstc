@@ -591,10 +591,12 @@ export default function PSTCLandingPage() {
     children,
     variant = "primary",
     href = "#",
+    className = "",
   }: {
     children: React.ReactNode;
     variant?: "primary" | "secondary" | "ghost";
     href?: string;
+    className?: string;
   }) => {
     const base =
       "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-extrabold transition-all duration-300 focus:outline-none focus:ring-4";
@@ -608,7 +610,7 @@ export default function PSTCLandingPage() {
     };
 
     return (
-      <a href={href} className={`${base} ${variants[variant]}`}>
+      <a href={href} className={`${base} ${variants[variant]} ${className}`}>
         {children}
         <Icon name="arrow" className="h-4 w-4" />
       </a>
@@ -622,40 +624,60 @@ export default function PSTCLandingPage() {
 
         <div className="relative z-10">
           {/* Top Bar */}
-          <div className="bg-[#009FE3] text-white dark:bg-slate-900">
-            <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 text-xs font-semibold sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <div className="h-11 border-b border-white/10 bg-[#0193CD] text-white">
+            <div className="flex h-full items-center justify-between px-4 sm:px-6 lg:px-8">
               <div className="flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-white">
-                  <Icon name="spark" className="h-4 w-4" />
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
+                  <Icon name="spark" className="h-3.5 w-3.5" />
                 </span>
-                <span>{t("landing.announcement")}</span>
+
+                <span className="text-xs font-semibold whitespace-nowrap">
+                  {t("landing.announcement")}
+                </span>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-white/90">
-                <a href="#publications" className="transition hover:text-white">
-                  {t("nav.publications")}
-                </a>
-                <span className="h-1 w-1 rounded-full bg-white/50" />
-                <a href="#contact" className="transition hover:text-white">
-                  {t("nav.contact")}
-                </a>
-                <span className="h-1 w-1 rounded-full bg-white/50" />
-                <a href="#ucon" className="transition hover:text-white">
-                  {t("nav.ucon")}
-                </a>
+
+              <div className="flex items-center gap-2">
+                <div className="hidden items-center gap-4 lg:flex">
+                  <a
+                    href="#publications"
+                    className="text-xs font-medium text-white/90 hover:text-white"
+                  >
+                    {t("nav.publications")}
+                  </a>
+
+                  <a
+                    href="#contact"
+                    className="text-xs font-medium text-white/90 hover:text-white"
+                  >
+                    {t("nav.contact")}
+                  </a>
+
+                  <a
+                    href="#ucon"
+                    className="text-xs font-medium text-white/90 hover:text-white"
+                  >
+                    {t("nav.ucon")}
+                  </a>
+                </div>
+
                 <button
                   type="button"
                   onClick={() => setLanguage(language === "en" ? "bn" : "en")}
-                  className="rounded-full bg-white/10 px-3 py-1.5 text-white transition hover:bg-white/20"
+                  className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white hover:bg-white/25"
                 >
                   {t("btn.language")}
                 </button>
+
                 <button
                   type="button"
                   onClick={handleThemeToggle}
                   aria-label="Toggle theme"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 hover:bg-white/25"
                 >
-                  <Icon name={isDark ? "sun" : "moon"} className="h-4 w-4" />
+                  <Icon
+                    name={isDark ? "sun" : "moon"}
+                    className="h-3.5 w-3.5"
+                  />
                 </button>
               </div>
             </div>
@@ -749,7 +771,7 @@ export default function PSTCLandingPage() {
             aria-label="Hero carousel"
             className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-slate-950 text-white"
           >
-            <div className="relative h-[540px] sm:h-[620px] lg:h-[760px]">
+            <div className="relative min-h-[760px] sm:h-[620px] sm:min-h-0 lg:h-[760px]">
               {heroImages.map((src, index) => (
                 <div
                   key={src}
@@ -772,40 +794,62 @@ export default function PSTCLandingPage() {
               <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/35 to-transparent" />
 
               <div className="relative z-20 flex h-full items-end">
-                <div className="w-full px-5 pb-7 pt-20 sm:px-8 sm:pb-10 lg:px-12 lg:pb-14 xl:px-16 xl:pb-16">
-                  <div className="max-w-3xl">
+                <div className="w-full px-5 pb-24 pt-20 sm:px-8 sm:pb-10 lg:px-12 lg:pb-14 xl:px-16 xl:pb-16">
+                  <div className="max-w-[22rem] sm:max-w-3xl">
                     <span className="inline-flex rounded-full bg-[#009FE3] px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-white shadow-lg shadow-[#009FE3]/30">
                       {t("landing.hero_label")}
                     </span>
 
-                    <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                    <h1 className="mt-5 max-w-4xl text-[2.75rem] font-black leading-[0.9] tracking-tight text-white sm:text-5xl sm:leading-[0.95] md:text-6xl lg:text-7xl">
                       {t("landing.hero_title")}
                     </h1>
 
-                    <p className="mt-5 max-w-xl text-base leading-8 text-white/90 sm:text-lg">
+                    <p className="mt-5 max-w-md text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
                       {t("landing.hero_text")}
                     </p>
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                      <CtaButton href="#programs">
+                      <CtaButton href="#programs" className="w-full sm:w-auto">
                         {t("landing.primary_cta")}
                       </CtaButton>
-                      <CtaButton href="#publications" variant="secondary">
+                      <CtaButton
+                        href="#publications"
+                        variant="secondary"
+                        className="w-full sm:w-auto"
+                      >
                         {t("landing.secondary_cta")}
                       </CtaButton>
+                    </div>
+
+                    <div className="mt-5 grid grid-cols-2 gap-3 sm:hidden">
+                      <div className="rounded-[1.35rem] border border-white/50 bg-white/92 px-4 py-4 text-slate-900 shadow-[0_18px_50px_rgba(2,8,23,0.22)] backdrop-blur-xl">
+                        <p className="text-3xl font-black text-[#009FE3]">
+                          48+
+                        </p>
+                        <p className="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-slate-500">
+                          {t("landing.years_impact")}
+                        </p>
+                      </div>
+
+                      <div className="rounded-[1.35rem] bg-[#009FE3] px-4 py-4 text-white shadow-[0_18px_50px_rgba(0,159,227,0.32)]">
+                        <p className="text-3xl font-black">100K+</p>
+                        <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/90">
+                          {t("landing.lives_reached")}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute right-4 top-4 z-20 rounded-[1.5rem] border border-white/60 bg-white/90 px-5 py-4 shadow-[0_24px_80px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:right-6 sm:top-6 sm:px-6 sm:py-5 dark:border-white/10 dark:bg-slate-900/70">
+              <div className="absolute right-6 top-6 z-20 hidden rounded-[1.5rem] border border-white/60 bg-white/90 px-6 py-5 shadow-[0_24px_80px_rgba(2,8,23,0.22)] backdrop-blur-xl sm:block dark:border-white/10 dark:bg-slate-900/70">
                 <p className="text-3xl font-black text-[#009FE3]">48+</p>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-300">
                   {t("landing.years_impact")}
                 </p>
               </div>
 
-              <div className="absolute bottom-20 right-4 z-20 rounded-[1.5rem] bg-[#009FE3] px-5 py-4 text-white shadow-[0_24px_80px_rgba(0,159,227,0.32)] sm:bottom-6 sm:right-6 sm:px-6 sm:py-5">
+              <div className="absolute bottom-6 right-6 z-20 hidden rounded-[1.5rem] bg-[#009FE3] px-6 py-5 text-white shadow-[0_24px_80px_rgba(0,159,227,0.32)] sm:block">
                 <p className="text-2xl font-black sm:text-3xl">100K+</p>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
                   {t("landing.lives_reached")}
