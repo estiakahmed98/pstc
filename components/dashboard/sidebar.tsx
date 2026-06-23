@@ -113,23 +113,9 @@ export function Sidebar() {
 
   return (
     <aside className="sticky top-0 h-screen w-72 overflow-y-auto border-r border-slate-200 bg-white p-4 shadow-sm">
-      <Link
-        href="/dashboard"
-        className="mb-6 flex items-center gap-3 rounded-3xl p-4 text-white shadow-lg"
-        style={{ backgroundColor: PRIMARY_COLOR }}
-      >
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-md">
-          <LayoutDashboard
-            className="h-6 w-6"
-            style={{ color: PRIMARY_COLOR }}
-          />
-        </div>
-
-        <div>
-          <p className="text-lg font-extrabold leading-tight">PSTC</p>
-          <p className="text-xs font-medium text-white/90">Admin Dashboard</p>
-        </div>
-      </Link>
+      <div className="mb-8 flex items-center gap-3 rounded-xl">
+        <img src="/pstc.jpeg" alt="PSTC Logo" className="h-24 rounded-xl" />
+      </div>
 
       <nav className="space-y-1.5">
         {visibleItems.map((item) => {
