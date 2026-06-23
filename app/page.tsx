@@ -660,8 +660,8 @@ export default function PSTCLandingPage() {
 
   return (
     <main>
-      <div className="min-h-screen overflow-hidden bg-slate-50 text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
-        <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.12),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.14),transparent_30%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.1),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_28%)]" />
+      <div className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_18%,#eef5f9_52%,#f9fafb_100%)] text-slate-950 antialiased dark:bg-slate-950 dark:text-white">
+        <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.12),transparent_28%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.08),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top_left,rgba(0,159,227,0.14),transparent_30%),radial-gradient(circle_at_top_right,rgba(234,67,53,0.1),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(124,179,66,0.08),transparent_28%)]" />
 
         <div className="relative z-10">
           <div className="bg-[#009FE3] text-white dark:bg-slate-900">
@@ -858,7 +858,7 @@ export default function PSTCLandingPage() {
 
           <section
             id="impact"
-            className="relative z-30 bg-[#E7E7E7] px-4 py-20 sm:px-6 lg:px-8"
+            className="relative z-30 bg-[linear-gradient(180deg,#f6fafc_0%,#edf5f8_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
           >
             <div className="mx-auto max-w-7xl">
               <div className="mx-auto max-w-4xl text-center">
@@ -922,10 +922,10 @@ export default function PSTCLandingPage() {
 
           <section
             id="about"
-            className="relative overflow-hidden bg-gradient-to-br from-[#EAF8FD] via-white to-[#FFF7E3] px-4 py-24 sm:px-6 lg:px-8"
+            className="relative overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-20 sm:px-6 lg:px-8"
           >
-            <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[#009FE3]/10 blur-3xl" />
-            <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#E53B51]/10 blur-3xl" />
+            <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[#009FE3]/8 blur-3xl" />
+            <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#E53B51]/8 blur-3xl" />
 
             <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="relative">
@@ -1032,7 +1032,7 @@ export default function PSTCLandingPage() {
 
           <section
             id="programs"
-            className="bg-white px-4 py-24 sm:px-6 lg:px-8"
+            className="bg-[linear-gradient(180deg,#f9fbfc_0%,#f4f8fa_100%)] px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="grid gap-5 lg:grid-cols-3">
@@ -1179,7 +1179,7 @@ export default function PSTCLandingPage() {
 
           <section
             id="projects"
-            className="bg-white px-4 py-20 dark:bg-white/[0.03] sm:px-6 lg:px-8"
+            className="bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-20 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-7xl">
               <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -1267,8 +1267,8 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-[3rem] border border-slate-200 bg-[#f8edd6] shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#151631]">
+          <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#eef3f7_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-[3rem] border border-slate-200 bg-[linear-gradient(135deg,#fff9ea_0%,#f2f7fa_48%,#e9eff8_100%)] shadow-2xl shadow-slate-950/10 dark:border-white/10 dark:bg-[#151631]">
               <div className="grid min-h-[500px] lg:grid-cols-[0.95fr_1.05fr_1.1fr]">
                 <div className="flex items-center justify-center px-8 py-12 text-center lg:px-10">
                   <h2 className="text-[clamp(3rem,5vw,5.8rem)] font-black uppercase leading-[0.9] tracking-tight text-[#0b2e68]">
@@ -1533,7 +1533,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section className="bg-[#F3F8F1] px-4 py-20 sm:px-6 lg:px-8">
+          <section className="bg-[linear-gradient(180deg,#f8fbf9_0%,#eef4f1_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-7xl">
               <div className="mb-12 flex items-center justify-between">
                 <h2 className="text-5xl font-black tracking-tight text-slate-950 sm:text-6xl">
@@ -1632,7 +1632,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <section className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-7xl">
               <SectionHeading
                 eyebrow="Partners & Networks"
@@ -1653,11 +1653,11 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section id="get-involved" className="px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[linear-gradient(135deg,#E5A923_0%,#F1C64A_50%,#E5A923_100%)] p-6 text-[#0B2E68] shadow-2xl shadow-[#E5A923]/30 lg:p-10">
+          <section id="get-involved" className="bg-[linear-gradient(180deg,#f7fbfd_0%,#ffffff_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[linear-gradient(135deg,#f4d36f_0%,#ffe8aa_48%,#f1f5f9_100%)] p-6 text-[#0B2E68] shadow-2xl shadow-[#d8b247]/20 lg:p-10">
               <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
                 <div>
-                  <div className="mb-4 inline-flex rounded-full bg-[#0B2E68]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#0B2E68]">
+                  <div className="mb-4 inline-flex rounded-full bg-[#0B2E68]/8 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#0B2E68]">
                     Get Involved
                   </div>
 
@@ -1670,7 +1670,7 @@ export default function PSTCLandingPage() {
                     partner with PSTC to expand inclusive community services.
                   </p>
 
-                  <div className="mt-8 rounded-[2rem] border border-[#0B2E68]/15 bg-[#F8E4A8] p-5 shadow-lg shadow-[#0B2E68]/5">
+                  <div className="mt-8 rounded-[2rem] border border-[#0B2E68]/12 bg-white/55 p-5 shadow-lg shadow-[#0B2E68]/5 backdrop-blur">
                     <p className="text-sm font-black uppercase tracking-[0.2em] text-[#0B2E68]/70">
                       Donation amount UI
                     </p>
@@ -1680,7 +1680,7 @@ export default function PSTCLandingPage() {
                         <button
                           key={amount}
                           type="button"
-                          className="rounded-2xl border border-[#0B2E68]/15 bg-white/70 px-4 py-3 text-sm font-black text-[#0B2E68] transition hover:bg-[#0B2E68] hover:text-white"
+                          className="rounded-2xl border border-[#0B2E68]/12 bg-white/80 px-4 py-3 text-sm font-black text-[#0B2E68] transition hover:bg-[#0B2E68] hover:text-white"
                         >
                           {amount}
                         </button>
@@ -1709,7 +1709,7 @@ export default function PSTCLandingPage() {
                   ].map((item) => (
                     <div
                       key={item.title}
-                      className="rounded-[1.5rem] bg-[#F8E4A8] p-5 shadow-lg shadow-[#0B2E68]/5 ring-1 ring-[#0B2E68]/10 transition hover:-translate-y-1 hover:bg-white/80"
+                      className="rounded-[1.5rem] bg-white/55 p-5 shadow-lg shadow-[#0B2E68]/5 ring-1 ring-[#0B2E68]/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/80"
                     >
                       <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B2E68] text-white shadow-lg shadow-[#0B2E68]/20">
                         <Icon name={item.icon} />
@@ -1736,7 +1736,7 @@ export default function PSTCLandingPage() {
             </div>
           </section>
 
-          <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f7fbfd_100%)] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-4xl rounded-[2.5rem] border border-slate-200 bg-white p-6 text-center shadow-xl shadow-slate-950/5 dark:border-white/10 dark:bg-white/[0.04] lg:p-10">
               <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#009FE3]/10 text-[#009FE3] dark:bg-[#ffd54f]/10 dark:text-[#ffd54f]">
                 <Icon name="mail" className="h-7 w-7" />
