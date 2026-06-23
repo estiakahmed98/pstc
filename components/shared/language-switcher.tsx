@@ -9,13 +9,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import type { LanguageCode } from '@/lib/i18n/translations';
 import { Globe } from 'lucide-react';
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useTranslation();
 
   return (
-    <Select value={language} onValueChange={setLanguage}>
+    <Select
+      value={language}
+      onValueChange={(value) => {
+        if (value) {
+          setLanguage(value as LanguageCode);
+        }
+      }}
+    >
       <SelectTrigger className="w-20">
         <Globe className="h-4 w-4 mr-2" />
         <SelectValue placeholder="Language" />
