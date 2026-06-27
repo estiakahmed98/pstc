@@ -90,12 +90,16 @@ const SideRays = ({
   useEffect(() => {
     if (!isVisible || !containerRef.current) return;
 
+    let updateSize: (() => void) | null = null;
+
     const cleanup = () => {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
         animationIdRef.current = null;
       }
-      window.removeEventListener("resize", updateSize);
+      if (updateSize) {
+        window.removeEventListener("resize", updateSize);
+      }
       if (rendererRef.current) {
         try {
           const loseCtx =
@@ -233,13 +237,14 @@ void main() {
       const mesh = new Mesh(gl, { geometry, program });
       meshRef.current = mesh;
 
-      const updateSize = () => {
+      const handleResize = () => {
         if (!containerRef.current || !renderer) return;
         renderer.dpr = Math.min(window.devicePixelRatio, 2);
         const { clientWidth: w, clientHeight: h } = containerRef.current;
         renderer.setSize(w, h);
         uniforms.iResolution.value = [w * renderer.dpr, h * renderer.dpr];
       };
+      updateSize = handleResize;
 
       const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current)
@@ -253,8 +258,8 @@ void main() {
         }
       };
 
-      window.addEventListener("resize", updateSize);
-      updateSize();
+      window.addEventListener("resize", handleResize);
+      handleResize();
       animationIdRef.current = requestAnimationFrame(loop);
       cleanupRef.current = cleanup;
     };

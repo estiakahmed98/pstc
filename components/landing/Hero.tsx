@@ -23,7 +23,7 @@ const slides: HeroSlide[] = [
     description:
       "PSTC connects communities with health, rights, skills, youth engagement, and inclusive services across Bangladesh.",
     short: "Care for every community",
-    image: "/hero/hero%201.webp",
+    image: "/hero/hero%25201.webp",
     href: "/what-we-do",
   },
   {
@@ -32,7 +32,7 @@ const slides: HeroSlide[] = [
     description:
       "Explore PSTC programs in population health, nutrition, adolescent development, gender, climate resilience, and skills training.",
     short: "Impact through services",
-    image: "/hero/hero%202.avif",
+    image: "/hero/hero%25202.avif",
     href: "/what-we-do/thematic-areas",
   },
   {
@@ -41,7 +41,7 @@ const slides: HeroSlide[] = [
     description:
       "uCon, NaYoN, CSE learning, youth advocacy, and engagement platforms help young people ask, learn, lead, and participate.",
     short: "Youth leading tomorrow",
-    image: "/hero/hero%203.jpg",
+    image: "/hero/hero%25203.jpg",
     href: "/ucon",
   },
   {
@@ -50,7 +50,7 @@ const slides: HeroSlide[] = [
     description:
       "Read publications, annual reports, research, audit reports, events, and media stories documenting PSTC’s work.",
     short: "Stories of real impact",
-    image: "/hero/hero%204.jpeg",
+    image: "/hero/hero%25204.jpeg",
     href: "/our-impact",
   },
   {
@@ -59,7 +59,7 @@ const slides: HeroSlide[] = [
     description:
       "Join PSTC through jobs, training, certification, policy learning, partnerships, and community-driven initiatives.",
     short: "Partnerships create change",
-    image: "/hero/hero%205.jpg",
+    image: "/hero/hero%25205.jpg",
     href: "/get-involved",
   },
 ];
@@ -138,9 +138,9 @@ export default function HeroCarousel() {
         className="object-cover opacity-80 transition duration-700 ease-out"
       />
 
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-black via-black/60 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-black via-black/20 to-transparent" />
 
       <div className="relative mx-auto flex min-h-[calc(100vh-var(--header-height))] w-full flex-col justify-end px-4 pb-8 pt-24 sm:px-6 lg:px-8">
         <div className="grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">

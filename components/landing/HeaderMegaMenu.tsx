@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 type MenuNode = {
   title: string;
@@ -670,7 +671,7 @@ function MovingLinkButton({
       duration={3600}
       borderRadius="999px"
       containerClassName={cn(
-        "h-12 w-auto min-w-[148px] text-sm",
+        "h-13 w-auto min-w-[168px] text-sm",
         containerClassName,
       )}
       borderClassName="bg-[radial-gradient(#0991CB_36%,#D73F32_52%,transparent_70%)]"
@@ -705,7 +706,7 @@ function IconMovingButton({
       onClick={onClick}
       duration={3200}
       borderRadius="999px"
-      containerClassName={cn("h-11 w-11 text-sm", className)}
+      containerClassName={cn("h-12 w-12 text-sm", className)}
       borderClassName="bg-[radial-gradient(#0991CB_40%,transparent_68%)]"
       className="border border-border bg-background text-foreground transition hover:text-primary"
     >
@@ -720,7 +721,7 @@ function LanguageButton() {
       type="button"
       duration={3600}
       borderRadius="999px"
-      containerClassName="hidden h-11 w-auto min-w-[128px] text-sm sm:block"
+      containerClassName="hidden h-12 w-auto min-w-[144px] text-sm sm:block"
       borderClassName="bg-[radial-gradient(#D73F32_38%,transparent_68%)]"
       className="border border-border bg-background px-4 text-xs font-black text-foreground transition hover:text-primary"
     >
@@ -857,7 +858,7 @@ function FeaturedImageCard({
   eyebrow: string;
 }) {
   return (
-    <GlowPanel className="h-full rounded-[28px]">
+    <BackgroundGradient className="h-full rounded-[28px]">
       <div className="group relative h-full min-h-[390px] overflow-hidden rounded-[28px] bg-card">
         <Image
           key={node.image}
@@ -882,7 +883,7 @@ function FeaturedImageCard({
           </p>
         </div>
       </div>
-    </GlowPanel>
+    </BackgroundGradient>
   );
 }
 
@@ -940,7 +941,7 @@ export default function HeaderMegaMenu() {
   return (
     <>
       <header
-        className="pstc-header-glass fixed left-0 top-0 z-50 w-full"
+        className="fixed left-0 top-0 z-50 w-full bg-background/80 backdrop-blur-2xl transition-colors duration-300"
         onMouseLeave={closeMenu}
       >
         <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1440px] items-center justify-between gap-4 px-4 xl:px-8">
@@ -975,9 +976,9 @@ export default function HeaderMegaMenu() {
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
                 className={cn(
-                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-primary/10 hover:text-primary 2xl:px-4",
+                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-primary/15 hover:text-primary 2xl:px-4",
                   activeMenu?.href === menu.href &&
-                    "bg-primary/10 text-primary",
+                    "bg-primary/15 text-primary",
                 )}
               >
                 {menu.label}
@@ -989,7 +990,7 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
-                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-secondary/10 hover:text-secondary 2xl:px-4"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary 2xl:px-4"
               >
                 {link.label}
               </Link>
@@ -1005,11 +1006,11 @@ export default function HeaderMegaMenu() {
         </div>
 
         {activeMenu && preview ? (
-          <div className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background shadow-[0_24px_70px_rgba(15,23,42,0.10)]">
+          <div className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background/88 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur-2xl">
             <div className="animate-pstc-menu-reveal mx-auto grid min-h-[460px] w-full max-w-[1440px] grid-cols-12 gap-6 px-4 py-7 xl:px-8">
               <section className="col-span-4">
                 <GlowPanel className="h-full rounded-[28px]">
-                  <div className="h-full bg-card p-4">
+                  <div className="h-full bg-background/95 p-4 backdrop-blur-xl">
                     <div className="mb-4 flex items-center justify-between gap-3 px-2">
                       <p className="whitespace-nowrap text-xs font-black uppercase tracking-[0.28em] text-primary">
                         {activeMenu.label}
@@ -1098,7 +1099,7 @@ export default function HeaderMegaMenu() {
                   className="rounded-[24px]"
                   radius={24}
                 >
-                  <div className="bg-card p-4">
+                  <div className="bg-background p-4 backdrop-blur-xl">
                     <Link
                       href={menu.href}
                       onClick={() => setMobileOpen(false)}
