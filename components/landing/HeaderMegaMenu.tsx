@@ -35,7 +35,7 @@ const megaMenus: MegaMenu[] = [
     title: "Who We Are",
     description:
       "Explore PSTC’s governance, leadership, values, policies, strategy, and institutional identity.",
-    image: "/images/mega/who-we-are.jpg",
+    image: "/images/who-we-are.jpg",
     items: [
       { title: "Governance", href: "/who-we-are/governance" },
       { title: "Leadership", href: "/who-we-are/leadership" },
@@ -57,7 +57,7 @@ const megaMenus: MegaMenu[] = [
     title: "What We Do",
     description:
       "Discover thematic areas, projects, initiatives, priorities, and youth engagement platforms.",
-    image: "/images/mega/what-we-do.jpg",
+    image: "/images/what-we-do.jpg",
     items: [
       { title: "Our Thematic Areas", href: "/what-we-do/thematic-areas" },
       {
@@ -93,7 +93,7 @@ const megaMenus: MegaMenu[] = [
     title: "Our Impact",
     description:
       "Read publications, reports, research updates, events, and media stories from PSTC.",
-    image: "/images/mega/our-impact.jpg",
+    image: "/images/our-impact.jpg",
     items: [
       { title: "Publications", href: "/our-impact/publications" },
       { title: "Projanmo Kotha", href: "/our-impact/projanmo-kotha" },
@@ -111,7 +111,7 @@ const megaMenus: MegaMenu[] = [
     title: "Get Involved",
     description:
       "Find jobs, training, certification, and important organizational policies.",
-    image: "/images/mega/get-involved.jpg",
+    image: "/images/get-involved.jpg",
     items: [
       { title: "Jobs", href: "/get-involved/jobs" },
       {
@@ -134,7 +134,7 @@ const megaMenus: MegaMenu[] = [
     title: "uCon",
     description:
       "A youth-focused platform for questions, ideas, advocacy, training, assessment, and certification.",
-    image: "/images/mega/ucon.jpg",
+    image: "/images/ucon.jpg",
     items: [
       { title: "What is uCon?", href: "/ucon/about" },
       { title: "Focus Areas", href: "/ucon/focus-areas" },
@@ -171,8 +171,8 @@ export default function HeaderMegaMenu() {
         className="pstc-header-glass fixed left-0 top-0 z-50 w-full"
         onMouseLeave={() => setActiveMenu(null)}
       >
-        <div className="container-pstc flex h-[var(--header-height)] items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1280px] items-center justify-between gap-5 px-5 xl:px-8">
+          <div className="flex min-w-0 shrink-0 items-center gap-4">
             <button
               type="button"
               aria-label="Open menu"
@@ -182,38 +182,34 @@ export default function HeaderMegaMenu() {
               <Menu className="size-5" />
             </button>
 
-            <Link href="/" className="group flex items-center gap-3">
-              <div className="relative grid size-12 place-items-center overflow-hidden bg-primary text-primary-foreground shadow-xl shadow-[var(--pstc-primary-glow)] transition duration-300 group-hover:-translate-y-1 group-hover:rotate-3">
+            <Link href="/" className="group flex min-w-0 items-center gap-3">
+              <div className="relative grid size-12 shrink-0 place-items-center overflow-hidden bg-primary text-primary-foreground shadow-md transition duration-300 group-hover:-translate-y-0.5">
                 <span className="relative z-10 text-xs font-black leading-tight tracking-wider">
                   PSTC
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
               </div>
 
-              <div className="hidden leading-tight sm:block">
-                <p className="text-sm font-black uppercase tracking-[0.26em] text-primary">
+              <div className="hidden min-w-0 leading-tight sm:block">
+                <p className="whitespace-nowrap text-sm font-black uppercase tracking-[0.26em] text-primary">
                   PSTC
-                </p>
-                <p className="mt-1 text-xs font-medium text-muted-foreground">
-                  Population Services and Training Center
                 </p>
               </div>
             </Link>
           </div>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex">
             {megaMenus.map((menu) => (
               <div
                 key={menu.label}
                 onMouseEnter={() => setActiveMenu(menu)}
-                className="relative"
+                className="relative shrink-0"
               >
                 <Link
                   href={menu.href}
-                  className="pstc-nav-link flex items-center gap-1 rounded-full px-4 py-3 text-sm font-bold text-foreground transition hover:bg-primary/10 hover:text-primary"
+                  className="pstc-nav-link flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-3 text-sm font-bold text-foreground transition hover:bg-primary/10 hover:text-primary xl:px-4"
                 >
                   {menu.label}
-                  <ChevronDown className="size-4" />
+                  <ChevronDown className="size-4 shrink-0" />
                 </Link>
               </div>
             ))}
@@ -223,14 +219,14 @@ export default function HeaderMegaMenu() {
                 key={link.label}
                 href={link.href}
                 onMouseEnter={() => setActiveMenu(null)}
-                className="pstc-nav-link rounded-full px-4 py-3 text-sm font-bold text-foreground transition hover:bg-secondary/10 hover:text-secondary"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-3 py-3 text-sm font-bold text-foreground transition hover:bg-secondary/10 hover:text-secondary xl:px-4"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               aria-label="Search"
@@ -241,23 +237,19 @@ export default function HeaderMegaMenu() {
 
             <button
               type="button"
-              className="hidden items-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-xs font-bold text-foreground transition hover:border-primary hover:text-primary sm:flex"
+              className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-border bg-background px-3 py-2 text-xs font-bold text-foreground transition hover:border-primary hover:text-primary sm:flex"
             >
-              <Globe2 className="size-4" />
+              <Globe2 className="size-4 shrink-0" />
               English
-              <ChevronDown className="size-3" />
+              <ChevronDown className="size-3 shrink-0" />
             </button>
           </div>
         </div>
 
         {activeMenu && (
-          <div className="pstc-mega-shadow pstc-gradient-bg absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border">
-            <div className="pointer-events-none absolute left-[7%] top-[12%] size-36 rounded-full bg-primary/20 blur-2xl animate-pstc-float" />
-            <div className="pointer-events-none absolute bottom-[8%] right-[10%] size-44 rounded-full bg-secondary/20 blur-2xl animate-pstc-float animation-delay-300" />
-            <div className="pointer-events-none absolute inset-0 pstc-hero-grid" />
-
-            <div className="container-pstc relative grid min-h-[450px] grid-cols-12 gap-7 py-9 animate-pstc-menu-reveal">
-              <aside className="col-span-3 rounded-[2rem] border border-border bg-background/80 p-4 backdrop-blur-xl">
+          <div className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background shadow-[0_30px_80px_rgba(15,23,42,0.10)]">
+            <div className="mx-auto grid min-h-[430px] w-full max-w-[1280px] grid-cols-12 gap-7 px-5 py-9 xl:px-8 animate-pstc-menu-reveal">
+              <aside className="col-span-3 rounded-[2rem] border border-border bg-card p-4">
                 <p className="mb-4 px-3 text-xs font-black uppercase tracking-[0.28em] text-primary">
                   {activeMenu.label}
                 </p>
@@ -269,8 +261,8 @@ export default function HeaderMegaMenu() {
                       href={item.href}
                       className="group flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-bold text-foreground transition hover:bg-primary hover:text-primary-foreground"
                     >
-                      <span>{item.title}</span>
-                      <ArrowUpRight className="size-4 opacity-0 transition group-hover:opacity-100" />
+                      <span className="whitespace-nowrap">{item.title}</span>
+                      <ArrowUpRight className="size-4 shrink-0 opacity-0 transition group-hover:opacity-100" />
                     </Link>
                   ))}
                 </div>
@@ -292,7 +284,7 @@ export default function HeaderMegaMenu() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href={activeMenu.href}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-black text-primary-foreground shadow-xl shadow-[var(--pstc-primary-glow)] transition hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)]"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-black text-primary-foreground shadow-md transition hover:-translate-y-0.5 hover:bg-[var(--pstc-primary-dark)]"
                   >
                     Explore Section
                     <ArrowUpRight className="size-4" />
@@ -300,7 +292,7 @@ export default function HeaderMegaMenu() {
 
                   <Link
                     href="/contact-us"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-black text-foreground transition hover:-translate-y-1 hover:border-secondary hover:text-secondary"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-black text-foreground transition hover:-translate-y-0.5 hover:border-secondary hover:text-secondary"
                   >
                     Contact PSTC
                   </Link>
@@ -325,27 +317,27 @@ export default function HeaderMegaMenu() {
                 </div>
               </section>
 
-              <section className="col-span-3 perspective-1200">
-                <div className="pstc-card-3d group relative h-full min-h-[360px] overflow-hidden rounded-[2rem] border border-border bg-card">
+              <section className="col-span-3">
+                <div className="group relative h-full min-h-[350px] overflow-hidden rounded-[2rem] border border-border bg-card">
                   <Image
                     src={activeMenu.image}
                     alt={activeMenu.title}
                     fill
                     sizes="360px"
-                    className="object-cover transition duration-700 group-hover:scale-110"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute inset-0 bg-black/35" />
 
-                  <div className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary backdrop-blur">
+                  <div className="absolute left-5 top-5 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
                     Featured
                   </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <h3 className="text-2xl font-black">{activeMenu.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-white/80">
-                      Modern, animated, accessible and stakeholder-focused
-                      digital experience.
+                    <p className="mt-2 text-sm leading-6 text-white/85">
+                      Modern, accessible and stakeholder-focused digital
+                      experience.
                     </p>
                   </div>
                 </div>
