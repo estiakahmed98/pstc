@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -41,18 +41,151 @@ const buttonVariants = cva(
   },
 );
 
+type Particle = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  gravity: number;
+  size: number;
+  color: string;
+  alpha: number;
+  decay: number;
+  wobble: number;
+  wobbleSpeed: number;
+  rotation: number;
+  rotSpeed: number;
+};
+
+const DEFAULT_COLORS = [
+  "#f59e0b",
+  "#ec4899",
+  "#8b5cf6",
+  "#06b6d4",
+  "#10b981",
+  "#ef4444",
+];
+
+function randomBetween(a: number, b: number) {
+  return a + Math.random() * (b - a);
+}
+
+function createParticle(cx: number, cy: number): Particle {
+  const angle = randomBetween(0, Math.PI * 2);
+  const speed = randomBetween(3, 10);
+
+  return {
+    x: cx,
+    y: cy,
+    vx: Math.cos(angle) * speed,
+    vy: Math.sin(angle) * speed - randomBetween(1, 4),
+    gravity: randomBetween(0.16, 0.32),
+    size: randomBetween(4, 10),
+    color: DEFAULT_COLORS[Math.floor(Math.random() * DEFAULT_COLORS.length)],
+    alpha: 1,
+    decay: randomBetween(0.012, 0.024),
+    wobble: randomBetween(0, Math.PI * 2),
+    wobbleSpeed: randomBetween(0.05, 0.12),
+    rotation: randomBetween(0, Math.PI * 2),
+    rotSpeed: randomBetween(-0.15, 0.15),
+  };
+}
+
+function drawParticle(ctx: CanvasRenderingContext2D, p: Particle) {
+  ctx.save();
+  ctx.globalAlpha = p.alpha;
+  ctx.translate(p.x, p.y);
+  ctx.rotate(p.rotation);
+  ctx.fillStyle = p.color;
+  ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+  ctx.restore();
+}
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  disabled = false,
+  onClick,
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
-  // Extract asChild so it doesn't get passed to DOM elements
-  // If `asChild` is true and the child is a valid React element,
-  // clone it and merge classes/props so the child becomes the rendered element.
   const { asChild, children, ...rest } = props as any;
+  const wrapperRef = useRef<HTMLSpanElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const particlesRef = useRef<Particle[]>([]);
 
   const classes = cn(buttonVariants({ variant, size, className }));
+
+  const fireConfetti = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if (disabled) return;
+
+      const canvas = canvasRef.current;
+      const wrapper = wrapperRef.current;
+      const target = event.currentTarget as HTMLElement;
+      if (!canvas || !wrapper || !target) return;
+
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      particlesRef.current = [];
+
+      canvas.width = wrapper.offsetWidth;
+      canvas.height = wrapper.offsetHeight;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const targetRect = target.getBoundingClientRect();
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const cx = targetRect.left - wrapperRect.left + targetRect.width / 2;
+      const cy = targetRect.top - wrapperRect.top + targetRect.height / 2;
+
+      for (let i = 0; i < 90; i += 1) {
+        particlesRef.current.push(createParticle(cx, cy));
+      }
+
+      target.style.transform = "scale(0.96)";
+      window.setTimeout(() => {
+        target.style.transform = "";
+      }, 140);
+
+      const startTime = performance.now();
+
+      const loop = (now: number) => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesRef.current = particlesRef.current.filter(
+          (p) => p.alpha > 0.01,
+        );
+
+        for (const p of particlesRef.current) {
+          p.wobble += p.wobbleSpeed;
+          p.x += p.vx + Math.sin(p.wobble) * 0.7;
+          p.vy += p.gravity;
+          p.y += p.vy;
+          p.rotation += p.rotSpeed;
+          p.alpha -= p.decay;
+          drawParticle(ctx, p);
+        }
+
+        if (particlesRef.current.length > 0 && now - startTime < 1600) {
+          rafRef.current = requestAnimationFrame(loop);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      };
+
+      rafRef.current = requestAnimationFrame(loop);
+    },
+    [disabled],
+  );
+
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      fireConfetti(event);
+      onClick?.(event as any);
+    },
+    [fireConfetti, onClick],
+  );
 
   if (asChild && React.isValidElement(children)) {
     const child = React.Children.only(children) as React.ReactElement;
@@ -60,13 +193,39 @@ function Button({
       .filter(Boolean)
       .join(" ");
 
-    return React.cloneElement(child, { className: mergedClassName, ...rest });
+    return (
+      <span ref={wrapperRef} className="relative inline-block">
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden"
+        />
+        {React.cloneElement(child, {
+          className: mergedClassName,
+          onClick: handleClick,
+          ...rest,
+        })}
+      </span>
+    );
   }
 
   return (
-    <ButtonPrimitive data-slot="button" className={classes} {...rest}>
-      {children}
-    </ButtonPrimitive>
+    <span ref={wrapperRef} className="relative inline-block">
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden"
+      />
+      <ButtonPrimitive
+        data-slot="button"
+        className={classes}
+        disabled={disabled}
+        onClick={handleClick as any}
+        {...rest}
+      >
+        {children}
+      </ButtonPrimitive>
+    </span>
   );
 }
 
