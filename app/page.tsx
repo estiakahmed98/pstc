@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/landing/Hero";
+import OurPartnersSection from "@/components/landing/OurPartnersSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
 import WhoWeAreSection from "@/components/landing/WhoWeAreSection";
@@ -10,6 +11,7 @@ export default function Home() {
       <WhoWeAreSection />
       <WhatWeDoSection />
       <PublicationsSection />
+      <OurPartnersSection />
     </div>
   );
 }
