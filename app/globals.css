@@ -524,6 +524,16 @@
   }
 }
 
+@keyframes heroProgress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
 @layer utilities {
   .animate-pstc-float {
     animation: pstc-float 7s ease-in-out infinite;
