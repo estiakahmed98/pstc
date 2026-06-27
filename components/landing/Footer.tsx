@@ -1,38 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, Phone, Send } from "lucide-react";
-import { Button as MovingBorderButton } from "@/components/ui/moving-border";
-import { cn } from "@/lib/utils";
+import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
 
-type FooterLink = {
+type FooterNode = {
   label: string;
   href: string;
+  children?: FooterNode[];
 };
 
-type FooterGroup = {
-  title: string;
-  links: FooterLink[];
-};
-
-const footerGroups: FooterGroup[] = [
+const footerMenus: FooterNode[] = [
   {
-    title: "Who We Are",
-    links: [
-      { label: "About Us", href: "/who-we-are/about-us" },
+    label: "Who We Are",
+    href: "/who-we-are",
+    children: [
       { label: "Governance", href: "/who-we-are/governance" },
       { label: "Leadership", href: "/who-we-are/leadership" },
       {
         label: "Mission, Vision & Values",
         href: "/who-we-are/mission-vision-values",
       },
+      { label: "Policies", href: "/who-we-are/policies" },
+      { label: "Organogram", href: "/who-we-are/organogram" },
       { label: "Where We Work", href: "/who-we-are/where-we-work" },
+      { label: "About Us", href: "/who-we-are/about-us" },
       { label: "Strategic Plan", href: "/who-we-are/strategic-plan" },
     ],
   },
   {
-    title: "What We Do",
-    links: [
+    label: "What We Do",
+    href: "/what-we-do",
+    children: [
       { label: "Our Thematic Areas", href: "/what-we-do/thematic-areas" },
       { label: "Our Projects", href: "/what-we-do/projects" },
       { label: "Our Initiatives", href: "/what-we-do/initiatives" },
@@ -41,8 +39,9 @@ const footerGroups: FooterGroup[] = [
     ],
   },
   {
-    title: "Our Impact",
-    links: [
+    label: "Our Impact",
+    href: "/our-impact",
+    children: [
       { label: "Publications", href: "/our-impact/publications" },
       {
         label: "Projanmo Kotha",
@@ -55,8 +54,9 @@ const footerGroups: FooterGroup[] = [
     ],
   },
   {
-    title: "Get Involved",
-    links: [
+    label: "Get Involved",
+    href: "/get-involved",
+    children: [
       { label: "Jobs", href: "/get-involved/jobs" },
       {
         label: "Training & Certification",
@@ -81,193 +81,137 @@ const footerGroups: FooterGroup[] = [
     ],
   },
   {
-    title: "uCon",
-    links: [
+    label: "uCon",
+    href: "/ucon",
+    children: [
       { label: "What is uCon?", href: "/ucon/about-us/what-is-ucon" },
       { label: "Focus Areas", href: "/ucon/about-us/focus-areas" },
+      { label: "Our Partners", href: "/ucon/about-us/partners" },
+      {
+        label: "Rules & Regulations",
+        href: "/ucon/about-us/rules-regulations",
+      },
       { label: "Ask Questions", href: "/ucon/queries/ask-questions" },
       { label: "Explore Ideas", href: "/ucon/queries/explore-ideas" },
-      { label: "Advocacy", href: "/ucon/advocacy" },
+      { label: "FAQs", href: "/ucon/queries/faqs" },
       { label: "CSE Training", href: "/ucon/training/cse" },
     ],
   },
 ];
 
-const policyLinks: FooterLink[] = [
+const policyLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Cookie Policy", href: "/cookie-policy" },
   { label: "Accessibility", href: "/accessibility" },
   { label: "Sitemap", href: "/sitemap" },
 ];
 
-function FooterMovingButton({
-  href,
-  children,
-  variant = "primary",
-  className,
-  containerClassName,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "outline";
-  className?: string;
-  containerClassName?: string;
-}) {
-  return (
-    <MovingBorderButton
-      as={Link}
-      href={href}
-      duration={3600}
-      borderRadius="999px"
-      containerClassName={cn(
-        "h-12 w-auto min-w-[150px] text-sm",
-        containerClassName,
-      )}
-      borderClassName="bg-[radial-gradient(#FFFFFF_36%,#0991CB_56%,transparent_72%)]"
-      className={cn(
-        "gap-2 px-6 text-sm font-black transition",
-        variant === "primary"
-          ? "border border-white bg-white text-secondary hover:border-primary hover:bg-primary hover:text-primary-foreground"
-          : "border border-white/40 bg-transparent text-white hover:border-primary hover:bg-primary/10 hover:text-white",
-        className,
-      )}
-    >
-      {children}
-    </MovingBorderButton>
-  );
-}
-
-function SocialLink({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      className="grid size-10 place-items-center rounded-full border border-white/30 bg-white/10 text-white transition hover:border-primary hover:bg-primary hover:text-white"
-    >
-      {children}
-    </Link>
-  );
-}
-
 export default function Footer() {
   return (
-    <footer className="w-full bg-secondary text-secondary-foreground">
-      <div className="mx-auto w-full max-w-[1440px] px-4 py-12 xl:px-8">
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <div className="grid size-14 place-items-center bg-white text-secondary">
-                <span className="text-sm font-black tracking-wider">PSTC</span>
-              </div>
+    <footer className="relative overflow-hidden bg-[#E53B51] px-4 py-14 text-white sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-black/10 blur-3xl" />
 
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.28em] text-white">
-                  PSTC
-                </p>
-                <p className="mt-1 max-w-[280px] text-sm font-semibold leading-6 text-white/75">
-                  Population Services and Training Center
-                </p>
-              </div>
-            </Link>
+      <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_1.6fr_0.8fr]">
+        <div className="animate-pstc-fade-up">
+          <Link href="/" className="mb-5 flex items-center gap-3">
+            <img
+              src="/logo-white.png"
+              alt="PSTC Logo"
+              className="h-14 w-auto rounded-xl transition duration-300 hover:scale-105"
+            />
+          </Link>
 
-            <p className="mt-6 max-w-md text-sm leading-7 text-white/80">
-              A non-government, not-for-profit voluntary organization working to
-              improve the quality of life of poor and socially disadvantaged
-              people through health, rights, skills, and community-focused
-              programs.
-            </p>
-
-            <div className="mt-6 grid gap-3 text-sm font-semibold text-white/85">
-              <Link
-                href="mailto:info@pstc-bgd.org"
-                className="flex items-center gap-3 transition hover:bg-primary/10"
-              >
-                <Mail className="size-4 shrink-0 text-white" />
-                info@pstc-bgd.org
-              </Link>
-
-              <Link
-                href="tel:+8800000000000"
-                className="flex items-center gap-3 transition hover:bg-primary/10"
-              >
-                <Phone className="size-4 shrink-0 text-white" />
-                +880 0000 000000
-              </Link>
-
-              <Link
-                href="/contact-us/office-location"
-                className="flex items-start gap-3 transition hover:bg-primary/10"
-              >
-                <MapPin className="mt-0.5 size-4 shrink-0 text-white" />
-                PSTC Office, Dhaka, Bangladesh
-              </Link>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <SocialLink href="#" label="Facebook">
-                <Phone className="size-4" />
-              </SocialLink>
-              <SocialLink href="#" label="LinkedIn">
-                <Phone className="size-4" />
-              </SocialLink>
-              <SocialLink href="#" label="YouTube">
-                <Phone className="size-4" />
-              </SocialLink>
-            </div>
-          </div>
-
-          <div className="lg:col-span-8">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-              {footerGroups.map((group) => (
-                <div key={group.title}>
-                  <h3 className="mb-4 whitespace-nowrap text-xs font-black uppercase tracking-[0.22em] text-white">
-                    {group.title}
-                  </h3>
-
-                  <div className="grid gap-3">
-                    {group.links.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="group flex items-start justify-between gap-2 rounded-lg px-2 py-1 text-sm font-semibold leading-5 text-white/75 transition hover:bg-primary/10 hover:text-white"
-                      >
-                        <span>{link.label}</span>
-                        <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 opacity-0 transition group-hover:opacity-100" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/20 pt-6 text-sm font-semibold text-white/75 md:flex-row md:items-center md:justify-between">
-          <p>
-            &copy; {new Date().getFullYear()} Population Services and Training
-            Center. All rights reserved.
+          <p className="max-w-md text-sm leading-7 text-red-100">
+            Population Services and Training Center is a non-government,
+            not-for-profit voluntary organization working to improve the quality
+            of life of poor and socially disadvantaged people.
           </p>
 
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {policyLinks.map((link) => (
+          <div className="mt-6 flex gap-3">
+            {["f", "in", "x", "yt"].map((social) => (
               <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-md px-2 py-1 transition hover:bg-primary/10 hover:text-white"
+                key={social}
+                href="#"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xs font-black uppercase text-white transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-red-700"
               >
-                {link.label}
+                {social}
               </Link>
             ))}
           </div>
         </div>
+
+        <div className="animate-pstc-fade-up animation-delay-200">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {footerMenus.map((menu) => (
+              <div key={menu.href} className="group">
+                <Link
+                  href={menu.href}
+                  className="mb-3 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-white transition hover:text-red-100"
+                >
+                  {menu.label}
+                  <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
+                </Link>
+
+                <div className="grid gap-2 border-l border-white/20 pl-4">
+                  {menu.children?.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      className="relative text-sm font-semibold leading-5 text-red-100 transition duration-300 before:absolute before:-left-4 before:top-2.5 before:h-px before:w-2 before:bg-white/30 hover:translate-x-1 hover:text-white"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="animate-pstc-fade-up animation-delay-300">
+          <h3 className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-red-200">
+            Contact
+          </h3>
+
+          <div className="grid gap-4 text-sm leading-7 text-red-100">
+            <p className="flex gap-3">
+              <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-200" />
+              PSTC Office, Dhaka, Bangladesh
+            </p>
+            <p className="flex items-center gap-3">
+              <Phone className="h-5 w-5 text-red-200" />
+              +880 0000 000000
+            </p>
+            <p className="flex items-center gap-3">
+              <Mail className="h-5 w-5 text-red-200" />
+              info@pstc-bgd.org
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <h3 className="mb-4 text-sm font-black uppercase tracking-[0.22em] text-red-200">
+              Policies
+            </h3>
+
+            <div className="grid gap-2 text-sm font-semibold text-red-100">
+              {policyLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="transition hover:translate-x-1 hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/20 pt-6 text-xs font-semibold text-red-200 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} PSTC. All rights reserved.</p>
+        <p>Designed for PSTC digital experience.</p>
       </div>
     </footer>
   );
