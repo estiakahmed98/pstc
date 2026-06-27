@@ -253,7 +253,7 @@ export default function WhoWeAreSection() {
         The left column uses `sticky` — its closest scrolling ancestor must be
         the <html>/<body>, not a clipped container.
       */}
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="lg:flex lg:gap-12 xl:gap-16">
           {/* ── LEFT: Sticky panel ───────────────────────────────────────── */}
           {/*
