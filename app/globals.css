@@ -607,7 +607,77 @@
 .card-text::first-line {
   font-size: 4rem;
 }
+/* =========================================================
+   Electric Border
+   ========================================================= */
+.electric-border {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
 
+.eb-canvas-container {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.eb-canvas {
+  display: block;
+}
+
+.eb-content {
+  position: relative;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.eb-layers {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.eb-glow-1 {
+  border: 1px solid color-mix(in srgb, var(--electric-border-color) 50%, transparent);
+  filter: blur(1px);
+}
+
+.eb-glow-2 {
+  border: 1px solid var(--electric-border-color);
+  opacity: 0.5;
+  filter: blur(5px);
+}
+
+.eb-background-glow {
+  z-index: -1;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--electric-border-color) 25%, transparent),
+    transparent
+  );
+  opacity: 0;
+  filter: blur(28px);
+  transform: scale(1.08);
+  transition: opacity 300ms ease;
+}
+
+.electric-border:hover .eb-background-glow {
+  opacity: 0.45;
+}
 /* =========================================================
    SCROLLBAR
    ========================================================= */

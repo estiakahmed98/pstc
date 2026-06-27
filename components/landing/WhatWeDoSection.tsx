@@ -10,6 +10,7 @@ import {
   HeartHandshake,
   GraduationCap,
 } from "lucide-react";
+import ElectricBorder from "../ui/ElectricBorder";
 
 const coreActivities = [
   {
@@ -152,53 +153,69 @@ export default function WhatWeDoSection() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {coreActivities.map((activity, index) => {
-            const Icon = activity.icon;
+<div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {coreActivities.map((activity, index) => {
+    const Icon = activity.icon;
 
-            return (
-              <div
-                key={activity.title}
-                className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition-all duration-500 hover:-translate-y-2 hover:border-[var(--pstc-primary)]/60 hover:shadow-[0_30px_80px_rgba(9,145,203,0.16)]"
+    return (
+      <ElectricBorder
+        key={activity.title}
+        color={index % 2 === 0 ? "#0991CB" : "#D73F32"}
+        speed={1.2}
+        chaos={0.08}
+        borderRadius={24}
+        className="rounded-2xl transition-all duration-500 hover:-translate-y-2"
+      >
+        <div className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition-all duration-500 hover:shadow-[0_30px_80px_rgba(9,145,203,0.16)]">
+
+          {/* Glow */}
+          <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)]" />
+
+            <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-[var(--pstc-primary-glow)] blur-3xl" />
+
+            <div className="absolute -bottom-24 -left-20 h-44 w-44 rounded-full bg-[var(--pstc-secondary-glow)] blur-3xl" />
+          </div>
+
+          {/* Shine */}
+          <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 transition-all duration-700 group-hover:left-[130%] group-hover:opacity-100" />
+
+          {/* Number */}
+          <div className="absolute right-5 top-5 flex size-10 items-center justify-center rounded-full bg-[var(--pstc-primary)]/10 text-sm font-bold text-[var(--pstc-primary)] transition-all duration-500 group-hover:scale-110 group-hover:bg-[var(--pstc-primary)] group-hover:text-white">
+            {String(index + 1).padStart(2, "0")}
+          </div>
+
+          {/* Icon */}
+          <div className="relative z-10 mb-5 inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--pstc-primary)]/10 to-[var(--pstc-secondary)]/10 text-[var(--pstc-primary)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-[var(--pstc-primary)] group-hover:text-white group-hover:shadow-[0_18px_45px_rgba(9,145,203,0.25)]">
+            <Icon size={26} strokeWidth={1.8} />
+          </div>
+
+          {/* Title */}
+          <h3 className="relative z-10 mb-5 text-xl font-bold uppercase tracking-[-0.02em] text-slate-800 transition-all duration-300 group-hover:text-[var(--pstc-primary)]">
+            {activity.title}
+          </h3>
+
+          {/* Items */}
+          <ul className="relative z-10 space-y-2">
+            {activity.items.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2.5 border-b border-slate-100 pb-2 text-sm font-medium leading-6 text-slate-600 last:border-0 last:pb-0"
               >
-                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)]" />
-                  <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[var(--pstc-primary-glow)] blur-3xl" />
-                  <div className="absolute -bottom-20 -left-16 h-36 w-36 rounded-full bg-[var(--pstc-secondary-glow)] blur-3xl" />
-                </div>
+                <ChevronRight
+                  size={16}
+                  className="mt-1 flex-shrink-0 text-[var(--pstc-primary)] transition-all duration-300 group-hover:translate-x-1"
+                />
 
-                <div className="pointer-events-none absolute -left-full top-0 h-full w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 transition-all duration-700 group-hover:left-[130%] group-hover:opacity-100" />
-
-                <div className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-[var(--pstc-primary)]/10 text-sm font-bold text-[var(--pstc-primary)] transition-all duration-500 group-hover:scale-110 group-hover:bg-[var(--pstc-primary)] group-hover:text-white">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div className="relative z-10 mb-4 inline-flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--pstc-primary)]/10 to-[var(--pstc-secondary)]/10 text-[var(--pstc-primary)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-[0_16px_40px_rgba(9,145,203,0.20)]">
-                  <Icon size={24} strokeWidth={1.8} />
-                </div>
-
-                <h3 className="relative z-10 mb-4 text-xl font-bold uppercase tracking-[-0.02em] text-slate-800 transition-colors duration-300 group-hover:text-[var(--pstc-primary)]">
-                  {activity.title}
-                </h3>
-
-                <ul className="relative z-10 space-y-2">
-                  {activity.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-2.5 border-b border-slate-100 pb-2 text-sm font-medium leading-6 text-slate-600 last:border-0 last:pb-0"
-                    >
-                      <ChevronRight
-                        size={16}
-                        className="mt-1 flex-shrink-0 text-[var(--pstc-primary)] transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
+      </ElectricBorder>
+    );
+  })}
+</div>
 
         <div className="mt-20 rounded-3xl border border-slate-200/60 bg-white/80 p-9 shadow-[0_24px_70px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(9,145,203,0.12)]">
           <div className="flex items-center gap-3">
