@@ -66,6 +66,7 @@ export default function RootLayout({
           <TranslationProvider>
             <AuthProvider>
               <HeaderMegaMenu />
+              <WhatWeDoSection/>
               {children}
               <Footer />
               <ScrollToTopButton />
