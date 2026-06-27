@@ -9,6 +9,8 @@ import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { AuthProvider } from "@/lib/rbac/auth-context";
 import { Toaster } from "sonner";
 import Footer from "@/components/landing/Footer";
+import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
+import OurPartnersSection from "@/components/landing/OurPartnersSection";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -67,6 +69,7 @@ export default function RootLayout({
             <AuthProvider>
               <HeaderMegaMenu />
               <WhatWeDoSection/>
+               <OurPartnersSection />
               {children}
               <Footer />
               <ScrollToTopButton />
