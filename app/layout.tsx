@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import HeaderMegaMenu from "@/components/landing/HeaderMegaMenu";
 import { ThemeProvider } from "@/components/shared/theme-provider";
@@ -64,6 +65,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">
+        <Script id="pstc-theme-init" strategy="beforeInteractive">
+          {`(function () {
+  try {
+    var storageKey = "pstc-theme";
+    var themes = ["theme-pstc-blue-green", "theme-pstc-red-grey"];
+    var savedTheme = localStorage.getItem(storageKey);
+    var theme = themes.indexOf(savedTheme) >= 0 ? savedTheme : "theme-pstc-blue-green";
+    document.documentElement.classList.remove("theme-pstc-blue-green", "theme-pstc-red-grey");
+    document.documentElement.classList.add(theme);
+  } catch (e) {}
+})();`}
+        </Script>
         <ThemeProvider>
           <TranslationProvider>
             <AuthProvider>

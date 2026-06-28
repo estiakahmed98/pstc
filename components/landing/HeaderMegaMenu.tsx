@@ -5,15 +5,16 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   ChevronDown,
-  Globe2,
+  LogIn,
   Menu,
-  Search,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import { BackgroundGradient } from "../ui/background-gradient";
+import { LanguageButton } from "../LanguageSwitcher";
 
 type MenuNode = {
   title: string;
@@ -715,25 +716,6 @@ function IconMovingButton({
   );
 }
 
-function LanguageButton() {
-  return (
-    <MovingBorderButton
-      type="button"
-      duration={3600}
-      borderRadius="999px"
-      containerClassName="hidden h-12 w-auto min-w-[144px] text-sm sm:block"
-      borderClassName="bg-[radial-gradient(#D73F32_38%,transparent_68%)]"
-      className="border border-border bg-background px-4 text-xs font-black text-foreground transition hover:text-primary"
-    >
-      <span className="flex items-center gap-2 whitespace-nowrap">
-        <Globe2 className="size-4 shrink-0" />
-        English
-        <ChevronDown className="size-3 shrink-0" />
-      </span>
-    </MovingBorderButton>
-  );
-}
-
 function SidebarTreeNode({
   node,
   activeHref,
@@ -925,6 +907,44 @@ export default function HeaderMegaMenu() {
   const [activeMenu, setActiveMenu] = useState<MegaMenu | null>(null);
   const [previewNode, setPreviewNode] = useState<MenuNode | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoSrc, setLogoSrc] = useState("/pstc_logo_2.png");
+
+  useEffect(() => {
+    const readLogo = () =>
+      document.documentElement.classList.contains("theme-pstc-red-grey")
+        ? "/pstc_logo.png"
+        : "/pstc_logo_2.png";
+
+    const syncLogo = () => {
+      setLogoSrc(readLogo());
+    };
+
+    syncLogo();
+
+    const handleThemeChange = () => {
+      syncLogo();
+    };
+
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "pstc-theme") {
+        syncLogo();
+      }
+    };
+
+    window.addEventListener(
+      "pstc-theme-change",
+      handleThemeChange as EventListener,
+    );
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener(
+        "pstc-theme-change",
+        handleThemeChange as EventListener,
+      );
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const openMenu = (menu: MegaMenu) => {
     setActiveMenu(menu);
@@ -944,7 +964,7 @@ export default function HeaderMegaMenu() {
         className="fixed left-0 top-0 z-50 w-full bg-background/80 backdrop-blur-2xl transition-colors duration-300"
         onMouseLeave={closeMenu}
       >
-        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1440px] items-center justify-between gap-4 px-4 xl:px-8">
+        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-4 px-3 lg:px-5 xl:px-6">
           <div className="flex min-w-0 shrink-0 items-center gap-4">
             <div className="lg:hidden">
               <IconMovingButton
@@ -956,16 +976,11 @@ export default function HeaderMegaMenu() {
             </div>
 
             <Link href="/" className="group flex min-w-0 items-center gap-3">
-              <GlowPanel className="size-12 shrink-0 rounded-none" radius={0}>
-                <div className="grid size-12 place-items-center bg-primary text-primary-foreground">
-                  <span className="text-xs font-black tracking-wider">
-                    PSTC
-                  </span>
-                </div>
-              </GlowPanel>
-              <span className="hidden whitespace-nowrap text-sm font-black uppercase tracking-[0.28em] text-primary sm:inline">
-                PSTC
-              </span>
+              <img
+                src={logoSrc}
+                alt="pstc Logo"
+                className="h-16 w-40"
+              />
             </Link>
           </div>
 
@@ -998,10 +1013,16 @@ export default function HeaderMegaMenu() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
-            <IconMovingButton ariaLabel="Search">
-              <Search className="size-4" />
-            </IconMovingButton>
+            <ThemeToggle />
             <LanguageButton />
+            <MovingLinkButton
+              href="/login"
+              containerClassName="hidden h-12 min-w-[96px] sm:block"
+              className="px-4"
+            >
+              Login
+              <LogIn className="size-4" />
+            </MovingLinkButton>
           </div>
         </div>
 
@@ -1093,6 +1114,22 @@ export default function HeaderMegaMenu() {
 
           <div className="h-[calc(100vh-80px)] overflow-y-auto px-5 py-6">
             <div className="grid gap-4">
+              <div className="flex flex-col gap-3 rounded-[24px] border border-border bg-card p-4 sm:flex-row">
+                <ThemeToggle
+                  containerClassName="h-12 w-full sm:w-auto"
+                  className="w-full justify-center px-4"
+                />
+                <MovingLinkButton
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  containerClassName="h-12 w-full sm:flex-1"
+                  className="w-full justify-center px-4"
+                >
+                  Login
+                  <LogIn className="size-4" />
+                </MovingLinkButton>
+              </div>
+
               {megaMenus.map((menu) => (
                 <GlowPanel
                   key={menu.href}

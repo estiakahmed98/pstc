@@ -211,7 +211,7 @@ export default function PublicationsSection({
     .slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden bg-background px-4 py-24 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-background px-4 py-24 sm:px-6 lg:px-28 lg:py-32">
       <div className="pointer-events-none absolute inset-0 " />
 
       <div className="pointer-events-none absolute -left-28 top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
