@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
+import { SparklesText } from "../ui/sparkles-text";
 
 type HeroSlide = {
   title: string;
@@ -83,10 +84,10 @@ function HeroMovingButton({
       href={href}
       duration={3200}
       borderRadius="999px"
-      containerClassName="h-14 min-w-[190px] text-sm"
+      containerClassName="h-11 w-full min-w-0 text-sm sm:h-12 sm:min-w-[170px] sm:w-auto lg:h-14 lg:min-w-[190px]"
       borderClassName="bg-[radial-gradient(var(--pstc-primary)_32%,var(--pstc-secondary)_58%,transparent_72%)]"
       className={cn(
-        "group gap-4 px-7 text-sm font-black uppercase tracking-[0.08em] transition rounded-3xl",
+        "group h-full w-full gap-3 px-4 text-xs font-black uppercase tracking-[0.06em] transition sm:px-5 sm:text-sm lg:gap-4 lg:px-7 lg:tracking-[0.08em]",
         variant === "primary"
           ? "border-primary bg-primary text-primary-foreground hover:bg-(--pstc-primary-dark)"
           : "border-white/30 bg-white/10 text-white hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
@@ -127,7 +128,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="relative min-h-[calc(100vh-var(--header-height))] overflow-hidden bg-black text-white">
+    <section className="relative min-h-[calc(100svh-var(--header-height))] overflow-hidden bg-black text-white">
       <Image
         key={activeSlide.image}
         src={activeSlide.image}
@@ -142,42 +143,45 @@ export default function HeroCarousel() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-black via-black/20 to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[calc(100vh-var(--header-height))] w-full flex-col justify-end px-4 pb-8 pt-24 sm:px-6 lg:px-8">
-        <div className="grid items-end gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="max-w-4xl pb-4">
-            <p className="mb-5 text-xs font-black uppercase tracking-[0.36em] text-white/70">
+      <div className="relative mx-auto flex min-h-[calc(100svh-var(--header-height))] w-full flex-col justify-end px-4 pb-6 pt-20 sm:px-6 sm:pb-8 sm:pt-24 lg:px-8">
+        <div className="grid items-end gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+          <div className="max-w-4xl pb-2 sm:pb-4">
+            <SparklesText
+              sparklesCount={5}
+              colors={{
+                first: "var(--pstc-primary)",
+                second: "var(--pstc-secondary)",
+              }}
+              className="mb-4 text-xs font-black uppercase tracking-[0.36em] text-gray-100"
+            >
               PSTC Digital Experience
-            </p>
+            </SparklesText>
 
-            <h1 className="max-w-4xl font-serif text-4xl leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="max-w-4xl font-serif text-[2rem] leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
               {activeSlide.title}{" "}
-              <span className="italic text-primary font-semibold">
+              <span className="italic text-secondary font-semibold">
                 {activeSlide.italic}
               </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
+            {/* <p className="mt-4 max-w-2xl text-sm leading-7 text-white/78 sm:mt-6 sm:text-lg sm:leading-8">
               {activeSlide.description}
-            </p>
+            </p> */}
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <HeroMovingButton href={activeSlide.href} className="rounded-3xl">
+            <div className="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-wrap sm:gap-4">
+              <HeroMovingButton href={activeSlide.href}>
                 Explore Section
                 <ArrowUpRight className="size-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </HeroMovingButton>
 
-              <HeroMovingButton
-                href="/contact-us"
-                variant="secondary"
-                className="rounded-3xl"
-              >
+              <HeroMovingButton href="/contact-us" variant="secondary">
                 Contact PSTC
                 <ArrowUpRight className="size-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </HeroMovingButton>
             </div>
           </div>
 
-          <div className="ml-auto w-full max-w-155">
+          <div className="ml-auto hidden w-full max-w-155 lg:block">
             <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/20">
               <div
                 key={activeIndex}
@@ -201,7 +205,7 @@ export default function HeroCarousel() {
                     type="button"
                     onClick={() => selectSlide(index)}
                     className={cn(
-                      "group relative h-24 overflow-hidden border text-left transition duration-500 sm:h-28",
+                      "group relative h-20 overflow-hidden border text-left transition duration-500 sm:h-24 xl:h-28",
                       isActive
                         ? "scale-105 border-white shadow-2xl shadow-black/40"
                         : "border-white/15 opacity-70 hover:scale-105 hover:border-white hover:opacity-100",
@@ -217,8 +221,8 @@ export default function HeroCarousel() {
 
                     <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/58" />
 
-                    <div className="absolute inset-x-0 bottom-0 translate-y-full p-3 transition duration-300 group-hover:translate-y-0">
-                      <p className="text-[11px] font-black uppercase leading-4 tracking-widest text-white">
+                    <div className="absolute inset-x-0 bottom-0 translate-y-full p-2.5 transition duration-300 group-hover:translate-y-0 sm:p-3">
+                      <p className="text-[10px] font-black uppercase leading-4 tracking-widest text-white sm:text-[11px]">
                         {slide.short}
                       </p>
                     </div>
@@ -234,7 +238,7 @@ export default function HeroCarousel() {
               })}
             </div>
 
-            <div className="mt-4 grid grid-cols-[1fr_auto] items-center gap-4">
+            <div className="mt-4 hidden grid-cols-[1fr_auto] items-center gap-4 lg:grid">
               <p className="max-w-md text-sm leading-6 text-white/80">
                 <span className="font-black text-white">
                   {activeSlide.short}.

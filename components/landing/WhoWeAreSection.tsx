@@ -429,7 +429,7 @@ export default function WhoWeAreSection() {
                     href="/who-we-are/about-us"
                     className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground shadow-[0_14px_35px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-[0_18px_45px_var(--pstc-primary-glow)]"
                   >
-                    Explore About PSTC
+                    Explore PSTC
                     <span className="grid size-6 place-items-center rounded-full bg-white/15 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
                       <ArrowUpRight className="size-4" />
                     </span>
@@ -515,7 +515,7 @@ export default function WhoWeAreSection() {
                     href="/who-we-are/about-us"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-black text-primary-foreground shadow-md transition hover:-translate-y-0.5 sm:w-auto"
                   >
-                    Explore About PSTC
+                    Explore
                     <ArrowUpRight className="size-4" />
                   </Link>
                   <Link
