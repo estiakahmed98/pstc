@@ -10,8 +10,6 @@ import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { AuthProvider } from "@/lib/rbac/auth-context";
 import { Toaster } from "sonner";
 import Footer from "@/components/landing/Footer";
-import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
-import OurPartnersSection from "@/components/landing/OurPartnersSection";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -64,7 +62,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} bg-background`}
     >
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <Script id="pstc-theme-init" strategy="beforeInteractive">
           {`(function () {
   try {
