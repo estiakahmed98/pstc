@@ -17,6 +17,7 @@ import {
 import ScrollStack, {
   ScrollStackItem,
 } from "@/components/ui/ScrollStackItemProps";
+import { MovingLinkButton } from "@/components/ui/moving-link-button";
 import { cn } from "@/lib/utils";
 import BorderGlow from "../ui/BorderGlow";
 import { BackgroundGradient } from "../ui/background-gradient";
@@ -177,50 +178,6 @@ export function Button({
         {children}
       </div>
     </Component>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// ScrollStack card (desktop)
-// ---------------------------------------------------------------------------
-
-function MovingLinkButton({
-  href,
-  children,
-  variant = "primary",
-  className,
-  containerClassName,
-  onClick,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "outline";
-  className?: string;
-  containerClassName?: string;
-  onClick?: () => void;
-}) {
-  return (
-    <MovingBorderButton
-      as={Link}
-      href={href}
-      onClick={onClick}
-      duration={3600}
-      borderRadius="999px"
-      containerClassName={cn(
-        "h-13 w-auto min-w-[168px] text-sm",
-        containerClassName,
-      )}
-      borderClassName="bg-[radial-gradient(#0991CB_36%,#D73F32_52%,transparent_70%)]"
-      className={cn(
-        "gap-2 px-6 text-sm font-black transition",
-        variant === "primary"
-          ? "border border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)]"
-          : "border border-border bg-background text-foreground hover:border-secondary hover:text-secondary",
-        className,
-      )}
-    >
-      {children}
-    </MovingBorderButton>
   );
 }
 
