@@ -19,46 +19,46 @@ type HeroSlide = {
 
 const slides: HeroSlide[] = [
   {
-    title: "Care begins with access.",
-    italic: "Dignity for all.",
+    title: "Care for",
+    italic: "Community.",
     description:
-      "PSTC connects communities with health, rights, skills, youth engagement, and inclusive services across Bangladesh.",
+      "Delivering health, rights, skills, and inclusive services across Bangladesh.",
     short: "Care for every community",
     image: "/hero/hero%25201.webp",
     href: "/what-we-do",
   },
   {
-    title: "Clinics to communities.",
-    italic: "Impact that lasts.",
+    title: "Services That",
+    italic: "Transform.",
     description:
-      "Explore PSTC programs in population health, nutrition, adolescent development, gender, climate resilience, and skills training.",
+      "Advancing health, nutrition, youth, climate resilience, and workforce skills.",
     short: "Impact through services",
     image: "/hero/hero%25202.avif",
     href: "/what-we-do/thematic-areas",
   },
   {
-    title: "Young voices lead.",
-    italic: "Tomorrow starts here.",
+    title: "Youth Shape",
+    italic: "Tomorrow.",
     description:
-      "uCon, NaYoN, CSE learning, youth advocacy, and engagement platforms help young people ask, learn, lead, and participate.",
+      "Empowering young people through leadership, learning, advocacy, and innovation.",
     short: "Youth leading tomorrow",
     image: "/hero/hero%25203.jpg",
     href: "/ucon",
   },
   {
-    title: "Evidence of change.",
-    italic: "Stories that matter.",
+    title: "Evidence That",
+    italic: "Inspires.",
     description:
-      "Read publications, annual reports, research, audit reports, events, and media stories documenting PSTC’s work.",
+      "Explore publications, reports, research, events, and stories of measurable impact.",
     short: "Stories of real impact",
     image: "/hero/hero%25204.jpeg",
     href: "/our-impact",
   },
   {
-    title: "Partnerships create progress.",
-    italic: "Together we move.",
+    title: "Partners for",
+    italic: "Progress.",
     description:
-      "Join PSTC through jobs, training, certification, policy learning, partnerships, and community-driven initiatives.",
+      "Collaborating to expand opportunities through training, innovation, and community action.",
     short: "Partnerships create change",
     image: "/hero/hero%25205.jpg",
     href: "/get-involved",
@@ -128,7 +128,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="relative min-h-[calc(100svh-var(--header-height))] overflow-hidden bg-black text-white lg:h-[calc(100svh-var(--header-height))] lg:min-h-[600px]">
+    <section className="relative h-screen overflow-hidden bg-black text-white">
       <Image
         key={activeSlide.image}
         src={activeSlide.image}
