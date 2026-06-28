@@ -20,6 +20,12 @@ import ScrollStack, {
 import { cn } from "@/lib/utils";
 import BorderGlow from "../ui/BorderGlow";
 import { BackgroundGradient } from "../ui/background-gradient";
+import {
+  MovingBorder,
+  Button as MovingBorderButton,
+} from "@/components/ui/moving-border";
+import { BG } from "../ui/bg";
+import { SparklesText } from "../ui/sparkles-text";
 
 // ---------------------------------------------------------------------------
 // Types & Data
@@ -110,25 +116,134 @@ const whoItems: WhoCard[] = [
 ];
 
 const stats = [
-  { value: "47+", label: "Years of service" },
+  { value: "48+", label: "Years of service" },
   { value: "1978", label: "FPSTC origin" },
   { value: "IPPF", label: "Member Association" },
 ];
 
+export function Button({
+  borderRadius = "1.75rem",
+  children,
+  as: Component = "button",
+  containerClassName,
+  borderClassName,
+  duration,
+  className,
+  ...otherProps
+}: {
+  borderRadius?: string;
+  children: React.ReactNode;
+  as?: any;
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+  className?: string;
+  [key: string]: any;
+}) {
+  return (
+    <Component
+      className={cn(
+        "relative overflow-hidden bg-transparent p-[1px] text-xl",
+        containerClassName,
+      )}
+      style={{
+        borderRadius: borderRadius,
+      }}
+      {...otherProps}
+    >
+      <div
+        className="absolute inset-0"
+        style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
+      >
+        <MovingBorder duration={duration} rx="30%" ry="30%">
+          <div
+            className={cn(
+              "h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.8]",
+              borderClassName,
+            )}
+          />
+        </MovingBorder>
+      </div>
+
+      <div
+        className={cn(
+          "relative flex h-full w-full items-center justify-center border border-slate-800 bg-slate-900/[0.8] text-sm text-white antialiased backdrop-blur-xl",
+          className,
+        )}
+        style={{
+          borderRadius: `calc(${borderRadius} * 0.96)`,
+        }}
+      >
+        {children}
+      </div>
+    </Component>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // ScrollStack card (desktop)
 // ---------------------------------------------------------------------------
+
+function MovingLinkButton({
+  href,
+  children,
+  variant = "primary",
+  className,
+  containerClassName,
+  onClick,
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "outline";
+  className?: string;
+  containerClassName?: string;
+  onClick?: () => void;
+}) {
+  return (
+    <MovingBorderButton
+      as={Link}
+      href={href}
+      onClick={onClick}
+      duration={3600}
+      borderRadius="999px"
+      containerClassName={cn(
+        "h-13 w-auto min-w-[168px] text-sm",
+        containerClassName,
+      )}
+      borderClassName="bg-[radial-gradient(#0991CB_36%,#D73F32_52%,transparent_70%)]"
+      className={cn(
+        "gap-2 px-6 text-sm font-black transition",
+        variant === "primary"
+          ? "border border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)]"
+          : "border border-border bg-background text-foreground hover:border-secondary hover:text-secondary",
+        className,
+      )}
+    >
+      {children}
+    </MovingBorderButton>
+  );
+}
 
 function WhoStackCard({ item }: { item: WhoCard }) {
   const Icon = item.icon;
 
   return (
     <ScrollStackItem
+      useBorderGlow
       itemClassName={cn(
-        "!my-0 !h-[430px] !rounded-[2.2rem] !p-0",
-        "overflow-hidden border border-border bg-card",
+        "!my-0 !h-[430px] !rounded-[2.2rem] !p-0 overflow-hidden bg-card",
         "shadow-[0_28px_90px_rgba(16,24,40,0.16)]",
       )}
+      borderGlowProps={{
+        borderRadius: 40,
+        glowColor: "11 87 158",
+        backgroundColor: "transparent",
+        edgeSensitivity: 24,
+        glowRadius: 30,
+        glowIntensity: 0.85,
+        coneSpread: 22,
+        colors: ["#0b579e", "#94ca51", "#ffffff"],
+      }}
     >
       <Link
         href={item.href}
@@ -297,30 +412,27 @@ export default function WhoWeAreSection() {
                 {/* Stats */}
                 <div className="mt-8 grid max-w-md grid-cols-3 gap-3">
                   {stats.map((stat) => (
-                    <div
+                    <BG
                       key={stat.label}
-                      className="group relative overflow-hidden rounded-[1.5rem] border border-primary/15 bg-background p-[1px] shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(15,23,42,0.14)]"
+                      containerClassName="rounded-[1.6rem]"
+                      className="h-full bg-card/95 px-4 py-5 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 group-hover:-translate-y-1"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/35 via-secondary/20 to-transparent opacity-70 transition group-hover:opacity-100" />
+                      <div className="mb-3 h-1.5 w-10 rounded-full bg-gradient-to-r from-primary to-secondary" />
 
-                      <div className="relative h-full rounded-[1.45rem] bg-card/95 px-4 py-5 backdrop-blur">
-                        <div className="mb-3 h-1.5 w-10 rounded-full bg-gradient-to-r from-primary to-secondary" />
+                      <p className="text-2xl font-black leading-none text-primary">
+                        {stat.value}
+                      </p>
 
-                        <p className="text-2xl font-black leading-none text-primary">
-                          {stat.value}
-                        </p>
-
-                        <p className="mt-2 text-xs font-bold leading-5 text-muted-foreground">
-                          {stat.label}
-                        </p>
-                      </div>
-                    </div>
+                      <p className="mt-2 text-xs font-bold leading-5 text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </BG>
                   ))}
                 </div>
 
                 {/* CTAs */}
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link
+                  <MovingLinkButton
                     href="/who-we-are/about-us"
                     className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground shadow-[0_14px_35px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-[0_18px_45px_var(--pstc-primary-glow)]"
                   >
@@ -328,15 +440,15 @@ export default function WhoWeAreSection() {
                     <span className="grid size-6 place-items-center rounded-full bg-white/15 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
                       <ArrowUpRight className="size-4" />
                     </span>
-                  </Link>
+                  </MovingLinkButton>
 
-                  <Link
+                  <MovingLinkButton
                     href="/who-we-are/strategic-plan"
                     className="group inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-6 py-3.5 text-sm font-black text-foreground shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_18px_45px_var(--pstc-secondary-glow)]"
                   >
                     Strategic Plan
                     <span className="h-2 w-2 rounded-full bg-secondary transition duration-300 group-hover:bg-secondary-foreground" />
-                  </Link>
+                  </MovingLinkButton>
                 </div>
               </div>
             </div>
@@ -367,9 +479,16 @@ export default function WhoWeAreSection() {
             <div className="grid gap-5 py-12 lg:hidden">
               {/* Mobile heading */}
               <div className="mb-4">
-                <p className="mb-3 text-xs font-black uppercase tracking-[0.36em] text-secondary">
+                <SparklesText
+                  sparklesCount={5}
+                  colors={{
+                    first: "var(--pstc-primary)",
+                    second: "var(--pstc-secondary)",
+                  }}
+                  className="mb-3 text-xs font-black uppercase tracking-[0.36em] text-secondary"
+                >
                   Who We Are
-                </p>
+                </SparklesText>
                 <h2 className="text-3xl font-black leading-tight text-foreground sm:text-4xl">
                   A legacy of care,{" "}
                   <span className="text-primary">

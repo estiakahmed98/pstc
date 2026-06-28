@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState, useEffect, type ReactNode } from 'react';
 
-interface BorderGlowProps {
+export interface BorderGlowProps {
   children?: ReactNode;
   className?: string;
   edgeSensitivity?: number;
@@ -245,7 +245,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         />
       </span>
 
-      <div className="flex flex-col relative overflow-auto z-[1]">
+      <div className="relative z-[1] flex flex-col overflow-hidden">
         {children}
       </div>
     </div>
