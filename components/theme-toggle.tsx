@@ -92,7 +92,7 @@ export function ThemeToggle({
         isBlueGreen ? "red-grey" : "blue-green"
       }`}
       title={`Switch to ${isBlueGreen ? "red-grey" : "blue-green"} theme`}
-      containerClassName={cn("h-12 w-12 text-sm", containerClassName)}
+      containerClassName={cn("h-10 w-10 text-sm sm:h-12 sm:w-12", containerClassName)}
       borderClassName="bg-[radial-gradient(var(--pstc-primary)_36%,var(--pstc-secondary)_52%,transparent_70%)]"
       className={cn(
         "border border-transparent bg-primary p-0 text-primary-foreground shadow-sm transition",

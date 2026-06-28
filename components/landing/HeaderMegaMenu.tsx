@@ -987,14 +987,14 @@ export default function HeaderMegaMenu() {
         className="fixed left-0 top-0 z-50 w-full bg-background/80 backdrop-blur-2xl transition-colors duration-300"
         onMouseLeave={closeMenu}
       >
-        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-4 px-3 lg:px-5 xl:px-6">
-          <div className="flex min-w-0 shrink-0 items-center gap-4">
+        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-3 px-3 sm:px-4 lg:px-5 xl:px-6">
+          <div className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4">
             <div className="lg:hidden">
               <IconMovingButton
                 ariaLabel="Open menu"
                 onClick={() => setMobileOpen(true)}
               >
-                <Menu className="size-5" />
+                <Menu className="size-4 sm:size-5" />
               </IconMovingButton>
             </div>
 
@@ -1002,7 +1002,7 @@ export default function HeaderMegaMenu() {
               <img
                 src={logoSrc}
                 alt="pstc Logo"
-                className="h-16 w-40"
+                className="h-12 w-28 sm:h-14 sm:w-32 lg:h-16 lg:w-40"
               />
             </Link>
           </div>
@@ -1035,16 +1035,16 @@ export default function HeaderMegaMenu() {
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <ThemeToggle />
             <LanguageButton />
             <MovingLinkButton
               href="/login"
-              containerClassName="hidden h-12 min-w-[96px] sm:block"
-              className="px-4"
+              containerClassName="hidden h-10 min-w-[84px] md:block"
+              className="px-3 text-xs sm:px-4 sm:text-sm"
             >
               Login
-              <LogIn className="size-4" />
+              <LogIn className="size-3.5 sm:size-4" />
             </MovingLinkButton>
           </div>
         </div>
