@@ -360,7 +360,7 @@ export default function WhoWeAreSection() {
                 </p>
 
                 {/* Stats */}
-                <div className="mt-6 grid max-w-md grid-cols-3 gap-2 xl:mt-8 xl:gap-3">
+                {/* <div className="mt-6 grid max-w-md grid-cols-3 gap-2 xl:mt-8 xl:gap-3">
                   {stats.map((stat) => (
                     <BG
                       key={stat.label}
@@ -378,7 +378,7 @@ export default function WhoWeAreSection() {
                       </p>
                     </BG>
                   ))}
-                </div>
+                </div> */}
 
                 {/* CTAs */}
                 <div className="mt-6 flex flex-wrap items-center gap-3 xl:mt-8 xl:gap-4">
