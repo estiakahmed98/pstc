@@ -349,7 +349,7 @@ function MobileWhoCard({ item }: { item: WhoCard }) {
 export default function WhoWeAreSection() {
   return (
     <section
-      className="relative bg-background pt-8 text-foreground sm:pt-10 lg:pt-0"
+      className="relative bg-background mt-18 pt-8 text-foreground sm:pt-10 lg:pt-0"
       /**
        * FIX: NO overflow-hidden here — that's what breaks position:sticky.
        * The section must allow the sticky child to escape clip boundaries.
@@ -510,17 +510,17 @@ export default function WhoWeAreSection() {
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
                   <Link
                     href="/who-we-are/about-us"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-black text-primary-foreground shadow-md transition hover:-translate-y-0.5"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-black text-primary-foreground shadow-md transition hover:-translate-y-0.5 sm:w-auto"
                   >
                     Explore About PSTC
                     <ArrowUpRight className="size-4" />
                   </Link>
                   <Link
                     href="/who-we-are/strategic-plan"
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-black text-foreground transition hover:-translate-y-0.5 hover:text-secondary"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-black text-foreground transition hover:-translate-y-0.5 hover:text-secondary sm:w-auto"
                   >
                     Strategic Plan
                   </Link>
