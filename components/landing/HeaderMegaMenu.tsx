@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { usePstcLogo } from "@/lib/use-pstc-logo";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import { BackgroundGradient } from "../ui/background-gradient";
@@ -907,44 +908,7 @@ export default function HeaderMegaMenu() {
   const [activeMenu, setActiveMenu] = useState<MegaMenu | null>(null);
   const [previewNode, setPreviewNode] = useState<MenuNode | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/pstc_logo_2.png");
-
-  useEffect(() => {
-    const readLogo = () =>
-      document.documentElement.classList.contains("theme-pstc-red-grey")
-        ? "/pstc_logo.png"
-        : "/pstc_logo_2.png";
-
-    const syncLogo = () => {
-      setLogoSrc(readLogo());
-    };
-
-    syncLogo();
-
-    const handleThemeChange = () => {
-      syncLogo();
-    };
-
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === "pstc-theme") {
-        syncLogo();
-      }
-    };
-
-    window.addEventListener(
-      "pstc-theme-change",
-      handleThemeChange as EventListener,
-    );
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener(
-        "pstc-theme-change",
-        handleThemeChange as EventListener,
-      );
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  const logoSrc = usePstcLogo();
 
   useEffect(() => {
     if (!activeMenu) {
