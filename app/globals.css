@@ -822,7 +822,24 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--pstc-primary-dark);
 }
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
 
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--pstc-secondary);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--pstc-primary-dark);
+}
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
