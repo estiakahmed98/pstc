@@ -13,7 +13,15 @@ export type GlobeRotation = {
   theta: number;
 };
 
-export const PSTC_GLOBE_MARKERS = [
+export type GlobeMarker = {
+  label: string;
+  sub?: string;
+  lat: number;
+  lng: number;
+  highlight?: boolean;
+};
+
+export const PSTC_GLOBE_MARKERS: readonly GlobeMarker[] = [
   { label: "Dhaka", sub: "PSTC HQ", lat: 23.8103, lng: 90.4125, highlight: true },
   { label: "Canada", lat: 56.1304, lng: -106.3468 },
   { label: "European Union", lat: 50.8503, lng: 4.3517 },
