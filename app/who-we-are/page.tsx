@@ -1,13 +1,12 @@
 'use client';
 
-import { PublicLayout } from '@/components/public/layout';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { staff } from '@/lib/data/staff';
 
 export default function AboutPage() {
   return (
-    <PublicLayout>
+    <>
       {/* Hero */}
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
@@ -116,6 +115,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { PublicLayout } from '@/components/public/layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/use-translation';
@@ -26,7 +25,7 @@ export default function DonatePage() {
   };
 
   return (
-    <PublicLayout>
+    <>
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">{t('nav.donate')}</h1>
@@ -164,6 +163,6 @@ export default function DonatePage() {
           </div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }

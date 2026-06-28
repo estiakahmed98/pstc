@@ -1,6 +1,5 @@
 'use client';
 
-import { PublicLayout } from '@/components/public/layout';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ import { projects } from '@/lib/data/projects';
 
 export default function ProgramsPage() {
   return (
-    <PublicLayout>
+    <>
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">What We Do</h1>
@@ -89,6 +88,6 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }

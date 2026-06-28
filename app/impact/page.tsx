@@ -1,12 +1,11 @@
 'use client';
 
-import { PublicLayout } from '@/components/public/layout';
 import { Card } from '@/components/ui/card';
 import { successStories } from '@/lib/data/users';
 
 export default function ImpactPage() {
   return (
-    <PublicLayout>
+    <>
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">Our Impact</h1>
@@ -52,6 +51,6 @@ export default function ImpactPage() {
           </div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }

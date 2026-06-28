@@ -1,10 +1,9 @@
 'use client';
 
-import { PublicLayout } from '@/components/public/layout';
 
 export default function PrivacyPolicyPage() {
   return (
-    <PublicLayout>
+    <>
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
@@ -85,6 +84,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }
