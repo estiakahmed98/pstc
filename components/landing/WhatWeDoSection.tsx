@@ -139,7 +139,7 @@ const flipCards = [
 export default function WhatWeDoSection() {
   return (
     <ReactLenis root>
-      <section className="relative bg-white">
+      <section className="mt-10 relative bg-white">
         {/* Layer 01: Hero */}
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden bg-white pt-[var(--header-height)]">
           <div className="absolute inset-0 bg-cover bg-center"
@@ -147,9 +147,9 @@ export default function WhatWeDoSection() {
               backgroundImage: "url('/images/population-health-nutrition.jpg')",
             }} />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/75" />
-          {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(148,202,81,0.16),transparent_32%),radial-gradient(circle_at_10%_80%,rgba(11,87,158,0.12),transparent_36%)]" /> */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(148,202,81,0.16),transparent_32%),radial-gradient(circle_at_10%_80%,rgba(11,87,158,0.12),transparent_36%)]" />
 
-          {/* <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" /> */}
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
 
           <div className="container-pstc relative z-10">
             <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.78fr]">
@@ -210,7 +210,8 @@ export default function WhatWeDoSection() {
         </div>
 
         {/* Layer 02: Core Activities */}
-        <div className="sticky top-0 min-h-screen overflow-hidden rounded-t-[32px] bg-white py-20 pt-[calc(var(--header-height)+48px)]">
+
+        <div className="relative z-10 overflow-hidden rounded-t-[32px] bg-white py-20 pt-[calc(var(--header-height)+48px)]">
           <div className="absolute inset-0 bg-[url('/images/community-development.jpg')] bg-cover bg-center opacity-[0.12]" />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/92 to-white/86" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_35%,rgba(11,87,158,0.16),transparent_34%),radial-gradient(circle_at_90%_80%,rgba(148,202,81,0.14),transparent_34%)]" />
@@ -316,7 +317,7 @@ export default function WhatWeDoSection() {
             }} />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/78" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(11,87,158,0.16),transparent_36%),radial-gradient(circle_at_80%_70%,rgba(148,202,81,0.14),transparent_34%)]" />
-
+<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
           <div className="container-pstc relative z-10">
             <div className="mb-12 max-w-3xl">
               <div className="mb-4 flex items-center gap-3">
