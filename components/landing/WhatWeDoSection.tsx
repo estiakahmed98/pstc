@@ -29,6 +29,7 @@ const coreActivities = [
       "Water supply, sanitation and hygiene education programs",
     ],
   },
+  
   {
     title: "Collaboration & Research",
     icon: BarChart3,
@@ -38,18 +39,7 @@ const coreActivities = [
       "Research studies, base line survey and market research",
     ],
   },
-  {
-    title: "Training & Technical Assistance",
-    icon: GraduationCap,
-    items: [
-      "Life skill training",
-      "Skill development training",
-      "Income generating training",
-      "Training need assessment and impact evaluation",
-      "Training curricula development",
-      "Technical assistance for grants management and NGO sustainability",
-    ],
-  },
+  
   {
     title: "BCC & Publications",
     icon: BookOpen,
@@ -57,13 +47,6 @@ const coreActivities = [
       "Publish monthly magazine “PROJANMO Kotha”",
       "Producing BCC materials",
       "Street drama, folksongs and cultural show",
-    ],
-  },
-  {
-    title: "Disaster Preparedness",
-    icon: Shield,
-    items: [
-      "Program and training on disaster preparedness and management",
     ],
   },
   {
@@ -78,6 +61,27 @@ const coreActivities = [
       "Brothel based sex workers",
       "Other vulnerable populations",
     ],
+  },
+  {
+    title: "Training & Technical Assistance",
+    icon: GraduationCap,
+    items: [
+      "Life skill training",
+      "Skill development training",
+      "Income generating training",
+      "Training need assessment and impact evaluation",
+      "Training curricula development",
+      "Technical assistance for grants management and NGO sustainability",
+    ],
+  },
+  
+  {
+    title: "Disaster Preparedness",
+    icon: Shield,
+    items: [
+      "Program and training on disaster preparedness and management",
+    ],
+    
   },
 ];
 
@@ -166,7 +170,7 @@ export default function WhatWeDoSection() {
           </p>
         </div>
 
-<div className="mt-16 grid gap-6 lg:grid-cols-2">
+<div className="mt-16 grid gap-6 sm:gap-6 lg:grid-cols-2">
   {coreActivities.map((activity, index) => {
     const Icon = activity.icon;
     const isReverse = index % 2 !== 0;
@@ -174,39 +178,43 @@ export default function WhatWeDoSection() {
     return (
       <div
         key={activity.title}
-        className="group relative overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-2 hover:border-[var(--pstc-primary)]/50 hover:shadow-[0_28px_70px_rgba(9,145,203,0.16)]"
+        className="group relative self-start overflow-hidden rounded-[22px] border border-slate-200 bg-white shadow-[0_14px_38px_rgba(15,23,42,0.07)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--pstc-primary)]/50 hover:shadow-[0_24px_60px_rgba(9,145,203,0.14)] sm:rounded-[26px]"
       >
-        <div className="absolute -left-20 -top-20 size-44 rounded-full bg-[var(--pstc-primary-glow)] blur-3xl transition duration-500 group-hover:scale-125" />
-        <div className="absolute -bottom-20 -right-20 size-44 rounded-full bg-[var(--pstc-secondary-glow)] blur-3xl transition duration-500 group-hover:scale-125" />
+        <div className="absolute -left-16 -top-16 size-36 rounded-full bg-[var(--pstc-primary-glow)] blur-3xl transition duration-500 group-hover:scale-125 sm:-left-20 sm:-top-20 sm:size-44" />
+        <div className="absolute -bottom-16 -right-16 size-36 rounded-full bg-[var(--pstc-secondary-glow)] blur-3xl transition duration-500 group-hover:scale-125 sm:-bottom-20 sm:-right-20 sm:size-44" />
 
         <div
-          className={`relative z-10 flex min-h-[260px] gap-0 ${
-            isReverse ? "flex-row-reverse" : ""
+          className={`relative z-10 flex min-h-[220px] flex-col gap-0 sm:min-h-[240px] sm:flex-row lg:min-h-[260px] ${
+            isReverse ? "lg:flex-row-reverse" : ""
           }`}
         >
-          <div className="flex w-[32%] flex-col items-center justify-center bg-slate-50 px-5 text-center">
-            <div className="flex size-20 items-center justify-center rounded-3xl bg-[var(--pstc-primary)] text-white shadow-[0_16px_36px_rgba(9,145,203,0.25)] transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 group-hover:bg-[var(--pstc-secondary)]">
-              <Icon size={34} strokeWidth={1.8} />
+          <div className="flex items-center gap-4 bg-slate-50 px-5 py-5 text-left sm:w-[30%] sm:flex-col sm:justify-center sm:px-5 sm:text-center lg:w-[32%]">
+            <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--pstc-primary)] text-white shadow-[0_12px_26px_rgba(9,145,203,0.22)] transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 group-hover:bg-[var(--pstc-secondary)] sm:size-20 sm:rounded-3xl">
+              <Icon size={26} strokeWidth={1.8} className="sm:size-[34px]" />
             </div>
 
-            <span className="mt-5 text-5xl font-black tracking-[-0.08em] text-slate-200 transition-colors duration-500 group-hover:text-[var(--pstc-primary)]/25">
+            <span className="text-4xl font-black tracking-[-0.08em] text-slate-200 transition-colors duration-500 group-hover:text-[var(--pstc-primary)]/25 sm:mt-5 sm:text-5xl">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>
 
-          <div className="relative w-px bg-slate-200">
+          <div className="relative hidden w-px bg-slate-200 sm:block">
             <div className="absolute left-1/2 top-0 h-0 w-[3px] -translate-x-1/2 rounded-full bg-[var(--pstc-primary)] transition-all duration-700 group-hover:h-full" />
           </div>
 
-          <div className="flex flex-1 flex-col justify-center px-6 py-7">
-            <div className="mb-4 flex items-center justify-between gap-4">
-              <h3 className="text-xl font-extrabold uppercase leading-tight tracking-[-0.04em] text-slate-900 transition-colors duration-300 group-hover:text-[var(--pstc-primary)]">
+          <div className="relative block h-px bg-slate-200 sm:hidden">
+            <div className="absolute left-0 top-1/2 h-[3px] w-0 -translate-y-1/2 rounded-full bg-[var(--pstc-primary)] transition-all duration-700 group-hover:w-full" />
+          </div>
+
+          <div className="flex flex-1 flex-col justify-center px-5 py-6 sm:px-6 sm:py-7">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <h3 className="text-lg font-extrabold uppercase leading-tight tracking-[-0.04em] text-slate-900 transition-colors duration-300 group-hover:text-[var(--pstc-primary)] sm:text-xl">
                 {activity.title}
               </h3>
 
               <ArrowUpRight
                 size={22}
-                className="shrink-0 text-[var(--pstc-primary)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                className="mt-0.5 shrink-0 text-[var(--pstc-primary)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </div>
 
