@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/landing/Hero";
+import LatestNewsSection from "@/components/landing/LatestNewsSection";
 import MagazineSubscriptionSection from "@/components/landing/MagazineSubscriptionSection";
 import OurPartnersSection from "@/components/landing/OurPartnersSection";
 import PSTCGlobalReachSection from "@/components/landing/PSTCGlobalReachSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <WhatWeDoSection />
       <PublicationsSection />
       <MagazineSubscriptionSection />
+      <LatestNewsSection />
       <OurPartnersSection />
       <PSTCGlobalReachSection />
     </div>

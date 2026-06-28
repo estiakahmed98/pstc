@@ -24,13 +24,13 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
 }) => (
   <div
     className={cn(
-      "scroll-stack-card relative my-8 h-80 w-full origin-top box-border will-change-transform 2xl:h-72 2xl:my-6",
+      "scroll-stack-card relative my-5 h-[220px] w-full origin-top box-border will-change-transform sm:h-[230px] xl:h-[240px] 2xl:my-4 2xl:h-[260px]",
       itemClassName,
     )}
   >
     {useBorderGlow ? (
       <BorderGlow
-        borderRadius={borderGlowProps?.borderRadius ?? 40}
+        borderRadius={borderGlowProps?.borderRadius ?? 24}
         backgroundColor="transparent"
         glowColor="40 80 80"
         className="h-full w-full"
@@ -48,7 +48,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
     ) : (
       <div
         className={cn(
-          "h-full rounded-[40px] p-12 shadow-[0_0_30px_rgba(0,0,0,0.1)] 2xl:p-10",
+          "h-full rounded-[24px] p-5 shadow-[0_0_20px_rgba(0,0,0,0.08)] sm:p-6 xl:p-7 2xl:p-8",
         )}
         style={{
           backfaceVisibility: "hidden",
@@ -79,12 +79,12 @@ interface ScrollStackProps {
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
   className = "",
-  itemDistance = 100,
+  itemDistance = 48,
   itemScale = 0.03,
-  itemStackDistance = 30,
-  stackPosition = "20%",
-  scaleEndPosition = "10%",
-  baseScale = 0.85,
+  itemStackDistance = 14,
+  stackPosition = "12%",
+  scaleEndPosition = "7%",
+  baseScale = 0.92,
   scaleDuration = 0.5,
   rotationAmount = 0,
   blurAmount = 0,
@@ -423,8 +423,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         className={cn(
           "scroll-stack-inner min-h-screen",
           useWindowScroll
-            ? "pt-[12vh] px-0 pb-[36rem] 2xl:pt-[10vh] 2xl:pb-[28rem]"
-            : "pt-[20vh] px-20 pb-[50rem] 2xl:px-16 2xl:pt-[16vh] 2xl:pb-[42rem]",
+            ? "pt-[8vh] px-0 pb-[20rem] 2xl:pt-[7vh] 2xl:pb-[18rem]"
+            : "pt-[12vh] px-16 pb-[28rem] 2xl:px-14 2xl:pt-[10vh] 2xl:pb-[24rem]",
         )}
       >
         {children}
