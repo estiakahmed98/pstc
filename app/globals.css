@@ -163,7 +163,7 @@
   --sidebar-border: #e6eaf0;
   --sidebar-ring: var(--pstc-primary);
 
-  --header-height: 82px;
+  --header-height: 64px;
 
   /* Partner orbit glow — blue/green theme (default) */
   --pstc-partner-glow-a: rgba(56, 189, 248, 0.42);

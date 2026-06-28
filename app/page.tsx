@@ -3,6 +3,8 @@ import MagazineSubscriptionSection from "@/components/landing/MagazineSubscripti
 import OurPartnersSection from "@/components/landing/OurPartnersSection";
 import PSTCGlobalReachSection from "@/components/landing/PSTCGlobalReachSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
+import HomePageAlt from "@/components/landing/Verient1";
+import LandingPageV2 from "@/components/landing/Verient2";
 import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
 import WhoWeAreSection from "@/components/landing/WhoWeAreSection";
 

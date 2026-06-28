@@ -630,7 +630,7 @@ const menuPreview = (menu: MegaMenu): MenuNode => ({
 function GlowPanel({
   children,
   className,
-  radius = 28,
+  radius = 22,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -673,12 +673,12 @@ function MovingLinkButton({
       duration={3600}
       borderRadius="999px"
       containerClassName={cn(
-        "h-13 w-auto min-w-[168px] text-sm",
+        "h-10 w-auto min-w-[145px] text-[11px]",
         containerClassName,
       )}
       borderClassName="bg-[radial-gradient(#0991CB_36%,#D73F32_52%,transparent_70%)]"
       className={cn(
-        "gap-2 px-6 text-sm font-black transition",
+        "gap-2 px-4 text-[11px] font-black transition",
         variant === "primary"
           ? "border border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)]"
           : "border border-border bg-background text-foreground hover:border-secondary hover:text-secondary",
@@ -757,13 +757,13 @@ function SidebarTreeNode({
 
       <div
         className={cn(
-          "group flex items-center gap-2 rounded-2xl px-4 py-3 transition",
+          "group flex items-center gap-2 rounded-xl px-3 py-2.5 transition",
           isActive
             ? "bg-primary text-primary-foreground"
             : "text-foreground hover:bg-muted hover:text-primary",
-          level === 0 && "text-sm font-black",
-          level === 1 && "py-2.5 text-[13px] font-bold",
-          level >= 2 && "py-2 text-xs font-semibold text-muted-foreground",
+          level === 0 && "text-[12px] font-black",
+          level === 1 && "py-2 text-[11px] font-bold",
+          level >= 2 && "py-1.5 text-[10px] font-semibold text-muted-foreground",
         )}
       >
         {hasChildren ? (
@@ -775,7 +775,7 @@ function SidebarTreeNode({
               setOpen((prev) => !prev);
             }}
             className={cn(
-              "grid size-5 shrink-0 place-items-center rounded-md transition",
+              "grid size-4.5 shrink-0 place-items-center rounded-md transition",
               isActive
                 ? "text-primary-foreground"
                 : "text-muted-foreground group-hover:text-primary",
@@ -792,7 +792,7 @@ function SidebarTreeNode({
         ) : level > 0 ? (
           <span
             className={cn(
-              "ml-1 size-2.5 shrink-0 rounded-full border bg-background",
+              "ml-1 size-2 shrink-0 rounded-full border bg-background",
               isActive ? "border-primary bg-primary" : "border-border",
             )}
           />
@@ -808,7 +808,7 @@ function SidebarTreeNode({
 
         <ArrowUpRight
           className={cn(
-            "size-4 shrink-0 transition",
+            "size-3.5 shrink-0 transition",
             isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100",
           )}
         />
@@ -841,8 +841,8 @@ function FeaturedImageCard({
   eyebrow: string;
 }) {
   return (
-    <BackgroundGradient className="h-full rounded-[28px]">
-      <div className="group relative h-full min-h-[390px] overflow-hidden rounded-[28px] bg-card">
+    <BackgroundGradient className="h-full rounded-[22px]">
+      <div className="group relative h-full min-h-[320px] overflow-hidden rounded-[22px] bg-card">
         <Image
           key={node.image}
           src={node.image}
@@ -852,15 +852,15 @@ function FeaturedImageCard({
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute left-5 top-5 rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+        <div className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-primary">
           Featured
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-          <p className="mb-2 text-xs font-black uppercase tracking-[0.24em] text-white/75">
+        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+          <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
             {eyebrow}
           </p>
-          <h3 className="text-2xl font-black leading-tight">{node.title}</h3>
-          <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/85">
+          <h3 className="text-xl font-black leading-tight">{node.title}</h3>
+          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/85">
             {node.description ??
               "Hover menu links to preview the related PSTC section and image."}
           </p>
@@ -884,7 +884,7 @@ function MobileNode({
       <Link
         href={node.href}
         onClick={close}
-        className="block rounded-xl bg-muted px-4 py-3 text-sm font-bold text-foreground transition hover:bg-primary hover:text-primary-foreground"
+        className="block rounded-lg bg-muted px-3 py-2.5 text-[12px] font-bold text-foreground transition hover:bg-primary hover:text-primary-foreground"
       >
         {node.title}
       </Link>
@@ -951,8 +951,8 @@ export default function HeaderMegaMenu() {
         className="fixed left-0 top-0 z-50 w-full bg-background/80 backdrop-blur-2xl transition-colors duration-300"
         onMouseLeave={closeMenu}
       >
-        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-2 px-3 sm:px-4 lg:px-3 xl:gap-3 xl:px-6">
-          <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3 xl:gap-4">
+        <div className="mx-auto flex h-[64px] w-full max-w-[1680px] items-center justify-between gap-2 px-3 sm:px-4 lg:px-3 xl:gap-2 xl:px-5 2xl:px-6">
+          <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3 xl:gap-3">
             <div className="lg:hidden">
               <IconMovingButton
                 ariaLabel="Open menu"
@@ -966,7 +966,7 @@ export default function HeaderMegaMenu() {
               <img
                 src={logoSrc}
                 alt="pstc Logo"
-                className="h-12 w-28 sm:h-14 sm:w-32 lg:h-12 lg:w-28 xl:h-16 xl:w-40"
+                className="h-9 w-28 object-contain xl:h-10 xl:w-32"
               />
             </Link>
           </div>
@@ -978,13 +978,13 @@ export default function HeaderMegaMenu() {
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
                 className={cn(
-                  "pstc-nav-link flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-full px-1.5 py-2 text-[11px] font-black text-foreground transition hover:bg-primary/15 hover:text-primary min-[1150px]:px-2 min-[1150px]:text-xs xl:gap-1 xl:px-3 xl:py-3 xl:text-sm 2xl:px-4",
+                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-black text-foreground transition hover:bg-primary/15 hover:text-primary",
                   activeMenu?.href === menu.href &&
                     "bg-primary/15 text-primary",
                 )}
               >
                 {menu.label}
-                <ChevronDown className="size-3 shrink-0 xl:size-4" />
+                <ChevronDown className="size-3.5 shrink-0" />
               </Link>
             ))}
             {directLinks.map((link) => (
@@ -992,7 +992,7 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
-                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-1.5 py-2 text-[11px] font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary min-[1150px]:px-2 min-[1150px]:text-xs xl:px-3 xl:py-3 xl:text-sm 2xl:px-4"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary"
               >
                 {link.label}
               </Link>
@@ -1000,15 +1000,15 @@ export default function HeaderMegaMenu() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-1 xl:gap-2">
-            <ThemeToggle containerClassName="lg:h-10 lg:w-10 xl:h-12 xl:w-12" />
-            <LanguageButton containerClassName="lg:h-10 lg:w-10 xl:h-12 xl:w-12" />
+            <ThemeToggle containerClassName="h-9 w-9" />
+            <LanguageButton containerClassName="h-9 w-9" />
             <MovingLinkButton
               href="/login"
-              containerClassName="hidden h-9 min-w-[76px] lg:block xl:h-10 xl:min-w-[84px]"
-              className="px-2.5 text-xs xl:px-4 xl:text-sm"
+              containerClassName="hidden h-9 min-w-[82px] lg:block"
+              className="px-3 text-[11px]"
             >
               Login
-              <LogIn className="size-3.5 xl:size-4" />
+              <LogIn className="size-3.5" />
             </MovingLinkButton>
           </div>
         </div>
@@ -1019,24 +1019,24 @@ export default function HeaderMegaMenu() {
             onTouchMove={(event) => event.stopPropagation()}
             className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background/88 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur-2xl"
           >
-            <div className="animate-pstc-menu-reveal mx-auto grid max-h-[calc(100vh-var(--header-height))] min-h-[460px] w-full max-w-[1440px] grid-cols-12 gap-6 overflow-y-auto overscroll-contain px-4 py-7 xl:px-8">
+            <div className="animate-pstc-menu-reveal mx-auto grid max-h-[calc(100vh-var(--header-height)-16px)] min-h-[360px] w-full max-w-[1320px] grid-cols-12 gap-4 overflow-y-auto overscroll-contain px-4 py-4 xl:px-6">
               <section className="col-span-4">
-                <GlowPanel className="h-full rounded-[28px]">
-                  <div className="h-full bg-background/95 p-4 backdrop-blur-xl">
-                    <div className="mb-4 flex items-center justify-between gap-3 px-2">
-                      <p className="whitespace-nowrap text-xs font-black uppercase tracking-[0.28em] text-primary">
+                <GlowPanel radius={22} className="h-full rounded-[22px]">
+                  <div className="h-full bg-background/95 p-3 backdrop-blur-xl">
+                    <div className="mb-3 flex items-center justify-between gap-3 px-2">
+                      <p className="whitespace-nowrap text-[10px] font-black uppercase tracking-[0.22em] text-primary">
                         {activeMenu.label}
                       </p>
                       <Link
                         href={activeMenu.href}
-                        className="whitespace-nowrap text-xs font-black text-secondary transition hover:text-primary"
+                        className="whitespace-nowrap text-[10px] font-black text-secondary transition hover:text-primary"
                       >
                         View All
                       </Link>
                     </div>
                     <div
                       onWheel={(event) => event.stopPropagation()}
-                      className="max-h-[390px] space-y-1 overflow-y-auto overscroll-contain pr-2"
+                      className="max-h-[300px] space-y-1 overflow-y-auto overscroll-contain pr-2"
                     >
                       {activeMenu.children.map((node) => (
                         <SidebarTreeNode
@@ -1055,26 +1055,35 @@ export default function HeaderMegaMenu() {
 
               <section
                 onWheel={(event) => event.stopPropagation()}
-                className="col-span-4 flex flex-col justify-center px-2"
+                className="col-span-4 flex flex-col justify-center px-1"
               >
-                <p className="mb-4 whitespace-nowrap text-xs font-black uppercase tracking-[0.34em] text-secondary">
+                <p className="mb-3 whitespace-nowrap text-[10px] font-black uppercase tracking-[0.26em] text-secondary">
                   {activeMenu.eyebrow}
                 </p>
-                <h2 className="text-4xl font-black leading-tight tracking-tight text-foreground">
+                <h2 className="text-3xl font-black leading-tight tracking-tight text-foreground">
                   {preview.title}
                 </h2>
-                <p className="mt-5 text-base leading-7 text-muted-foreground">
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
                   {preview.description ?? activeMenu.description}
                 </p>
-                <p className="mt-4 text-sm font-semibold leading-6 text-foreground/75">
+                <p className="mt-3 text-xs leading-5 text-foreground/75">
                   {activeMenu.summary}
                 </p>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <MovingLinkButton href={preview.href}>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <MovingLinkButton
+                    href={preview.href}
+                    containerClassName="h-10 min-w-[145px]"
+                    className="px-4 text-[11px]"
+                  >
                     Explore Section
-                    <ArrowUpRight className="size-4" />
+                    <ArrowUpRight className="size-3.5" />
                   </MovingLinkButton>
-                  <MovingLinkButton href="/contact-us" variant="outline">
+                  <MovingLinkButton
+                    href="/contact-us"
+                    variant="outline"
+                    containerClassName="h-10 min-w-[145px]"
+                    className="px-4 text-[11px]"
+                  >
                     Contact PSTC
                   </MovingLinkButton>
                 </div>

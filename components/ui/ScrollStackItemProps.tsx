@@ -24,7 +24,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
 }) => (
   <div
     className={cn(
-      "scroll-stack-card relative my-8 h-80 w-full origin-top box-border will-change-transform",
+      "scroll-stack-card relative my-8 h-80 w-full origin-top box-border will-change-transform 2xl:h-72 2xl:my-6",
       itemClassName,
     )}
   >
@@ -48,7 +48,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
     ) : (
       <div
         className={cn(
-          "h-full rounded-[40px] p-12 shadow-[0_0_30px_rgba(0,0,0,0.1)]",
+          "h-full rounded-[40px] p-12 shadow-[0_0_30px_rgba(0,0,0,0.1)] 2xl:p-10",
         )}
         style={{
           backfaceVisibility: "hidden",
@@ -423,8 +423,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         className={cn(
           "scroll-stack-inner min-h-screen",
           useWindowScroll
-            ? "pt-[12vh] px-0 pb-[36rem]"
-            : "pt-[20vh] px-20 pb-[50rem]",
+            ? "pt-[12vh] px-0 pb-[36rem] 2xl:pt-[10vh] 2xl:pb-[28rem]"
+            : "pt-[20vh] px-20 pb-[50rem] 2xl:px-16 2xl:pt-[16vh] 2xl:pb-[42rem]",
         )}
       >
         {children}

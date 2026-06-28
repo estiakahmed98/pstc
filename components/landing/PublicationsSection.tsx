@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import ImageReveal2, { type RevealItem } from "@/components/ui/ImageReveal2";
 import { MovingLinkButton } from "@/components/ui/moving-link-button";
 import { SparklesText } from "../ui/sparkles-text";
+import { useRouter } from "next/navigation";
 
 export interface Publication {
   id: string;
@@ -152,6 +153,7 @@ export default function PublicationsSection({
 }: PublicationsSectionProps) {
   const latest = publications[0];
   const lastFour = publications.slice(1, 5);
+  const router = useRouter();
 
   const revealItems: RevealItem[] = lastFour.map((pub) => ({
     id: pub.id,
@@ -185,7 +187,7 @@ export default function PublicationsSection({
                   first: "var(--pstc-primary)",
                   second: "var(--pstc-secondary)",
                 }}
-                className="text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+                className="text-xl font-black tracking-tight text-primary/80 sm:text-2xl lg:text-4xl"
               >
                 {title}
               </SparklesText>
@@ -196,13 +198,14 @@ export default function PublicationsSection({
             </p>
           </motion.div>
 
-          <MovingLinkButton
-            href="/publications"
-            className="group inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-card px-6 py-3.5 text-sm font-black text-primary shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+          <button
+            type="button"
+            onClick={() => router.push("/publications")}
+            className="group inline-flex h-11 items-center gap-2 rounded-full border border-primary/20 bg-card px-5 text-sm font-bold text-primary shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-primary-foreground"
           >
-            View all publications
-            <ArrowRight className="size-4 transition group-hover:translate-x-1" />
-          </MovingLinkButton>
+            <span>View all publications</span>
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[420px_minmax(0,1fr)] lg:items-start">

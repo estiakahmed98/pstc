@@ -164,7 +164,7 @@ export default function ImageReveal2({ items, className }: ImageReveal2Props) {
 
               <h3
                 className={cn(
-                  "text-2xl font-black uppercase leading-[1.02] tracking-tight text-foreground transition md:text-5xl",
+                  "text-2xl font-black uppercase leading-[1.02] tracking-tight text-foreground transition lg:text-2xl",
                   activeItem?.id === item.id &&
                     "text-white mix-blend-difference",
                 )}
