@@ -57,7 +57,6 @@ export function LanguageButton({
   }, []);
 
   const nextLanguage: PstcLanguage = language === "en" ? "bn" : "en";
-  const label = language === "en" ? "EN" : "BN";
 
   const handleToggle = () => {
     setLanguage(nextLanguage);
@@ -73,20 +72,17 @@ export function LanguageButton({
       aria-label={`Switch language to ${nextLanguage.toUpperCase()}`}
       title={`Switch to ${nextLanguage.toUpperCase()}`}
       containerClassName={cn(
-        "hidden h-12 w-20 text-sm sm:block",
+        "hidden h-10 w-10 text-sm sm:inline-flex sm:h-12 sm:w-12",
         containerClassName,
       )}
       borderClassName="bg-[radial-gradient(var(--pstc-primary)_36%,var(--pstc-secondary)_52%,transparent_70%)]"
       className={cn(
-        "border border-transparent bg-primary px-3 text-xs font-black text-primary-foreground shadow-sm transition",
+        "border border-transparent bg-primary p-0 text-xs font-black text-primary-foreground shadow-sm transition",
         "hover:bg-[var(--pstc-primary-dark)] hover:text-primary-foreground",
         className,
       )}
     >
-      <span className="flex items-center justify-center gap-1.5 whitespace-nowrap">
-        <Languages className="size-4 shrink-0" />
-        {label}
-      </span>
+      <Languages className="size-4 shrink-0" />
     </MovingBorderButton>
   );
 }

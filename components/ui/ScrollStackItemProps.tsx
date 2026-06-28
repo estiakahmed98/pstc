@@ -1,30 +1,62 @@
 //component/ui/ScrollStackItemProps.tsx
 import React, {
   useCallback,
-  useEffect,
   useLayoutEffect,
   useRef,
 } from "react";
 import type { ReactNode } from "react";
 import Lenis from "lenis";
 import { cn } from "@/lib/utils";
+import BorderGlow, { type BorderGlowProps } from "@/components/ui/BorderGlow";
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
   children: ReactNode;
+  useBorderGlow?: boolean;
+  borderGlowProps?: Omit<BorderGlowProps, "children">;
 }
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
   children,
   itemClassName = "",
+  useBorderGlow = false,
+  borderGlowProps,
 }) => (
   <div
-    className={`scroll-stack-card relative w-full h-80 my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
-    style={{
-      backfaceVisibility: "hidden",
-    }}
+    className={cn(
+      "scroll-stack-card relative my-8 h-80 w-full origin-top box-border will-change-transform",
+      itemClassName,
+    )}
   >
-    {children}
+    {useBorderGlow ? (
+      <BorderGlow
+        borderRadius={borderGlowProps?.borderRadius ?? 40}
+        backgroundColor="transparent"
+        glowColor="40 80 80"
+        className="h-full w-full"
+        {...borderGlowProps}
+      >
+        <div
+          className="relative h-full w-full"
+          style={{
+            backfaceVisibility: "hidden",
+          }}
+        >
+          {children}
+        </div>
+      </BorderGlow>
+    ) : (
+      <div
+        className={cn(
+          "h-full rounded-[40px] p-12 shadow-[0_0_30px_rgba(0,0,0,0.1)]",
+        )}
+        style={{
+          backfaceVisibility: "hidden",
+        }}
+      >
+        {children}
+      </div>
+    )}
   </div>
 );
 

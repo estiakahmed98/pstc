@@ -2,9 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calendar, Download, Eye } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Calendar,
+  Download,
+  Eye,
+  FileText,
+} from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface Publication {
@@ -92,107 +98,190 @@ function formatDate(dateStr: string) {
   });
 }
 
-function PremiumPublicationCard({
-  pub,
-  large = false,
-  index = 0,
+function PublicationMeta({
+  publishedAt,
+  pages,
+  light = false,
 }: {
-  pub: Publication;
-  large?: boolean;
-  index?: number;
+  publishedAt: string;
+  pages: number;
+  light?: boolean;
 }) {
-  const [position, setPosition] = useState({ x: 50, y: 50 });
-
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 60, rotate: index % 2 === 0 ? -2 : 2 }}
-      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      onMouseMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        setPosition({
-          x: ((event.clientX - rect.left) / rect.width) * 100,
-          y: ((event.clientY - rect.top) / rect.height) * 100,
-        });
-      }}
+    <div
       className={cn(
-        "group relative overflow-hidden rounded-[2rem] border border-black/10 bg-black shadow-[0_26px_80px_rgba(15,23,42,0.16)] transition duration-500 hover:-translate-y-3 hover:rotate-0 hover:shadow-[0_45px_120px_rgba(9,145,203,0.24)]",
-        large ? "min-h-[720px]" : "min-h-[560px]",
+        "flex flex-wrap items-center gap-3 text-xs font-bold",
+        light ? "text-white/75" : "text-muted-foreground",
       )}
     >
-      <Image
-        src={pub.coverImage}
-        alt={pub.title}
-        fill
-        sizes={large ? "(max-width: 1024px) 100vw, 34vw" : "28vw"}
-        className="object-cover opacity-95 transition duration-700 group-hover:scale-110"
+      <span className="flex items-center gap-1.5">
+        <Calendar className="size-3.5" />
+        {formatDate(publishedAt)}
+      </span>
+
+      <span
+        className={cn(
+          "size-1 rounded-full",
+          light ? "bg-white/40" : "bg-muted-foreground/35",
+        )}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/5" />
+      <span className="flex items-center gap-1.5">
+        <Eye className="size-3.5" />
+        {pages} pages
+      </span>
+    </div>
+  );
+}
 
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at ${position.x}% ${position.y}%, rgba(255,255,255,0.26), transparent 36%)`,
-        }}
-      />
+function FeaturedPublicationCard({ pub }: { pub: Publication }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative overflow-hidden rounded-[2rem] border border-primary/15 bg-card shadow-[0_28px_90px_rgba(16,24,40,0.12)]"
+    >
+      <div className="grid min-h-[560px] lg:grid-cols-[0.88fr_1.12fr]">
+        {/* Cover */}
+        <div className="relative min-h-[360px] overflow-hidden bg-muted lg:min-h-full">
+          <Image
+            src={pub.coverImage}
+            alt={pub.title}
+            fill
+            sizes="(max-width: 1024px) 100vw, 520px"
+            className="object-cover transition duration-700 group-hover:scale-105"
+          />
 
-      <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-white/95 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-primary backdrop-blur">
-          {pub.category}
-        </span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent lg:hidden" />
 
-        {pub.featured ? (
-          <span className="rounded-full bg-secondary px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-white">
-            Featured
-          </span>
-        ) : null}
-      </div>
+          <div className="absolute left-5 top-5 flex flex-wrap gap-2">
+            <span className="rounded-full bg-white px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-primary shadow-sm">
+              {pub.category}
+            </span>
 
-      <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-7">
-        <div className="mb-3 flex flex-wrap items-center gap-3 text-xs font-semibold text-white/72">
-          <span className="flex items-center gap-1.5">
-            <Calendar className="size-3.5" />
-            {formatDate(pub.publishedAt)}
-          </span>
-          <span className="size-1 rounded-full bg-white/40" />
-          <span className="flex items-center gap-1.5">
-            <Eye className="size-3.5" />
-            {pub.pages} pages
-          </span>
+            <span className="rounded-full bg-secondary px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-secondary-foreground shadow-sm">
+              Featured
+            </span>
+          </div>
         </div>
 
-        <h3
-          className={cn(
-            "font-black leading-tight tracking-tight text-white drop-shadow-sm",
-            large ? "text-4xl md:text-5xl" : "text-2xl md:text-3xl",
-          )}
-        >
-          {pub.title}
-        </h3>
+        {/* Content */}
+        <div className="relative flex flex-col justify-between p-7 sm:p-8 lg:p-10">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+              <BookOpen className="size-4" />
+              Featured Publication
+            </div>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link
-            href={`/publications/${pub.id}`}
-            className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-black text-black transition hover:bg-primary hover:text-white"
-          >
-            View
-            <ArrowRight className="size-4 transition group-hover/btn:translate-x-1" />
-          </Link>
+            <PublicationMeta publishedAt={pub.publishedAt} pages={pub.pages} />
 
-          <a
-            href={pub.downloadUrl}
-            download
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur transition hover:border-white hover:bg-white hover:text-black"
-          >
-            <Download className="size-4" />
-            PDF
-          </a>
+            <h3 className="mt-5 text-4xl font-black leading-tight tracking-tight text-foreground sm:text-5xl">
+              {pub.title}
+            </h3>
+
+            <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground">
+              {pub.description}
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href={`/publications/${pub.id}`}
+              className="group/btn inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground shadow-[0_16px_40px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)]"
+            >
+              View Details
+              <ArrowRight className="size-4 transition group-hover/btn:translate-x-1" />
+            </Link>
+
+            <a
+              href={pub.downloadUrl}
+              download
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-black text-foreground shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:bg-secondary hover:text-secondary-foreground"
+            >
+              <Download className="size-4" />
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function CompactPublicationCard({
+  pub,
+  index,
+}: {
+  pub: Publication;
+  index: number;
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.55,
+        delay: index * 0.07,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="group relative overflow-hidden rounded-[1.5rem] border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_22px_60px_rgba(16,24,40,0.12)]"
+    >
+      <div className="grid gap-4 sm:grid-cols-[132px_1fr]">
+        <div className="relative h-44 overflow-hidden rounded-[1.15rem] bg-muted sm:h-full">
+          <Image
+            src={pub.coverImage}
+            alt={pub.title}
+            fill
+            sizes="180px"
+            className="object-cover transition duration-700 group-hover:scale-105"
+          />
+        </div>
+
+        <div className="flex min-w-0 flex-col justify-between py-1">
+          <div>
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-primary">
+                {pub.category}
+              </span>
+            </div>
+
+            <h3 className="line-clamp-2 text-xl font-black leading-tight text-foreground transition group-hover:text-primary">
+              {pub.title}
+            </h3>
+
+            <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
+              {pub.description}
+            </p>
+
+            <div className="mt-4">
+              <PublicationMeta
+                publishedAt={pub.publishedAt}
+                pages={pub.pages}
+              />
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-center gap-3">
+            <Link
+              href={`/publications/${pub.id}`}
+              className="inline-flex items-center gap-1.5 text-sm font-black text-primary transition hover:text-secondary"
+            >
+              View
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+            </Link>
+
+            <a
+              href={pub.downloadUrl}
+              download
+              className="inline-flex items-center gap-1.5 text-sm font-black text-muted-foreground transition hover:text-secondary"
+            >
+              <Download className="size-4" />
+              PDF
+            </a>
+          </div>
         </div>
       </div>
     </motion.article>
@@ -211,45 +300,52 @@ export default function PublicationsSection({
     .slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden bg-background px-4 py-24 sm:px-6 lg:px-28 lg:py-32">
-      <div className="pointer-events-none absolute inset-0 " />
-
+    <section className="relative overflow-hidden bg-background px-4 py-24 text-foreground sm:px-6 lg:px-8 lg:py-32">
+      {/* Soft background */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(9,145,203,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(9,145,203,0.055)_1px,transparent_1px)] bg-[size:56px_56px]" />
       <div className="pointer-events-none absolute -left-28 top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-28 bottom-20 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
 
-      <div className="relative">
-        <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div className="relative mx-auto max-w-[1440px]">
+        {/* Header */}
+        <div className="mb-12 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
-            className="max-w-2xl"
+            className="max-w-3xl"
           >
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-secondary">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-secondary">
+              <FileText className="size-4" />
               Knowledge Hub
-            </p>
+            </div>
 
-            <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
+            <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {title}
             </h2>
+
+            <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
+              {subtitle}
+            </p>
           </motion.div>
 
           <Link
             href="/publications"
-            className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-black text-foreground transition hover:-translate-y-1 hover:border-primary hover:text-primary"
+            className="group inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-card px-6 py-3.5 text-sm font-black text-foreground shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-primary-foreground"
           >
             View all publications
             <ArrowRight className="size-4 transition group-hover:translate-x-1" />
           </Link>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-          <PremiumPublicationCard pub={featured} large index={0} />
+        {/* Content */}
+        <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+          <FeaturedPublicationCard pub={featured} />
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5">
             {grid.map((pub, index) => (
-              <PremiumPublicationCard
+              <CompactPublicationCard
                 key={pub.id}
                 pub={pub}
                 index={index + 1}
