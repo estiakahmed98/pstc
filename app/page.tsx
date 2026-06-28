@@ -1,6 +1,7 @@
 import HeroCarousel from "@/components/landing/Hero";
 import MagazineSubscriptionSection from "@/components/landing/MagazineSubscriptionSection";
 import OurPartnersSection from "@/components/landing/OurPartnersSection";
+import PSTCGlobalReachSection from "@/components/landing/PSTCGlobalReachSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import HomePageAlt from "@/components/landing/Verient1";
 import LandingPageV2 from "@/components/landing/Verient2";
@@ -14,8 +15,9 @@ export default function Home() {
       <WhoWeAreSection />
       <WhatWeDoSection />
       <PublicationsSection />
-      <OurPartnersSection />
       <MagazineSubscriptionSection />
+      <OurPartnersSection />
+      <PSTCGlobalReachSection />
     </div>
   );
 }
