@@ -349,7 +349,7 @@ function MobileWhoCard({ item }: { item: WhoCard }) {
 export default function WhoWeAreSection() {
   return (
     <section
-      className="relative bg-background text-foreground"
+      className="relative bg-background pt-8 text-foreground sm:pt-10 lg:pt-0"
       /**
        * FIX: NO overflow-hidden here — that's what breaks position:sticky.
        * The section must allow the sticky child to escape clip boundaries.
@@ -363,22 +363,8 @@ export default function WhoWeAreSection() {
               linear-gradient(to_bottom,rgba(9,145,203,0.055)_1px,transparent_1px)]
           bg-[size:56px_56px]"
       />
-
-      {/*
-        FIX: Use a two-column wrapper WITHOUT overflow-hidden or overflow-clip.
-        The left column uses `sticky` — its closest scrolling ancestor must be
-        the <html>/<body>, not a clipped container.
-      */}
       <div className="relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="lg:flex lg:gap-6 xl:gap-8">
-          {/* ── LEFT: Sticky panel ───────────────────────────────────────── */}
-          {/*
-            FIX: `position: sticky` requires:
-              1. No overflow:hidden on any ancestor up to the scroll root.
-              2. The sticky element's parent must be taller than the element
-                 itself (so there's room to scroll through).
-            We achieve #2 by letting the right column control section height.
-          */}
           <div className="hidden shrink-0 lg:block lg:w-[34%] xl:w-[32%]">
             <div
               className="sticky flex flex-col justify-center py-24"
@@ -388,11 +374,18 @@ export default function WhoWeAreSection() {
                 height: "calc(100vh - var(--header-height, 82px) - 32px)",
               }}
             >
-              <div className="flex h-full flex-col justify-center">
+              <div className="flex h-full mt-24 xl:mt-1 flex-col justify-center">
                 {/* Eyebrow */}
-                <p className="mb-4 text-xs font-black uppercase tracking-[0.36em] text-secondary">
+                <SparklesText
+                  sparklesCount={5}
+                  colors={{
+                    first: "var(--pstc-primary)",
+                    second: "var(--pstc-secondary)",
+                  }}
+                  className="mb-4 text-xs font-black uppercase tracking-[0.36em] text-secondary"
+                >
                   Who We Are
-                </p>
+                </SparklesText>
 
                 <h2 className="max-w-2xl text-4xl font-black leading-[1.02] text-foreground sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
                   A legacy of care,{" "}
@@ -431,7 +424,7 @@ export default function WhoWeAreSection() {
                 </div>
 
                 {/* CTAs */}
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-8 flex items-center gap-4">
                   <MovingLinkButton
                     href="/who-we-are/about-us"
                     className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground shadow-[0_14px_35px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-[0_18px_45px_var(--pstc-primary-glow)]"
