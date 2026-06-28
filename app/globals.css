@@ -796,6 +796,10 @@
 .electric-border:hover .eb-background-glow {
   opacity: 0.45;
 }
+.container-pstc {
+  width: min(1600px, calc(100% - 64px));
+  margin-inline: auto;
+}
 /* =========================================================
    SCROLLBAR
    ========================================================= */
