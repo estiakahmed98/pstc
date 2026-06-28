@@ -946,6 +946,29 @@ export default function HeaderMegaMenu() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeMenu) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+    };
+  }, [activeMenu]);
+
   const openMenu = (menu: MegaMenu) => {
     setActiveMenu(menu);
     setPreviewNode(menuPreview(menu));
@@ -1027,8 +1050,12 @@ export default function HeaderMegaMenu() {
         </div>
 
         {activeMenu && preview ? (
-          <div className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background/88 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur-2xl">
-            <div className="animate-pstc-menu-reveal mx-auto grid min-h-[460px] w-full max-w-[1440px] grid-cols-12 gap-6 px-4 py-7 xl:px-8">
+          <div
+            onWheel={(event) => event.stopPropagation()}
+            onTouchMove={(event) => event.stopPropagation()}
+            className="absolute left-0 top-[var(--header-height)] w-full overflow-hidden border-t border-border bg-background/88 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur-2xl"
+          >
+            <div className="animate-pstc-menu-reveal mx-auto grid max-h-[calc(100vh-var(--header-height))] min-h-[460px] w-full max-w-[1440px] grid-cols-12 gap-6 overflow-y-auto overscroll-contain px-4 py-7 xl:px-8">
               <section className="col-span-4">
                 <GlowPanel className="h-full rounded-[28px]">
                   <div className="h-full bg-background/95 p-4 backdrop-blur-xl">
@@ -1043,7 +1070,10 @@ export default function HeaderMegaMenu() {
                         View All
                       </Link>
                     </div>
-                    <div className="max-h-[390px] space-y-1 overflow-y-auto pr-1">
+                    <div
+                      onWheel={(event) => event.stopPropagation()}
+                      className="max-h-[390px] space-y-1 overflow-y-auto overscroll-contain pr-2"
+                    >
                       {activeMenu.children.map((node) => (
                         <SidebarTreeNode
                           key={node.href}
@@ -1059,7 +1089,10 @@ export default function HeaderMegaMenu() {
                 </GlowPanel>
               </section>
 
-              <section className="col-span-4 flex flex-col justify-center px-2">
+              <section
+                onWheel={(event) => event.stopPropagation()}
+                className="col-span-4 flex flex-col justify-center px-2"
+              >
                 <p className="mb-4 whitespace-nowrap text-xs font-black uppercase tracking-[0.34em] text-secondary">
                   {activeMenu.eyebrow}
                 </p>
