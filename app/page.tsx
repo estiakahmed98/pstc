@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/landing/Hero";
+import MagazineSubscriptionSection from "@/components/landing/MagazineSubscriptionSection";
 import OurPartnersSection from "@/components/landing/OurPartnersSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
@@ -12,6 +13,7 @@ export default function Home() {
       <WhatWeDoSection />
       <PublicationsSection />
       <OurPartnersSection />
+      <MagazineSubscriptionSection />
     </div>
   );
 }
