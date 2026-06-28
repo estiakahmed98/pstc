@@ -987,8 +987,8 @@ export default function HeaderMegaMenu() {
         className="fixed left-0 top-0 z-50 w-full bg-background/80 backdrop-blur-2xl transition-colors duration-300"
         onMouseLeave={closeMenu}
       >
-        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-3 px-3 sm:px-4 lg:px-5 xl:px-6">
-          <div className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4">
+        <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[1680px] items-center justify-between gap-2 px-3 sm:px-4 lg:px-3 xl:gap-3 xl:px-6">
+          <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3 xl:gap-4">
             <div className="lg:hidden">
               <IconMovingButton
                 ariaLabel="Open menu"
@@ -1002,25 +1002,25 @@ export default function HeaderMegaMenu() {
               <img
                 src={logoSrc}
                 alt="pstc Logo"
-                className="h-12 w-28 sm:h-14 sm:w-32 lg:h-16 lg:w-40"
+                className="h-12 w-28 sm:h-14 sm:w-32 lg:h-12 lg:w-28 xl:h-16 xl:w-40"
               />
             </Link>
           </div>
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 lg:flex xl:gap-1">
             {megaMenus.map((menu) => (
               <Link
                 key={menu.href}
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
                 className={cn(
-                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-primary/15 hover:text-primary 2xl:px-4",
+                  "pstc-nav-link flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-full px-1.5 py-2 text-[11px] font-black text-foreground transition hover:bg-primary/15 hover:text-primary min-[1150px]:px-2 min-[1150px]:text-xs xl:gap-1 xl:px-3 xl:py-3 xl:text-sm 2xl:px-4",
                   activeMenu?.href === menu.href &&
                     "bg-primary/15 text-primary",
                 )}
               >
                 {menu.label}
-                <ChevronDown className="size-4 shrink-0" />
+                <ChevronDown className="size-3 shrink-0 xl:size-4" />
               </Link>
             ))}
             {directLinks.map((link) => (
@@ -1028,23 +1028,23 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
-                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-3 py-3 text-sm font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary 2xl:px-4"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-1.5 py-2 text-[11px] font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary min-[1150px]:px-2 min-[1150px]:text-xs xl:px-3 xl:py-3 xl:text-sm 2xl:px-4"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <ThemeToggle />
-            <LanguageButton />
+          <div className="flex shrink-0 items-center gap-1 xl:gap-2">
+            <ThemeToggle containerClassName="lg:h-10 lg:w-10 xl:h-12 xl:w-12" />
+            <LanguageButton containerClassName="lg:h-10 lg:w-10 xl:h-12 xl:w-12" />
             <MovingLinkButton
               href="/login"
-              containerClassName="hidden h-10 min-w-[84px] md:block"
-              className="px-3 text-xs sm:px-4 sm:text-sm"
+              containerClassName="hidden h-9 min-w-[76px] lg:block xl:h-10 xl:min-w-[84px]"
+              className="px-2.5 text-xs xl:px-4 xl:text-sm"
             >
               Login
-              <LogIn className="size-3.5 sm:size-4" />
+              <LogIn className="size-3.5 xl:size-4" />
             </MovingLinkButton>
           </div>
         </div>
