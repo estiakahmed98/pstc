@@ -128,7 +128,7 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="relative min-h-[calc(100svh-var(--header-height))] overflow-hidden bg-black text-white">
+    <section className="relative h-screen overflow-hidden bg-black text-white">
       <Image
         key={activeSlide.image}
         src={activeSlide.image}
@@ -143,7 +143,7 @@ export default function HeroCarousel() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-black via-black/20 to-transparent" />
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-var(--header-height))] w-full flex-col justify-end px-4 pb-6 pt-20 sm:px-6 sm:pb-8 sm:pt-24 lg:px-8">
+      <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-6 pt-20 sm:px-6 sm:pb-8 sm:pt-24 lg:px-8">
         <div className="grid items-end gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <div className="max-w-4xl pb-2 sm:pb-4">
             <SparklesText
