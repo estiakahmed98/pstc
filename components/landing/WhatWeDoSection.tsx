@@ -143,7 +143,7 @@ const flipCards = [
 
 export default function WhatWeDoSection() {
   return (
-    <section className="relative overflow-hidden bg-[var(--pstc-soft-bg)] py-24">
+    <section className="relative overflow-hidden bg-[var(--pstc-soft-bg)] py-24 pt-[calc(var(--header-height)+96px)]">
       
 
       <div className="container-pstc relative z-10">
