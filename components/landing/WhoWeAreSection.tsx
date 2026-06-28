@@ -14,11 +14,12 @@ import {
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
-import { motion } from "motion/react";
 import ScrollStack, {
   ScrollStackItem,
 } from "@/components/ui/ScrollStackItemProps";
 import { cn } from "@/lib/utils";
+import BorderGlow from "../ui/BorderGlow";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 // ---------------------------------------------------------------------------
 // Types & Data
@@ -254,7 +255,7 @@ export default function WhoWeAreSection() {
         the <html>/<body>, not a clipped container.
       */}
       <div className="relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="lg:flex lg:gap-12 xl:gap-16">
+        <div className="lg:flex lg:gap-6 xl:gap-8">
           {/* ── LEFT: Sticky panel ───────────────────────────────────────── */}
           {/*
             FIX: `position: sticky` requires:
@@ -263,22 +264,16 @@ export default function WhoWeAreSection() {
                  itself (so there's room to scroll through).
             We achieve #2 by letting the right column control section height.
           */}
-          <div className="hidden lg:block lg:w-[38%] xl:w-[36%] shrink-0">
+          <div className="hidden shrink-0 lg:block lg:w-[34%] xl:w-[32%]">
             <div
               className="sticky flex flex-col justify-center py-24"
               style={{
-                top: "calc(var(--header-height, 82px) + 32px)",
+                top: "calc(var(--header-height, 82px) + 16px)",
                 // Viewport height minus header and some breathing room
-                height: "calc(100vh - var(--header-height, 82px) - 64px)",
+                height: "calc(100vh - var(--header-height, 82px) - 32px)",
               }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 34 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-120px" }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                className="flex h-full flex-col justify-center"
-              >
+              <div className="flex h-full flex-col justify-center">
                 {/* Eyebrow */}
                 <p className="mb-4 text-xs font-black uppercase tracking-[0.36em] text-secondary">
                   Who We Are
@@ -300,40 +295,50 @@ export default function WhoWeAreSection() {
                 </p>
 
                 {/* Stats */}
-                <div className="mt-8 grid grid-cols-3 gap-3 max-w-sm">
+                <div className="mt-8 grid max-w-md grid-cols-3 gap-3">
                   {stats.map((stat) => (
                     <div
                       key={stat.label}
-                      className="rounded-[1.35rem] border border-border bg-card/90 p-4 shadow-sm"
+                      className="group relative overflow-hidden rounded-[1.5rem] border border-primary/15 bg-background p-[1px] shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(15,23,42,0.14)]"
                     >
-                      <p className="text-2xl font-black text-primary">
-                        {stat.value}
-                      </p>
-                      <p className="mt-1.5 text-xs font-bold leading-5 text-muted-foreground">
-                        {stat.label}
-                      </p>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/35 via-secondary/20 to-transparent opacity-70 transition group-hover:opacity-100" />
+
+                      <div className="relative h-full rounded-[1.45rem] bg-card/95 px-4 py-5 backdrop-blur">
+                        <div className="mb-3 h-1.5 w-10 rounded-full bg-gradient-to-r from-primary to-secondary" />
+
+                        <p className="text-2xl font-black leading-none text-primary">
+                          {stat.value}
+                        </p>
+
+                        <p className="mt-2 text-xs font-bold leading-5 text-muted-foreground">
+                          {stat.label}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
 
                 {/* CTAs */}
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap items-center gap-4">
                   <Link
                     href="/who-we-are/about-us"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-black text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-primary/30"
+                    className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-black text-primary-foreground shadow-[0_14px_35px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-[0_18px_45px_var(--pstc-primary-glow)]"
                   >
                     Explore About PSTC
-                    <ArrowUpRight className="size-4" />
+                    <span className="grid size-6 place-items-center rounded-full bg-white/15 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
+                      <ArrowUpRight className="size-4" />
+                    </span>
                   </Link>
 
                   <Link
                     href="/who-we-are/strategic-plan"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-black text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:text-secondary"
+                    className="group inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-6 py-3.5 text-sm font-black text-foreground shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_18px_45px_var(--pstc-secondary-glow)]"
                   >
                     Strategic Plan
+                    <span className="h-2 w-2 rounded-full bg-secondary transition duration-300 group-hover:bg-secondary-foreground" />
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
 
@@ -343,14 +348,14 @@ export default function WhoWeAreSection() {
             <div className="hidden lg:block">
               <ScrollStack
                 useWindowScroll
-                itemDistance={110}
-                itemScale={0.025}
-                itemStackDistance={34}
-                stackPosition="22%"
-                scaleEndPosition="8%"
-                baseScale={0.82}
-                rotationAmount={0.7}
-                blurAmount={0.35}
+                itemDistance={96}
+                itemScale={0.018}
+                itemStackDistance={28}
+                stackPosition="18%"
+                scaleEndPosition="10%"
+                baseScale={0.88}
+                rotationAmount={0}
+                blurAmount={0}
               >
                 {whoItems.map((item) => (
                   <WhoStackCard key={item.href} item={item} />
