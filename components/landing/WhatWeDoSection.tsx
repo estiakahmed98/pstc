@@ -11,6 +11,7 @@ import {
   HeartHandshake,
   GraduationCap,
 } from "lucide-react";
+import { SparklesText } from "../ui/sparkles-text";
 
 const coreActivities = [
   {
@@ -154,12 +155,22 @@ export default function WhatWeDoSection() {
           <div className="container-pstc relative z-10">
             <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.78fr]">
               <div className="max-w-4xl">
+                <SparklesText
+                  sparklesCount={5}
+                  colors={{
+                    first: "var(--pstc-primary)",
+                    second: "var(--pstc-secondary)",
+                  }}
+                  className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
+                >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="inline-block h-px w-10 bg-gradient-to-r from-[var(--pstc-primary)] to-transparent" />
+                  
                   <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
                     What We Do
                   </p>
                 </div>
+                </SparklesText>
 
                 <h1 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-7xl">
                   Our Work <br />
@@ -218,6 +229,14 @@ export default function WhatWeDoSection() {
 
           <div className="container-pstc relative z-10">
             <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+              <SparklesText
+                  sparklesCount={5}
+                  colors={{
+                    first: "var(--pstc-primary)",
+                    second: "var(--pstc-secondary)",
+                  }}
+                  className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
+                >
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
                   Core Activities
@@ -228,6 +247,7 @@ export default function WhatWeDoSection() {
                   <span className="text-[var(--pstc-primary)]">Focus</span>
                 </h2>
               </div>
+              </SparklesText>
 
               <p className="max-w-xl text-base leading-8 text-slate-600">
                 Our core activities cover health, training, research,
@@ -310,22 +330,31 @@ export default function WhatWeDoSection() {
         </div>
 
         {/* Layer 03: Programs */}
-        <div className="relative z-20 min-h-screen overflow-hidden rounded-t-[32px] bg-white py-20 pt-[calc(var(--header-height)+48px)]">
+        <div className="relative z-20 min-h-screen overflow-hidden bg-white py-20 pt-[calc(var(--header-height)+48px)]">
           <div className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/youth-adolescent-development.jpg')",
             }} />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/78" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(11,87,158,0.16),transparent_36%),radial-gradient(circle_at_80%_70%,rgba(148,202,81,0.14),transparent_34%)]" />
-<div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
           <div className="container-pstc relative z-10">
-            <div className="mb-12 max-w-3xl">
-              <div className="mb-4 flex items-center gap-3">
-                <span className="inline-block h-px w-10 bg-gradient-to-r from-[var(--pstc-primary)] to-transparent" />
+            <div className="mx-auto mb-16 max-w-4xl text-center">
+              <SparklesText
+                  sparklesCount={6}
+                  colors={{
+                    first: "var(--pstc-primary)",
+                    second: "var(--pstc-secondary)",
+                  }}
+                  className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
+                ><div className="mb-5 flex items-center justify-center gap-3">
+                <span className="inline-block h-px w-12 bg-gradient-to-r from-transparent to-[var(--pstc-primary)]" />
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
                   Explore Our Work
                 </p>
+                <span className="inline-block h-px w-12 bg-gradient-to-l from-transparent to-[var(--pstc-primary)]" />
               </div>
+              </SparklesText>
 
               <h2 className="text-4xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-6xl">
                 Programs, <br />
@@ -341,7 +370,7 @@ export default function WhatWeDoSection() {
                   key={card.title}
                   className="group relative h-[440px] [perspective:1200px]"
                 >
-                  <div className="relative h-full w-full transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                  <div className="relative h-full w-full transition-transform duration-2000 ease-[cubic-bezier(.22,1,.36,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                     <div className="absolute inset-0 overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] [backface-visibility:hidden]">
                       <div className="relative h-48 overflow-hidden">
                         <img
