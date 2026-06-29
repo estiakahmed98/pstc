@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Cake } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
+import { Confetti, type ConfettiRef } from "@/components/ui/confetti";
 import { cn } from "@/lib/utils";
 import { SparklesText } from "../ui/sparkles-text";
 import { BackgroundLines } from "../ui/background-lines";
@@ -101,9 +102,63 @@ function HeroMovingButton({
   );
 }
 
-function JourneyHangingCard() {
+function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
+  const confettiRef = useRef<ConfettiRef>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fireBirthdayBurst = () => {
+      const rect = cardRef.current?.getBoundingClientRect();
+      const origin = rect
+        ? {
+            x: (rect.left + rect.width / 2) / window.innerWidth,
+            y: (rect.top + rect.height * 0.58) / window.innerHeight,
+          }
+        : { x: 0.88, y: 0.26 };
+
+      const burstOptions = {
+        origin,
+        spread: 74,
+        startVelocity: 36,
+        ticks: 150,
+        scalar: 0.92,
+        colors: ["#0991cb", "#d73f32", "#ffffff", "#ffd166"],
+      };
+
+      confettiRef.current?.fire({
+        ...burstOptions,
+        particleCount: 52,
+        angle: 68,
+      });
+
+      window.setTimeout(() => {
+        confettiRef.current?.fire({
+          ...burstOptions,
+          particleCount: 42,
+          angle: 112,
+        });
+      }, 180);
+
+      window.setTimeout(() => {
+        confettiRef.current?.fire({
+          ...burstOptions,
+          particleCount: 34,
+          spread: 96,
+          startVelocity: 28,
+        });
+      }, 340);
+    };
+
+    const burstTimer = window.setTimeout(fireBirthdayBurst, 450);
+
+    return () => {
+      window.clearTimeout(burstTimer);
+    };
+  }, [activeIndex]);
+
   return (
     <motion.div
+      ref={cardRef}
       drag
       dragMomentum={false}
       dragElastic={0.12}
@@ -117,6 +172,12 @@ function JourneyHangingCard() {
         2xl:right-16 2xl:w-[190px]
       "
     >
+      <Confetti
+        ref={confettiRef}
+        manualstart
+        className="pointer-events-none fixed inset-0 z-10 size-full"
+      />
+
       {/* Rope */}
       <motion.div
         initial={{ height: 0 }}
@@ -245,11 +306,11 @@ export default function HeroCarousel() {
         className="object-cover opacity-80 transition duration-700 ease-out"
       />
 
-      <div className="absolute inset-0 bg-black/15" />
+      {/* <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/10 to-transparent" /> */}
 
-      <JourneyHangingCard />
+      <JourneyHangingCard activeIndex={activeIndex} />
 
       <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">
