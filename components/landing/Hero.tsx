@@ -84,10 +84,10 @@ function HeroMovingButton({
       href={href}
       duration={3200}
       borderRadius="999px"
-      containerClassName="h-10 w-full min-w-0 text-xs sm:h-11 sm:min-w-[145px] sm:w-auto lg:h-11 lg:min-w-[150px]"
+      containerClassName="h-10 w-full min-w-0 text-xs sm:h-11 sm:min-w-[145px] sm:w-auto lg:h-10 lg:min-w-[148px]"
       borderClassName="bg-[radial-gradient(var(--pstc-primary)_32%,var(--pstc-secondary)_58%,transparent_72%)]"
       className={cn(
-        "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-[0.05em] transition sm:px-5 sm:text-xs",
+        "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-[0.05em] transition sm:px-5 sm:text-xs lg:px-4",
         variant === "primary"
           ? "border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)]"
           : "border-white/30 bg-white/10 text-white hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
@@ -123,7 +123,7 @@ export default function HeroCarousel() {
   if (!activeSlide) return null;
 
   return (
-    <section className="relative z-10 h-screen overflow-hidden bg-black text-white">
+    <section className="relative z-10 h-[calc(100svh-82px)] overflow-hidden bg-black text-white lg:h-[calc(100svh-86px)]">
       <Image
         key={activeSlide.image}
         src={activeSlide.image}
@@ -136,11 +136,11 @@ export default function HeroCarousel() {
 
       <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/35 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-      <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-16 pt-20 sm:px-6 sm:pb-10 lg:px-6 lg:pb-6 xl:px-8">
+      <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">
-          <div className="max-w-[360px] pb-0 text-left sm:max-w-2xl lg:max-w-3xl">
+          <div className="max-w-[360px] pb-0 text-left sm:max-w-2xl lg:max-w-3xl lg:pb-2">
             <SparklesText
               sparklesCount={4}
               colors={{
@@ -152,7 +152,7 @@ export default function HeroCarousel() {
               PSTC Digital Experience
             </SparklesText>
 
-            <h1 className="max-w-[340px] font-serif text-[2rem] leading-[1.05] text-white min-[420px]:text-[2.25rem] sm:max-w-2xl sm:text-[2.8rem] lg:text-[3rem] xl:text-[3.25rem]">
+            <h1 className="max-w-[340px] font-serif text-[2rem] leading-[1.05] text-white min-[420px]:text-[2.25rem] sm:max-w-2xl sm:text-[2.8rem] lg:text-[2.9rem] xl:text-[3.15rem]">
               {activeSlide.title}{" "}
               <span className="font-semibold italic text-secondary">
                 {activeSlide.italic}
@@ -163,7 +163,7 @@ export default function HeroCarousel() {
               {activeSlide.description}
             </p>
 
-            <div className="mt-4 grid max-w-[340px] gap-2 sm:flex sm:max-w-none sm:flex-wrap sm:gap-3">
+            <div className="mt-4 grid max-w-[340px] gap-2 sm:flex sm:max-w-none sm:flex-wrap sm:gap-3 lg:mt-3">
               <HeroMovingButton href={activeSlide.href}>
                 Explore Section
                 <ArrowUpRight className="size-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -176,7 +176,7 @@ export default function HeroCarousel() {
             </div>
           </div>
 
-          <div className="ml-auto hidden w-full max-w-[390px] lg:block xl:max-w-[460px]">
+          <div className="ml-auto hidden w-full max-w-[390px] pb-1 lg:block xl:max-w-[460px]">
             <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/20">
               <div
                 key={activeIndex}
@@ -200,7 +200,7 @@ export default function HeroCarousel() {
                     type="button"
                     onClick={() => selectSlide(index)}
                     className={cn(
-                      "group relative h-14 overflow-hidden border text-left transition duration-500 min-[1150px]:h-16 xl:h-20",
+                      "group relative h-12 overflow-hidden border text-left transition duration-500 min-[1150px]:h-14 xl:h-16",
                       isActive
                         ? "scale-105 border-white shadow-xl shadow-black/30"
                         : "border-white/15 opacity-70 hover:scale-105 hover:border-white hover:opacity-100",
@@ -217,7 +217,7 @@ export default function HeroCarousel() {
                     <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/58" />
 
                     <div className="absolute inset-x-0 bottom-0 translate-y-full p-2 transition duration-300 group-hover:translate-y-0">
-                      <p className="text-[9px] font-black uppercase leading-3 tracking-widest text-white">
+                      <p className="text-[8px] font-black uppercase leading-3 tracking-widest text-white">
                         {slide.short}
                       </p>
                     </div>
@@ -233,8 +233,8 @@ export default function HeroCarousel() {
               })}
             </div>
 
-            <div className="mt-3 hidden grid-cols-[1fr_auto] items-center gap-3 lg:grid">
-              <p className="max-w-sm text-[11px] leading-5 text-white/78 xl:text-xs">
+            <div className="mt-2 hidden grid-cols-[1fr_auto] items-center gap-3 lg:grid">
+              <p className="max-w-sm text-[10px] leading-4 text-white/78 xl:text-[11px] xl:leading-5">
                 <span className="font-black text-white">
                   {activeSlide.short}.
                 </span>{" "}
