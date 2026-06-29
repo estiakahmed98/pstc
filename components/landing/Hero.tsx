@@ -87,9 +87,9 @@ function HeroMovingButton({
       containerClassName="h-10 w-full min-w-0 text-xs sm:h-11 sm:min-w-[145px] sm:w-auto lg:h-10 lg:min-w-[148px]"
       borderClassName="bg-[radial-gradient(var(--pstc-primary)_32%,var(--pstc-secondary)_58%,transparent_72%)]"
       className={cn(
-        "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-[0.05em] transition sm:px-5 sm:text-xs lg:px-4",
+        "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-wider transition sm:px-5 sm:text-xs lg:px-4",
         variant === "primary"
-          ? "border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)]"
+          ? "border-primary bg-primary text-primary-foreground hover:bg-(--pstc-primary-dark) hover:text-primary-foreground"
           : "border-white/30 bg-white/10 text-white hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
         className,
       )}
@@ -136,11 +136,11 @@ export default function HeroCarousel() {
 
       <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/40 to-transparent" />
 
       <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">
-          <div className="max-w-[360px] pb-0 text-left sm:max-w-2xl lg:max-w-3xl lg:pb-2">
+          <div className="max-w-90 pb-0 text-left sm:max-w-2xl lg:max-w-3xl lg:pb-2">
             <SparklesText
               sparklesCount={4}
               colors={{
@@ -152,18 +152,18 @@ export default function HeroCarousel() {
               PSTC Digital Experience
             </SparklesText>
 
-            <h1 className="max-w-[340px] font-serif text-[2rem] leading-[1.05] text-white min-[420px]:text-[2.25rem] sm:max-w-2xl sm:text-[2.8rem] lg:text-[2.9rem] xl:text-[3.15rem]">
+            <h1 className="max-w-85 font-serif text-[2rem] leading-[1.05] text-white min-[420px]:text-[2.25rem] sm:max-w-2xl sm:text-[2.8rem] lg:text-[2.9rem] xl:text-[3.15rem]">
               {activeSlide.title}{" "}
               <span className="font-semibold italic text-secondary">
                 {activeSlide.italic}
               </span>
             </h1>
 
-            <p className="mt-3 max-w-[420px] text-xs leading-5 text-white/82 sm:max-w-lg sm:text-sm">
+            <p className="mt-3 max-w-105 text-xs leading-5 text-white/82 sm:max-w-lg sm:text-sm">
               {activeSlide.description}
             </p>
 
-            <div className="mt-4 grid max-w-[340px] gap-2 sm:flex sm:max-w-none sm:flex-wrap sm:gap-3 lg:mt-3">
+            <div className="mt-4 grid max-w-85 gap-2 sm:flex sm:max-w-none sm:flex-wrap sm:gap-3 lg:mt-3">
               <HeroMovingButton href={activeSlide.href}>
                 Explore Section
                 <ArrowUpRight className="size-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -176,7 +176,7 @@ export default function HeroCarousel() {
             </div>
           </div>
 
-          <div className="ml-auto hidden w-full max-w-[390px] pb-1 lg:block xl:max-w-[460px]">
+          <div className="ml-auto hidden w-full max-w-97 pb-1 lg:block xl:max-w-115">
             <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/20">
               <div
                 key={activeIndex}
