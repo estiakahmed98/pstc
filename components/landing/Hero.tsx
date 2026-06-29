@@ -159,7 +159,7 @@ export default function HeroCarousel() {
               </span>
             </h1>
 
-            <p className="mt-2 line-clamp-2 max-w-[320px] text-xs leading-5 text-white/80 sm:max-w-lg sm:text-sm lg:hidden">
+            <p className="mt-3 max-w-[420px] text-xs leading-5 text-white/82 sm:max-w-lg sm:text-sm">
               {activeSlide.description}
             </p>
 

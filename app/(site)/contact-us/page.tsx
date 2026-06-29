@@ -46,7 +46,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20">
+      <section className="relative overflow-hidden border-b border-border bg-linear-to-br from-primary/10 via-background to-secondary/10 py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(9,145,203,0.16),transparent_34%),radial-gradient(circle_at_80%_60%,rgba(148,202,81,0.16),transparent_32%)]" />
 
         <div className="container relative mx-auto max-w-6xl px-4">
@@ -167,7 +167,7 @@ export default function ContactPage() {
             {/* Office Location */}
             <div className="space-y-6">
               <Card className="overflow-hidden border-border/80 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
-                <div className="bg-gradient-to-br from-primary to-secondary p-8 text-white">
+                <div className="bg-linear-to-br from-primary to-secondary p-8 text-white">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
                     <Building2 className="h-7 w-7" />
                   </div>
@@ -273,7 +273,7 @@ export default function ContactPage() {
           </div>
 
           <Card className="overflow-hidden border-border/80 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
-            <div className="aspect-[16/9] w-full">
+            <div className="aspect-16/9' w-full">
               <iframe
                 title="PSTC Office Location Map"
                 src="https://www.google.com/maps?q=Dhaka%201212%20Bangladesh&output=embed"
@@ -329,7 +329,7 @@ export default function ContactPage() {
                   )}
 
                   {loc.email && (
-                    <p className="break-words text-sm">
+                    <p className="wrap-break-word text-sm">
                       <strong>Email:</strong> {loc.email}
                     </p>
                   )}
