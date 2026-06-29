@@ -18,6 +18,7 @@ const bangladeshiPartners: Partner[] = [
   { name: "Mymensingh City Corporation", image: "/partners/mcc.png" },
   { name: "Health Economics Unit", image: "/partners/health economic.png" },
   { name: "Nogor Sastho Kendro", image: "/partners/nsk.png" },
+   { name: "Standard Chartered", image: "/partners/standard chartered.png" },
   { name: "SMC", image: "/partners/smc.png" },
 ];
 
@@ -25,7 +26,6 @@ const globalPartners: Partner[] = [
   { name: "Canada", image: "/partners/canada.png" },
   { name: "Plan International", image: "/partners/plan international.jpg" },
   { name: "Women Win", image: "/partners/ww.png" },
-  { name: "Standard Chartered", image: "/partners/standard chartered.png" },
   { name: "Save the Children", image: "/partners/save the children.png" },
   { name: "Simavi", image: "/partners/simavi.png" },
   { name: "OXFAM", image: "/partners/oxfam.png" },
