@@ -10,7 +10,7 @@ export default function SiteLayout({
   return (
     <>
       <HeaderMegaMenu />
-      <main className="min-h-screen pt-[var(--header-height-mobile)] lg:pt-[var(--header-height)]">
+      <main className="min-h-screen pt-(--header-height-mobile) lg:pt-(--header-height)">
         {children}
       </main>
       <Footer />
