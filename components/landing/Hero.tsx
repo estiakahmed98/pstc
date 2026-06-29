@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Cake } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import { SparklesText } from "../ui/sparkles-text";
+import { BackgroundLines } from "../ui/background-lines";
 
 type HeroSlide = {
   title: string;
@@ -89,13 +91,97 @@ function HeroMovingButton({
       className={cn(
         "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-wider transition sm:px-5 sm:text-xs lg:px-4",
         variant === "primary"
-          ? "border-primary bg-primary text-primary-foreground hover:bg-(--pstc-primary-dark) hover:text-primary-foreground"
+          ? "border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)] hover:text-primary-foreground"
           : "border-white/30 bg-white/10 text-white hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
         className,
       )}
     >
       {children}
     </MovingBorderButton>
+  );
+}
+
+function JourneyHangingCard() {
+  return (
+    <div>
+      <motion.div
+        drag
+        dragMomentum={false}
+        dragElastic={0.12}
+        className="absolute right-4 top-0 z-30 hidden h-[18.2svh] w-[170px] cursor-grab active:cursor-grabbing sm:block lg:right-10 lg:w-[190px] xl:right-16"
+      >
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: "100%" }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+          className="absolute left-1/2 top-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary/60 to-transparent"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.85 }}
+          className="absolute left-1/2 top-[calc(18.2svh-10px)] z-10 size-5 -translate-x-1/2 rounded-full border border-primary/40 bg-primary shadow-xl shadow-primary/40"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: -40, rotate: -5 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            rotate: [-3, 3, -2.5, 2.5, -3],
+          }}
+          transition={{
+            opacity: { duration: 0.45, delay: 0.75 },
+            y: { duration: 0.65, delay: 0.75, ease: "easeOut" },
+            rotate: {
+              duration: 4.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.1,
+            },
+          }}
+          style={{ transformOrigin: "50% -30px" }}
+          className="group absolute left-1/2 top-[18.2svh] h-[170px] w-full -translate-x-1/2 [perspective:1000px]"
+        >
+          <div className="relative h-full w-full transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            {/* Front */}
+            <div className="absolute inset-0 overflow-hidden rounded-[1.4rem] border border-primary/20 bg-card/95 text-center shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl [backface-visibility:hidden]">
+              <div className="h-2 w-full bg-gradient-to-r from-primary via-secondary to-primary" />
+
+              <div className="p-4">
+                <div className="mx-auto grid size-10 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/30">
+                  <Cake className="size-5" />
+                </div>
+
+                <div className="mt-4 text-2xl font-black leading-none text-primary">
+                  48+
+                </div>
+
+                <p className="mt-1 text-sm font-black uppercase text-primary">
+                  Years Anniversary
+                </p>
+              </div>
+            </div>
+
+            {/* Back */}
+            <div className="absolute inset-0 grid place-items-center overflow-hidden rounded-[1.4rem] border border-primary/20 bg-card/95 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <Image
+                src="/pstc_logo.png"
+                alt="PSTC Logo"
+                width={120}
+                height={80}
+                className="h-auto w-28 object-contain"
+              />
+
+              <p className="mt-3 text-center text-[10px] font-black uppercase tracking-[0.18em] text-primary">
+                Since 1978
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -137,6 +223,8 @@ export default function HeroCarousel() {
       <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
       <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/40 to-transparent" />
+
+      <JourneyHangingCard />
 
       <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">
