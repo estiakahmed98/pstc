@@ -181,7 +181,7 @@ function JourneyHangingCard() {
               </div>
 
               <div className="mt-2 text-lg font-black leading-none text-primary md:text-xl lg:mt-3 lg:text-2xl">
-                48+
+                48
               </div>
 
               <p className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
