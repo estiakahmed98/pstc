@@ -107,7 +107,7 @@ export default function OurPartnersSection() {
       />
 
       <div className="container-pstc relative z-10">
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col items-center text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/60 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
             <Sparkles className="size-3.5" />
             Our Development Partners

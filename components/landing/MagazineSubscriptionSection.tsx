@@ -405,7 +405,7 @@ export default function MagazineSubscriptionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mb-10 flex flex-col"
+          className="mb-10 flex flex-col item-center text-center "
         >
           {/* <div className="mb-4 mx inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/50 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
             <Sparkles className="size-3.5" />
@@ -418,7 +418,7 @@ export default function MagazineSubscriptionSection() {
               first: "var(--pstc-primary)",
               second: "var(--pstc-secondary)",
             }}
-            className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-primary sm:text-5xl lg:text-4xl"
+            className="text-3xl  font-black uppercase leading-[0.95] tracking-[-0.04em] text-primary sm:text-5xl lg:text-4xl"
           >
             PROJANMO <span className="text-secondary">Kotha</span>
           </SparklesText>
@@ -458,12 +458,12 @@ export default function MagazineSubscriptionSection() {
                   <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
                     {featuredCover.issue}
                   </p>
-                  <h3 className="mt-3 max-w-md text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-4xl">
+                  {/* <h3 className="mt-3 max-w-md text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-4xl">
                     {featuredCover.title}
                   </h3>
                   <p className="mt-4 max-w-md text-sm leading-7 text-muted-foreground sm:text-base">
                     {featuredCover.tagline}
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className="relative mt-8 flex items-end justify-center lg:mt-0 lg:justify-start">

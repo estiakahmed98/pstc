@@ -355,7 +355,7 @@ export default function WhatWeDoSection() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(11,87,158,0.16),transparent_36%),radial-gradient(circle_at_80%_70%,rgba(148,202,81,0.14),transparent_34%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
           <div className="container-pstc relative z-10">
-            <div className="mb-10">
+            <div className="mb-10 mx-auto max-w-3xl text-center">
               <SparklesText
                 sparklesCount={6}
                 colors={{
@@ -364,7 +364,7 @@ export default function WhatWeDoSection() {
                 }}
                 className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
               >
-                <div className="mb-5 flex items-center justify-center gap-3">
+                <div className="mb-2 flex items-center justify-center gap-3">
                   <span className="inline-block h-px w-12 bg-gradient-to-r from-transparent to-[var(--pstc-primary)]" />
                   <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
                     Explore Our Work
