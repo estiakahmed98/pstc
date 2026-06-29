@@ -103,85 +103,110 @@ function HeroMovingButton({
 
 function JourneyHangingCard() {
   return (
-    <div>
+    <motion.div
+      drag
+      dragMomentum={false}
+      dragElastic={0.12}
+      className="
+        absolute z-30 hidden cursor-grab active:cursor-grabbing sm:block
+
+        right-3 top-0 h-[15svh] w-[120px]
+        md:right-5 md:h-[16svh] md:w-[135px]
+        lg:right-8 lg:h-[17svh] lg:w-[155px]
+        xl:right-12 xl:h-[18.2svh] xl:w-[170px]
+        2xl:right-16 2xl:w-[190px]
+      "
+    >
+      {/* Rope */}
       <motion.div
-        drag
-        dragMomentum={false}
-        dragElastic={0.12}
-        className="absolute right-4 top-0 z-30 hidden h-[18.2svh] w-[170px] cursor-grab active:cursor-grabbing sm:block lg:right-10 lg:w-[190px] xl:right-16"
+        initial={{ height: 0 }}
+        animate={{ height: "100%" }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+        className="absolute left-1/2 top-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary/60 to-transparent"
+      />
+
+      {/* Rope Joint */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.85 }}
+        className="
+          absolute left-1/2 z-10 -translate-x-1/2 rounded-full
+          border border-primary/40 bg-primary shadow-xl shadow-primary/40
+
+          top-[calc(15svh-8px)] size-4
+          md:top-[calc(16svh-9px)] md:size-[18px]
+          lg:top-[calc(17svh-10px)] lg:size-5
+          xl:top-[calc(18.2svh-10px)]
+        "
+      />
+
+      {/* Hanging Card */}
+      <motion.div
+        initial={{ opacity: 0, y: -40, rotate: -5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          rotate: [-3, 3, -2.5, 2.5, -3],
+        }}
+        transition={{
+          opacity: { duration: 0.45, delay: 0.75 },
+          y: { duration: 0.65, delay: 0.75, ease: "easeOut" },
+          rotate: {
+            duration: 4.8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.1,
+          },
+        }}
+        style={{ transformOrigin: "50% -30px" }}
+        className="
+          group absolute left-1/2 -translate-x-1/2 [perspective:1000px]
+
+          top-[15svh] h-[120px] w-full
+          md:top-[16svh] md:h-[135px]
+          lg:top-[17svh] lg:h-[155px]
+          xl:top-[18.2svh] xl:h-[170px]
+          2xl:h-[180px]
+        "
       >
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: "100%" }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
-          className="absolute left-1/2 top-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary/60 to-transparent"
-        />
+        <div className="relative h-full w-full transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          {/* Front */}
+          <div className="absolute inset-0 overflow-hidden rounded-[1rem] border border-primary/20 bg-card/95 text-center shadow-[0_14px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl [backface-visibility:hidden] md:rounded-[1.15rem] lg:rounded-[1.3rem] xl:rounded-[1.4rem]">
+            <div className="h-1.5 w-full bg-gradient-to-r from-primary via-secondary to-primary xl:h-2" />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.85 }}
-          className="absolute left-1/2 top-[calc(18.2svh-10px)] z-10 size-5 -translate-x-1/2 rounded-full border border-primary/40 bg-primary shadow-xl shadow-primary/40"
-        />
-
-        <motion.div
-          initial={{ opacity: 0, y: -40, rotate: -5 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            rotate: [-3, 3, -2.5, 2.5, -3],
-          }}
-          transition={{
-            opacity: { duration: 0.45, delay: 0.75 },
-            y: { duration: 0.65, delay: 0.75, ease: "easeOut" },
-            rotate: {
-              duration: 4.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.1,
-            },
-          }}
-          style={{ transformOrigin: "50% -30px" }}
-          className="group absolute left-1/2 top-[18.2svh] h-[170px] w-full -translate-x-1/2 [perspective:1000px]"
-        >
-          <div className="relative h-full w-full transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-            {/* Front */}
-            <div className="absolute inset-0 overflow-hidden rounded-[1.4rem] border border-primary/20 bg-card/95 text-center shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl [backface-visibility:hidden]">
-              <div className="h-2 w-full bg-gradient-to-r from-primary via-secondary to-primary" />
-
-              <div className="p-4">
-                <div className="mx-auto grid size-10 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/30">
-                  <Cake className="size-5" />
-                </div>
-
-                <div className="mt-4 text-2xl font-black leading-none text-primary">
-                  48+
-                </div>
-
-                <p className="mt-1 text-sm font-black uppercase text-primary">
-                  Years Anniversary
-                </p>
+            <div className="p-2.5 md:p-3 lg:p-3.5 xl:p-4">
+              <div className="mx-auto grid size-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/30 md:size-9 lg:size-10 lg:rounded-2xl">
+                <Cake className="size-4 lg:size-5" />
               </div>
-            </div>
 
-            {/* Back */}
-            <div className="absolute inset-0 grid place-items-center overflow-hidden rounded-[1.4rem] border border-primary/20 bg-card/95 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <Image
-                src="/pstc_logo.png"
-                alt="PSTC Logo"
-                width={120}
-                height={80}
-                className="h-auto w-28 object-contain"
-              />
+              <div className="mt-2 text-lg font-black leading-none text-primary md:text-xl lg:mt-3 lg:text-2xl">
+                48+
+              </div>
 
-              <p className="mt-3 text-center text-[10px] font-black uppercase tracking-[0.18em] text-primary">
-                Since 1978
+              <p className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
+                Years Anniversary
               </p>
             </div>
           </div>
-        </motion.div>
+
+          {/* Back */}
+          <div className="absolute inset-0 grid place-items-center overflow-hidden rounded-[1rem] border border-primary/20 bg-card/95 p-3 shadow-[0_14px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)] md:rounded-[1.15rem] lg:rounded-[1.3rem] lg:p-4 xl:rounded-[1.4rem] xl:p-5">
+            <Image
+              src="/pstc_logo.png"
+              alt="PSTC Logo"
+              width={120}
+              height={80}
+              className="h-auto w-16 object-contain md:w-20 lg:w-24 xl:w-28"
+            />
+
+            <p className="mt-2 text-center text-[8px] font-black uppercase tracking-[0.16em] text-primary md:text-[9px] lg:text-[10px]">
+              Since 1978
+            </p>
+          </div>
+        </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
