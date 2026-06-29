@@ -18,6 +18,7 @@ const bangladeshiPartners: Partner[] = [
   { name: "Mymensingh City Corporation", image: "/partners/mcc.png" },
   { name: "Health Economics Unit", image: "/partners/health economic.png" },
   { name: "Nogor Sastho Kendro", image: "/partners/nsk.png" },
+   { name: "Standard Chartered", image: "/partners/standard chartered.png" },
   { name: "SMC", image: "/partners/smc.png" },
 ];
 
@@ -25,7 +26,6 @@ const globalPartners: Partner[] = [
   { name: "Canada", image: "/partners/canada.png" },
   { name: "Plan International", image: "/partners/plan international.jpg" },
   { name: "Women Win", image: "/partners/ww.png" },
-  { name: "Standard Chartered", image: "/partners/standard chartered.png" },
   { name: "Save the Children", image: "/partners/save the children.png" },
   { name: "Simavi", image: "/partners/simavi.png" },
   { name: "OXFAM", image: "/partners/oxfam.png" },
@@ -107,7 +107,7 @@ export default function OurPartnersSection() {
       />
 
       <div className="container-pstc relative z-10">
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col items-center text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/60 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
             <Sparkles className="size-3.5" />
             Our Development Partners

@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Cake } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import { SparklesText } from "../ui/sparkles-text";
+import { BackgroundLines } from "../ui/background-lines";
 
 type HeroSlide = {
   title: string;
@@ -89,13 +91,122 @@ function HeroMovingButton({
       className={cn(
         "group h-full w-full gap-2 px-4 text-[11px] font-black uppercase tracking-wider transition sm:px-5 sm:text-xs lg:px-4",
         variant === "primary"
-          ? "border-primary bg-primary text-primary-foreground hover:bg-(--pstc-primary-dark) hover:text-primary-foreground"
+          ? "border-primary bg-primary text-primary-foreground hover:bg-[var(--pstc-primary-dark)] hover:text-primary-foreground"
           : "border-white/30 bg-white/10 text-white hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
         className,
       )}
     >
       {children}
     </MovingBorderButton>
+  );
+}
+
+function JourneyHangingCard() {
+  return (
+    <motion.div
+      drag
+      dragMomentum={false}
+      dragElastic={0.12}
+      className="
+        absolute z-30 hidden cursor-grab active:cursor-grabbing sm:block
+
+        right-3 top-0 h-[15svh] w-[120px]
+        md:right-5 md:h-[16svh] md:w-[135px]
+        lg:right-8 lg:h-[17svh] lg:w-[155px]
+        xl:right-12 xl:h-[18.2svh] xl:w-[170px]
+        2xl:right-16 2xl:w-[190px]
+      "
+    >
+      {/* Rope */}
+      <motion.div
+        initial={{ height: 0 }}
+        animate={{ height: "100%" }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+        className="absolute left-1/2 top-0 w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary/60 to-transparent"
+      />
+
+      {/* Rope Joint */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.85 }}
+        className="
+          absolute left-1/2 z-10 -translate-x-1/2 rounded-full
+          border border-primary/40 bg-primary shadow-xl shadow-primary/40
+
+          top-[calc(15svh-8px)] size-4
+          md:top-[calc(16svh-9px)] md:size-[18px]
+          lg:top-[calc(17svh-10px)] lg:size-5
+          xl:top-[calc(18.2svh-10px)]
+        "
+      />
+
+      {/* Hanging Card */}
+      <motion.div
+        initial={{ opacity: 0, y: -40, rotate: -5 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          rotate: [-3, 3, -2.5, 2.5, -3],
+        }}
+        transition={{
+          opacity: { duration: 0.45, delay: 0.75 },
+          y: { duration: 0.65, delay: 0.75, ease: "easeOut" },
+          rotate: {
+            duration: 4.8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.1,
+          },
+        }}
+        style={{ transformOrigin: "50% -30px" }}
+        className="
+          group absolute left-1/2 -translate-x-1/2 [perspective:1000px]
+
+          top-[15svh] h-[120px] w-full
+          md:top-[16svh] md:h-[135px]
+          lg:top-[17svh] lg:h-[155px]
+          xl:top-[18.2svh] xl:h-[170px]
+          2xl:h-[180px]
+        "
+      >
+        <div className="relative h-full w-full transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          {/* Front */}
+          <div className="absolute inset-0 overflow-hidden rounded-[1rem] border border-primary/20 bg-card/95 text-center shadow-[0_14px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl [backface-visibility:hidden] md:rounded-[1.15rem] lg:rounded-[1.3rem] xl:rounded-[1.4rem]">
+            <div className="h-1.5 w-full bg-gradient-to-r from-primary via-secondary to-primary xl:h-6" />
+
+            <div className="p-2.5 md:p-3 lg:p-3.5 xl:p-4">
+              <div className="mx-auto grid size-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/30 md:size-9 lg:size-10 lg:rounded-2xl">
+                <Cake className="size-4 lg:size-5" />
+              </div>
+
+              <div className="mt-2 text-lg font-black leading-none text-primary md:text-xl lg:mt-3 lg:text-2xl">
+                48
+              </div>
+
+              <SparklesText className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
+                Years <span className="text-secondary">Anniversary</span>
+              </SparklesText>
+            </div>
+          </div>
+
+          {/* Back */}
+          <div className="absolute inset-0 grid place-items-center overflow-hidden rounded-[1rem] border border-primary/20 bg-card/95 p-3 shadow-[0_14px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)] md:rounded-[1.15rem] lg:rounded-[1.3rem] lg:p-4 xl:rounded-[1.4rem] xl:p-5">
+            <Image
+              src="/pstc_logo.png"
+              alt="PSTC Logo"
+              width={120}
+              height={80}
+              className="h-auto w-16 object-contain md:w-20 lg:w-24 xl:w-28"
+            />
+
+            <p className="mt-2 text-center text-[8px] font-black uppercase tracking-[0.16em] text-primary md:text-[9px] lg:text-[10px]">
+              Since 1978
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -137,6 +248,8 @@ export default function HeroCarousel() {
       <div className="absolute inset-0 bg-black/15" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
       <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/40 to-transparent" />
+
+      <JourneyHangingCard />
 
       <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">
