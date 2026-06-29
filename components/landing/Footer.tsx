@@ -206,15 +206,15 @@ export default function Footer() {
             <div className="grid gap-4 text-sm leading-7 text-primary-foreground/80">
               <p className="flex gap-3">
                 <MapPin className="mt-1 size-5 shrink-0 text-[var(--pstc-secondary)]" />
-                PSTC Office, Dhaka, Bangladesh
+                PSTC Bhaban, House # 5, Main Road, Block – B, Aftabnagar, Badda, Dhaka-1212, Bangladesh.
               </p>
               <p className="flex items-center gap-3">
                 <Phone className="size-5 text-[var(--pstc-secondary)]" />
-                +880 0000 000000
+                Tel: +88 02 222 6602372-5
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="size-5 text-[var(--pstc-secondary)]" />
-                info@pstc-bgd.org
+                Email: pstc@pstc-bgd.org
               </p>
             </div>
 

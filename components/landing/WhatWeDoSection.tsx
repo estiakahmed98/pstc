@@ -85,6 +85,8 @@ const flipCards = [
   {
     title: "Thematic Areas",
     image: "/images/thematic-areas.jpg",
+    description:
+      "Our thematic areas focus on improving public health, empowering youth, promoting gender equality, strengthening climate resilience, and expanding skills development to create sustainable and inclusive communities.",
     items: [
       "Population Health and Nutrition (PHN)",
       "Youth & Adolescent Development (YAD)",
@@ -96,6 +98,8 @@ const flipCards = [
   {
     title: "Our Projects",
     image: "/images/projects.jpeg",
+    description:
+      "Our projects address critical social and health challenges through innovative interventions, strategic partnerships, and community-based approaches that improve the lives of vulnerable populations across Bangladesh.",
     items: [
       "Urban Health Care",
       "Fortifying Organizational Capacity to Uphold SRHR Movement in Bangladesh (FOCUS)",
@@ -110,6 +114,8 @@ const flipCards = [
   {
     title: "Our Initiatives",
     image: "/images/pmc-aftabnagar.jpg",
+    description:
+      "Through our specialized initiatives, we deliver quality healthcare services, professional training, employment support, and community development programs that create lasting social impact.",
     items: [
       "PSTC Model Clinic (PMC)",
       "PMC – Aftabnagar",
@@ -125,6 +131,8 @@ const flipCards = [
   {
     title: "Our Priorities",
     image: "/images/climate-change-adaptation.jpeg",
+    description:
+      "We prioritize humanitarian response, climate resilience, social inclusion, and sustainable development to strengthen communities and prepare them for future challenges.",
     items: [
       "Humanitarian Crisis (Preparedness & Response)",
       "Climate Resilience & Inclusiveness",
@@ -133,6 +141,8 @@ const flipCards = [
   {
     title: "Youth Engagement",
     image: "/images/youth-adolescent-development.jpg",
+    description:
+      "Our youth engagement initiatives empower young people with leadership opportunities, life skills, and meaningful participation to become active contributors to positive social change.",
     items: ["uCon", "NaYoN"],
   },
 ];
@@ -143,10 +153,12 @@ export default function WhatWeDoSection() {
       <section className="mt-10 relative bg-white">
         {/* Layer 01: Hero */}
         <div className="sticky top-0 flex min-h-screen items-center overflow-hidden bg-white pt-[var(--header-height)]">
-          <div className="absolute inset-0 bg-cover bg-center"
+          <div
+            className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/population-health-nutrition.jpg')",
-            }} />
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/75" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(148,202,81,0.16),transparent_32%),radial-gradient(circle_at_10%_80%,rgba(11,87,158,0.12),transparent_36%)]" />
 
@@ -163,16 +175,16 @@ export default function WhatWeDoSection() {
                   }}
                   className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
                 >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="inline-block h-px w-10 bg-gradient-to-r from-[var(--pstc-primary)] to-transparent" />
-                  
-                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
-                    What We Do
-                  </p>
-                </div>
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="inline-block h-px w-10 bg-gradient-to-r from-[var(--pstc-primary)] to-transparent" />
+
+                    <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
+                      What We Do
+                    </p>
+                  </div>
                 </SparklesText>
 
-                <h1 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-7xl">
+                <h1 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-5xl">
                   Our Work <br />
                   <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
                     Areas
@@ -230,23 +242,23 @@ export default function WhatWeDoSection() {
           <div className="container-pstc relative z-10">
             <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
               <SparklesText
-                  sparklesCount={5}
-                  colors={{
-                    first: "var(--pstc-primary)",
-                    second: "var(--pstc-secondary)",
-                  }}
-                  className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
-                >
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
-                  Core Activities
-                </p>
+                sparklesCount={5}
+                colors={{
+                  first: "var(--pstc-primary)",
+                  second: "var(--pstc-secondary)",
+                }}
+                className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
+              >
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
+                    Core Activities
+                  </p>
 
-                <h2 className="mt-3 text-4xl font-extrabold uppercase leading-none tracking-[-0.04em] text-slate-900 md:text-6xl">
-                  Service{" "}
-                  <span className="text-[var(--pstc-primary)]">Focus</span>
-                </h2>
-              </div>
+                  <h2 className="mt-3 text-4xl font-extrabold uppercase leading-none tracking-[-0.04em] text-slate-900 md:text-4xl">
+                    Service{" "}
+                    <span className="text-[var(--pstc-primary)]">Focus</span>
+                  </h2>
+                </div>
               </SparklesText>
 
               <p className="max-w-xl text-base leading-8 text-slate-600">
@@ -267,8 +279,9 @@ export default function WhatWeDoSection() {
                     className="group relative self-start overflow-hidden rounded-[22px] border border-slate-200/80 bg-white/90 shadow-[0_14px_38px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--pstc-primary)]/50 hover:bg-white hover:shadow-[0_24px_60px_rgba(9,145,203,0.15)] sm:rounded-[26px]"
                   >
                     <div
-                      className={`relative z-10 flex flex-col sm:flex-row ${isReverse ? "lg:flex-row-reverse" : ""
-                        }`}
+                      className={`relative z-10 flex flex-col sm:flex-row ${
+                        isReverse ? "lg:flex-row-reverse" : ""
+                      }`}
                     >
                       <div className="flex items-center gap-4 bg-slate-50/90 px-5 py-5 text-left sm:w-[30%] sm:flex-col sm:justify-center sm:text-center lg:w-[32%]">
                         <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--pstc-primary)] text-white shadow-[0_12px_26px_rgba(9,145,203,0.22)] transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 group-hover:bg-[var(--pstc-secondary)] sm:size-20 sm:rounded-3xl">
@@ -279,7 +292,7 @@ export default function WhatWeDoSection() {
                           />
                         </div>
 
-                        <span className="text-4xl font-black tracking-[-0.08em] text-slate-200 transition-colors duration-500 group-hover:text-[var(--pstc-primary)]/25 sm:mt-5 sm:text-5xl">
+                        <span className="text-3xl font-black tracking-[-0.08em] text-slate-200 transition-colors duration-500 group-hover:text-[var(--pstc-primary)]/25 sm:mt-5 sm:text-5xl">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>
@@ -331,32 +344,36 @@ export default function WhatWeDoSection() {
 
         {/* Layer 03: Programs */}
         <div className="relative z-20 min-h-screen overflow-hidden bg-white py-20 pt-[calc(var(--header-height)+48px)]">
-          <div className="absolute inset-0 bg-cover bg-center"
+          <div
+            className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/images/youth-adolescent-development.jpg')",
-            }} />
+              backgroundImage:
+                "url('/images/youth-adolescent-development.jpg')",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/78" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(11,87,158,0.16),transparent_36%),radial-gradient(circle_at_80%_70%,rgba(148,202,81,0.14),transparent_34%)]" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(11,87,158,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(11,87,158,0.045)_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_0%,#000_60%,transparent_100%)]" />
           <div className="container-pstc relative z-10">
-            <div className="mx-auto mb-16 max-w-4xl text-center">
+            <div className="mb-10">
               <SparklesText
-                  sparklesCount={6}
-                  colors={{
-                    first: "var(--pstc-primary)",
-                    second: "var(--pstc-secondary)",
-                  }}
-                  className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
-                ><div className="mb-5 flex items-center justify-center gap-3">
-                <span className="inline-block h-px w-12 bg-gradient-to-r from-transparent to-[var(--pstc-primary)]" />
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
-                  Explore Our Work
-                </p>
-                <span className="inline-block h-px w-12 bg-gradient-to-l from-transparent to-[var(--pstc-primary)]" />
-              </div>
+                sparklesCount={6}
+                colors={{
+                  first: "var(--pstc-primary)",
+                  second: "var(--pstc-secondary)",
+                }}
+                className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary xl:mb-4 xl:text-xs xl:tracking-[0.36em]"
+              >
+                <div className="mb-5 flex items-center justify-center gap-3">
+                  <span className="inline-block h-px w-12 bg-gradient-to-r from-transparent to-[var(--pstc-primary)]" />
+                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[var(--pstc-secondary)]">
+                    Explore Our Work
+                  </p>
+                  <span className="inline-block h-px w-12 bg-gradient-to-l from-transparent to-[var(--pstc-primary)]" />
+                </div>
               </SparklesText>
 
-              <h2 className="text-4xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-6xl">
+              <h2 className="text-3xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-4xl">
                 Programs, <br />
                 <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
                   Projects & Initiatives
@@ -372,7 +389,7 @@ export default function WhatWeDoSection() {
                 >
                   <div className="relative h-full w-full transition-transform duration-2000 ease-[cubic-bezier(.22,1,.36,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                     <div className="absolute inset-0 overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] [backface-visibility:hidden]">
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-60 overflow-hidden">
                         <img
                           src={card.image}
                           alt={card.title}
@@ -395,16 +412,8 @@ export default function WhatWeDoSection() {
                           </h3>
 
                           <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                            Hover to explore this section.
+                            {card.description}
                           </p>
-                        </div>
-
-                        <div className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-bold uppercase text-[var(--pstc-primary)] transition-colors group-hover:text-[var(--pstc-secondary)]">
-                          View Details
-                          <ArrowUpRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                          />
                         </div>
                       </div>
 
@@ -439,6 +448,17 @@ export default function WhatWeDoSection() {
                             </li>
                           ))}
                         </ul>
+
+                        <button
+                          type="button"
+                          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-wide text-[var(--pstc-primary)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100 hover:shadow-lg active:scale-95"
+                        >
+                          View Details
+                          <ArrowUpRight
+                            size={18}
+                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          />
+                        </button>
                       </div>
                     </div>
                   </div>

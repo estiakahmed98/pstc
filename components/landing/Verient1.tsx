@@ -646,7 +646,7 @@ export default function HomePageAlt() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-serif text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+                className="font-serif text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-4xl lg:text-7xl xl:text-8xl"
               >
                 {currentSlide.title}{" "}
                 <span className="italic text-[var(--pstc-secondary)]">
@@ -765,7 +765,7 @@ export default function HomePageAlt() {
               <span className="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-[var(--pstc-secondary)]">
                 Who We Are
               </span>
-              <h2 className="text-4xl font-black leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
+              <h2 className="text-3xl font-black leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
                 A legacy of{" "}
                 <span className="text-[var(--pstc-primary)]">care</span>,
                 <br />
@@ -851,7 +851,7 @@ export default function HomePageAlt() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-[0.3em] text-[var(--pstc-secondary)]">
               What We Do
             </span>
-            <h2 className="text-4xl font-black text-foreground sm:text-5xl lg:text-6xl">
+            <h2 className="text-3xl font-black text-foreground sm:text-5xl lg:text-6xl">
               Our{" "}
               <span className="text-[var(--pstc-primary)]">Service Focus</span>
             </h2>
@@ -922,7 +922,7 @@ export default function HomePageAlt() {
               <span className="mb-3 inline-block text-sm font-bold uppercase tracking-[0.3em] text-[var(--pstc-secondary)]">
                 Knowledge Hub
               </span>
-              <h2 className="text-4xl font-black text-foreground sm:text-5xl">
+              <h2 className="text-3xl font-black text-foreground sm:text-5xl">
                 Publications
               </h2>
               <p className="mt-2 max-w-xl text-muted-foreground">
@@ -968,7 +968,7 @@ export default function HomePageAlt() {
             <span className="mb-3 inline-block text-sm font-bold uppercase tracking-[0.3em] text-[var(--pstc-secondary)]">
               Our Partners
             </span>
-            <h2 className="text-4xl font-black text-foreground sm:text-5xl lg:text-6xl">
+            <h2 className="text-3xl font-black text-foreground sm:text-5xl lg:text-6xl">
               Together For{" "}
               <span className="text-[var(--pstc-primary)]">Greater Impact</span>
             </h2>

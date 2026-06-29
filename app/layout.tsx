@@ -3,15 +3,16 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import HeaderMegaMenu from "@/components/landing/HeaderMegaMenu";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { TranslationProvider } from "@/components/shared/translation-provider";
-import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { AuthProvider } from "@/lib/rbac/auth-context";
 import { Toaster } from "sonner";
-import Footer from "@/components/landing/Footer";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -61,8 +62,17 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} bg-background`}
+      style={
+        {
+          "--header-height": "86px",
+          "--header-height-mobile": "82px",
+        } as React.CSSProperties
+      }
     >
-      <body className="font-sans antialiased" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className="min-h-screen overflow-x-hidden bg-background font-sans antialiased"
+      >
         <Script id="pstc-theme-init" strategy="beforeInteractive">
           {`(function () {
   try {
@@ -75,17 +85,16 @@ export default function RootLayout({
   } catch (e) {}
 })();`}
         </Script>
+
         <ThemeProvider>
           <TranslationProvider>
             <AuthProvider>
-              <HeaderMegaMenu />
               {children}
-              <Footer />
-              <ScrollToTopButton />
               <Toaster position="bottom-right" richColors />
             </AuthProvider>
           </TranslationProvider>
         </ThemeProvider>
+
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

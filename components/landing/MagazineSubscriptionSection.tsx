@@ -53,7 +53,13 @@ function MagazineSectionBackdrop() {
         viewBox="0 0 200 200"
         fill="none"
       >
-        <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" />
+        <circle
+          cx="100"
+          cy="100"
+          r="88"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
         <circle
           cx="100"
           cy="100"
@@ -62,7 +68,13 @@ function MagazineSectionBackdrop() {
           strokeWidth="1"
           strokeDasharray="6 10"
         />
-        <circle cx="100" cy="100" r="36" stroke="currentColor" strokeWidth="1" />
+        <circle
+          cx="100"
+          cy="100"
+          r="36"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
       </svg>
 
       <svg
@@ -393,12 +405,12 @@ export default function MagazineSubscriptionSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mx-auto mb-10 max-w-3xl text-center lg:mb-14"
+          className="mb-10 flex flex-col"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/50 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
+          {/* <div className="mb-4 mx inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/50 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
             <Sparkles className="size-3.5" />
             Digital Magazine
-          </div>
+          </div> */}
 
           <SparklesText
             sparklesCount={8}
@@ -406,12 +418,12 @@ export default function MagazineSubscriptionSection() {
               first: "var(--pstc-primary)",
               second: "var(--pstc-secondary)",
             }}
-            className="text-4xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl"
+            className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-primary sm:text-5xl lg:text-4xl"
           >
-            PROJANMO Kotha
+            PROJANMO <span className="text-secondary">Kotha</span>
           </SparklesText>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+          <p className="mt-4">
             Subscribe once and receive PSTC&apos;s monthly magazine as a soft
             copy in your inbox — field stories, youth voices, and community
             impact from across Bangladesh.
@@ -564,8 +576,8 @@ export default function MagazineSubscriptionSection() {
                       Get Every Issue In Your Inbox
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      Join readers who receive the digital edition directly —
-                      no print, no cost, just stories that matter.
+                      Join readers who receive the digital edition directly — no
+                      print, no cost, just stories that matter.
                     </p>
                   </div>
 

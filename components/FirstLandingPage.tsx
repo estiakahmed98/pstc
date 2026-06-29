@@ -800,7 +800,7 @@ export default function PSTCLandingPage() {
                       {t("landing.hero_label")}
                     </span>
 
-                    <h1 className="mt-5 max-w-4xl text-[2.75rem] font-black leading-[0.9] tracking-tight text-white sm:text-5xl sm:leading-[0.95] md:text-6xl lg:text-7xl">
+                    <h1 className="mt-5 max-w-4xl text-[2.75rem] font-black leading-[0.9] tracking-tight text-white sm:text-5xl sm:leading-[0.95] md:text-4xl lg:text-7xl">
                       {t("landing.hero_title")}
                     </h1>
 
@@ -1262,7 +1262,7 @@ export default function PSTCLandingPage() {
                 <div className="mb-4 inline-flex rounded-full bg-[#ea4335]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#ea4335] dark:bg-white/10 dark:text-[#ffd54f]">
                   {t("impact.subtitle")}
                 </div>
-                <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+                <h2 className="text-3xl font-black tracking-tight sm:text-5xl">
                   {t("impact.heading")}
                 </h2>
                 <p className="mt-6 text-lg leading-9 text-slate-600 dark:text-slate-300">
@@ -1304,7 +1304,7 @@ export default function PSTCLandingPage() {
                   <div className="mb-4 inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-white">
                     {t("ucon.subtitle")}
                   </div>
-                  <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+                  <h2 className="text-3xl font-black tracking-tight sm:text-5xl">
                     {t("ucon.title")}
                   </h2>
                   <p className="mt-6 text-lg leading-9 text-white/90">
@@ -1555,7 +1555,7 @@ export default function PSTCLandingPage() {
                     {t("get_involved.subtitle")}
                   </div>
 
-                  <h2 className="text-4xl font-black tracking-tight text-[#0B2E68] sm:text-5xl">
+                  <h2 className="text-3xl font-black tracking-tight text-[#0B2E68] sm:text-5xl">
                     {t("get_involved.heading")}
                   </h2>
 

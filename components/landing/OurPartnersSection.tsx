@@ -54,7 +54,10 @@ function PartnerOrb({
 
   return (
     <div
-      className={cn("group relative flex items-center justify-center", sizeClass)}
+      className={cn(
+        "group relative flex items-center justify-center",
+        sizeClass,
+      )}
       title={name}
       aria-label={name}
     >
@@ -104,26 +107,26 @@ export default function OurPartnersSection() {
       />
 
       <div className="container-pstc relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mb-4">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/60 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
             <Sparkles className="size-3.5" />
             Our Development Partners
           </div>
 
-          <h2 className="text-4xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
+          <h2 className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-4xl">
             Together For{" "}
             <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
               Greater Impact
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+          <p className="mt-5">
             Bangladeshi institutions at the core, global development partners
             surrounding us — united in delivering sustainable community health
             and social change.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-left gap-3">
             <span className="rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[var(--pstc-primary)]">
               {bangladeshiPartners.length} National Partners
             </span>
