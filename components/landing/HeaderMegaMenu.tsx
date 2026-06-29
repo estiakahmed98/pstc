@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronDown, LogIn, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
+  LogIn,
+  Menu,
+  X,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { usePstcLogo } from "@/lib/use-pstc-logo";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
@@ -751,7 +758,7 @@ function SidebarTreeNode({
 
       <div
         className={cn(
-          "group flex items-center gap-2 rounded-xl px-3 py-2.5 transition",
+          "group flex items-center gap-2 rounded-xl px-3 py-2.5 transition duration-300 hover:translate-x-1",
           isActive
             ? "bg-primary text-primary-foreground"
             : "text-foreground hover:bg-muted hover:text-primary",
@@ -823,6 +830,87 @@ function SidebarTreeNode({
           </div>
         </div>
       ) : null}
+    </div>
+  );
+}
+
+function MegaMenuScrollArea({ children }: { children: React.ReactNode }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollUp, setCanScrollUp] = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(false);
+
+  const updateScrollControls = () => {
+    const element = scrollRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const maxScrollTop = element.scrollHeight - element.clientHeight;
+    setCanScrollUp(element.scrollTop > 2);
+    setCanScrollDown(element.scrollTop < maxScrollTop - 2);
+  };
+
+  useEffect(() => {
+    updateScrollControls();
+
+    const element = scrollRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver(updateScrollControls);
+    resizeObserver.observe(element);
+
+    return () => resizeObserver.disconnect();
+  }, [children]);
+
+  const scrollBy = (direction: "up" | "down") => {
+    scrollRef.current?.scrollBy({
+      top: direction === "up" ? -180 : 180,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        aria-label="Scroll menu up"
+        onClick={() => scrollBy("up")}
+        className={cn(
+          "absolute left-1/2 top-0 z-10 grid size-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-border bg-background/95 text-primary shadow-lg backdrop-blur transition duration-300 hover:-translate-y-[60%] hover:scale-110 hover:bg-primary hover:text-primary-foreground",
+          canScrollUp
+            ? "opacity-100"
+            : "pointer-events-none opacity-0",
+        )}
+      >
+        <ChevronUp className="size-4" />
+      </button>
+
+      <div
+        ref={scrollRef}
+        onScroll={updateScrollControls}
+        onWheel={(event) => event.stopPropagation()}
+        className="max-h-[min(420px,calc(100vh-var(--header-height)-180px))] space-y-1 overflow-y-auto overscroll-contain pr-2 scroll-smooth [scrollbar-width:thin] [scrollbar-color:var(--pstc-primary)_transparent]"
+      >
+        {children}
+      </div>
+
+      <button
+        type="button"
+        aria-label="Scroll menu down"
+        onClick={() => scrollBy("down")}
+        className={cn(
+          "absolute bottom-0 left-1/2 z-10 grid size-8 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-border bg-background/95 text-primary shadow-lg backdrop-blur transition duration-300 hover:translate-y-[60%] hover:scale-110 hover:bg-primary hover:text-primary-foreground",
+          canScrollDown
+            ? "opacity-100"
+            : "pointer-events-none opacity-0",
+        )}
+      >
+        <ChevronDown className="size-4" />
+      </button>
     </div>
   );
 }
@@ -963,25 +1051,25 @@ export default function HeaderMegaMenu() {
               <img
                 src={logoSrc}
                 alt="PSTC Logo"
-                className="h-10 w-32 object-contain sm:h-11 sm:w-36 lg:h-12 lg:w-40 xl:h-14 xl:w-44"
+                className="h-10 w-32 object-contain sm:h-11 sm:w-36 lg:h-11 lg:w-36 xl:h-12 xl:w-40 2xl:h-14 2xl:w-44"
               />
             </Link>
           </div>
 
-          <nav className="hidden min-w-0 items-center justify-center gap-0.5 lg:flex xl:gap-1 2xl:gap-1.5">
+          <nav className="hidden min-w-0 items-center justify-center gap-0 lg:flex xl:gap-0.5 2xl:gap-1.5">
             {megaMenus.map((menu) => (
               <Link
                 key={menu.href}
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
                 className={cn(
-                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-primary/15 hover:text-primary lg:px-3 xl:gap-1.5 xl:px-3.5 xl:py-3 xl:text-lg",
+                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2 py-2.5 text-xs font-black text-foreground transition hover:bg-primary/15 hover:text-primary lg:px-2.5 lg:text-[13px] xl:gap-1 xl:px-3 xl:py-3 xl:text-sm 2xl:gap-1.5 2xl:px-3.5 2xl:text-lg",
                   activeMenu?.href === menu.href &&
                     "bg-primary/15 text-primary",
                 )}
               >
                 {menu.label}
-                <ChevronDown className="size-3.5 shrink-0 xl:size-4" />
+                <ChevronDown className="size-3.5 shrink-0 2xl:size-4" />
               </Link>
             ))}
             {directLinks.map((link) => (
@@ -989,7 +1077,7 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
-                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary lg:px-3 xl:px-3.5 xl:py-3 xl:text-lg"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2 py-2.5 text-xs font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary lg:px-2.5 lg:text-[13px] xl:px-3 xl:py-3 xl:text-sm 2xl:px-3.5 2xl:text-base"
               >
                 {link.label}
               </Link>
@@ -997,12 +1085,12 @@ export default function HeaderMegaMenu() {
           </nav>
 
           <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 lg:ml-0">
-            <ThemeToggle containerClassName="h-10 w-10 xl:h-11 xl:w-11 2xl:h-12 2xl:w-12" />
-            <LanguageButton containerClassName="h-10 w-10 xl:h-11 xl:w-11 2xl:h-12 2xl:w-12" />
+            <ThemeToggle containerClassName="h-10 w-10 xl:h-10 xl:w-10 2xl:h-12 2xl:w-12" />
+            <LanguageButton containerClassName="h-10 w-10 xl:h-10 xl:w-10 2xl:h-12 2xl:w-12" />
             <MovingLinkButton
               href="/login"
-              containerClassName="hidden h-10 min-w-[92px] lg:block xl:h-11 xl:min-w-[108px]"
-              className="px-3.5 xl:px-4"
+              containerClassName="hidden h-10 min-w-[88px] lg:block xl:h-10 xl:min-w-[96px] 2xl:h-11 2xl:min-w-[108px]"
+              className="px-3 text-xs 2xl:px-4 2xl:text-sm"
             >
               Login
               <LogIn className="size-4" />
@@ -1031,10 +1119,7 @@ export default function HeaderMegaMenu() {
                         View All
                       </Link>
                     </div>
-                    <div
-                      onWheel={(event) => event.stopPropagation()}
-                      className="max-h-[min(420px,calc(100vh-var(--header-height)-180px))] space-y-1 overflow-y-auto overscroll-contain pr-2"
-                    >
+                    <MegaMenuScrollArea>
                       {activeMenu.children.map((node) => (
                         <SidebarTreeNode
                           key={node.href}
@@ -1045,7 +1130,7 @@ export default function HeaderMegaMenu() {
                           }}
                         />
                       ))}
-                    </div>
+                    </MegaMenuScrollArea>
                   </div>
                 </GlowPanel>
               </section>
