@@ -85,6 +85,8 @@ const flipCards = [
   {
     title: "Thematic Areas",
     image: "/images/thematic-areas.jpg",
+    description:
+       "Our thematic areas focus on improving public health, empowering youth, promoting gender equality, strengthening climate resilience, and expanding skills development to create sustainable and inclusive communities.",
     items: [
       "Population Health and Nutrition (PHN)",
       "Youth & Adolescent Development (YAD)",
@@ -96,6 +98,8 @@ const flipCards = [
   {
     title: "Our Projects",
     image: "/images/projects.jpeg",
+     description:
+          "Our projects address critical social and health challenges through innovative interventions, strategic partnerships, and community-based approaches that improve the lives of vulnerable populations across Bangladesh.",
     items: [
       "Urban Health Care",
       "Fortifying Organizational Capacity to Uphold SRHR Movement in Bangladesh (FOCUS)",
@@ -110,6 +114,8 @@ const flipCards = [
   {
     title: "Our Initiatives",
     image: "/images/pmc-aftabnagar.jpg",
+     description:
+    "Through our specialized initiatives, we deliver quality healthcare services, professional training, employment support, and community development programs that create lasting social impact.",
     items: [
       "PSTC Model Clinic (PMC)",
       "PMC – Aftabnagar",
@@ -125,6 +131,8 @@ const flipCards = [
   {
     title: "Our Priorities",
     image: "/images/climate-change-adaptation.jpeg",
+     description:
+         "We prioritize humanitarian response, climate resilience, social inclusion, and sustainable development to strengthen communities and prepare them for future challenges.",
     items: [
       "Humanitarian Crisis (Preparedness & Response)",
       "Climate Resilience & Inclusiveness",
@@ -133,6 +141,8 @@ const flipCards = [
   {
     title: "Youth Engagement",
     image: "/images/youth-adolescent-development.jpg",
+     description:
+    "Our youth engagement initiatives empower young people with leadership opportunities, life skills, and meaningful participation to become active contributors to positive social change.",
     items: ["uCon", "NaYoN"],
   },
 ];
@@ -372,7 +382,7 @@ export default function WhatWeDoSection() {
                 >
                   <div className="relative h-full w-full transition-transform duration-2000 ease-[cubic-bezier(.22,1,.36,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                     <div className="absolute inset-0 overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] [backface-visibility:hidden]">
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-60 overflow-hidden">
                         <img
                           src={card.image}
                           alt={card.title}
@@ -395,52 +405,56 @@ export default function WhatWeDoSection() {
                           </h3>
 
                           <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                            Hover to explore this section.
+                             {card.description}
                           </p>
                         </div>
 
-                        <div className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-bold uppercase text-[var(--pstc-primary)] transition-colors group-hover:text-[var(--pstc-secondary)]">
-                          View Details
-                          <ArrowUpRight
-                            size={16}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                          />
-                        </div>
                       </div>
 
                       <div className="absolute inset-x-0 bottom-0 h-1 bg-[var(--pstc-primary)]" />
                     </div>
 
                     <div className="pointer-events-auto absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[var(--pstc-primary)]/30 bg-[var(--pstc-primary)] p-7 text-white shadow-xl shadow-[var(--pstc-primary)]/20 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                      <div className="absolute -right-16 -top-16 size-40 rounded-full bg-white/5 blur-2xl" />
-                      <div className="absolute -bottom-20 -left-20 size-40 rounded-full bg-white/5 blur-2xl" />
+  <div className="absolute -right-16 -top-16 size-40 rounded-full bg-white/5 blur-2xl" />
+  <div className="absolute -bottom-20 -left-20 size-40 rounded-full bg-white/5 blur-2xl" />
 
-                      <div className="relative flex min-h-0 flex-1 flex-col">
-                        <div className="mb-5 flex items-start justify-between gap-4">
-                          <h3 className="text-xl font-bold uppercase tracking-[-0.04em]">
-                            {card.title}
-                          </h3>
+  <div className="relative flex min-h-0 flex-1 flex-col">
+    <div className="mb-5 flex items-start justify-between gap-4">
+      <h3 className="text-xl font-bold uppercase tracking-[-0.04em]">
+        {card.title}
+      </h3>
 
-                          <span className="shrink-0 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-                        </div>
+      <span className="shrink-0 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+    </div>
 
-                        <ul
-                          className="custom-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-2"
-                          onWheel={(e) => e.stopPropagation()}
-                        >
-                          {card.items.map((item) => (
-                            <li
-                              key={item}
-                              className="border-b border-white/10 pb-2.5 text-sm font-medium uppercase leading-relaxed text-white/90 last:border-0 last:pb-0"
-                            >
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+    <ul
+      className="custom-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-2"
+      onWheel={(e) => e.stopPropagation()}
+    >
+      {card.items.map((item) => (
+        <li
+          key={item}
+          className="border-b border-white/10 pb-2.5 text-sm font-medium uppercase leading-relaxed text-white/90 last:border-0 last:pb-0"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <button
+      type="button"
+      className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-wide text-[var(--pstc-primary)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100 hover:shadow-lg active:scale-95"
+    >
+      View Details
+      <ArrowUpRight
+        size={18}
+        className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+      />
+    </button>
+  </div>
+</div>
                   </div>
                 </div>
               ))}
