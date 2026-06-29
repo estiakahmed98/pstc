@@ -881,9 +881,7 @@ function MegaMenuScrollArea({ children }: { children: React.ReactNode }) {
         onClick={() => scrollBy("up")}
         className={cn(
           "absolute left-1/2 top-0 z-10 grid size-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-border bg-background/95 text-primary shadow-lg backdrop-blur transition duration-300 hover:-translate-y-[60%] hover:scale-110 hover:bg-primary hover:text-primary-foreground",
-          canScrollUp
-            ? "opacity-100"
-            : "pointer-events-none opacity-0",
+          canScrollUp ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
         <ChevronUp className="size-4" />
@@ -904,9 +902,7 @@ function MegaMenuScrollArea({ children }: { children: React.ReactNode }) {
         onClick={() => scrollBy("down")}
         className={cn(
           "absolute bottom-0 left-1/2 z-10 grid size-8 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border border-border bg-background/95 text-primary shadow-lg backdrop-blur transition duration-300 hover:translate-y-[60%] hover:scale-110 hover:bg-primary hover:text-primary-foreground",
-          canScrollDown
-            ? "opacity-100"
-            : "pointer-events-none opacity-0",
+          canScrollDown ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
         <ChevronDown className="size-4" />
@@ -963,18 +959,56 @@ function MobileNode({
   close: () => void;
   level?: number;
 }) {
+  const hasChildren = Boolean(node.children?.length);
+  const [open, setOpen] = useState(level === 0);
+
   return (
-    <div className={cn(level > 0 && "ml-3 border-l border-border pl-3")}>
-      <Link
-        href={node.href}
-        onClick={close}
-        className="block rounded-lg bg-muted px-3.5 py-3 text-sm font-bold text-foreground transition hover:bg-primary hover:text-primary-foreground"
+    <div
+      className={cn(
+        "min-w-0",
+        level > 0 && "ml-3 border-l border-border/80 pl-3",
+      )}
+    >
+      <div
+        className={cn(
+          "group flex min-w-0 items-stretch overflow-hidden rounded-xl border border-border/70 bg-muted/70 transition focus-within:border-primary hover:border-primary/50 hover:bg-primary/10",
+          level >= 2 && "rounded-lg bg-background",
+        )}
       >
-        {node.title}
-      </Link>
-      {node.children?.length ? (
+        <Link
+          href={node.href}
+          onClick={close}
+          className={cn(
+            "min-w-0 flex-1 px-3.5 py-3 text-sm font-bold leading-snug text-foreground transition group-hover:text-primary",
+            level >= 2 && "py-2.5 text-xs font-semibold",
+          )}
+        >
+          <span className="block whitespace-normal break-words">
+            {node.title}
+          </span>
+        </Link>
+
+        {hasChildren ? (
+          <button
+            type="button"
+            aria-label={open ? "Collapse submenu" : "Expand submenu"}
+            aria-expanded={open}
+            onClick={() => setOpen((prev) => !prev)}
+            className="grid w-11 shrink-0 place-items-center border-l border-border/70 text-muted-foreground transition hover:bg-primary hover:text-primary-foreground"
+          >
+            <ChevronDown
+              className={cn(
+                "size-4 transition-transform duration-200",
+                open && "rotate-180",
+              )}
+            />
+          </button>
+        ) : null}
+      </div>
+
+      {hasChildren && open ? (
         <div className="mt-2 grid gap-2">
-          {node.children.map((child) => (
+          {node.children?.map((child) => (
             <MobileNode
               key={child.href}
               node={child}
@@ -988,6 +1022,56 @@ function MobileNode({
   );
 }
 
+function MobileMenuCard({
+  menu,
+  close,
+}: {
+  menu: MegaMenu;
+  close: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <GlowPanel className="rounded-[22px]" radius={22}>
+      <div className="bg-background p-3.5 backdrop-blur-xl">
+        <div className="flex min-w-0 items-stretch overflow-hidden rounded-2xl border border-border bg-card">
+          <Link
+            href={menu.href}
+            onClick={close}
+            className="min-w-0 flex-1 px-4 py-3.5 text-lg font-black leading-tight text-foreground transition hover:text-primary"
+          >
+            <span className="block whitespace-normal break-words">
+              {menu.label}
+            </span>
+          </Link>
+          <button
+            type="button"
+            aria-label={open ? "Collapse menu" : "Expand menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((prev) => !prev)}
+            className="grid w-12 shrink-0 place-items-center border-l border-border text-primary transition hover:bg-primary hover:text-primary-foreground"
+          >
+            <ChevronDown
+              className={cn(
+                "size-5 transition-transform duration-200",
+                open && "rotate-180",
+              )}
+            />
+          </button>
+        </div>
+
+        {open ? (
+          <div className="mt-3 grid gap-2">
+            {menu.children.map((node) => (
+              <MobileNode key={node.href} node={node} close={close} />
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </GlowPanel>
+  );
+}
+
 export default function HeaderMegaMenu() {
   const [activeMenu, setActiveMenu] = useState<MegaMenu | null>(null);
   const [previewNode, setPreviewNode] = useState<MenuNode | null>(null);
@@ -995,7 +1079,7 @@ export default function HeaderMegaMenu() {
   const logoSrc = usePstcLogo();
 
   useEffect(() => {
-    if (!activeMenu) {
+    if (!activeMenu && !mobileOpen) {
       return;
     }
 
@@ -1015,7 +1099,7 @@ export default function HeaderMegaMenu() {
       document.body.style.overflow = originalOverflow;
       document.body.style.paddingRight = originalPaddingRight;
     };
-  }, [activeMenu]);
+  }, [activeMenu, mobileOpen]);
 
   const openMenu = (menu: MegaMenu) => {
     setActiveMenu(menu);
@@ -1040,7 +1124,10 @@ export default function HeaderMegaMenu() {
             <div className="lg:hidden">
               <IconMovingButton
                 ariaLabel="Open menu"
-                onClick={() => setMobileOpen(true)}
+                onClick={() => {
+                  closeMenu();
+                  setMobileOpen(true);
+                }}
                 className="h-11 w-11"
               >
                 <Menu className="size-5" />
@@ -1184,16 +1271,16 @@ export default function HeaderMegaMenu() {
 
       {mobileOpen ? (
         <div className="fixed inset-0 z-[70] bg-background lg:hidden">
-          <div className="flex h-[var(--header-height)] items-center justify-between border-b border-border px-5">
+          <div className="flex h-[var(--header-height)] items-center justify-between gap-3 border-b border-border px-4 sm:px-5">
             <Link
               href="/"
               onClick={() => setMobileOpen(false)}
-              className="inline-flex"
+              className="inline-flex min-w-0"
             >
               <img
                 src={logoSrc}
                 alt="PSTC Logo"
-                className="h-10 w-32 object-contain"
+                className="h-10 w-32 object-contain sm:w-36"
               />
             </Link>
             <IconMovingButton
@@ -1204,17 +1291,23 @@ export default function HeaderMegaMenu() {
             </IconMovingButton>
           </div>
 
-          <div className="h-[calc(100vh-var(--header-height))] overflow-y-auto px-5 py-6">
-            <div className="grid gap-4">
-              <div className="flex flex-col gap-3 rounded-[24px] border border-border bg-card p-4 sm:flex-row">
+          <div className="h-[calc(100vh-var(--header-height))] overflow-y-auto overscroll-contain px-4 py-5 sm:px-5">
+            <div className="mx-auto grid max-w-2xl gap-3">
+              <div className="grid grid-cols-3 gap-3 rounded-[22px] border border-border bg-card p-3">
                 <ThemeToggle
-                  containerClassName="h-12 w-full sm:w-auto"
+                  containerClassName="h-12 w-full"
                   className="w-full justify-center px-4"
                 />
+
+                <LanguageButton
+                  containerClassName="h-12 w-full"
+                  className="w-full justify-center px-4"
+                />
+
                 <MovingLinkButton
                   href="/login"
                   onClick={() => setMobileOpen(false)}
-                  containerClassName="h-12 w-full sm:flex-1"
+                  containerClassName="h-12 w-full"
                   className="w-full justify-center px-4"
                 >
                   Login
@@ -1223,30 +1316,11 @@ export default function HeaderMegaMenu() {
               </div>
 
               {megaMenus.map((menu) => (
-                <GlowPanel
+                <MobileMenuCard
                   key={menu.href}
-                  className="rounded-[24px]"
-                  radius={24}
-                >
-                  <div className="bg-background p-4 backdrop-blur-xl">
-                    <Link
-                      href={menu.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="mb-4 block whitespace-nowrap text-xl font-black text-foreground"
-                    >
-                      {menu.label}
-                    </Link>
-                    <div className="grid gap-2">
-                      {menu.children.map((node) => (
-                        <MobileNode
-                          key={node.href}
-                          node={node}
-                          close={() => setMobileOpen(false)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </GlowPanel>
+                  menu={menu}
+                  close={() => setMobileOpen(false)}
+                />
               ))}
 
               <MovingLinkButton

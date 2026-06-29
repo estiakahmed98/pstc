@@ -31,10 +31,7 @@ interface SidebarProps {
   onClose?: () => void;
 }
 
-export function Sidebar({
-  mobileOpen = false,
-  onClose,
-}: SidebarProps) {
+export function Sidebar({ mobileOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
   const user = useCurrentUser();
   const { can } = usePermission();
@@ -118,7 +115,11 @@ export function Sidebar({
       aria-label="Dashboard sidebar"
     >
       <div className="mb-6 flex items-center justify-between gap-3 rounded-xl lg:mb-8 lg:block">
-        <img src="/pstc.jpeg" alt="PSTC Logo" className="h-14 rounded-xl lg:h-24" />
+        <img
+          src="/pstc_logo.png"
+          alt="PSTC Logo"
+          className="h-14 rounded-xl lg:h-24"
+        />
 
         <Button
           type="button"
