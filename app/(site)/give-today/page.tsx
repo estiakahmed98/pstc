@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useTranslation } from '@/hooks/use-translation';
-import { toast } from 'sonner';
-import { Heart } from 'lucide-react';
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/hooks/use-translation";
+import { toast } from "sonner";
+import { Heart } from "lucide-react";
 
 export default function DonatePage() {
   const { t } = useTranslation();
-  const [amount, setAmount] = useState('');
-  const [frequency, setFrequency] = useState<'once' | 'monthly'>('once');
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [amount, setAmount] = useState("");
+  const [frequency, setFrequency] = useState<"once" | "monthly">("once");
+  const [formData, setFormData] = useState({ name: "", email: "" });
 
   const quickAmounts = [10, 25, 50, 100, 250, 500];
 
@@ -19,8 +19,8 @@ export default function DonatePage() {
     e.preventDefault();
     if (amount && formData.name && formData.email) {
       toast.success(`Thank you for your donation of $${amount}!`);
-      setAmount('');
-      setFormData({ name: '', email: '' });
+      setAmount("");
+      setFormData({ name: "", email: "" });
     }
   };
 
@@ -28,9 +28,10 @@ export default function DonatePage() {
     <>
       <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-b border-border">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h1 className="text-4xl font-bold mb-4">{t('nav.donate')}</h1>
+          <h1 className="text-3xl font-bold mb-4">{t("nav.donate")}</h1>
           <p className="text-lg text-muted-foreground">
-            Your donation helps us reach more communities and create sustainable social change
+            Your donation helps us reach more communities and create sustainable
+            social change
           </p>
         </div>
       </section>
@@ -44,14 +45,18 @@ export default function DonatePage() {
               <form onSubmit={handleDonate} className="space-y-6">
                 {/* Frequency */}
                 <div>
-                  <label className="block text-sm font-medium mb-3">Donation Type</label>
+                  <label className="block text-sm font-medium mb-3">
+                    Donation Type
+                  </label>
                   <div className="flex gap-4">
                     <label className="flex items-center cursor-pointer">
                       <input
                         type="radio"
                         value="once"
-                        checked={frequency === 'once'}
-                        onChange={(e) => setFrequency(e.target.value as 'once' | 'monthly')}
+                        checked={frequency === "once"}
+                        onChange={(e) =>
+                          setFrequency(e.target.value as "once" | "monthly")
+                        }
                         className="mr-2"
                       />
                       <span>One-time</span>
@@ -60,8 +65,10 @@ export default function DonatePage() {
                       <input
                         type="radio"
                         value="monthly"
-                        checked={frequency === 'monthly'}
-                        onChange={(e) => setFrequency(e.target.value as 'once' | 'monthly')}
+                        checked={frequency === "monthly"}
+                        onChange={(e) =>
+                          setFrequency(e.target.value as "once" | "monthly")
+                        }
                         className="mr-2"
                       />
                       <span>Monthly</span>
@@ -71,13 +78,17 @@ export default function DonatePage() {
 
                 {/* Quick Amounts */}
                 <div>
-                  <label className="block text-sm font-medium mb-3">Amount (USD)</label>
+                  <label className="block text-sm font-medium mb-3">
+                    Amount (USD)
+                  </label>
                   <div className="grid grid-cols-3 gap-3 mb-4">
                     {quickAmounts.map((quickAmount) => (
                       <Button
                         key={quickAmount}
                         type="button"
-                        variant={amount === String(quickAmount) ? 'default' : 'outline'}
+                        variant={
+                          amount === String(quickAmount) ? "default" : "outline"
+                        }
                         onClick={() => setAmount(String(quickAmount))}
                       >
                         ${quickAmount}
@@ -95,24 +106,32 @@ export default function DonatePage() {
 
                 {/* Personal Info */}
                 <div>
-                  <label className="block text-sm font-medium mb-2">Full Name</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     placeholder="Your name"
                     className="w-full px-4 py-2 border border-border rounded-md"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Email
+                  </label>
                   <input
                     type="email"
                     placeholder="your.email@example.com"
                     className="w-full px-4 py-2 border border-border rounded-md"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                   />
                 </div>
 
@@ -129,23 +148,33 @@ export default function DonatePage() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">$10</p>
-                    <p className="font-semibold">Provides health education to 5 young people</p>
+                    <p className="font-semibold">
+                      Provides health education to 5 young people
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">$25</p>
-                    <p className="font-semibold">Supports a community health worker for one day</p>
+                    <p className="font-semibold">
+                      Supports a community health worker for one day
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">$50</p>
-                    <p className="font-semibold">Trains a peer educator in CSE</p>
+                    <p className="font-semibold">
+                      Trains a peer educator in CSE
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">$100</p>
-                    <p className="font-semibold">Provides maternal health services to a woman</p>
+                    <p className="font-semibold">
+                      Provides maternal health services to a woman
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">$250+</p>
-                    <p className="font-semibold">Funds a comprehensive community program</p>
+                    <p className="font-semibold">
+                      Funds a comprehensive community program
+                    </p>
                   </div>
                 </div>
               </Card>
@@ -153,7 +182,8 @@ export default function DonatePage() {
               <Card className="p-8">
                 <h3 className="text-lg font-bold mb-4">Transparency Matters</h3>
                 <p className="text-muted-foreground mb-4">
-                  We believe in complete transparency about how your donation is used. 85% of funds go directly to programs.
+                  We believe in complete transparency about how your donation is
+                  used. 85% of funds go directly to programs.
                 </p>
                 <Button variant="outline" className="w-full">
                   Download Annual Report

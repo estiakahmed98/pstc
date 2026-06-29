@@ -56,7 +56,7 @@ export default function ContactPage() {
               Contact Us
             </div>
 
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground md:text-6xl">
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl">
               Get in Touch With PSTC
             </h1>
 
