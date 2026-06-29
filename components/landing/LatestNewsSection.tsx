@@ -167,7 +167,7 @@ export default function LatestNewsSection() {
 
   return (
     <section className="relative bg-background px-4 py-8 text-foreground sm:px-6 sm:py-10 lg:px-8 lg:py-12">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto lg:p-15">
         <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
@@ -184,7 +184,8 @@ export default function LatestNewsSection() {
               }}
               className="text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl"
             >
-              Latest News & Stories
+              <span className="text-primary">Latest News &</span>{" "}
+              <span className="text-secondary">Stories</span>
             </SparklesText>
 
             <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">

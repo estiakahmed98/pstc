@@ -123,7 +123,7 @@ export default function HeroCarousel() {
   if (!activeSlide) return null;
 
   return (
-    <section className="relative z-10 h-[92vh] min-h-[620px] overflow-hidden bg-black text-white">
+    <section className="relative z-10 h-screen overflow-hidden bg-black text-white">
       <Image
         key={activeSlide.image}
         src={activeSlide.image}

@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  ChevronDown,
-  LogIn,
-  Menu,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, ChevronDown, LogIn, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { usePstcLogo } from "@/lib/use-pstc-logo";
@@ -859,7 +853,9 @@ function FeaturedImageCard({
           <p className="mb-2 text-[11px] font-black uppercase tracking-[0.2em] text-white/75">
             {eyebrow}
           </p>
-          <h3 className="text-2xl font-black leading-tight xl:text-3xl">{node.title}</h3>
+          <h3 className="text-2xl font-black leading-tight xl:text-3xl">
+            {node.title}
+          </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/85">
             {node.description ??
               "Hover menu links to preview the related PSTC section and image."}
@@ -979,7 +975,7 @@ export default function HeaderMegaMenu() {
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
                 className={cn(
-                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-primary/15 hover:text-primary lg:px-3 xl:gap-1.5 xl:px-3.5 xl:py-3 xl:text-sm",
+                  "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-primary/15 hover:text-primary lg:px-3 xl:gap-1.5 xl:px-3.5 xl:py-3 xl:text-lg",
                   activeMenu?.href === menu.href &&
                     "bg-primary/15 text-primary",
                 )}
@@ -993,7 +989,7 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
-                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary lg:px-3 xl:px-3.5 xl:py-3 xl:text-sm"
+                className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2.5 py-2.5 text-xs font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary lg:px-3 xl:px-3.5 xl:py-3 xl:text-lg"
               >
                 {link.label}
               </Link>
