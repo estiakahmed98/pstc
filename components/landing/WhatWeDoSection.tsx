@@ -12,6 +12,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { SparklesText } from "../ui/sparkles-text";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 const coreActivities = [
   {
@@ -199,35 +200,30 @@ export default function WhatWeDoSection() {
                 </p>
               </div>
 
-              <div className="relative hidden lg:block">
-                <div className="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-[var(--pstc-primary-glow)] blur-3xl" />
-                <div className="absolute -bottom-8 -right-8 h-44 w-44 rounded-full bg-[var(--pstc-secondary-glow)] blur-3xl" />
+              <BackgroundGradient className="relative hidden lg:block">
+                <div className="relative h-[460px] overflow-hidden rounded-[26px]">
+                  <img
+                    src="/images/uthan_boithok.jpg"
+                    alt="PSTC community health service"
+                    className="h-full w-full object-cover rounded-2xl"
+                  />
 
-                <div className="relative overflow-hidden rounded-[34px] border border-white bg-white/75 p-3 shadow-[0_30px_90px_rgba(15,23,42,0.14)] backdrop-blur-xl">
-                  <div className="relative h-[460px] overflow-hidden rounded-[26px]">
-                    <img
-                      src="/images/urban-health-care.jpg"
-                      alt="PSTC community health service"
-                      className="h-full w-full object-cover"
-                    />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,52,95,0.72)] via-transparent to-transparent" />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,52,95,0.72)] via-transparent to-transparent" />
-
-                    <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-white/90 p-5 backdrop-blur-md">
-                      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--pstc-secondary)]">
-                        Community Impact
-                      </p>
-                      <h3 className="mt-2 text-2xl font-extrabold uppercase leading-none tracking-[-0.04em] text-slate-900">
-                        Health, Youth &
-                        <span className="text-[var(--pstc-primary)]">
-                          {" "}
-                          Development
-                        </span>
-                      </h3>
-                    </div>
+                  <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-white/90 p-5 backdrop-blur-md">
+                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--pstc-secondary)]">
+                      Community Impact
+                    </p>
+                    <h3 className="mt-2 text-2xl font-extrabold uppercase leading-none tracking-[-0.04em] text-slate-900">
+                      Health, Youth &
+                      <span className="text-[var(--pstc-primary)]">
+                        {" "}
+                        Development
+                      </span>
+                    </h3>
                   </div>
                 </div>
-              </div>
+              </BackgroundGradient>
             </div>
           </div>
         </div>
