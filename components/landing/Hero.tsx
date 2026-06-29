@@ -173,7 +173,7 @@ function JourneyHangingCard() {
         <div className="relative h-full w-full transition duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
           {/* Front */}
           <div className="absolute inset-0 overflow-hidden rounded-[1rem] border border-primary/20 bg-card/95 text-center shadow-[0_14px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl [backface-visibility:hidden] md:rounded-[1.15rem] lg:rounded-[1.3rem] xl:rounded-[1.4rem]">
-            <div className="h-1.5 w-full bg-gradient-to-r from-primary via-secondary to-primary xl:h-2" />
+            <div className="h-1.5 w-full bg-gradient-to-r from-primary via-secondary to-primary xl:h-6" />
 
             <div className="p-2.5 md:p-3 lg:p-3.5 xl:p-4">
               <div className="mx-auto grid size-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/30 md:size-9 lg:size-10 lg:rounded-2xl">
@@ -184,9 +184,9 @@ function JourneyHangingCard() {
                 48
               </div>
 
-              <p className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
-                Years Anniversary
-              </p>
+              <SparklesText className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
+                Years <span className="text-secondary">Anniversary</span>
+              </SparklesText>
             </div>
           </div>
 
