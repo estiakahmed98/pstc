@@ -1,4 +1,4 @@
-import { PrismaClient } from "prisma-client-generated";
+import { PrismaClient, type LandingItemKind } from "prisma-client-generated";
 import { hash } from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -191,6 +191,52 @@ const whoWeAreItems = [
     "ScrollText",
   ],
 ] as const;
+
+type StructuredSeedItem = {
+  key: string;
+  kind: LandingItemKind;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  href?: string;
+  iconKey?: string;
+  image?: string;
+  details?: { items: string[] };
+  metadata?: Record<string, string | boolean>;
+};
+
+const structuredLandingItems: Record<string, StructuredSeedItem[]> = {
+  "what-we-do": [
+    { key: "health-service-delivery", kind: "ACTIVITY", title: "Health Service Delivery", iconKey: "HeartHandshake", details: { items: ["Clinic and community based health service delivery projects in urban and rural areas", "Special focus on mothers, children, adolescents and youth"] } },
+    { key: "children-community-development", kind: "ACTIVITY", title: "Children & Community Development", iconKey: "Users", details: { items: ["Children and adolescents development activities", "Child labor, street children and working women", "Water supply, sanitation and hygiene education programs"] } },
+    { key: "collaboration-research", kind: "ACTIVITY", title: "Collaboration & Research", iconKey: "BarChart3", details: { items: ["GOB-NGO private sector collaboration and coordination", "Advocacy programs at different level", "Research studies, base line survey and market research"] } },
+    { key: "bcc-publications", kind: "ACTIVITY", title: "BCC & Publications", iconKey: "BookOpen", details: { items: ["Publish monthly magazine PROJANMO Kotha", "Producing BCC materials", "Street drama, folksongs and cultural show"] } },
+    { key: "beneficiaries", kind: "ACTIVITY", title: "Our Beneficiaries", iconKey: "Users", details: { items: ["Women and girls", "Children, youth and adolescents", "Pregnant mothers", "Men and boys", "Slum dwellers", "Brothel based sex workers", "Other vulnerable populations"] } },
+    { key: "training-technical-assistance", kind: "ACTIVITY", title: "Training & Technical Assistance", iconKey: "GraduationCap", details: { items: ["Life skill training", "Skill development training", "Income generating training", "Training need assessment and impact evaluation", "Training curricula development", "Technical assistance for grants management and NGO sustainability"] } },
+    { key: "disaster-preparedness", kind: "ACTIVITY", title: "Disaster Preparedness", iconKey: "Shield", details: { items: ["Program and training on disaster preparedness and management"] } },
+    { key: "thematic-areas", kind: "CARD", title: "Thematic Areas", description: "Our thematic areas focus on improving public health, empowering youth, promoting gender equality, strengthening climate resilience, and expanding skills development.", href: "/what-we-do/thematic-areas", image: "/images/thematic-areas.jpg", details: { items: ["Population Health and Nutrition (PHN)", "Youth & Adolescent Development (YAD)", "Gender and Governance (GAG)", "Climate Change and Adaptation (CCA)", "Skills Education and Training (SET)"] } },
+    { key: "projects", kind: "CARD", title: "Our Projects", description: "Our projects address critical social and health challenges through innovative interventions, partnerships, and community-based approaches.", href: "/what-we-do/projects", image: "/images/projects.jpeg", details: { items: ["Urban Health Care", "FOCUS", "Person Who Uses Drugs (PUD)", "Community Mobilization Program (CMP)", "SUFASEC", "LEVIS", "HOPE", "SPRINT"] } },
+    { key: "initiatives", kind: "CARD", title: "Our Initiatives", description: "Specialized initiatives deliver quality healthcare, professional training, employment support, and community development programs.", href: "/what-we-do/initiatives", image: "/images/pmc-aftabnagar.jpg", details: { items: ["PSTC Model Clinic (PMC)", "PMC - Aftabnagar", "PMC - Gazipur", "PMC - Kushtia", "Community Paramedic Training Institute (CPTI)", "PSTC Institute for Employment Support PIES", "Caregivers", "PSTC Complex", "PSTC Bhaban"] } },
+    { key: "priorities", kind: "CARD", title: "Our Priorities", description: "We prioritize humanitarian response, climate resilience, social inclusion, and sustainable development.", href: "/what-we-do/priorities", image: "/images/climate-change-adaptation.jpeg", details: { items: ["Humanitarian Crisis (Preparedness & Response)", "Climate Resilience & Inclusiveness"] } },
+    { key: "youth-engagement", kind: "CARD", title: "Youth Engagement", description: "Youth engagement initiatives create leadership opportunities, life skills, and meaningful participation.", href: "/what-we-do/youth-engagement", image: "/images/youth-adolescent-development.jpg", details: { items: ["uCon", "NaYoN"] } },
+  ],
+  nayon: [
+    { key: "readiness", kind: "CRITERION", title: "The Readiness", description: "High adaptability, solid teamwork, and a self-starter mindset.", metadata: { number: "01" } },
+    { key: "eagerness", kind: "CRITERION", title: "The Eagerness", description: "Open-minded, willing to learn, and passionate to explore.", metadata: { number: "02" } },
+    { key: "commitment", kind: "CRITERION", title: "The Commitment", description: "Meaningful participation, spare time, and collaborative spirit.", metadata: { number: "03" } },
+    { key: "discover", kind: "STEP", title: "Discover", description: "Learn about NaYoN programs and focus areas", metadata: { number: "01" } },
+    { key: "apply", kind: "STEP", title: "Apply", description: "Share your profile, age, and motivation", metadata: { number: "02" } },
+    { key: "connect", kind: "STEP", title: "Connect", description: "Join workshops, peers, and youth-led action", metadata: { number: "03" } },
+  ],
+  "magazine-subscription": [
+    { key: "projanmo-kotha", kind: "COVER", title: "PROJANMO Kotha", subtitle: "Monthly Magazine", description: "Stories of change from clinics to communities across Bangladesh.", image: "/publications/book-projonmo-bodle-bodle-jay.jpg", details: { items: ["Monthly", "Digital", "Free", "Bengali Stories"] }, metadata: { featured: true } },
+    { key: "field-stories", kind: "COVER", title: "Field Stories", image: "/publications/publication Cover 1.png" },
+    { key: "youth-voices", kind: "COVER", title: "Youth Voices", image: "/publications/proshno-korte-shikhun.jpg" },
+    { key: "email-delivery", kind: "PERK", title: "Email delivery", iconKey: "Mail" },
+    { key: "monthly-issues", kind: "PERK", title: "Monthly issues", iconKey: "BookOpen" },
+    { key: "free-soft-copy", kind: "PERK", title: "Free soft copy", iconKey: "Newspaper" },
+  ],
+};
 
 const publications = [
   [
@@ -402,6 +448,58 @@ async function main() {
           imageId: image.id,
           metadata: { number },
           sortOrder,
+        },
+      });
+    }
+  }
+
+  for (const [sectionKey, items] of Object.entries(structuredLandingItems)) {
+    const sectionId = sectionIds.get(sectionKey);
+    if (!sectionId) continue;
+
+    for (const [sortOrder, item] of items.entries()) {
+      let imageId: string | undefined;
+      if (item.image) {
+        const filename = decodeURIComponent(item.image.split("/").at(-1) ?? item.key);
+        const image = await prisma.mediaAsset.upsert({
+          where: { storageKey: `public:${item.image}` },
+          update: { url: item.image },
+          create: {
+            type: "IMAGE",
+            filename,
+            originalName: filename,
+            mimeType: imageMimeType(item.image),
+            url: item.image,
+            storageKey: `public:${item.image}`,
+            altText: item.title,
+            uploadedById: admin.id,
+          },
+        });
+        imageId = image.id;
+      }
+
+      await prisma.landingSectionItem.upsert({
+        where: {
+          landingSectionId_key: {
+            landingSectionId: sectionId,
+            key: item.key,
+          },
+        },
+        update: {},
+        create: {
+          landingSectionId: sectionId,
+          key: item.key,
+          kind: item.kind,
+          title: item.title,
+          subtitle: item.subtitle,
+          description: item.description,
+          href: item.href,
+          iconKey: item.iconKey,
+          imageId,
+          details: item.details,
+          metadata: item.metadata,
+          sortOrder,
+          isVisible: true,
         },
       });
     }

@@ -13,6 +13,7 @@ import { HeroSlidesEditor } from "@/components/dashboard/landing/hero-slides-edi
 import { MetricsEditor } from "@/components/dashboard/landing/metrics-editor";
 import { NewsEditor } from "@/components/dashboard/landing/news-editor";
 import { PartnersEditor } from "@/components/dashboard/landing/partners-editor";
+import { StructuredItemsEditor } from "@/components/dashboard/landing/structured-items-editor";
 
 type SectionEditorProps = {
   section: LandingSection;
@@ -112,6 +113,12 @@ export function SectionEditor({
 
       {section.type === "WHO_WE_ARE" ? (
         <SectionItemsEditor section={section} onChanged={onMediaChanged} />
+      ) : null}
+
+      {["WHAT_WE_DO", "NAYON", "MAGAZINE_SUBSCRIPTION"].includes(
+        section.type,
+      ) ? (
+        <StructuredItemsEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 
       {section.type === "PUBLICATIONS" ? (

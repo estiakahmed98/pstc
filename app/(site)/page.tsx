@@ -1,12 +1,12 @@
 import HeroCarousel, { type HeroSlideData } from "@/components/landing/Hero";
 import LatestNewsSection, { type NewsItem } from "@/components/landing/LatestNewsSection";
-import MagazineSubscriptionSection from "@/components/landing/MagazineSubscriptionSection";
-import NaYoNSection from "@/components/landing/NaYoNSection";
+import MagazineSubscriptionSection, { type MagazineItemData } from "@/components/landing/MagazineSubscriptionSection";
+import NaYoNSection, { type NayonItemData } from "@/components/landing/NaYoNSection";
 import OurPartnersSection, { type Partner } from "@/components/landing/OurPartnersSection";
 import PSTCGlobalReachSection, { type ReachMetric } from "@/components/landing/PSTCGlobalReachSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import type { Publication } from "@/components/landing/PublicationsSection";
-import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
+import WhatWeDoSection, { type WorkItemData } from "@/components/landing/WhatWeDoSection";
 import WhoWeAreSection, {
   type WhoWeAreItemData,
 } from "@/components/landing/WhoWeAreSection";
@@ -58,6 +58,72 @@ function getWhoItems(section?: PublicLandingSection): WhoWeAreItemData[] | undef
         description: item.description ?? "",
         image: item.image?.url ?? "/images/about-us.jpeg",
         iconKey: item.iconKey,
+      };
+    });
+}
+
+function getDetailItems(details: unknown): string[] {
+  if (!details || typeof details !== "object" || Array.isArray(details)) return [];
+  const items = (details as Record<string, unknown>).items;
+  return Array.isArray(items)
+    ? items.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+function getMetadata(item: PublicLandingSection["items"][number]) {
+  return item.metadata && typeof item.metadata === "object" && !Array.isArray(item.metadata)
+    ? (item.metadata as Record<string, unknown>)
+    : null;
+}
+
+function getWorkItems(section?: PublicLandingSection): WorkItemData[] | undefined {
+  if (!section) return undefined;
+  return section.items
+    .filter((item) => item.kind === "ACTIVITY" || item.kind === "CARD")
+    .map((item) => ({
+      kind: item.kind as WorkItemData["kind"],
+      title: item.title,
+      description: item.description ?? "",
+      image: item.image?.url ?? "/placeholder.jpg",
+      href: item.href,
+      iconKey: item.iconKey,
+      items: getDetailItems(item.details),
+    }));
+}
+
+function getNayonItems(section?: PublicLandingSection): NayonItemData[] | undefined {
+  if (!section) return undefined;
+  return section.items
+    .filter((item) => item.kind === "CRITERION" || item.kind === "STEP")
+    .map((item, index) => {
+      const metadata = getMetadata(item);
+      return {
+        kind: item.kind as NayonItemData["kind"],
+        title: item.title,
+        description: item.description ?? "",
+        number:
+          typeof metadata?.number === "string"
+            ? metadata.number
+            : String(index + 1).padStart(2, "0"),
+      };
+    });
+}
+
+function getMagazineItems(section?: PublicLandingSection): MagazineItemData[] | undefined {
+  if (!section) return undefined;
+  return section.items
+    .filter((item) => item.kind === "COVER" || item.kind === "PERK")
+    .map((item) => {
+      const metadata = getMetadata(item);
+      return {
+        kind: item.kind as MagazineItemData["kind"],
+        title: item.title,
+        subtitle: item.subtitle ?? "",
+        description: item.description ?? "",
+        image: item.image?.url ?? "/placeholder.jpg",
+        iconKey: item.iconKey,
+        featured: metadata?.featured === true,
+        tags: getDetailItems(item.details),
       };
     });
 }
@@ -139,9 +205,9 @@ function renderLandingSection(type: string, section?: PublicLandingSection) {
     case "WHO_WE_ARE":
       return <WhoWeAreSection items={getWhoItems(section)} />;
     case "WHAT_WE_DO":
-      return <WhatWeDoSection title={section?.title} description={section?.description ?? undefined} backgroundImage={section?.backgroundImage?.url} />;
+      return <WhatWeDoSection title={section?.title} description={section?.description ?? undefined} backgroundImage={section?.backgroundImage?.url} items={getWorkItems(section)} />;
     case "NAYON":
-      return <NaYoNSection title={section?.title} description={section?.description ?? undefined} image={section?.backgroundImage?.url} />;
+      return <NaYoNSection title={section?.title} description={section?.description ?? undefined} image={section?.backgroundImage?.url} items={getNayonItems(section)} />;
     case "PUBLICATIONS":
       return (
         <PublicationsSection
@@ -151,7 +217,7 @@ function renderLandingSection(type: string, section?: PublicLandingSection) {
         />
       );
     case "MAGAZINE_SUBSCRIPTION":
-      return <MagazineSubscriptionSection title={section?.title} description={section?.description ?? undefined} />;
+      return <MagazineSubscriptionSection title={section?.title} description={section?.description ?? undefined} items={getMagazineItems(section)} />;
     case "LATEST_NEWS":
       return <LatestNewsSection items={getNewsItems(section)} title={section?.title} description={section?.description ?? undefined} />;
     case "PARTNERS":

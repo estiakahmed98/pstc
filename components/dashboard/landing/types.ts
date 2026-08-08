@@ -51,6 +51,7 @@ export type LandingSection = {
     title: string;
     subtitle: string | null;
     description: string | null;
+    details: Record<string, unknown> | null;
     href: string | null;
     iconKey: string | null;
     metadata: Record<string, unknown> | null;

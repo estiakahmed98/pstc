@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { ReactLenis } from "lenis/react";
 import {
   ArrowUpRight,
@@ -10,11 +12,35 @@ import {
   BarChart3,
   HeartHandshake,
   GraduationCap,
+  type LucideIcon,
 } from "lucide-react";
 import { SparklesText } from "../ui/sparkles-text";
 import { BackgroundGradient } from "../ui/background-gradient";
 
-const coreActivities = [
+export type WorkItemData = {
+  kind: "ACTIVITY" | "CARD";
+  title: string;
+  description: string;
+  image: string;
+  href: string | null;
+  iconKey: string | null;
+  items: string[];
+};
+
+const workIconMap: Record<string, LucideIcon> = {
+  HeartHandshake,
+  Users,
+  BarChart3,
+  BookOpen,
+  GraduationCap,
+  Shield,
+};
+
+const defaultCoreActivities: Array<{
+  title: string;
+  icon: LucideIcon;
+  items: string[];
+}> = [
   {
     title: "Health Service Delivery",
     icon: HeartHandshake,
@@ -82,7 +108,13 @@ const coreActivities = [
   },
 ];
 
-const flipCards = [
+const defaultFlipCards: Array<{
+  title: string;
+  image: string;
+  description: string;
+  items: string[];
+  href: string;
+}> = [
   {
     title: "Thematic Areas",
     image: "/images/thematic-areas.jpg",
@@ -95,6 +127,7 @@ const flipCards = [
       "Climate Change and Adaptation (CCA)",
       "Skills Education and Training (SET)",
     ],
+    href: "/what-we-do/thematic-areas",
   },
   {
     title: "Our Projects",
@@ -111,6 +144,7 @@ const flipCards = [
       "Health Outreach and Protection Effort (HOPE)",
       "SPRINT",
     ],
+    href: "/what-we-do/projects",
   },
   {
     title: "Our Initiatives",
@@ -128,6 +162,7 @@ const flipCards = [
       "PSTC Complex",
       "PSTC Bhaban",
     ],
+    href: "/what-we-do/initiatives",
   },
   {
     title: "Our Priorities",
@@ -138,6 +173,7 @@ const flipCards = [
       "Humanitarian Crisis (Preparedness & Response)",
       "Climate Resilience & Inclusiveness",
     ],
+    href: "/what-we-do/priorities",
   },
   {
     title: "Youth Engagement",
@@ -145,6 +181,7 @@ const flipCards = [
     description:
       "Our youth engagement initiatives empower young people with leadership opportunities, life skills, and meaningful participation to become active contributors to positive social change.",
     items: ["uCon", "NaYoN"],
+    href: "/what-we-do/youth-engagement",
   },
 ];
 
@@ -152,11 +189,27 @@ export default function WhatWeDoSection({
   title = "Our Work Areas",
   description,
   backgroundImage,
+  items,
 }: {
   title?: string;
   description?: string;
   backgroundImage?: string;
+  items?: WorkItemData[];
 }) {
+  const coreActivities = items === undefined
+    ? defaultCoreActivities
+    : items
+        .filter((item) => item.kind === "ACTIVITY")
+        .map((item) => ({
+          ...item,
+          icon: (item.iconKey && workIconMap[item.iconKey]) || HeartHandshake,
+        }));
+  const flipCards = items === undefined
+    ? defaultFlipCards
+    : items.filter((item) => item.kind === "CARD");
+
+  if (!coreActivities.length && !flipCards.length) return null;
+
   return (
     <ReactLenis root>
       <section className="mt-10 relative bg-white">
@@ -388,10 +441,12 @@ export default function WhatWeDoSection({
                   <div className="relative h-full w-full transition-transform duration-2000 ease-[cubic-bezier(.22,1,.36,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                     <div className="absolute inset-0 overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] [backface-visibility:hidden]">
                       <div className="relative h-60 overflow-hidden">
-                        <img
+                        <Image
                           src={card.image}
                           alt={card.title}
-                          className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition duration-700 group-hover:scale-110"
                         />
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
@@ -447,16 +502,18 @@ export default function WhatWeDoSection({
                           ))}
                         </ul>
 
-                        <button
-                          type="button"
-                          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-wide text-[var(--pstc-primary)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100 hover:shadow-lg active:scale-95"
-                        >
-                          View Details
-                          <ArrowUpRight
-                            size={18}
-                            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                          />
-                        </button>
+                        {card.href ? (
+                          <Link
+                            href={card.href}
+                            className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-wide text-[var(--pstc-primary)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100 hover:shadow-lg active:scale-95"
+                          >
+                            View Details
+                            <ArrowUpRight
+                              size={18}
+                              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                            />
+                          </Link>
+                        ) : null}
                       </div>
                     </div>
                   </div>

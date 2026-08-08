@@ -14,7 +14,14 @@ import {
 import { toast } from "sonner";
 import { MovingLinkButton } from "@/components/ui/moving-link-button";
 
-const fitCriteria = [
+export type NayonItemData = {
+  kind: "CRITERION" | "STEP";
+  title: string;
+  description: string;
+  number: string;
+};
+
+const defaultFitCriteria = [
   {
     title: "The Readiness",
     text: "High adaptability, solid teamwork, and a self-starter mindset.",
@@ -29,7 +36,7 @@ const fitCriteria = [
   },
 ] as const;
 
-const onboardingSteps = [
+const defaultOnboardingSteps = [
   { step: "01", label: "Discover", detail: "Learn about NaYoN programs and focus areas" },
   { step: "02", label: "Apply", detail: "Share your profile, age, and motivation" },
   { step: "03", label: "Connect", detail: "Join workshops, peers, and youth-led action" },
@@ -173,15 +180,31 @@ export default function NaYoNSection({
   title = "National Youth Network",
   description,
   image = heroImage,
+  items,
 }: {
   title?: string;
   description?: string;
   image?: string;
+  items?: NayonItemData[];
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const fitCriteria = items === undefined
+    ? defaultFitCriteria.map((item) => ({ title: item.title, text: item.text }))
+    : items
+        .filter((item) => item.kind === "CRITERION")
+        .map((item) => ({ title: item.title, text: item.description }));
+  const onboardingSteps = items === undefined
+    ? defaultOnboardingSteps
+    : items
+        .filter((item) => item.kind === "STEP")
+        .map((item, index) => ({
+          step: item.number || String(index + 1).padStart(2, "0"),
+          label: item.title,
+          detail: item.description,
+        }));
 
   const handleInterestSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -316,7 +339,7 @@ export default function NaYoNSection({
             </div>
 
             <div className="flex flex-col bg-background p-6 sm:p-8 lg:p-10 xl:p-12">
-              <div>
+              {fitCriteria.length ? <div>
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--pstc-primary)]">
                   Are you the perfect fit?
                 </p>
@@ -348,9 +371,9 @@ export default function NaYoNSection({
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </div> : null}
 
-              <div className="mt-8 border-t border-border/70 pt-8">
+              {onboardingSteps.length ? <div className="mt-8 border-t border-border/70 pt-8">
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-muted-foreground">
                   How onboarding works
                 </p>
@@ -369,7 +392,7 @@ export default function NaYoNSection({
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> : null}
 
               <div className="mt-8 rounded-[1.25rem] bg-[var(--pstc-soft-bg)] p-5 sm:p-6">
                 <div className="mb-5 flex items-start gap-3">

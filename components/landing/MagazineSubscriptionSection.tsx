@@ -12,20 +12,40 @@ import {
   Sparkles,
   User,
   Building2,
+  type LucideIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { SparklesText } from "@/components/ui/sparkles-text";
 import { cn } from "@/lib/utils";
 
-const featuredCover = {
+export type MagazineItemData = {
+  kind: "COVER" | "PERK";
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  iconKey: string | null;
+  featured: boolean;
+  tags: string[];
+};
+
+const perkIconMap: Record<string, LucideIcon> = {
+  Mail,
+  BookOpen,
+  Newspaper,
+  Sparkles,
+};
+
+const defaultFeaturedCover = {
   title: "PROJANMO Kotha",
   issue: "Monthly Magazine",
   image: "/publications/book-projonmo-bodle-bodle-jay.jpg",
   tagline: "Stories of change from clinics to communities across Bangladesh.",
+  tags: ["Monthly", "Digital", "Free", "Bengali Stories"],
 };
 
-const recentCovers = [
+const defaultRecentCovers = [
   {
     title: "Field Stories",
     image: "/publications/publication Cover 1.png",
@@ -36,7 +56,7 @@ const recentCovers = [
   },
 ] as const;
 
-const perks = [
+const defaultPerks = [
   { icon: Mail, label: "Email delivery" },
   { icon: BookOpen, label: "Monthly issues" },
   { icon: Newspaper, label: "Free soft copy" },
@@ -371,9 +391,11 @@ function FormField({
 export default function MagazineSubscriptionSection({
   title = "PROJANMO Kotha",
   description,
+  items,
 }: {
   title?: string;
   description?: string;
+  items?: MagazineItemData[];
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -381,6 +403,33 @@ export default function MagazineSubscriptionSection({
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const covers = items === undefined
+    ? [
+        { ...defaultFeaturedCover, featured: true },
+        ...defaultRecentCovers.map((cover) => ({ ...cover, issue: "", tagline: "", tags: [], featured: false })),
+      ]
+    : items
+        .filter((item) => item.kind === "COVER")
+        .map((item) => ({
+          title: item.title,
+          issue: item.subtitle,
+          tagline: item.description,
+          image: item.image,
+          tags: item.tags,
+          featured: item.featured,
+        }));
+  const featuredCover = covers.find((cover) => cover.featured) ?? covers[0] ?? null;
+  const recentCovers = featuredCover
+    ? covers.filter((cover) => cover !== featuredCover).slice(0, 2)
+    : [];
+  const perks = items === undefined
+    ? defaultPerks
+    : items
+        .filter((item) => item.kind === "PERK")
+        .map((item) => ({
+          label: item.title,
+          icon: (item.iconKey && perkIconMap[item.iconKey]) || Sparkles,
+        }));
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -469,8 +518,8 @@ export default function MagazineSubscriptionSection({
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,var(--pstc-primary-soft),transparent_42%),radial-gradient(circle_at_100%_100%,var(--pstc-secondary-soft),transparent_38%)] opacity-80"
           />
 
-          <div className="relative grid lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="relative min-h-[360px] overflow-hidden border-b border-border/60 lg:min-h-[620px] lg:border-r lg:border-b-0">
+          <div className={cn("relative grid", featuredCover && "lg:grid-cols-[1.02fr_0.98fr]")}>
+            {featuredCover ? <div className="relative min-h-[360px] overflow-hidden border-b border-border/60 lg:min-h-[620px] lg:border-r lg:border-b-0">
               <MagazineCardBackdrop variant="showcase" />
               <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(11,87,158,0.08),transparent_45%,rgba(148,202,81,0.08))]" />
 
@@ -554,7 +603,7 @@ export default function MagazineSubscriptionSection({
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-2 lg:mt-6">
-                  {["Monthly", "Digital", "Free", "Bengali Stories"].map(
+                  {featuredCover.tags.map(
                     (tag) => (
                       <span
                         key={tag}
@@ -566,7 +615,7 @@ export default function MagazineSubscriptionSection({
                   )}
                 </div>
               </motion.div>
-            </div>
+            </div> : null}
 
             <div className="relative flex flex-col justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
               <MagazineCardBackdrop variant="form" />
