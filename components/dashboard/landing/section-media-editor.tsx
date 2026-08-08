@@ -11,9 +11,10 @@ export function SectionMediaEditor({
   section: LandingSection;
   onChanged: () => Promise<void> | void;
 }) {
+  const imageItems = section.items.filter((item) => item.kind !== "LOCATION");
   const hasRelatedImages =
     section.slides.length > 0 ||
-    section.items.length > 0 ||
+    imageItems.length > 0 ||
     section.newsSelections.length > 0 ||
     section.publicationSelections.length > 0 ||
     section.partnerSelections.length > 0;
@@ -45,7 +46,7 @@ export function SectionMediaEditor({
           />
         ))}
 
-        {section.items.map((item) => (
+        {imageItems.map((item) => (
           <ImageUploader
             key={item.id}
             label={item.title}

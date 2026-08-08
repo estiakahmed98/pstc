@@ -3,7 +3,10 @@
 import { useMemo, useState } from "react";
 
 import districtPaths from "@/lib/bd-districts.json";
-import { getDistrictStatus, type DistrictStatus } from "@/lib/bd-district-status";
+import {
+  PSTC_BRANCH_DISTRICT_SLUGS,
+  type DistrictStatus,
+} from "@/lib/bd-district-status";
 import { cn } from "@/lib/utils";
 
 const VIEWBOX = "0 0 1655.4 2224.5";
@@ -18,18 +21,32 @@ type District = {
 
 export default function PSTCBangladeshMap({
   className,
+  locations,
+  summary,
 }: {
   className?: string;
+  locations?: Array<{ key: string; title: string }>;
+  summary?: string;
 }) {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+
+  const activeDistricts = useMemo(() => {
+    const entries = locations?.flatMap((location) => [
+      location.key,
+      location.title.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    ]) ?? PSTC_BRANCH_DISTRICT_SLUGS;
+    return new Set(entries);
+  }, [locations]);
 
   const districts = useMemo<District[]>(
     () =>
       districtPaths.map((district) => ({
         ...district,
-        status: getDistrictStatus(district.slug),
+        status: activeDistricts.has(district.slug) || activeDistricts.has(
+          district.name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        ) ? "branch" : "none",
       })),
-    [],
+    [activeDistricts],
   );
 
   const hoveredDistrict = districts.find((d) => d.slug === hoveredSlug) ?? null;
@@ -107,9 +124,9 @@ export default function PSTCBangladeshMap({
               "Hover a highlighted district to view its name"
             )}
           </p>
-          {!hoveredDistrict ? (
+          {!hoveredDistrict && summary ? (
             <p className="text-xs font-medium text-[var(--pstc-secondary-dark)]">
-              20 districts · 72 offices · 22 clinics
+              {summary}
             </p>
           ) : null}
         </div>

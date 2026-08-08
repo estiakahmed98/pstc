@@ -1,14 +1,21 @@
-import HeroCarousel, { type HeroSlideData } from "@/components/landing/Hero";
+import HeroCarousel, {
+  type HeroAnniversaryData,
+  type HeroSlideData,
+} from "@/components/landing/Hero";
 import LatestNewsSection, { type NewsItem } from "@/components/landing/LatestNewsSection";
 import MagazineSubscriptionSection, { type MagazineItemData } from "@/components/landing/MagazineSubscriptionSection";
 import NaYoNSection, { type NayonItemData } from "@/components/landing/NaYoNSection";
 import OurPartnersSection, { type Partner } from "@/components/landing/OurPartnersSection";
-import PSTCGlobalReachSection, { type ReachMetric } from "@/components/landing/PSTCGlobalReachSection";
+import PSTCGlobalReachSection, {
+  type ReachLocation,
+  type ReachMetric,
+} from "@/components/landing/PSTCGlobalReachSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import type { Publication } from "@/components/landing/PublicationsSection";
 import WhatWeDoSection, { type WorkItemData } from "@/components/landing/WhatWeDoSection";
 import WhoWeAreSection, {
   type WhoWeAreItemData,
+  type WhoStatData,
 } from "@/components/landing/WhoWeAreSection";
 import { auth } from "@/auth";
 import {
@@ -156,6 +163,27 @@ function getHeroSlides(section?: PublicLandingSection): HeroSlideData[] | undefi
   }));
 }
 
+function getHeroAnniversary(
+  section?: PublicLandingSection,
+): HeroAnniversaryData | null | undefined {
+  if (!section) return undefined;
+  const metric = section.metrics[0];
+  if (!metric) return null;
+  return {
+    value: metric.value,
+    label: metric.label,
+    caption: metric.caption ?? "",
+  };
+}
+
+function getWhoStats(section?: PublicLandingSection): WhoStatData[] | undefined {
+  if (!section) return undefined;
+  return section.metrics.map((metric) => ({
+    value: metric.value,
+    label: metric.label,
+  }));
+}
+
 function getNewsItems(section?: PublicLandingSection): NewsItem[] | undefined {
   if (!section) return undefined;
   return section.newsSelections.map(({ newsArticle }) => ({
@@ -191,6 +219,13 @@ function getReachMetrics(section?: PublicLandingSection): ReachMetric[] | undefi
   }));
 }
 
+function getReachLocations(section?: PublicLandingSection): ReachLocation[] | undefined {
+  if (!section) return undefined;
+  return section.items
+    .filter((item) => item.kind === "LOCATION")
+    .map((item) => ({ key: item.key, title: item.title }));
+}
+
 function getAutoplayMs(section?: PublicLandingSection) {
   const settings = section?.settings;
   if (!settings || typeof settings !== "object" || Array.isArray(settings)) return undefined;
@@ -201,9 +236,9 @@ function getAutoplayMs(section?: PublicLandingSection) {
 function renderLandingSection(type: string, section?: PublicLandingSection) {
   switch (type) {
     case "HERO":
-      return <HeroCarousel slides={getHeroSlides(section)} autoplayMs={getAutoplayMs(section)} />;
+      return <HeroCarousel slides={getHeroSlides(section)} autoplayMs={getAutoplayMs(section)} anniversary={getHeroAnniversary(section)} />;
     case "WHO_WE_ARE":
-      return <WhoWeAreSection items={getWhoItems(section)} />;
+      return <WhoWeAreSection items={getWhoItems(section)} eyebrow={section?.eyebrow ?? undefined} title={section?.title} highlightedTitle={section?.highlightedTitle ?? undefined} description={section?.description ?? undefined} primaryCtaLabel={section?.primaryCtaLabel} primaryCtaHref={section?.primaryCtaHref} secondaryCtaLabel={section?.secondaryCtaLabel} secondaryCtaHref={section?.secondaryCtaHref} stats={getWhoStats(section)} />;
     case "WHAT_WE_DO":
       return <WhatWeDoSection title={section?.title} description={section?.description ?? undefined} backgroundImage={section?.backgroundImage?.url} items={getWorkItems(section)} />;
     case "NAYON":
@@ -223,7 +258,7 @@ function renderLandingSection(type: string, section?: PublicLandingSection) {
     case "PARTNERS":
       return <OurPartnersSection partners={getPartners(section)} title={section?.title} description={section?.description ?? undefined} />;
     case "GLOBAL_REACH":
-      return <PSTCGlobalReachSection title={section?.title} description={section?.description ?? undefined} metrics={getReachMetrics(section)} />;
+      return <PSTCGlobalReachSection title={section?.title} description={section?.description ?? undefined} metrics={getReachMetrics(section)} locations={getReachLocations(section)} />;
     default:
       return null;
   }

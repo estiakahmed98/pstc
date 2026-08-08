@@ -24,6 +24,12 @@ export function MetricsEditor({ section, onChanged }: { section: LandingSection;
   const [editingId, setEditingId] = useState<string | "new" | null>(null);
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [pending, setPending] = useState(false);
+  const copy = section.type === "HERO"
+    ? { title: "Anniversary badge", description: "Manage the anniversary figure displayed on the hero." }
+    : section.type === "WHO_WE_ARE"
+      ? { title: "Organization statistics", description: "Manage the summary figures displayed in Who We Are." }
+      : { title: "Reach metrics", description: "Manage the summary figures displayed above the map." };
+  const canAdd = section.type !== "HERO" || section.metrics.length === 0;
 
   function edit(metric: Metric) {
     setDraft({ key: metric.key, value: metric.value, label: metric.label, caption: metric.caption ?? "", tone: metric.tone ?? "primary", isVisible: metric.isVisible });
@@ -78,7 +84,7 @@ export function MetricsEditor({ section, onChanged }: { section: LandingSection;
 
   return (
     <section className="mt-6 border-t border-slate-200 pt-5">
-      <div className="mb-4 flex items-center justify-between gap-3"><div><h4 className="text-sm font-black text-slate-900">Reach metrics</h4><p className="mt-1 text-xs text-slate-400">Manage the summary figures displayed above the map.</p></div><button type="button" onClick={() => { setDraft(emptyDraft); setEditingId("new"); }} className="inline-flex h-9 items-center gap-2 rounded-xl bg-[#0193CD] px-3 text-xs font-black text-white"><Plus className="size-3.5" /> Add metric</button></div>
+      <div className="mb-4 flex items-center justify-between gap-3"><div><h4 className="text-sm font-black text-slate-900">{copy.title}</h4><p className="mt-1 text-xs text-slate-400">{copy.description}</p></div>{canAdd ? <button type="button" onClick={() => { setDraft(emptyDraft); setEditingId("new"); }} className="inline-flex h-9 items-center gap-2 rounded-xl bg-[#0193CD] px-3 text-xs font-black text-white"><Plus className="size-3.5" /> Add metric</button> : null}</div>
       <div className="space-y-2">
         {section.metrics.map((metric, index) => <div key={metric.id} className="rounded-2xl border border-slate-200 bg-white"><div className="flex items-center gap-2 p-3"><span className="min-w-14 text-lg font-black text-[#0193CD]">{metric.value}</span><div className="min-w-0 flex-1"><p className="truncate text-sm font-bold text-slate-800">{metric.label}</p><p className="truncate text-xs text-slate-400">{metric.tone ?? "primary"}{metric.isVisible ? "" : " · hidden"}</p></div><SmallButton label={`Move ${metric.label} up`} disabled={pending || index === 0} onClick={() => void move(index, -1)}><ArrowUp className="size-3.5" /></SmallButton><SmallButton label={`Move ${metric.label} down`} disabled={pending || index === section.metrics.length - 1} onClick={() => void move(index, 1)}><ArrowDown className="size-3.5" /></SmallButton><SmallButton label={`Edit ${metric.label}`} onClick={() => edit(metric)}><Pencil className="size-3.5" /></SmallButton><SmallButton label={`Delete ${metric.label}`} danger disabled={pending} onClick={() => void remove(metric)}><Trash2 className="size-3.5" /></SmallButton></div>{editingId === metric.id ? <MetricForm draft={draft} setDraft={setDraft} pending={pending} onSubmit={save} onCancel={() => setEditingId(null)} /> : null}</div>)}
       </div>

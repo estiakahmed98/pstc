@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import type { LandingSection } from "@/components/dashboard/landing/types";
 
 type Item = LandingSection["items"][number];
-type ItemKind = "ACTIVITY" | "CARD" | "CRITERION" | "STEP" | "COVER" | "PERK";
+type ItemKind = "ACTIVITY" | "CARD" | "CRITERION" | "STEP" | "COVER" | "PERK" | "LOCATION";
 type Draft = {
   kind: ItemKind;
   key: string;
@@ -33,6 +33,9 @@ const kindOptions: Record<string, Array<{ value: ItemKind; label: string }>> = {
   MAGAZINE_SUBSCRIPTION: [
     { value: "COVER", label: "Magazine cover" },
     { value: "PERK", label: "Subscriber perk" },
+  ],
+  GLOBAL_REACH: [
+    { value: "LOCATION", label: "Branch district" },
   ],
 };
 
@@ -183,7 +186,7 @@ export function StructuredItemsEditor({ section, onChanged }: { section: Landing
   return (
     <section className="mt-6 border-t border-slate-200 pt-5">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <div><h4 className="text-sm font-black text-slate-900">Structured content</h4><p className="mt-1 text-xs text-slate-400">Add and organize this section&apos;s cards, steps, covers, and supporting content.</p></div>
+        <div><h4 className="text-sm font-black text-slate-900">Structured content</h4><p className="mt-1 text-xs text-slate-400">Add and organize this section&apos;s cards, steps, covers, locations, and supporting content.</p></div>
         <button type="button" onClick={() => { setDraft(emptyDraft(section)); setEditingId("new"); }} className="inline-flex h-9 items-center gap-2 rounded-xl bg-[#0193CD] px-3 text-xs font-black text-white"><Plus className="size-3.5" /> Add item</button>
       </div>
       <div className="space-y-2">

@@ -1,6 +1,6 @@
 export type DistrictStatus = "branch" | "none";
 
-const PSTC_BRANCH_DISTRICTS = new Set([
+export const PSTC_BRANCH_DISTRICT_SLUGS = [
   "dhaka",
   "gazipur",
   "narayanganj",
@@ -21,7 +21,9 @@ const PSTC_BRANCH_DISTRICTS = new Set([
   "jessore",
   "khulna",
   "kushtia",
-]);
+] as const;
+
+const PSTC_BRANCH_DISTRICTS = new Set<string>(PSTC_BRANCH_DISTRICT_SLUGS);
 
 export function getDistrictStatus(slug: string): DistrictStatus {
   return PSTC_BRANCH_DISTRICTS.has(slug) ? "branch" : "none";

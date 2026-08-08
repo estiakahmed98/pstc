@@ -115,7 +115,7 @@ export function SectionEditor({
         <SectionItemsEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 
-      {["WHAT_WE_DO", "NAYON", "MAGAZINE_SUBSCRIPTION"].includes(
+      {["WHAT_WE_DO", "NAYON", "MAGAZINE_SUBSCRIPTION", "GLOBAL_REACH"].includes(
         section.type,
       ) ? (
         <StructuredItemsEditor section={section} onChanged={onMediaChanged} />
@@ -125,7 +125,7 @@ export function SectionEditor({
         <PublicationsEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 
-      {section.type === "GLOBAL_REACH" ? (
+      {["HERO", "WHO_WE_ARE", "GLOBAL_REACH"].includes(section.type) ? (
         <MetricsEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 

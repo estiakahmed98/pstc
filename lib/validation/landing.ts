@@ -77,6 +77,7 @@ export const landingItemKindSchema = z.enum([
   "STEP",
   "COVER",
   "PERK",
+  "LOCATION",
 ]);
 
 export const createLandingItemSchema = z.object({

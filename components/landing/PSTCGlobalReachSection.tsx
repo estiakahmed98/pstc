@@ -7,6 +7,11 @@ export type ReachMetric = {
   tone: "primary" | "secondary";
 };
 
+export type ReachLocation = {
+  key: string;
+  title: string;
+};
+
 const defaultReachStats: ReachMetric[] = [
   { value: String(PSTC_BRANCH_COUNT), label: "Districts", tone: "primary" as const },
   { value: "72", label: "Offices", tone: "primary" as const },
@@ -18,13 +23,17 @@ export default function PSTCGlobalReachSection({
   title = "PSTC's operational footprint across Bangladesh",
   description,
   metrics = defaultReachStats,
+  locations,
 }: {
   title?: string;
   description?: string;
   metrics?: ReachMetric[];
+  locations?: ReachLocation[];
 }) {
   const reachStats = metrics;
-  if (!reachStats.length) return null;
+  const branchCount = locations?.length ?? PSTC_BRANCH_COUNT;
+  const mapSummary = reachStats.slice(0, 3).map((stat) => `${stat.value} ${stat.label.toLowerCase()}`).join(" · ");
+  if (!reachStats.length && locations?.length === 0) return null;
   return (
     <section className="relative overflow-hidden bg-background pb-6 sm:pb-8">
       <div
@@ -50,7 +59,7 @@ export default function PSTCGlobalReachSection({
             </h2>
 
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-[1.05rem] sm:leading-8">
-              {description ?? `PSTC delivers community health and social development services through a national network of offices and clinics. The map identifies the ${PSTC_BRANCH_COUNT} districts where our branches are currently active.`}
+              {description ?? `PSTC delivers community health and social development services through a national network of offices and clinics. The map identifies the ${branchCount} districts where our branches are currently active.`}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
@@ -104,7 +113,11 @@ export default function PSTCGlobalReachSection({
           className="mx-auto w-full max-h-[min(82vh,920px)]"
           style={{ aspectRatio: "1655.4 / 2224.5" }}
         >
-          <PSTCBangladeshMap className="h-full w-full" />
+          <PSTCBangladeshMap
+            className="h-full w-full"
+            locations={locations}
+            summary={mapSummary || `${branchCount} districts`}
+          />
         </div>
       </div>
     </section>

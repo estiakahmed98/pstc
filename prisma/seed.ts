@@ -14,16 +14,22 @@ const landingSections = [
   {
     key: "who-we-are",
     type: "WHO_WE_ARE" as const,
-    title: "Who We Are",
+    eyebrow: "Who We Are",
+    title: "A legacy of care,",
+    highlightedTitle: "rights and community impact.",
     description:
-      "Governance, leadership, values, policies, and institutional identity.",
+      "PSTC is a non-government, not-for-profit voluntary organization working to improve the quality of life of poor and socially disadvantaged people. Its journey is rooted in FPSTC, formed in 1978, and continues through national registration, public-sector affiliation, and IPPF membership.",
+    primaryCtaLabel: "Explore PSTC",
+    primaryCtaHref: "/who-we-are/about-us",
+    secondaryCtaLabel: "Strategic Plan",
+    secondaryCtaHref: "/who-we-are/strategic-plan",
   },
   {
     key: "what-we-do",
     type: "WHAT_WE_DO" as const,
-    title: "What We Do",
+    title: "Our Work Areas",
     description:
-      "Core activities, thematic areas, projects, initiatives, and priorities.",
+      "PSTC implements clinic and community based health service delivery, child and adolescent development, WASH, advocacy, research, training, disaster preparedness, BCC activities and community capacity building programs.",
   },
   {
     key: "nayon",
@@ -31,7 +37,7 @@ const landingSections = [
     title: "National Youth Network",
     highlightedTitle: "Youth",
     description:
-      "NaYoN readiness criteria, onboarding steps, and interest form.",
+      "Shape the future instead of watching it happen. NaYoN invites Bangladeshi youth aged 15–24 to learn, lead, and create lasting community impact with PSTC.",
   },
   {
     key: "publications",
@@ -45,25 +51,25 @@ const landingSections = [
     key: "magazine-subscription",
     type: "MAGAZINE_SUBSCRIPTION" as const,
     title: "PROJANMO Kotha",
-    description: "Monthly magazine showcase and subscriber form.",
+    description: "Subscribe once and receive PSTC's monthly magazine as a soft copy in your inbox — field stories, youth voices, and community impact from across Bangladesh.",
   },
   {
     key: "latest-news",
     type: "LATEST_NEWS" as const,
-    title: "Latest News",
+    title: "Latest News & Stories",
     description: "Selected stories and institutional updates.",
     settings: { sourceMode: "manual", limit: 5 },
   },
   {
     key: "partners",
     type: "PARTNERS" as const,
-    title: "Our Partners",
+    title: "Together For Greater Impact",
     description: "Bangladeshi institutions and global development partners.",
   },
   {
     key: "global-reach",
     type: "GLOBAL_REACH" as const,
-    title: "Our Global Reach",
+    title: "PSTC's operational footprint across Bangladesh",
     description:
       "District coverage, offices, clinics, and workforce statistics.",
   },
@@ -236,7 +242,46 @@ const structuredLandingItems: Record<string, StructuredSeedItem[]> = {
     { key: "monthly-issues", kind: "PERK", title: "Monthly issues", iconKey: "BookOpen" },
     { key: "free-soft-copy", kind: "PERK", title: "Free soft copy", iconKey: "Newspaper" },
   ],
+  "global-reach": [
+    { key: "dhaka", kind: "LOCATION", title: "Dhaka" },
+    { key: "gazipur", kind: "LOCATION", title: "Gazipur" },
+    { key: "narayanganj", kind: "LOCATION", title: "Narayanganj" },
+    { key: "munshiganj", kind: "LOCATION", title: "Munshiganj" },
+    { key: "kishoreganj", kind: "LOCATION", title: "Kishoreganj" },
+    { key: "narsingdi", kind: "LOCATION", title: "Narsingdi" },
+    { key: "noakhali", kind: "LOCATION", title: "Noakhali" },
+    { key: "lakshmipur", kind: "LOCATION", title: "Lakshmipur" },
+    { key: "mymensingh", kind: "LOCATION", title: "Mymensingh" },
+    { key: "sherpur", kind: "LOCATION", title: "Sherpur" },
+    { key: "netrokona", kind: "LOCATION", title: "Netrokona" },
+    { key: "comilla", kind: "LOCATION", title: "Comilla" },
+    { key: "feni", kind: "LOCATION", title: "Feni" },
+    { key: "chandpur", kind: "LOCATION", title: "Chandpur" },
+    { key: "chittagong", kind: "LOCATION", title: "Chittagong" },
+    { key: "coxs-bazar", kind: "LOCATION", title: "Cox's Bazar" },
+    { key: "faridpur", kind: "LOCATION", title: "Faridpur" },
+    { key: "jessore", kind: "LOCATION", title: "Jessore" },
+    { key: "khulna", kind: "LOCATION", title: "Khulna" },
+    { key: "kushtia", kind: "LOCATION", title: "Kushtia" },
+  ],
 };
+
+const landingMetricSeeds = {
+  hero: [
+    ["anniversary", "48", "Years Anniversary", "Since 1978", "primary"],
+  ],
+  "who-we-are": [
+    ["years-service", "48+", "Years of service", null, "primary"],
+    ["fpstc-origin", "1978", "FPSTC origin", null, "primary"],
+    ["ippf-member", "IPPF", "Member Association", null, "secondary"],
+  ],
+  "global-reach": [
+    ["districts", "20", "Districts", null, "primary"],
+    ["offices", "72", "Offices", null, "primary"],
+    ["clinics", "22", "Clinics", null, "secondary"],
+    ["workforce", "862", "Workforce", null, "secondary"],
+  ],
+} as const;
 
 const publications = [
   [
@@ -336,11 +381,7 @@ async function main() {
       where: {
         landingPageId_key: { landingPageId: landingPage.id, key: section.key },
       },
-      update: {
-        ...section,
-        sortOrder,
-        isVisible: true,
-      },
+      update: {},
       create: {
         ...section,
         landingPageId: landingPage.id,
@@ -349,6 +390,26 @@ async function main() {
       },
     });
     sectionIds.set(section.key, saved.id);
+  }
+
+  const legacySectionCopy = [
+    ["who-we-are", "Who We Are", "Governance, leadership, values, policies, and institutional identity."],
+    ["what-we-do", "What We Do", "Core activities, thematic areas, projects, initiatives, and priorities."],
+    ["nayon", "National Youth Network", "NaYoN readiness criteria, onboarding steps, and interest form."],
+    ["magazine-subscription", "PROJANMO Kotha", "Monthly magazine showcase and subscriber form."],
+    ["latest-news", "Latest News", "Selected stories and institutional updates."],
+    ["partners", "Our Partners", "Bangladeshi institutions and global development partners."],
+    ["global-reach", "Our Global Reach", "District coverage, offices, clinics, and workforce statistics."],
+  ] as const;
+
+  for (const [key, legacyTitle, legacyDescription] of legacySectionCopy) {
+    const defaults = landingSections.find((section) => section.key === key);
+    const sectionId = sectionIds.get(key);
+    if (!defaults || !sectionId) continue;
+    await prisma.landingSection.updateMany({
+      where: { id: sectionId, title: legacyTitle, description: legacyDescription },
+      data: defaults,
+    });
   }
 
   const heroSectionId = sectionIds.get("hero");
@@ -375,16 +436,7 @@ async function main() {
         where: {
           landingSectionId_key: { landingSectionId: heroSectionId, key },
         },
-        update: {
-          title,
-          accentText,
-          description,
-          shortText,
-          href,
-          imageId: image.id,
-          sortOrder,
-          isVisible: true,
-        },
+        update: {},
         create: {
           landingSectionId: heroSectionId,
           key,
@@ -427,16 +479,7 @@ async function main() {
             key,
           },
         },
-        update: {
-          title,
-          description,
-          href,
-          iconKey,
-          imageId: image.id,
-          metadata: { number },
-          sortOrder,
-          isVisible: true,
-        },
+        update: {},
         create: {
           landingSectionId: whoWeAreSectionId,
           key,
@@ -534,16 +577,7 @@ async function main() {
       });
       const publication = await prisma.publication.upsert({
         where: { slug },
-        update: {
-          title,
-          category,
-          description,
-          coverImageId: coverImage.id,
-          pageCount,
-          status: "PUBLISHED",
-          publishedAt: new Date(`${publishedAt}T00:00:00.000Z`),
-          featured: sortOrder === 0,
-        },
+        update: {},
         create: {
           slug,
           title,
@@ -563,7 +597,7 @@ async function main() {
             publicationId: publication.id,
           },
         },
-        update: { sortOrder, isFeatured: sortOrder === 0 },
+        update: {},
         create: {
           landingSectionId: publicationsSectionId,
           publicationId: publication.id,
@@ -574,30 +608,25 @@ async function main() {
     }
   }
 
-  const globalReachSectionId = sectionIds.get("global-reach");
-  if (globalReachSectionId) {
-    const metrics = [
-      ["districts", "20", "Districts", "primary"],
-      ["offices", "72", "Offices", "primary"],
-      ["clinics", "22", "Clinics", "secondary"],
-      ["workforce", "862", "Workforce", "secondary"],
-    ] as const;
-
+  for (const [sectionKey, metrics] of Object.entries(landingMetricSeeds)) {
+    const sectionId = sectionIds.get(sectionKey);
+    if (!sectionId) continue;
     for (const [sortOrder, metric] of metrics.entries()) {
-      const [key, value, label, tone] = metric;
+      const [key, value, label, caption, tone] = metric;
       await prisma.landingMetric.upsert({
         where: {
           landingSectionId_key: {
-            landingSectionId: globalReachSectionId,
+            landingSectionId: sectionId,
             key,
           },
         },
-        update: { value, label, tone, sortOrder, isVisible: true },
+        update: {},
         create: {
-          landingSectionId: globalReachSectionId,
+          landingSectionId: sectionId,
           key,
           value,
           label,
+          caption,
           tone,
           sortOrder,
         },

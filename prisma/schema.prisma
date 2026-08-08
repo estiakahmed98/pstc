@@ -43,6 +43,7 @@ enum LandingItemKind {
   STEP
   COVER
   PERK
+  LOCATION
 }
 
 enum PartnerType {

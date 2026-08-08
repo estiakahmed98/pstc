@@ -20,6 +20,12 @@ export type HeroSlideData = {
   href: string;
 };
 
+export type HeroAnniversaryData = {
+  value: string;
+  label: string;
+  caption: string;
+};
+
 const defaultSlides: HeroSlideData[] = [
   {
     title: "Care for",
@@ -69,6 +75,11 @@ const defaultSlides: HeroSlideData[] = [
 ];
 
 const SLIDE_DURATION = 3000;
+const defaultAnniversary: HeroAnniversaryData = {
+  value: "48",
+  label: "Years Anniversary",
+  caption: "Since 1978",
+};
 
 function HeroMovingButton({
   href,
@@ -102,7 +113,13 @@ function HeroMovingButton({
   );
 }
 
-function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
+function JourneyHangingCard({
+  activeIndex,
+  anniversary,
+}: {
+  activeIndex: number;
+  anniversary: HeroAnniversaryData;
+}) {
   const confettiRef = useRef<ConfettiRef>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -242,11 +259,11 @@ function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
               </div>
 
               <div className="mt-2 text-lg font-black leading-none text-primary md:text-xl lg:mt-3 lg:text-2xl">
-                48
+                {anniversary.value}
               </div>
 
               <SparklesText className="mt-1 text-[9px] font-black uppercase leading-3 text-primary md:text-[10px] lg:text-xs xl:text-sm">
-                Years <span className="text-secondary">Anniversary</span>
+                {anniversary.label}
               </SparklesText>
             </div>
           </div>
@@ -262,7 +279,7 @@ function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
             />
 
             <p className="mt-2 text-center text-[8px] font-black uppercase tracking-[0.16em] text-primary md:text-[9px] lg:text-[10px]">
-              Since 1978
+              {anniversary.caption}
             </p>
           </div>
         </div>
@@ -274,9 +291,11 @@ function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
 export default function HeroCarousel({
   slides = defaultSlides,
   autoplayMs = SLIDE_DURATION,
+  anniversary = defaultAnniversary,
 }: {
   slides?: HeroSlideData[];
   autoplayMs?: number;
+  anniversary?: HeroAnniversaryData | null;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -316,7 +335,9 @@ export default function HeroCarousel({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(9,145,203,0.22),transparent_34%),radial-gradient(circle_at_85%_20%,rgba(215,63,50,0.18),transparent_30%)]" />
       <div className="absolute inset-x-0 bottom-0 h-[58%] bg-linear-to-t from-black via-black/10 to-transparent" /> */}
 
-      <JourneyHangingCard activeIndex={activeIndex} />
+      {anniversary ? (
+        <JourneyHangingCard activeIndex={activeIndex} anniversary={anniversary} />
+      ) : null}
 
       <div className="relative mx-auto flex h-full w-full flex-col justify-end px-4 pb-5 pt-5 sm:px-6 sm:pb-6 lg:px-6 lg:pb-7 xl:px-8">
         <div className="grid items-end gap-5 lg:grid-cols-[1fr_0.78fr] lg:gap-5 xl:grid-cols-[1fr_0.82fr]">

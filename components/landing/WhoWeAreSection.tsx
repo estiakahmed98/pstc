@@ -23,7 +23,6 @@ import {
   MovingBorder,
   Button as MovingBorderButton,
 } from "@/components/ui/moving-border";
-import { BG } from "../ui/bg";
 import { SparklesText } from "../ui/sparkles-text";
 
 // ---------------------------------------------------------------------------
@@ -41,6 +40,11 @@ type WhoCard = {
 
 export type WhoWeAreItemData = Omit<WhoCard, "icon"> & {
   iconKey?: string | null;
+};
+
+export type WhoStatData = {
+  value: string;
+  label: string;
 };
 
 const whoIconMap: Record<string, LucideIcon> = {
@@ -129,7 +133,7 @@ const defaultWhoItems: WhoCard[] = [
   },
 ];
 
-const stats = [
+const defaultStats: WhoStatData[] = [
   { value: "48+", label: "Years of service" },
   { value: "1978", label: "FPSTC origin" },
   { value: "IPPF", label: "Member Association" },
@@ -320,8 +324,26 @@ function MobileWhoCard({ item }: { item: WhoCard }) {
 
 export default function WhoWeAreSection({
   items,
+  eyebrow = "Who We Are",
+  title = "A legacy of care,",
+  highlightedTitle = "rights and community impact.",
+  description = "PSTC is a non-government, not-for-profit voluntary organization working to improve the quality of life of poor and socially disadvantaged people. Its journey is rooted in FPSTC, formed in 1978, and continues through national registration, public-sector affiliation, and IPPF membership.",
+  primaryCtaLabel = "Explore PSTC",
+  primaryCtaHref = "/who-we-are/about-us",
+  secondaryCtaLabel = "Strategic Plan",
+  secondaryCtaHref = "/who-we-are/strategic-plan",
+  stats = defaultStats,
 }: {
   items?: WhoWeAreItemData[];
+  eyebrow?: string;
+  title?: string;
+  highlightedTitle?: string;
+  description?: string;
+  primaryCtaLabel?: string | null;
+  primaryCtaHref?: string | null;
+  secondaryCtaLabel?: string | null;
+  secondaryCtaHref?: string | null;
+  stats?: WhoStatData[];
 }) {
   const whoItems: WhoCard[] = items === undefined
     ? defaultWhoItems
@@ -329,6 +351,7 @@ export default function WhoWeAreSection({
         ...item,
         icon: (iconKey && whoIconMap[iconKey]) || Landmark,
       }));
+  const whoStats = stats;
 
   if (!whoItems.length) return null;
 
@@ -369,66 +392,55 @@ export default function WhoWeAreSection({
                   }}
                   className="mb-2 text-[8px] font-black uppercase tracking-[0.22em] text-secondary xl:mb-2 xl:text-[9px] xl:tracking-[0.24em] 2xl:text-[10px]"
                 >
-                  Who We Are
+                  {eyebrow}
                 </SparklesText>
 
                 <h2 className="max-w-2xl text-[1.6rem] font-black leading-[1.04] text-foreground xl:text-[1.95rem] 2xl:text-[2.2rem]">
-                  A legacy of care,{" "}
-                  <span className="text-primary">
-                    rights and community impact.
-                  </span>
+                  {title}{" "}
+                  <span className="text-primary">{highlightedTitle}</span>
                 </h2>
 
                 <p className="mt-2.5 max-w-xl text-[13px] leading-5 text-muted-foreground xl:mt-3 xl:text-[13px] xl:leading-6 2xl:text-sm 2xl:leading-6">
-                  PSTC is a non-government, not-for-profit voluntary
-                  organization working to improve the quality of life of poor
-                  and socially disadvantaged people. Its journey is rooted in
-                  FPSTC, formed in 1978, and continues through national
-                  registration, public-sector affiliation, and IPPF membership.
+                  {description}
                 </p>
 
                 {/* Stats */}
-                {/* <div className="mt-6 grid max-w-md grid-cols-3 gap-2 xl:mt-8 xl:gap-3">
-                  {stats.map((stat) => (
-                    <BG
-                      key={stat.label}
-                      containerClassName="rounded-[1.6rem]"
-                      className="h-full bg-card/95 px-3 py-4 shadow-[0_14px_35px_rgba(15,23,42,0.08)] transition-all duration-300 group-hover:-translate-y-1 xl:px-4 xl:py-5"
-                    >
-                      <div className="mb-3 h-1.5 w-9 rounded-full bg-gradient-to-r from-primary to-secondary xl:w-10" />
-
-                      <p className="text-xl font-black leading-none text-primary xl:text-2xl">
-                        {stat.value}
-                      </p>
-
-                      <p className="mt-2 text-xs font-bold leading-5 text-muted-foreground">
-                        {stat.label}
-                      </p>
-                    </BG>
-                  ))}
-                </div> */}
+                {whoStats.length ? (
+                  <dl className="mt-4 grid max-w-md grid-cols-3 gap-3 border-y border-border py-3">
+                    {whoStats.map((stat) => (
+                      <div key={stat.label}>
+                        <dd className="text-lg font-black leading-none text-primary xl:text-xl">
+                          {stat.value}
+                        </dd>
+                        <dt className="mt-1.5 text-[9px] font-bold leading-4 text-muted-foreground xl:text-[10px]">
+                          {stat.label}
+                        </dt>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
 
                 {/* CTAs */}
                 <div className="mt-4 flex flex-wrap items-center gap-2.5 xl:mt-5 xl:gap-3 2xl:gap-3">
-                  <MovingLinkButton
-                    href="/who-we-are/about-us"
+                  {primaryCtaLabel && primaryCtaHref ? <MovingLinkButton
+                    href={primaryCtaHref}
                     containerClassName="h-9 min-w-[128px] xl:h-10 xl:min-w-[138px] 2xl:h-10 2xl:min-w-[144px]"
                     className="group inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-[10px] font-black text-primary-foreground shadow-[0_10px_24px_var(--pstc-primary-glow)] transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--pstc-primary-dark)] hover:shadow-[0_14px_30px_var(--pstc-primary-glow)] xl:px-3.5 xl:text-[11px] 2xl:px-4"
                   >
-                    Explore PSTC
+                    {primaryCtaLabel}
                     <span className="grid size-5 place-items-center rounded-full bg-white/15 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">
                       <ArrowUpRight className="size-3.5" />
                     </span>
-                  </MovingLinkButton>
+                  </MovingLinkButton> : null}
 
-                  <MovingLinkButton
-                    href="/who-we-are/strategic-plan"
+                  {secondaryCtaLabel && secondaryCtaHref ? <MovingLinkButton
+                    href={secondaryCtaHref}
                     containerClassName="h-9 min-w-[128px] xl:h-10 xl:min-w-[138px] 2xl:h-10 2xl:min-w-[144px]"
                     className="group inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-3 py-2 text-[10px] font-black text-foreground shadow-[0_10px_24px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_14px_30px_var(--pstc-secondary-glow)] xl:px-3.5 xl:text-[11px] 2xl:px-4"
                   >
-                    Strategic Plan
+                    {secondaryCtaLabel}
                     <span className="h-2 w-2 rounded-full bg-secondary transition duration-300 group-hover:bg-secondary-foreground" />
-                  </MovingLinkButton>
+                  </MovingLinkButton> : null}
                 </div>
               </div>
             </div>
@@ -467,22 +479,18 @@ export default function WhoWeAreSection({
                   }}
                   className="mb-3 text-[10px] font-black uppercase tracking-[0.28em] text-secondary sm:text-xs sm:tracking-[0.36em]"
                 >
-                  Who We Are
+                  {eyebrow}
                 </SparklesText>
                 <h2 className="text-[1.75rem] font-black leading-tight text-foreground sm:text-[2rem]">
-                  A legacy of care,{" "}
-                  <span className="text-primary">
-                    rights and community impact.
-                  </span>
+                  {title}{" "}
+                  <span className="text-primary">{highlightedTitle}</span>
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  PSTC is a non-government, not-for-profit voluntary
-                  organization working to improve the quality of life of poor
-                  and socially disadvantaged people.
+                  {description}
                 </p>
 
                 <div className="mt-5 grid grid-cols-1 gap-3 min-[420px]:grid-cols-3">
-                  {stats.map((stat) => (
+                  {whoStats.map((stat) => (
                     <div
                       key={stat.label}
                       className="rounded-xl border border-border bg-card p-3.5 shadow-sm"
@@ -498,19 +506,20 @@ export default function WhoWeAreSection({
                 </div>
 
                 <div className="mt-5 grid gap-3 sm:flex sm:flex-wrap">
-                  <Link
-                    href="/who-we-are/about-us"
+                  {primaryCtaLabel && primaryCtaHref ? <Link
+                    href={primaryCtaHref}
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-[11px] font-black text-primary-foreground shadow-md transition hover:-translate-y-0.5 sm:w-auto"
                   >
-                    Explore
+                    {primaryCtaLabel}
                     <ArrowUpRight className="size-3.5" />
-                  </Link>
-                  <Link
-                    href="/who-we-are/strategic-plan"
+                  </Link> : null}
+                  {secondaryCtaLabel && secondaryCtaHref ? <Link
+                    href={secondaryCtaHref}
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border px-4 py-2.5 text-[11px] font-black text-foreground transition hover:-translate-y-0.5 hover:text-secondary sm:w-auto"
                   >
-                    Strategic Plan
+                    {secondaryCtaLabel}
                   </Link>
+                  : null}
                 </div>
               </div>
 
