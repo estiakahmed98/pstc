@@ -162,6 +162,8 @@ export default function PublicationsSection({
   const lastFour = publications.slice(1, 5);
   const router = useRouter();
 
+  if (!latest) return null;
+
   const revealItems: RevealItem[] = lastFour.map((pub) => ({
     id: pub.id,
     title: pub.title,

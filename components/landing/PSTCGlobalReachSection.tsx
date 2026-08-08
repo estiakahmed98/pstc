@@ -23,7 +23,8 @@ export default function PSTCGlobalReachSection({
   description?: string;
   metrics?: ReachMetric[];
 }) {
-  const reachStats = metrics.length ? metrics : defaultReachStats;
+  const reachStats = metrics;
+  if (!reachStats.length) return null;
   return (
     <section className="relative overflow-hidden bg-background pb-6 sm:pb-8">
       <div

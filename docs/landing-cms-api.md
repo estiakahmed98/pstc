@@ -50,6 +50,10 @@ or `program_manager` session.
 | `POST` | `/api/v1/admin/landing/sections/:sectionId/metrics` | Create metric |
 | `PATCH/DELETE` | `/api/v1/admin/landing/metrics/:metricId` | Update/delete metric |
 | `PUT` | `/api/v1/admin/landing/sections/:sectionId/selections/:resource` | Replace selected news, publications, or partners |
+| `POST` | `/api/v1/admin/landing/sections/:sectionId/news` | Create and select a homepage news article |
+| `PATCH/DELETE` | `/api/v1/admin/news/:newsId` | Update/delete a news article |
+| `POST` | `/api/v1/admin/landing/sections/:sectionId/partners` | Create and select a homepage partner |
+| `PATCH/DELETE` | `/api/v1/admin/partners/:partnerId` | Update/delete a partner |
 | `POST` | `/api/v1/admin/media/images` | Validate and upload an image |
 | `PUT` | `/api/v1/admin/media/attach` | Attach uploaded image to a section, slide, item, news, publication, or partner |
 

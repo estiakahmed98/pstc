@@ -323,12 +323,14 @@ export default function WhoWeAreSection({
 }: {
   items?: WhoWeAreItemData[];
 }) {
-  const whoItems: WhoCard[] = items?.length
-    ? items.map(({ iconKey, ...item }) => ({
+  const whoItems: WhoCard[] = items === undefined
+    ? defaultWhoItems
+    : items.map(({ iconKey, ...item }) => ({
         ...item,
         icon: (iconKey && whoIconMap[iconKey]) || Landmark,
-      }))
-    : defaultWhoItems;
+      }));
+
+  if (!whoItems.length) return null;
 
   return (
     <section

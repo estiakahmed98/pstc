@@ -180,25 +180,51 @@ export default function NaYoNSection({
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleInterestSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please enter your name and email.");
+    if (!name.trim() || !email.trim() || !consent) {
+      toast.error("Please enter your details and confirm your consent.");
       return;
     }
 
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    setLoading(false);
-    setName("");
-    setEmail("");
+    try {
+      const response = await fetch(
+        "/api/v1/landing/submissions/youth-interest",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            consent,
+          }),
+        },
+      );
+      const payload = await response.json();
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.error?.message ?? "Submission failed.");
+      }
 
-    toast.success("Thank you for your interest!", {
-      description: "Our NaYoN team will contact you with onboarding steps.",
-    });
+      setName("");
+      setEmail("");
+      setConsent(false);
+      toast.success("Thank you for your interest!", {
+        description: "Our NaYoN team will contact you with onboarding steps.",
+      });
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Your interest could not be submitted.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -387,6 +413,20 @@ export default function NaYoNSection({
                       placeholder="you@example.com"
                       className="w-full rounded-xl border-0 bg-background px-4 py-3 text-sm font-medium shadow-sm ring-1 ring-border/80 outline-none transition focus:ring-2 focus:ring-[var(--pstc-primary)]/25"
                     />
+                  </label>
+
+                  <label className="flex cursor-pointer items-start gap-3 rounded-xl bg-background px-4 py-3 text-left shadow-sm ring-1 ring-border/80">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={consent}
+                      onChange={(event) => setConsent(event.target.checked)}
+                      className="mt-0.5 size-4 shrink-0 accent-[var(--pstc-primary)]"
+                    />
+                    <span className="text-xs leading-5 text-muted-foreground">
+                      I agree that PSTC may contact me about NaYoN onboarding
+                      and youth activities.
+                    </span>
                   </label>
 
                   <button

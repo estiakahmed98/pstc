@@ -104,13 +104,11 @@ export default function OurPartnersSection({
   title?: string;
   description?: string;
 }) {
-  const nationalPartners = partners?.length
-    ? partners.filter((partner) => partner.group !== "GLOBAL")
-    : bangladeshiPartners;
-  const internationalPartners = partners?.length
-    ? partners.filter((partner) => partner.group === "GLOBAL")
-    : globalPartners;
+  const source = partners === undefined ? allPartners : partners;
+  const nationalPartners = source.filter((partner) => partner.group !== "GLOBAL");
+  const internationalPartners = source.filter((partner) => partner.group === "GLOBAL");
   const displayedPartners = [...nationalPartners, ...internationalPartners];
+  if (!displayedPartners.length) return null;
   return (
     <section className="relative overflow-hidden bg-background py-24 sm:py-28 lg:py-32">
       <div

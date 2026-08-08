@@ -36,7 +36,7 @@ type PublicLanding = NonNullable<
 type PublicLandingSection = PublicLanding["sections"][number];
 
 function getWhoItems(section?: PublicLandingSection): WhoWeAreItemData[] | undefined {
-  if (!section?.items.length) return undefined;
+  if (!section) return undefined;
 
   return section.items
     .filter((item) => item.isVisible)
@@ -63,7 +63,7 @@ function getWhoItems(section?: PublicLandingSection): WhoWeAreItemData[] | undef
 }
 
 function getPublications(section?: PublicLandingSection): Publication[] | undefined {
-  if (!section?.publicationSelections.length) return undefined;
+  if (!section) return undefined;
 
   return section.publicationSelections.map(({ publication }) => ({
     id: publication.slug,
@@ -79,7 +79,7 @@ function getPublications(section?: PublicLandingSection): Publication[] | undefi
 }
 
 function getHeroSlides(section?: PublicLandingSection): HeroSlideData[] | undefined {
-  if (!section?.slides.length) return undefined;
+  if (!section) return undefined;
   return section.slides.map((slide) => ({
     title: slide.title,
     italic: slide.accentText ?? "",
@@ -91,7 +91,7 @@ function getHeroSlides(section?: PublicLandingSection): HeroSlideData[] | undefi
 }
 
 function getNewsItems(section?: PublicLandingSection): NewsItem[] | undefined {
-  if (!section?.newsSelections.length) return undefined;
+  if (!section) return undefined;
   return section.newsSelections.map(({ newsArticle }) => ({
     id: newsArticle.slug,
     title: newsArticle.title,
@@ -108,7 +108,7 @@ function getNewsItems(section?: PublicLandingSection): NewsItem[] | undefined {
 }
 
 function getPartners(section?: PublicLandingSection): Partner[] | undefined {
-  if (!section?.partnerSelections.length) return undefined;
+  if (!section) return undefined;
   return section.partnerSelections.map(({ partner }) => ({
     name: partner.name,
     image: partner.logo?.url ?? "/pstc_logo.png",
@@ -117,7 +117,7 @@ function getPartners(section?: PublicLandingSection): Partner[] | undefined {
 }
 
 function getReachMetrics(section?: PublicLandingSection): ReachMetric[] | undefined {
-  if (!section?.metrics.length) return undefined;
+  if (!section) return undefined;
   return section.metrics.map((metric) => ({
     value: metric.value,
     label: metric.label,

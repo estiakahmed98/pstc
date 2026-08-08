@@ -378,26 +378,49 @@ export default function MagazineSubscriptionSection({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [organization, setOrganization] = useState("");
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please enter your name and email.");
+    if (!name.trim() || !email.trim() || !consent) {
+      toast.error("Please enter your details and confirm your consent.");
       return;
     }
 
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch("/api/v1/landing/subscriptions/magazine", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          organization: organization.trim() || null,
+          consent,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.error?.message ?? "Subscription failed.");
+      }
 
-    toast.success("You're on the list!", {
-      description:
-        "We'll email PROJANMO Kotha soft copies to you as new issues are released.",
-    });
+      setSubmitted(true);
+      toast.success("You're on the list!", {
+        description:
+          "We'll email PROJANMO Kotha soft copies to you as new issues are released.",
+      });
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Your subscription could not be saved.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -629,6 +652,20 @@ export default function MagazineSubscriptionSection({
                       onChange={setOrganization}
                       placeholder="Your organization"
                     />
+
+                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border/70 bg-background/70 p-3 text-left">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={consent}
+                        onChange={(event) => setConsent(event.target.checked)}
+                        className="mt-0.5 size-4 shrink-0 accent-[var(--pstc-primary)]"
+                      />
+                      <span className="text-xs leading-5 text-muted-foreground">
+                        I agree to receive PROJANMO Kotha and related PSTC
+                        publication updates by email.
+                      </span>
+                    </label>
 
                     <div className="pt-2">
                       <MovingBorderButton

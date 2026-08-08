@@ -9,6 +9,10 @@ import type {
 import { SectionMediaEditor } from "@/components/dashboard/landing/section-media-editor";
 import { SectionItemsEditor } from "@/components/dashboard/landing/section-items-editor";
 import { PublicationsEditor } from "@/components/dashboard/landing/publications-editor";
+import { HeroSlidesEditor } from "@/components/dashboard/landing/hero-slides-editor";
+import { MetricsEditor } from "@/components/dashboard/landing/metrics-editor";
+import { NewsEditor } from "@/components/dashboard/landing/news-editor";
+import { PartnersEditor } from "@/components/dashboard/landing/partners-editor";
 
 type SectionEditorProps = {
   section: LandingSection;
@@ -102,12 +106,28 @@ export function SectionEditor({
 
       <SectionMediaEditor section={section} onChanged={onMediaChanged} />
 
+      {section.type === "HERO" ? (
+        <HeroSlidesEditor section={section} onChanged={onMediaChanged} />
+      ) : null}
+
       {section.type === "WHO_WE_ARE" ? (
         <SectionItemsEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 
       {section.type === "PUBLICATIONS" ? (
         <PublicationsEditor section={section} onChanged={onMediaChanged} />
+      ) : null}
+
+      {section.type === "GLOBAL_REACH" ? (
+        <MetricsEditor section={section} onChanged={onMediaChanged} />
+      ) : null}
+
+      {section.type === "LATEST_NEWS" ? (
+        <NewsEditor section={section} onChanged={onMediaChanged} />
+      ) : null}
+
+      {section.type === "PARTNERS" ? (
+        <PartnersEditor section={section} onChanged={onMediaChanged} />
       ) : null}
 
       <div className="mt-5 flex flex-wrap justify-end gap-3">

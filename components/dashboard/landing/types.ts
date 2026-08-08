@@ -33,7 +33,13 @@ export type LandingSection = {
   backgroundImage: LandingMedia | null;
   slides: Array<{
     id: string;
+    key: string;
     title: string;
+    accentText: string | null;
+    description: string | null;
+    shortText: string | null;
+    href: string | null;
+    sortOrder: number;
     isVisible: boolean;
     imageId: string | null;
     image: LandingMedia | null;
@@ -53,9 +59,31 @@ export type LandingSection = {
     imageId: string | null;
     image: LandingMedia | null;
   }>;
-  metrics: Array<{ id: string; label: string; value: string; isVisible: boolean }>;
+  metrics: Array<{
+    id: string;
+    key: string;
+    label: string;
+    value: string;
+    caption: string | null;
+    tone: string | null;
+    sortOrder: number;
+    isVisible: boolean;
+  }>;
   newsSelections: Array<{
-    newsArticle: { id: string; title: string; coverImage: LandingMedia | null };
+    sortOrder: number;
+    isFeatured: boolean;
+    newsArticle: {
+      id: string;
+      slug: string;
+      status: LandingStatus;
+      category: string | null;
+      title: string;
+      excerpt: string | null;
+      content: string | null;
+      featured: boolean;
+      publishedAt: string | null;
+      coverImage: LandingMedia | null;
+    };
   }>;
   publicationSelections: Array<{
     sortOrder: number;
@@ -75,7 +103,17 @@ export type LandingSection = {
     };
   }>;
   partnerSelections: Array<{
-    partner: { id: string; name: string; logo: LandingMedia | null };
+    sortOrder: number;
+    partner: {
+      id: string;
+      slug: string;
+      type: "LOCAL" | "GLOBAL";
+      name: string;
+      description: string | null;
+      websiteUrl: string | null;
+      isActive: boolean;
+      logo: LandingMedia | null;
+    };
   }>;
 };
 
