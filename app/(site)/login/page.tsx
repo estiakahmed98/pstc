@@ -4,17 +4,39 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { ArrowLeft, LogIn, Mail, Lock } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);
-    router.push("/dashboard");
+    setError("");
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError("Email or password is incorrect.");
+        return;
+      }
+
+      router.replace("/dashboard");
+      router.refresh();
+    } catch {
+      setError("Could not sign in. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -119,14 +141,11 @@ export default function LoginPage() {
                 {submitting ? "Signing in..." : "Login to dashboard"}
               </button>
 
-              <p className="mt-4 text-xs leading-6 text-slate-500 dark:text-slate-400">
-                Demo flow only. Any submitted credentials redirect to
-                /dashboard.
-                <br />
-                <span className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded inline-block mt-1">
-                  Email: admin@pstc.org | Password: admin123
-                </span>
-              </p>
+              {error ? (
+                <p role="alert" className="mt-4 text-sm font-semibold text-red-600 dark:text-red-400">
+                  {error}
+                </p>
+              ) : null}
             </form>
           </section>
         </div>

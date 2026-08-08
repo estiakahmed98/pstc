@@ -1,19 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCurrentUser, useSwitchRole } from "@/hooks/use-current-user";
+import { signOut } from "next-auth/react";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { useToast } from "@/components/ui/use-toast";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { UserRole } from "@/lib/rbac/roles";
 import { useState } from "react";
 import { LogOut, Menu, ShieldCheck } from "lucide-react";
 
@@ -28,36 +21,19 @@ export function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
   const router = useRouter();
   const { toast } = useToast();
   const user = useCurrentUser();
-  const switchRole = useSwitchRole();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-  const roles: UserRole[] = [
-    "super_admin",
-    "admin",
-    "editor",
-    "program_manager",
-    "viewer",
-  ];
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
 
     try {
-      localStorage.clear();
-      sessionStorage.clear();
-
-      document.cookie.split(";").forEach((cookie) => {
-        document.cookie = cookie
-          .replace(/^ +/, "")
-          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-      });
-
       toast({
         title: "Logged out",
         description: "You have been successfully logged out.",
       });
 
-      router.push("/");
+      await signOut({ redirect: false });
+      router.replace("/login");
       router.refresh();
     } catch (error) {
       console.error("Logout failed:", error);
@@ -118,24 +94,6 @@ export function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Select
-            value={userRole}
-            onValueChange={(role) => switchRole(role as UserRole)}
-          >
-            <SelectTrigger className="h-10 w-44 rounded-2xl border-slate-200 bg-slate-50 text-sm font-semibold shadow-none focus:ring-0">
-              <SelectValue placeholder="Switch Role" />
-            </SelectTrigger>
-
-            <SelectContent>
-              {roles.map((role) => (
-                <SelectItem key={role} value={role}>
-                  {role.replace("_", " ").charAt(0).toUpperCase() +
-                    role.replace("_", " ").slice(1)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
           <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-2 py-1">
             <LanguageSwitcher />
             <ThemeToggle />
@@ -168,25 +126,6 @@ export function DashboardTopbar({ onMenuClick }: DashboardTopbarProps) {
         </div>
       </div>
 
-      <div className="mt-3 md:hidden">
-        <Select
-          value={userRole}
-          onValueChange={(role) => switchRole(role as UserRole)}
-        >
-          <SelectTrigger className="h-11 w-full rounded-2xl border-slate-200 bg-slate-50 text-sm font-semibold shadow-none focus:ring-0">
-            <SelectValue placeholder="Switch Role" />
-          </SelectTrigger>
-
-          <SelectContent>
-            {roles.map((role) => (
-              <SelectItem key={role} value={role}>
-                {role.replace("_", " ").charAt(0).toUpperCase() +
-                  role.replace("_", " ").slice(1)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
     </header>
   );
 }
