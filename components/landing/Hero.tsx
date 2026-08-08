@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { SparklesText } from "../ui/sparkles-text";
 import { BackgroundLines } from "../ui/background-lines";
 
-type HeroSlide = {
+export type HeroSlideData = {
   title: string;
   italic: string;
   description: string;
@@ -20,7 +20,7 @@ type HeroSlide = {
   href: string;
 };
 
-const slides: HeroSlide[] = [
+const defaultSlides: HeroSlideData[] = [
   {
     title: "Care for",
     italic: "Community.",
@@ -271,7 +271,13 @@ function JourneyHangingCard({ activeIndex }: { activeIndex: number }) {
   );
 }
 
-export default function HeroCarousel() {
+export default function HeroCarousel({
+  slides = defaultSlides,
+  autoplayMs = SLIDE_DURATION,
+}: {
+  slides?: HeroSlideData[];
+  autoplayMs?: number;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slideCount = slides.length;
@@ -282,10 +288,10 @@ export default function HeroCarousel() {
 
     const timer = window.setTimeout(() => {
       setActiveIndex((current) => (current + 1) % slideCount);
-    }, SLIDE_DURATION);
+    }, autoplayMs);
 
     return () => window.clearTimeout(timer);
-  }, [activeIndex, slideCount]);
+  }, [activeIndex, autoplayMs, slideCount]);
 
   const selectSlide = (index: number) => {
     if (!slideCount) return;
@@ -359,7 +365,7 @@ export default function HeroCarousel() {
                   width: "0%",
                   background:
                     "linear-gradient(90deg, var(--pstc-primary), var(--pstc-secondary))",
-                  animation: `heroProgress ${SLIDE_DURATION}ms linear forwards`,
+                  animation: `heroProgress ${autoplayMs}ms linear forwards`,
                 }}
               />
             </div>

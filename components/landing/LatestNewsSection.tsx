@@ -11,7 +11,7 @@ import {
 import { motion } from "motion/react";
 import { SparklesText } from "../ui/sparkles-text";
 
-type NewsItem = {
+export type NewsItem = {
   id: string;
   title: string;
   description: string;
@@ -21,7 +21,7 @@ type NewsItem = {
   href: string;
 };
 
-const NEWS_ITEMS: NewsItem[] = [
+const DEFAULT_NEWS_ITEMS: NewsItem[] = [
   {
     id: "community-health-initiative",
     title: "PSTC launches new community health initiative",
@@ -161,9 +161,18 @@ function SmallNewsCard({ item }: { item: NewsItem }) {
   );
 }
 
-export default function LatestNewsSection() {
-  const featured = NEWS_ITEMS[0];
-  const others = NEWS_ITEMS.slice(1, 5);
+export default function LatestNewsSection({
+  items = DEFAULT_NEWS_ITEMS,
+  title = "Latest News & Stories",
+  description,
+}: {
+  items?: NewsItem[];
+  title?: string;
+  description?: string;
+}) {
+  const featured = items[0];
+  const others = items.slice(1, 5);
+  if (!featured) return null;
 
   return (
     <section className="relative bg-background px-4 py-8 text-foreground sm:px-6 sm:py-10 lg:px-8 lg:py-12">
@@ -184,13 +193,11 @@ export default function LatestNewsSection() {
               }}
               className="text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl"
             >
-              <span className="text-primary">Latest News &</span>{" "}
-              <span className="text-secondary">Stories</span>
+              <span className="text-primary">{title}</span>
             </SparklesText>
 
             <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Stay updated with PSTC’s latest initiatives, community stories,
-              partnerships, and institutional updates.
+              {description ?? "Stay updated with PSTC’s latest initiatives, community stories, partnerships, and institutional updates."}
             </p>
           </motion.div>
 

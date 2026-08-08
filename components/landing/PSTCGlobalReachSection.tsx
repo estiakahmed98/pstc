@@ -1,14 +1,29 @@
 import PSTCBangladeshMap from "@/components/landing/PSTCBangladeshMap";
 import { PSTC_BRANCH_COUNT } from "@/lib/bd-district-status";
 
-const reachStats = [
+export type ReachMetric = {
+  value: string;
+  label: string;
+  tone: "primary" | "secondary";
+};
+
+const defaultReachStats: ReachMetric[] = [
   { value: String(PSTC_BRANCH_COUNT), label: "Districts", tone: "primary" as const },
   { value: "72", label: "Offices", tone: "primary" as const },
   { value: "22", label: "Clinics", tone: "secondary" as const },
   { value: "862", label: "Workforce", tone: "secondary" as const },
 ];
 
-export default function PSTCGlobalReachSection() {
+export default function PSTCGlobalReachSection({
+  title = "PSTC's operational footprint across Bangladesh",
+  description,
+  metrics = defaultReachStats,
+}: {
+  title?: string;
+  description?: string;
+  metrics?: ReachMetric[];
+}) {
+  const reachStats = metrics.length ? metrics : defaultReachStats;
   return (
     <section className="relative overflow-hidden bg-background pb-6 sm:pb-8">
       <div
@@ -30,15 +45,11 @@ export default function PSTCGlobalReachSection() {
             </p>
 
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-[2.35rem] lg:leading-[1.15]">
-              PSTC&apos;s operational footprint across{" "}
-              <span className="text-[var(--pstc-primary)]">Bangladesh</span>
+              {title}
             </h2>
 
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-[1.05rem] sm:leading-8">
-              PSTC delivers community health and social development services
-              through a national network of offices and clinics. The map
-              identifies the {PSTC_BRANCH_COUNT} districts where our branches
-              are currently active.
+              {description ?? `PSTC delivers community health and social development services through a national network of offices and clinics. The map identifies the ${PSTC_BRANCH_COUNT} districts where our branches are currently active.`}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">

@@ -5,9 +5,10 @@ import { Handshake, Sparkles } from "lucide-react";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { cn } from "@/lib/utils";
 
-type Partner = {
+export type Partner = {
   name: string;
   image: string;
+  group?: "LOCAL" | "GLOBAL";
 };
 
 const bangladeshiPartners: Partner[] = [
@@ -94,7 +95,22 @@ function PartnerOrb({
   );
 }
 
-export default function OurPartnersSection() {
+export default function OurPartnersSection({
+  partners,
+  title = "Together For Greater Impact",
+  description,
+}: {
+  partners?: Partner[];
+  title?: string;
+  description?: string;
+}) {
+  const nationalPartners = partners?.length
+    ? partners.filter((partner) => partner.group !== "GLOBAL")
+    : bangladeshiPartners;
+  const internationalPartners = partners?.length
+    ? partners.filter((partner) => partner.group === "GLOBAL")
+    : globalPartners;
+  const displayedPartners = [...nationalPartners, ...internationalPartners];
   return (
     <section className="relative overflow-hidden bg-background py-24 sm:py-28 lg:py-32">
       <div
@@ -114,24 +130,21 @@ export default function OurPartnersSection() {
           </div>
 
           <h2 className="text-3xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-4xl">
-            Together For{" "}
-            <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
-              Greater Impact
-            </span>
+            {title}
           </h2>
 
           <p className="mt-5">
-            Bangladeshi institutions at the core, global development partners
+            {description ?? <>Bangladeshi institutions at the core, global development partners
             surrounding us — united in delivering sustainable community health
-            and social change.
+            and social change.</>}
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-left gap-3">
             <span className="rounded-full border border-[var(--pstc-primary)]/15 bg-[var(--pstc-primary-soft)]/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[var(--pstc-primary)]">
-              {bangladeshiPartners.length} National Partners
+              {nationalPartners.length} National Partners
             </span>
             <span className="rounded-full border border-[var(--pstc-secondary)]/20 bg-[var(--pstc-secondary-soft)]/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[var(--pstc-secondary-dark)]">
-              {globalPartners.length} Global Partners
+              {internationalPartners.length} Global Partners
             </span>
           </div>
         </div>
@@ -151,7 +164,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-primary)]/12"
               >
-                {bangladeshiPartners.map((partner) => (
+                {nationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -169,7 +182,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-secondary)]/15"
               >
-                {globalPartners.map((partner) => (
+                {internationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -188,7 +201,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-primary)]/12"
               >
-                {bangladeshiPartners.map((partner) => (
+                {nationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -206,7 +219,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-secondary)]/15"
               >
-                {globalPartners.map((partner) => (
+                {internationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -225,7 +238,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-primary)]/12"
               >
-                {bangladeshiPartners.map((partner) => (
+                {nationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -243,7 +256,7 @@ export default function OurPartnersSection() {
                 path
                 pathClassName="stroke-[var(--pstc-secondary)]/15"
               >
-                {globalPartners.map((partner) => (
+                {internationalPartners.map((partner) => (
                   <PartnerOrb
                     key={partner.name}
                     name={partner.name}
@@ -287,7 +300,7 @@ export default function OurPartnersSection() {
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
 
           <div className="flex w-max animate-pstc-marquee gap-3 px-4">
-            {[...allPartners, ...allPartners].map((partner, index) => (
+            {[...displayedPartners, ...displayedPartners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
                 className="flex shrink-0 items-center gap-3 rounded-full border border-border/70 bg-card/80 px-4 py-2.5 shadow-sm backdrop-blur-sm"

@@ -148,7 +148,15 @@ const flipCards = [
   },
 ];
 
-export default function WhatWeDoSection() {
+export default function WhatWeDoSection({
+  title = "Our Work Areas",
+  description,
+  backgroundImage,
+}: {
+  title?: string;
+  description?: string;
+  backgroundImage?: string;
+}) {
   return (
     <ReactLenis root>
       <section className="mt-10 relative bg-white">
@@ -157,7 +165,7 @@ export default function WhatWeDoSection() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/images/population-health-nutrition.jpg')",
+              backgroundImage: `url('${backgroundImage ?? "/images/population-health-nutrition.jpg"}')`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/75" />
@@ -186,17 +194,11 @@ export default function WhatWeDoSection() {
                 </SparklesText>
 
                 <h1 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-slate-900 md:text-5xl">
-                  Our Work <br />
-                  <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
-                    Areas
-                  </span>
+                  {title}
                 </h1>
 
                 <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-700 md:text-xl">
-                  PSTC implements clinic and community based health service
-                  delivery, child and adolescent development, WASH, advocacy,
-                  research, training, disaster preparedness, BCC activities and
-                  community capacity building programs.
+                  {description ?? "PSTC implements clinic and community based health service delivery, child and adolescent development, WASH, advocacy, research, training, disaster preparedness, BCC activities and community capacity building programs."}
                 </p>
               </div>
 

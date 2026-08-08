@@ -284,7 +284,7 @@ export function LandingManager() {
               Publish
             </button>
             <Link
-              href="/"
+              href="/?preview=landing"
               target="_blank"
               className="inline-flex h-11 items-center gap-2 rounded-2xl bg-white px-4 text-sm font-black text-[#0193CD]"
             >

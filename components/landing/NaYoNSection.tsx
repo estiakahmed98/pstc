@@ -169,7 +169,15 @@ function NaYoNSectionBackdrop() {
   );
 }
 
-export default function NaYoNSection() {
+export default function NaYoNSection({
+  title = "National Youth Network",
+  description,
+  image = heroImage,
+}: {
+  title?: string;
+  description?: string;
+  image?: string;
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -211,11 +219,7 @@ export default function NaYoNSection() {
           </div>
 
           <h2 className="text-4xl font-black uppercase leading-[0.92] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
-            National{" "}
-            <span className="bg-gradient-to-r from-[var(--pstc-primary)] to-[var(--pstc-secondary)] bg-clip-text text-transparent">
-              Youth
-            </span>{" "}
-            Network
+            {title}
           </h2>
 
           <p className="mt-3 text-lg font-bold tracking-[0.18em] text-[var(--pstc-primary)] sm:text-xl">
@@ -223,9 +227,7 @@ export default function NaYoNSection() {
           </p>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-            Shape the future instead of watching it happen. NaYoN invites
-            Bangladeshi youth aged 15–24 to learn, lead, and create lasting
-            community impact with PSTC.
+            {description ?? "Shape the future instead of watching it happen. NaYoN invites Bangladeshi youth aged 15–24 to learn, lead, and create lasting community impact with PSTC."}
           </p>
         </motion.div>
 
@@ -239,7 +241,7 @@ export default function NaYoNSection() {
           <div className="grid lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]">
             <div className="relative min-h-[320px] lg:min-h-[640px]">
               <Image
-                src={heroImage}
+                src={image}
                 alt="Young people participating in a PSTC youth program"
                 fill
                 priority={false}

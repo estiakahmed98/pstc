@@ -1,16 +1,20 @@
-import HeroCarousel from "@/components/landing/Hero";
-import LatestNewsSection from "@/components/landing/LatestNewsSection";
+import HeroCarousel, { type HeroSlideData } from "@/components/landing/Hero";
+import LatestNewsSection, { type NewsItem } from "@/components/landing/LatestNewsSection";
 import MagazineSubscriptionSection from "@/components/landing/MagazineSubscriptionSection";
 import NaYoNSection from "@/components/landing/NaYoNSection";
-import OurPartnersSection from "@/components/landing/OurPartnersSection";
-import PSTCGlobalReachSection from "@/components/landing/PSTCGlobalReachSection";
+import OurPartnersSection, { type Partner } from "@/components/landing/OurPartnersSection";
+import PSTCGlobalReachSection, { type ReachMetric } from "@/components/landing/PSTCGlobalReachSection";
 import PublicationsSection from "@/components/landing/PublicationsSection";
 import type { Publication } from "@/components/landing/PublicationsSection";
 import WhatWeDoSection from "@/components/landing/WhatWeDoSection";
 import WhoWeAreSection, {
   type WhoWeAreItemData,
 } from "@/components/landing/WhoWeAreSection";
-import { getPublicLandingPage } from "@/lib/services/landing.service";
+import { auth } from "@/auth";
+import {
+  getLandingPreviewPage,
+  getPublicLandingPage,
+} from "@/lib/services/landing.service";
 
 export const dynamic = "force-dynamic";
 
@@ -74,16 +78,70 @@ function getPublications(section?: PublicLandingSection): Publication[] | undefi
   }));
 }
 
+function getHeroSlides(section?: PublicLandingSection): HeroSlideData[] | undefined {
+  if (!section?.slides.length) return undefined;
+  return section.slides.map((slide) => ({
+    title: slide.title,
+    italic: slide.accentText ?? "",
+    description: slide.description ?? "",
+    short: slide.shortText ?? slide.title,
+    image: slide.image?.url ?? "/hero/hero%25201.webp",
+    href: slide.href ?? "#",
+  }));
+}
+
+function getNewsItems(section?: PublicLandingSection): NewsItem[] | undefined {
+  if (!section?.newsSelections.length) return undefined;
+  return section.newsSelections.map(({ newsArticle }) => ({
+    id: newsArticle.slug,
+    title: newsArticle.title,
+    description: newsArticle.excerpt ?? "",
+    category: newsArticle.category ?? "News",
+    date: newsArticle.publishedAt?.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }) ?? "",
+    image: newsArticle.coverImage?.url ?? "/images/community-mobilization-program.avif",
+    href: `/news/${newsArticle.slug}`,
+  }));
+}
+
+function getPartners(section?: PublicLandingSection): Partner[] | undefined {
+  if (!section?.partnerSelections.length) return undefined;
+  return section.partnerSelections.map(({ partner }) => ({
+    name: partner.name,
+    image: partner.logo?.url ?? "/pstc_logo.png",
+    group: partner.type,
+  }));
+}
+
+function getReachMetrics(section?: PublicLandingSection): ReachMetric[] | undefined {
+  if (!section?.metrics.length) return undefined;
+  return section.metrics.map((metric) => ({
+    value: metric.value,
+    label: metric.label,
+    tone: metric.tone === "secondary" ? "secondary" : "primary",
+  }));
+}
+
+function getAutoplayMs(section?: PublicLandingSection) {
+  const settings = section?.settings;
+  if (!settings || typeof settings !== "object" || Array.isArray(settings)) return undefined;
+  const value = (settings as Record<string, unknown>).autoplayMs;
+  return typeof value === "number" && value >= 1000 ? value : undefined;
+}
+
 function renderLandingSection(type: string, section?: PublicLandingSection) {
   switch (type) {
     case "HERO":
-      return <HeroCarousel />;
+      return <HeroCarousel slides={getHeroSlides(section)} autoplayMs={getAutoplayMs(section)} />;
     case "WHO_WE_ARE":
       return <WhoWeAreSection items={getWhoItems(section)} />;
     case "WHAT_WE_DO":
-      return <WhatWeDoSection />;
+      return <WhatWeDoSection title={section?.title} description={section?.description ?? undefined} backgroundImage={section?.backgroundImage?.url} />;
     case "NAYON":
-      return <NaYoNSection />;
+      return <NaYoNSection title={section?.title} description={section?.description ?? undefined} image={section?.backgroundImage?.url} />;
     case "PUBLICATIONS":
       return (
         <PublicationsSection
@@ -93,20 +151,35 @@ function renderLandingSection(type: string, section?: PublicLandingSection) {
         />
       );
     case "MAGAZINE_SUBSCRIPTION":
-      return <MagazineSubscriptionSection />;
+      return <MagazineSubscriptionSection title={section?.title} description={section?.description ?? undefined} />;
     case "LATEST_NEWS":
-      return <LatestNewsSection />;
+      return <LatestNewsSection items={getNewsItems(section)} title={section?.title} description={section?.description ?? undefined} />;
     case "PARTNERS":
-      return <OurPartnersSection />;
+      return <OurPartnersSection partners={getPartners(section)} title={section?.title} description={section?.description ?? undefined} />;
     case "GLOBAL_REACH":
-      return <PSTCGlobalReachSection />;
+      return <PSTCGlobalReachSection title={section?.title} description={section?.description ?? undefined} metrics={getReachMetrics(section)} />;
     default:
       return null;
   }
 }
 
-export default async function Home() {
-  const landing = await getPublicLandingPage().catch(() => null);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ preview?: string }>;
+}) {
+  const { preview } = await searchParams;
+  const session = preview === "landing" ? await auth() : null;
+  const canPreview = Boolean(
+    session?.user &&
+      ["super_admin", "admin", "editor", "program_manager"].includes(
+        session.user.role,
+      ),
+  );
+  const landing = await (canPreview
+    ? getLandingPreviewPage()
+    : getPublicLandingPage()
+  ).catch(() => null);
 
   return (
     <div>

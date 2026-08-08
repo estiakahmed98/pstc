@@ -139,6 +139,13 @@ export async function getPublicLandingPage() {
   });
 }
 
+export async function getLandingPreviewPage() {
+  return prisma.landingPage.findUnique({
+    where: { key: "home" },
+    include: publicLandingInclude,
+  });
+}
+
 export async function updateLandingPage(
   input: UpdatePageInput,
   userId: string,

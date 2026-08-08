@@ -368,7 +368,13 @@ function FormField({
   );
 }
 
-export default function MagazineSubscriptionSection() {
+export default function MagazineSubscriptionSection({
+  title = "PROJANMO Kotha",
+  description,
+}: {
+  title?: string;
+  description?: string;
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [organization, setOrganization] = useState("");
@@ -420,13 +426,11 @@ export default function MagazineSubscriptionSection() {
             }}
             className="text-3xl  font-black uppercase leading-[0.95] tracking-[-0.04em] text-primary sm:text-5xl lg:text-4xl"
           >
-            PROJANMO <span className="text-secondary">Kotha</span>
+            {title}
           </SparklesText>
 
           <p className="mt-4">
-            Subscribe once and receive PSTC&apos;s monthly magazine as a soft
-            copy in your inbox — field stories, youth voices, and community
-            impact from across Bangladesh.
+            {description ?? "Subscribe once and receive PSTC's monthly magazine as a soft copy in your inbox — field stories, youth voices, and community impact from across Bangladesh."}
           </p>
         </motion.div>
 
