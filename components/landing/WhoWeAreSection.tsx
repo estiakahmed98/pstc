@@ -39,7 +39,22 @@ type WhoCard = {
   icon: LucideIcon;
 };
 
-const whoItems: WhoCard[] = [
+export type WhoWeAreItemData = Omit<WhoCard, "icon"> & {
+  iconKey?: string | null;
+};
+
+const whoIconMap: Record<string, LucideIcon> = {
+  Landmark,
+  UsersRound,
+  ShieldCheck,
+  FileCheck2,
+  Network,
+  Globe2,
+  Building2,
+  ScrollText,
+};
+
+const defaultWhoItems: WhoCard[] = [
   {
     number: "01",
     title: "Governance",
@@ -303,7 +318,18 @@ function MobileWhoCard({ item }: { item: WhoCard }) {
 // Section
 // ---------------------------------------------------------------------------
 
-export default function WhoWeAreSection() {
+export default function WhoWeAreSection({
+  items,
+}: {
+  items?: WhoWeAreItemData[];
+}) {
+  const whoItems: WhoCard[] = items?.length
+    ? items.map(({ iconKey, ...item }) => ({
+        ...item,
+        icon: (iconKey && whoIconMap[iconKey]) || Landmark,
+      }))
+    : defaultWhoItems;
+
   return (
     <section
       className="relative z-0 isolate bg-background pt-4 text-foreground sm:pt-6 lg:pt-0"

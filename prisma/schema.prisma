@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../node_modules/prisma-client-generated"
 }
 
 datasource db {
@@ -15,18 +16,369 @@ enum Role {
   viewer
 }
 
+enum ContentStatus {
+  DRAFT
+  IN_REVIEW
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum LandingSectionType {
+  HERO
+  WHO_WE_ARE
+  WHAT_WE_DO
+  NAYON
+  PUBLICATIONS
+  MAGAZINE_SUBSCRIPTION
+  LATEST_NEWS
+  PARTNERS
+  GLOBAL_REACH
+}
+
+enum LandingItemKind {
+  CARD
+  ACTIVITY
+  CRITERION
+  STEP
+  COVER
+  PERK
+}
+
+enum PartnerType {
+  LOCAL
+  GLOBAL
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+enum SubmissionStatus {
+  NEW
+  REVIEWED
+  CONTACTED
+  ARCHIVED
+}
+
 model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  password      String
-  role          Role      @default(viewer)
-  isActive      Boolean   @default(true)
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                  String            @id @default(cuid())
+  name                String
+  email               String            @unique
+  password            String
+  role                Role              @default(viewer)
+  isActive            Boolean           @default(true)
+  emailVerified       DateTime?
+  image               String?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  landingPagesCreated LandingPage[]     @relation("LandingPageCreatedBy")
+  landingPagesUpdated LandingPage[]     @relation("LandingPageUpdatedBy")
+  landingRevisions    LandingRevision[]
+  mediaUploads        MediaAsset[]
 
   @@index([role])
   @@map("users")
+}
+
+model LandingPage {
+  id          String            @id @default(cuid())
+  key         String            @unique @default("home")
+  status      ContentStatus     @default(DRAFT)
+  version     Int               @default(1)
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  createdById String?
+  updatedById String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  createdBy   User?             @relation("LandingPageCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy   User?             @relation("LandingPageUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  sections    LandingSection[]
+  revisions   LandingRevision[]
+
+  @@index([status, publishedAt])
+  @@map("landing_pages")
+}
+
+model LandingSection {
+  id                    String                        @id @default(cuid())
+  landingPageId         String
+  key                   String
+  type                  LandingSectionType
+  eyebrow               String?
+  title                 String
+  highlightedTitle      String?
+  subtitle              String?
+  description           String?
+  primaryCtaLabel       String?
+  primaryCtaHref        String?
+  secondaryCtaLabel     String?
+  secondaryCtaHref      String?
+  sortOrder             Int                           @default(0)
+  isVisible             Boolean                       @default(true)
+  settings              Json?
+  backgroundImageId     String?
+  createdAt             DateTime                      @default(now())
+  updatedAt             DateTime                      @updatedAt
+  landingPage           LandingPage                   @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+  backgroundImage       MediaAsset?                   @relation("LandingSectionBackground", fields: [backgroundImageId], references: [id], onDelete: SetNull)
+  slides                HeroSlide[]
+  items                 LandingSectionItem[]
+  metrics               LandingMetric[]
+  newsSelections        LandingNewsSelection[]
+  publicationSelections LandingPublicationSelection[]
+  partnerSelections     LandingPartnerSelection[]
+
+  @@unique([landingPageId, key])
+  @@unique([landingPageId, type])
+  @@index([landingPageId, isVisible, sortOrder])
+  @@map("landing_sections")
+}
+
+model HeroSlide {
+  id               String         @id @default(cuid())
+  landingSectionId String
+  key              String
+  title            String
+  accentText       String?
+  description      String?
+  shortText        String?
+  ctaLabel         String?
+  sortOrder        Int            @default(0)
+  isVisible        Boolean        @default(true)
+  imageId          String?
+  href             String?
+  settings         Json?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  landingSection   LandingSection @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+  image            MediaAsset?    @relation("HeroSlideImage", fields: [imageId], references: [id], onDelete: SetNull)
+
+  @@unique([landingSectionId, key])
+  @@index([landingSectionId, isVisible, sortOrder])
+  @@map("hero_slides")
+}
+
+model LandingSectionItem {
+  id               String          @id @default(cuid())
+  landingSectionId String
+  key              String
+  kind             LandingItemKind
+  title            String
+  subtitle         String?
+  description      String?
+  details          Json?
+  sortOrder        Int             @default(0)
+  isVisible        Boolean         @default(true)
+  imageId          String?
+  href             String?
+  iconKey          String?
+  metadata         Json?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  landingSection   LandingSection  @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+  image            MediaAsset?     @relation("LandingItemImage", fields: [imageId], references: [id], onDelete: SetNull)
+
+  @@unique([landingSectionId, key])
+  @@index([landingSectionId, kind, isVisible, sortOrder])
+  @@map("landing_section_items")
+}
+
+model LandingMetric {
+  id               String         @id @default(cuid())
+  landingSectionId String
+  key              String
+  value            String
+  label            String
+  caption          String?
+  tone             String?
+  sortOrder        Int            @default(0)
+  isVisible        Boolean        @default(true)
+  landingSection   LandingSection @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+
+  @@unique([landingSectionId, key])
+  @@index([landingSectionId, isVisible, sortOrder])
+  @@map("landing_metrics")
+}
+
+model LandingRevision {
+  id            String      @id @default(cuid())
+  landingPageId String
+  version       Int
+  snapshot      Json
+  changeNote    String?
+  createdById   String?
+  createdAt     DateTime    @default(now())
+  landingPage   LandingPage @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+  createdBy     User?       @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@unique([landingPageId, version])
+  @@index([landingPageId, createdAt])
+  @@map("landing_revisions")
+}
+
+model MediaAsset {
+  id                 String               @id @default(cuid())
+  type               MediaType
+  filename           String
+  originalName       String
+  mimeType           String
+  url                String
+  storageKey         String?              @unique
+  size               Int?
+  width              Int?
+  height             Int?
+  altText            String?
+  caption            String?
+  uploadedById       String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  uploadedBy         User?                @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  sectionBackgrounds LandingSection[]     @relation("LandingSectionBackground")
+  heroSlides         HeroSlide[]          @relation("HeroSlideImage")
+  landingItems       LandingSectionItem[] @relation("LandingItemImage")
+  newsCovers         NewsArticle[]        @relation("NewsCover")
+  publicationCovers  Publication[]        @relation("PublicationCover")
+  publicationFiles   Publication[]        @relation("PublicationFile")
+  partnerLogos       Partner[]            @relation("PartnerLogo")
+
+  @@index([type, createdAt])
+  @@map("media_assets")
+}
+
+model NewsArticle {
+  id                String                 @id @default(cuid())
+  slug              String                 @unique
+  status            ContentStatus          @default(DRAFT)
+  category          String?
+  title             String
+  excerpt           String?
+  content           String?
+  coverImageId      String?
+  featured          Boolean                @default(false)
+  publishedAt       DateTime?
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  coverImage        MediaAsset?            @relation("NewsCover", fields: [coverImageId], references: [id], onDelete: SetNull)
+  landingSelections LandingNewsSelection[]
+
+  @@index([status, publishedAt])
+  @@map("news_articles")
+}
+
+model Publication {
+  id                String                        @id @default(cuid())
+  slug              String                        @unique
+  status            ContentStatus                 @default(DRAFT)
+  category          String?
+  title             String
+  description       String?
+  coverImageId      String?
+  fileAssetId       String?
+  pageCount         Int?
+  featured          Boolean                       @default(false)
+  publishedAt       DateTime?
+  createdAt         DateTime                      @default(now())
+  updatedAt         DateTime                      @updatedAt
+  coverImage        MediaAsset?                   @relation("PublicationCover", fields: [coverImageId], references: [id], onDelete: SetNull)
+  fileAsset         MediaAsset?                   @relation("PublicationFile", fields: [fileAssetId], references: [id], onDelete: SetNull)
+  landingSelections LandingPublicationSelection[]
+
+  @@index([status, publishedAt])
+  @@map("publications")
+}
+
+model Partner {
+  id                String                    @id @default(cuid())
+  slug              String                    @unique
+  type              PartnerType
+  name              String
+  description       String?
+  logoId            String?
+  websiteUrl        String?
+  isActive          Boolean                   @default(true)
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
+  logo              MediaAsset?               @relation("PartnerLogo", fields: [logoId], references: [id], onDelete: SetNull)
+  landingSelections LandingPartnerSelection[]
+
+  @@index([type, isActive])
+  @@map("partners")
+}
+
+model LandingNewsSelection {
+  landingSectionId String
+  newsArticleId    String
+  sortOrder        Int            @default(0)
+  isFeatured       Boolean        @default(false)
+  landingSection   LandingSection @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+  newsArticle      NewsArticle    @relation(fields: [newsArticleId], references: [id], onDelete: Cascade)
+
+  @@id([landingSectionId, newsArticleId])
+  @@index([landingSectionId, sortOrder])
+  @@map("landing_news_selections")
+}
+
+model LandingPublicationSelection {
+  landingSectionId String
+  publicationId    String
+  sortOrder        Int            @default(0)
+  isFeatured       Boolean        @default(false)
+  landingSection   LandingSection @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+  publication      Publication    @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+
+  @@id([landingSectionId, publicationId])
+  @@index([landingSectionId, sortOrder])
+  @@map("landing_publication_selections")
+}
+
+model LandingPartnerSelection {
+  landingSectionId String
+  partnerId        String
+  sortOrder        Int            @default(0)
+  landingSection   LandingSection @relation(fields: [landingSectionId], references: [id], onDelete: Cascade)
+  partner          Partner        @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+  @@id([landingSectionId, partnerId])
+  @@index([landingSectionId, sortOrder])
+  @@map("landing_partner_selections")
+}
+
+model MagazineSubscriber {
+  id           String           @id @default(cuid())
+  name         String
+  email        String           @unique
+  organization String?
+  status       SubmissionStatus @default(NEW)
+  consentedAt  DateTime
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@index([status, createdAt])
+  @@map("magazine_subscribers")
+}
+
+model YouthInterestSubmission {
+  id          String           @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  age         Int?
+  district    String?
+  motivation  String?
+  status      SubmissionStatus @default(NEW)
+  consentedAt DateTime
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([email])
+  @@index([status, createdAt])
+  @@map("youth_interest_submissions")
 }

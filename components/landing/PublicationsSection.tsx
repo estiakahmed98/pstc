@@ -17,7 +17,7 @@ export interface Publication {
   coverImage: string;
   publishedAt: string;
   pages: number;
-  downloadUrl: string;
+  downloadUrl: string | null;
   featured?: boolean;
 }
 
@@ -133,13 +133,20 @@ function LatestPublicationCard({ pub }: { pub: Publication }) {
             <ArrowRight className="size-4 transition group-hover:translate-x-1" />
           </MovingLinkButton>
 
-          <MovingLinkButton
-            href={pub.downloadUrl}
-            className="relative z-20 min-w-0 px-5 py-3"
-          >
-            <Download className="size-4" />
-            Download PDF
-          </MovingLinkButton>
+          {pub.downloadUrl ? (
+            <MovingLinkButton
+              href={pub.downloadUrl}
+              className="relative z-20 min-w-0 px-5 py-3"
+            >
+              <Download className="size-4" />
+              Download PDF
+            </MovingLinkButton>
+          ) : (
+            <span className="relative z-20 inline-flex min-w-0 items-center gap-2 rounded-full bg-white/15 px-5 py-3 text-sm font-bold text-white/70 backdrop-blur-md">
+              <Download className="size-4" />
+              PDF coming soon
+            </span>
+          )}
         </div>
       </div>
     </div>
