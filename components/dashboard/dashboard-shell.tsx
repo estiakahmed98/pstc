@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sidebar } from "@/components/dashboard/sidebar";
+import { CmsSidebar } from "@/components/dashboard/sidebar/cms-sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
@@ -29,7 +29,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         />
       ) : null}
 
-      <Sidebar
+      <CmsSidebar
         mobileOpen={mobileSidebarOpen}
         onClose={() => setMobileSidebarOpen(false)}
       />
