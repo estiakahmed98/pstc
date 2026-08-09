@@ -1,5 +1,9 @@
 import { PrismaClient, type LandingItemKind } from "prisma-client-generated";
 import { hash } from "bcryptjs";
+import {
+  governanceDefaultContent,
+  leadershipDefaultContent,
+} from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
 
@@ -634,8 +638,33 @@ async function main() {
     }
   }
 
+  const contentPages = [
+    ["governance", "Governance", governanceDefaultContent],
+    ["leadership", "Leadership", leadershipDefaultContent],
+  ] as const;
+
+  for (const [key, title, content] of contentPages) {
+    const jsonContent = JSON.parse(JSON.stringify(content));
+    await prisma.cmsPage.upsert({
+      where: { key },
+      update: {},
+      create: {
+        key,
+        title,
+        status: "PUBLISHED",
+        seoTitle: `${title} | PSTC`,
+        draftContent: jsonContent,
+        publishedContent: jsonContent,
+        publishedAt: new Date(),
+        createdById: admin.id,
+        updatedById: admin.id,
+      },
+    });
+  }
+
   console.log(`Admin user is ready: ${email}`);
   console.log("Landing CMS foundation is ready with 9 sections.");
+  console.log("Governance and Leadership CMS pages are ready.");
 }
 
 main()

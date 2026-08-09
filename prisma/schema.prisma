@@ -78,10 +78,34 @@ model User {
   landingPagesCreated LandingPage[]     @relation("LandingPageCreatedBy")
   landingPagesUpdated LandingPage[]     @relation("LandingPageUpdatedBy")
   landingRevisions    LandingRevision[]
+  cmsPagesCreated     CmsPage[]         @relation("CmsPageCreatedBy")
+  cmsPagesUpdated     CmsPage[]         @relation("CmsPageUpdatedBy")
   mediaUploads        MediaAsset[]
 
   @@index([role])
   @@map("users")
+}
+
+model CmsPage {
+  id               String        @id @default(cuid())
+  key              String        @unique
+  title            String
+  status           ContentStatus @default(DRAFT)
+  version          Int           @default(1)
+  seoTitle         String?
+  seoDescription   String?
+  draftContent     Json
+  publishedContent Json?
+  publishedAt      DateTime?
+  createdById      String?
+  updatedById      String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  createdBy        User?         @relation("CmsPageCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  updatedBy        User?         @relation("CmsPageUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+
+  @@index([status, publishedAt])
+  @@map("cms_pages")
 }
 
 model LandingPage {

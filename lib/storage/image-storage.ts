@@ -1,6 +1,6 @@
 import "server-only";
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 
@@ -88,4 +88,20 @@ export async function storeLandingImage(file: File) {
     url: `/uploads/landing/${filename}`,
     storageKey: `local:landing/${filename}`,
   };
+}
+
+export async function removeStoredLandingImage(storageKey: string) {
+  const prefix = "local:landing/";
+  if (!storageKey.startsWith(prefix)) return;
+
+  const filename = storageKey.slice(prefix.length);
+  if (!filename || path.basename(filename) !== filename) return;
+
+  const target = path.resolve(uploadDirectory, filename);
+  const root = `${path.resolve(uploadDirectory)}${path.sep}`;
+  if (!target.startsWith(root)) return;
+
+  await unlink(target).catch((error: NodeJS.ErrnoException) => {
+    if (error.code !== "ENOENT") throw error;
+  });
 }

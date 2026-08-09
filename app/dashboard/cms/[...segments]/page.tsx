@@ -8,6 +8,8 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { ContentPageManager } from "@/components/dashboard/cms/content-page-manager";
+import { cmsPageDefaults } from "@/lib/cms/content-page-defaults";
 import {
   findCmsNavigationItem,
   getCmsPath,
@@ -33,6 +35,29 @@ export default async function CmsPlaceholderPage({
 }: CmsPlaceholderPageProps) {
   const { segments } = await params;
   const publicPath = getPublicPathFromCmsSegments(segments);
+
+  if (publicPath === "/who-we-are/governance") {
+    return (
+      <ContentPageManager
+        pageKey="governance"
+        pageTitle="Governance"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.governance}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/leadership") {
+    return (
+      <ContentPageManager
+        pageKey="leadership"
+        pageTitle="Leadership"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.leadership}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

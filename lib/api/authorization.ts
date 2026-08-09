@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { apiError } from "@/lib/api/response";
+import { prisma } from "@/lib/prisma";
 
 const landingManagerRoles = new Set([
   "super_admin",
@@ -18,7 +19,26 @@ export async function requireLandingManager() {
     };
   }
 
-  if (!landingManagerRoles.has(session.user.role)) {
+  const user = session.user.email
+    ? await prisma.user.findUnique({
+        where: { email: session.user.email.toLowerCase() },
+      })
+    : session.user.id
+      ? await prisma.user.findUnique({ where: { id: session.user.id } })
+      : null;
+
+  if (!user || !user.isActive) {
+    return {
+      user: null,
+      response: apiError(
+        "Your account is no longer available. Please sign in again.",
+        401,
+        "STALE_SESSION",
+      ),
+    };
+  }
+
+  if (!landingManagerRoles.has(user.role)) {
     return {
       user: null,
       response: apiError(
@@ -29,5 +49,5 @@ export async function requireLandingManager() {
     };
   }
 
-  return { user: session.user, response: null };
+  return { user, response: null };
 }
