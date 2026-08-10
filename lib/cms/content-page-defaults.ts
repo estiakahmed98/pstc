@@ -986,6 +986,328 @@ export const youthAdolescentDevelopmentDefaultContent: CmsPageContent = {
   },
 };
 
+export const genderGovernanceDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & thematic overview",
+      isVisible: true,
+      eyebrow: "Gender & Governance",
+      shortCode: "GAG",
+      title: "Equal voice should shape",
+      highlightedTitle: "every decision.",
+      description:
+        "PSTC connects gender equality with inclusive governance so that women, girls, young people, and underserved communities can participate, influence decisions, claim rights, and contribute to accountable institutions.",
+      image: "/images/gender-governance.jpeg",
+      primaryCtaLabel: "Explore our approach",
+      primaryCtaHref: "#gender-governance-focus",
+      secondaryCtaLabel: "View our policies",
+      secondaryCtaHref: "/who-we-are/policies",
+      keywords: ["Equity", "Voice", "Rights", "Accountability"],
+    },
+    statement: {
+      label: "Core statement",
+      isVisible: true,
+      eyebrow: "Our point of view",
+      title: "Participation is not complete",
+      highlightedTitle: "until power is shared.",
+      description:
+        "Gender equality is both a right and a condition for stronger development. Inclusive governance creates the space, information, representation, and accountability needed for people to shape the systems that affect their lives.",
+      quote: "Listen to lived experience. Remove barriers. Share decisions. Stay accountable.",
+      image: "/images/gender-governance.jpeg",
+    },
+    focusAreas: {
+      label: "Gender & governance focus areas",
+      isVisible: true,
+      eyebrow: "Where we focus",
+      title: "From individual agency",
+      highlightedTitle: "to institutional change.",
+      description:
+        "Our approach links rights awareness and meaningful participation with safer communities, responsive services, inclusive leadership, and accountable systems.",
+      items: [
+        { number: "01", title: "Gender equality & rights", description: "Strengthen awareness of rights, challenge discriminatory norms, and support equitable access to information and opportunity.", icon: "Scale" },
+        { number: "02", title: "Voice & participation", description: "Create meaningful space for women, girls, youth, and excluded groups to express priorities and shape decisions.", icon: "MessagesSquare" },
+        { number: "03", title: "Inclusive leadership", description: "Encourage representative, ethical, and responsive leadership across communities, programmes, and institutions.", icon: "UsersRound" },
+        { number: "04", title: "Protection & dignity", description: "Integrate safeguarding, dignity, prevention, and appropriate response across engagement and service delivery.", icon: "ShieldCheck" },
+        { number: "05", title: "Responsive services", description: "Use feedback and lived experience to make information, programmes, and services more equitable and accessible.", icon: "HeartHandshake" },
+        { number: "06", title: "Transparency & accountability", description: "Promote clear responsibilities, accessible feedback, evidence-based learning, and answerable decision-making.", icon: "ScanSearch" },
+      ],
+    },
+    pathway: {
+      label: "Participation pathway",
+      isVisible: true,
+      eyebrow: "How change moves",
+      title: "Voice becomes influence",
+      highlightedTitle: "when systems respond.",
+      description:
+        "Inclusive governance requires more than consultation. People need the knowledge, space, connection, and feedback loops that turn participation into visible action.",
+      items: [
+        { step: "01", title: "Know", description: "Access clear information about rights, services, processes, and choices." },
+        { step: "02", title: "Speak", description: "Share experience, priorities, concerns, and ideas in safe and accessible spaces." },
+        { step: "03", title: "Participate", description: "Join dialogue, planning, community action, monitoring, and collective problem-solving." },
+        { step: "04", title: "Influence", description: "Help shape decisions, services, institutional practices, and public accountability." },
+        { step: "05", title: "Review", description: "Track commitments, learn from feedback, and keep decision-makers answerable." },
+      ],
+    },
+    governancePillars: {
+      label: "Governance pillars",
+      isVisible: true,
+      eyebrow: "What good governance needs",
+      title: "Principles that make",
+      highlightedTitle: "participation meaningful.",
+      description:
+        "These connected principles guide how PSTC approaches equitable participation, institutional responsibility, and community trust.",
+      items: [
+        { title: "Inclusion", description: "Recognize intersecting barriers and make participation accessible to diverse people and perspectives.", word: "Everyone" },
+        { title: "Representation", description: "Bring affected communities and lived experience into spaces where priorities and decisions are shaped.", word: "At the table" },
+        { title: "Transparency", description: "Communicate processes, roles, choices, and commitments clearly enough for people to engage.", word: "Openly" },
+        { title: "Accountability", description: "Build feedback, safeguarding, learning, and response into programmes and institutional practice.", word: "Answerable" },
+      ],
+    },
+    commitments: {
+      label: "Practice commitments",
+      isVisible: true,
+      eyebrow: "How we work",
+      title: "Equity must be visible",
+      highlightedTitle: "in everyday practice.",
+      description:
+        "Gender-responsive and accountable work depends on the way programmes are designed, delivered, reviewed, and improved.",
+      items: ["Do no harm and safeguard participants", "Use inclusive and accessible communication", "Value lived experience and local knowledge", "Collect and use feedback responsibly", "Challenge exclusion without reinforcing stigma", "Learn, adapt, and communicate progress"],
+    },
+    cta: {
+      label: "Gender & governance CTA",
+      isVisible: true,
+      eyebrow: "Continue exploring",
+      title: "Build fairer systems through voice, participation, and accountability.",
+      description:
+        "Explore PSTC's institutional governance and policies, or contact us to discuss collaboration around gender equality and inclusive governance.",
+      primaryCtaLabel: "Explore governance",
+      primaryCtaHref: "/who-we-are/governance",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const climateChangeAdaptationDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & thematic overview",
+      isVisible: true,
+      eyebrow: "Climate Change Adaptation",
+      shortCode: "CCA",
+      title: "Resilience begins",
+      highlightedTitle: "before the next shock.",
+      description:
+        "PSTC works with communities to understand climate risks, strengthen preparedness, protect essential services and livelihoods, and develop locally relevant pathways for adapting to a changing climate.",
+      image: "/images/climate-change-adaptation.jpeg",
+      primaryCtaLabel: "Explore adaptation priorities",
+      primaryCtaHref: "#cca-priorities",
+      secondaryCtaLabel: "Our climate priority",
+      secondaryCtaHref: "/what-we-do/priorities/climate-resilience",
+      signals: ["Prepare", "Protect", "Adapt", "Recover"],
+    },
+    context: {
+      label: "Climate context",
+      isVisible: true,
+      eyebrow: "Why adaptation matters",
+      title: "Climate impacts are connected.",
+      highlightedTitle: "Responses must be too.",
+      description:
+        "Climate stress can affect health, water, nutrition, safety, livelihoods, mobility, and access to services at the same time. Adaptation is strongest when local knowledge, inclusive planning, preparedness, and responsive systems work together.",
+      image: "/images/climate-change-adaptation.jpeg",
+      note: "Community experience helps reveal which risks are most urgent, who is most affected, and which solutions can last.",
+      items: ["Health and wellbeing", "Water and sanitation", "Livelihood security", "Safe and inclusive services"],
+    },
+    priorities: {
+      label: "Adaptation priorities",
+      isVisible: true,
+      eyebrow: "What resilience requires",
+      title: "Practical action across",
+      highlightedTitle: "people, places, and systems.",
+      description:
+        "PSTC's adaptation lens connects risk awareness and preparedness with inclusive services, community capacity, learning, and partnerships.",
+      items: [
+        { number: "01", title: "Climate risk awareness", description: "Make climate information relevant and usable so communities can recognize changing risks and make informed choices.", icon: "CloudSun" },
+        { number: "02", title: "Community preparedness", description: "Strengthen local planning, communication, capacity, and coordination before shocks and stresses escalate.", icon: "ShieldCheck" },
+        { number: "03", title: "Water, sanitation & health", description: "Support climate-sensitive approaches that protect health, hygiene, nutrition, water access, and continuity of care.", icon: "Droplets" },
+        { number: "04", title: "Inclusive adaptation", description: "Center women, young people, people with disabilities, and underserved groups in analysis and decision-making.", icon: "UsersRound" },
+        { number: "05", title: "Resilient livelihoods", description: "Connect learning, local capacity, and adaptive options that help households manage disruption and uncertainty.", icon: "Sprout" },
+        { number: "06", title: "Learning & partnership", description: "Use evidence, community feedback, networks, and cross-sector collaboration to improve adaptation over time.", icon: "Network" },
+      ],
+    },
+    cycle: {
+      label: "Adaptation cycle",
+      isVisible: true,
+      eyebrow: "An ongoing process",
+      title: "Understand. Prepare. Act.",
+      highlightedTitle: "Learn. Adapt again.",
+      description:
+        "Climate adaptation is not a one-time activity. It is a continuous cycle of understanding risk, preparing together, acting early, reviewing results, and adjusting to new realities.",
+      items: [
+        { step: "01", verb: "Understand", title: "Read the risk", description: "Combine climate information with lived experience and local knowledge." },
+        { step: "02", verb: "Prepare", title: "Plan inclusively", description: "Identify priorities, responsibilities, resources, and accessible communication." },
+        { step: "03", verb: "Act", title: "Reduce vulnerability", description: "Put practical protection, preparedness, and service measures into place." },
+        { step: "04", verb: "Learn", title: "Review what changed", description: "Use evidence and feedback to understand results, gaps, and unintended effects." },
+        { step: "05", verb: "Adapt", title: "Improve the response", description: "Refine plans and practices as risks, needs, and knowledge evolve." },
+      ],
+    },
+    actionAreas: {
+      label: "Community action areas",
+      isVisible: true,
+      eyebrow: "Adaptation in practice",
+      title: "Local action can protect",
+      highlightedTitle: "essential parts of life.",
+      description:
+        "Adaptation becomes tangible through connected action that reflects local priorities and strengthens the systems people rely on.",
+      items: [
+        { title: "Climate-informed health", description: "Anticipate climate-sensitive health risks and strengthen accessible information, prevention, referral, and continuity of services.", tag: "Wellbeing" },
+        { title: "Safer water & hygiene", description: "Promote practical approaches that protect water, sanitation, hygiene, and public health through climate stress.", tag: "WASH" },
+        { title: "Prepared communities", description: "Support locally led planning, communication, coordination, and readiness for shocks and seasonal changes.", tag: "Preparedness" },
+        { title: "Adaptive capacity", description: "Build knowledge, skills, partnerships, and learning systems that help communities respond as conditions change.", tag: "Capacity" },
+      ],
+    },
+    commitments: {
+      label: "Resilience commitments",
+      isVisible: true,
+      eyebrow: "How we approach adaptation",
+      title: "Resilience should be",
+      highlightedTitle: "inclusive, practical, and local.",
+      description:
+        "PSTC aims to keep people, equity, evidence, safeguarding, and long-term learning at the center of climate adaptation work.",
+      items: ["Start with local knowledge and priorities", "Include those facing greater barriers", "Connect climate action with health and rights", "Strengthen systems, not only short-term response", "Use feedback and evidence to adapt", "Work through partnership and shared responsibility"],
+    },
+    cta: {
+      label: "Climate action CTA",
+      isVisible: true,
+      eyebrow: "Build resilience together",
+      title: "Turn climate awareness into locally led adaptation.",
+      description:
+        "Explore PSTC's climate resilience priority or contact us to discuss community-based adaptation, preparedness, health, and partnership opportunities.",
+      primaryCtaLabel: "Explore climate resilience",
+      primaryCtaHref: "/what-we-do/priorities/climate-resilience",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const skillsEducationTrainingDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & thematic overview",
+      isVisible: true,
+      eyebrow: "Skills, Education & Training",
+      shortCode: "SET",
+      title: "Learning becomes powerful",
+      highlightedTitle: "when it can be applied.",
+      description:
+        "PSTC connects accessible education and practical training with confidence, employability, leadership, service quality, and the capabilities people and institutions need to create lasting change.",
+      image: "/images/skills-education-training.jpg",
+      primaryCtaLabel: "Explore learning areas",
+      primaryCtaHref: "#set-learning-areas",
+      secondaryCtaLabel: "Training & certification",
+      secondaryCtaHref: "/get-involved/training-certification",
+      keywords: ["Learn", "Practice", "Apply", "Grow"],
+    },
+    philosophy: {
+      label: "Learning philosophy",
+      isVisible: true,
+      eyebrow: "Our learning approach",
+      title: "More than information.",
+      highlightedTitle: "A pathway to capability.",
+      description:
+        "Useful learning connects knowledge with reflection, practice, feedback, and real-world application. PSTC aims to create inclusive learning experiences that are relevant to people, programmes, services, and community priorities.",
+      image: "/images/skills-education-training.jpg",
+      statement: "Knowledge builds understanding. Practice builds confidence. Application creates change.",
+      items: ["Relevant to real needs", "Participatory and practical", "Inclusive and accessible", "Connected to action"],
+    },
+    learningAreas: {
+      label: "Learning areas",
+      isVisible: true,
+      eyebrow: "What learning can strengthen",
+      title: "Skills for life, work,",
+      highlightedTitle: "leadership, and service.",
+      description:
+        "PSTC's education and training lens spans individual capability, programme quality, community engagement, institutional practice, and pathways for continued learning.",
+      items: [
+        { number: "01", title: "Life skills & confidence", description: "Strengthen communication, decision-making, problem-solving, teamwork, resilience, and confidence for everyday life.", icon: "Sparkles" },
+        { number: "02", title: "Youth learning", description: "Create youth-friendly opportunities to explore rights, wellbeing, relationships, participation, leadership, and future pathways.", icon: "GraduationCap" },
+        { number: "03", title: "Workforce capability", description: "Build practical and professional capabilities that support employability, responsibility, adaptability, and workplace readiness.", icon: "BriefcaseBusiness" },
+        { number: "04", title: "Programme & service quality", description: "Support teams and partners to strengthen technical understanding, responsive delivery, documentation, and quality practice.", icon: "BadgeCheck" },
+        { number: "05", title: "Community leadership", description: "Equip community actors with knowledge and facilitation skills for participation, advocacy, mobilization, and local action.", icon: "UsersRound" },
+        { number: "06", title: "Organizational learning", description: "Connect reflection, evidence, knowledge sharing, and adaptation so institutions can improve how they work.", icon: "BrainCircuit" },
+      ],
+    },
+    method: {
+      label: "Learning method",
+      isVisible: true,
+      eyebrow: "How learning moves",
+      title: "Explore. Practice. Reflect.",
+      highlightedTitle: "Apply. Keep growing.",
+      description:
+        "A learning journey is strongest when participants can connect new ideas to their own context, test them safely, receive feedback, and carry them into real situations.",
+      items: [
+        { step: "01", verb: "Explore", title: "Build understanding", description: "Connect new information with experience, questions, and existing knowledge." },
+        { step: "02", verb: "Practice", title: "Try the skill", description: "Use exercises, discussion, scenarios, demonstration, and collaborative work." },
+        { step: "03", verb: "Reflect", title: "Make meaning", description: "Review what worked, where barriers remain, and what needs to change." },
+        { step: "04", verb: "Apply", title: "Use it in context", description: "Transfer learning into life, work, programmes, services, or community action." },
+        { step: "05", verb: "Grow", title: "Continue improving", description: "Seek feedback, share knowledge, revisit practice, and build the next capability." },
+      ],
+    },
+    outcomes: {
+      label: "Learning outcomes",
+      isVisible: true,
+      eyebrow: "What capability looks like",
+      title: "Learning should change",
+      highlightedTitle: "what people can do.",
+      description:
+        "The value of education and training is visible in greater confidence, stronger practice, better decisions, shared knowledge, and the ability to respond to new challenges.",
+      items: [
+        { title: "Know", description: "Understand relevant concepts, choices, standards, rights, and responsibilities.", word: "Knowledge" },
+        { title: "Do", description: "Use practical skills with greater confidence, care, consistency, and judgment.", word: "Practice" },
+        { title: "Share", description: "Communicate learning, support peers, facilitate participation, and strengthen teams.", word: "Leadership" },
+        { title: "Adapt", description: "Apply evidence and reflection to improve practice as contexts and needs change.", word: "Growth" },
+      ],
+    },
+    pathways: {
+      label: "Learning pathways",
+      isVisible: true,
+      eyebrow: "Continue the journey",
+      title: "Different ways to",
+      highlightedTitle: "learn and participate.",
+      description:
+        "Explore PSTC learning, training, youth-friendly education, and institutional capacity-building routes across the website.",
+      items: [
+        { title: "Training & certification", description: "Explore available policy-oriented and professional learning resources and certification pathways.", href: "/get-involved/training-certification", linkLabel: "Explore training", tag: "Professional learning" },
+        { title: "uCon learning", description: "Access youth-friendly CSE modules, assessment, certification, questions, and ideas through uCon.", href: "/ucon/training", linkLabel: "Visit uCon training", tag: "Youth learning" },
+        { title: "CPTI", description: "Discover PSTC's capacity-building and training initiative within its wider programme and institutional ecosystem.", href: "/what-we-do/initiatives/cpti", linkLabel: "Explore CPTI", tag: "Capacity building" },
+      ],
+    },
+    commitments: {
+      label: "Learning commitments",
+      isVisible: true,
+      eyebrow: "Quality learning principles",
+      title: "Designed for dignity.",
+      highlightedTitle: "Built for use.",
+      description:
+        "PSTC aims to keep learning respectful, participatory, inclusive, relevant, safeguarding-aware, and connected to practical application.",
+      items: ["Respect different experiences and starting points", "Use accessible and inclusive learning methods", "Create space for questions and participation", "Connect content with real situations", "Protect dignity, safety, and confidentiality", "Use reflection and feedback to improve"],
+    },
+    cta: {
+      label: "Learning CTA",
+      isVisible: true,
+      eyebrow: "Take the next step",
+      title: "Turn curiosity into capability and learning into action.",
+      description:
+        "Explore PSTC's training and certification options, visit uCon learning, or contact us to discuss learning and capacity-building opportunities.",
+      primaryCtaLabel: "Training & certification",
+      primaryCtaHref: "/get-involved/training-certification",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -997,6 +1319,9 @@ export const cmsPageDefaults = {
   "strategic-plan": strategicPlanDefaultContent,
   "population-health-nutrition": populationHealthNutritionDefaultContent,
   "youth-adolescent-development": youthAdolescentDevelopmentDefaultContent,
+  "gender-governance": genderGovernanceDefaultContent,
+  "climate-change-adaptation": climateChangeAdaptationDefaultContent,
+  "skills-education-training": skillsEducationTrainingDefaultContent,
 } as const;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {

@@ -146,6 +146,39 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/thematic-areas/gender-governance") {
+    return (
+      <ContentPageManager
+        pageKey="gender-governance"
+        pageTitle="Gender & Governance"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["gender-governance"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/thematic-areas/climate-change-adaptation") {
+    return (
+      <ContentPageManager
+        pageKey="climate-change-adaptation"
+        pageTitle="Climate Change Adaptation"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["climate-change-adaptation"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/thematic-areas/skills-education-training") {
+    return (
+      <ContentPageManager
+        pageKey="skills-education-training"
+        pageTitle="Skills, Education & Training"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["skills-education-training"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

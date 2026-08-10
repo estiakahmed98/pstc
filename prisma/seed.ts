@@ -11,6 +11,9 @@ import {
   strategicPlanDefaultContent,
   populationHealthNutritionDefaultContent,
   youthAdolescentDevelopmentDefaultContent,
+  genderGovernanceDefaultContent,
+  climateChangeAdaptationDefaultContent,
+  skillsEducationTrainingDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -657,6 +660,9 @@ async function main() {
     ["strategic-plan", "Strategic Plan", strategicPlanDefaultContent],
     ["population-health-nutrition", "Population Health & Nutrition", populationHealthNutritionDefaultContent],
     ["youth-adolescent-development", "Youth & Adolescent Development", youthAdolescentDevelopmentDefaultContent],
+    ["gender-governance", "Gender & Governance", genderGovernanceDefaultContent],
+    ["climate-change-adaptation", "Climate Change Adaptation", climateChangeAdaptationDefaultContent],
+    ["skills-education-training", "Skills, Education & Training", skillsEducationTrainingDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {
