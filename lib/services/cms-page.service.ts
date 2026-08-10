@@ -18,6 +18,7 @@ const pageTitles: Record<string, string> = {
   "urban-health-care": "Urban Health Care",
   focus: "FOCUS",
   "person-who-uses-drugs": "Person Who Uses Drugs (PUD)",
+  "community-mobilization-program": "Community Mobilization Program (CMP)",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

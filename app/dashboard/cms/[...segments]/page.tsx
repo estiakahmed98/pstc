@@ -212,6 +212,17 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/projects/community-mobilization-program") {
+    return (
+      <ContentPageManager
+        pageKey="community-mobilization-program"
+        pageTitle="Community Mobilization Program (CMP)"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["community-mobilization-program"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

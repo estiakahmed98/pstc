@@ -1677,6 +1677,128 @@ export const personWhoUsesDrugsDefaultContent: CmsPageContent = {
   },
 };
 
+export const communityMobilizationProgramDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & programme overview",
+      isVisible: true,
+      eyebrow: "PSTC Programme",
+      shortCode: "CMP",
+      title: "Community power grows",
+      highlightedTitle: "when people organize together.",
+      description:
+        "PSTC's Community Mobilization Program supports local networks to build awareness, strengthen participation, advance rights and protection, and improve connections with relevant services.",
+      image: "/images/community-mobilization-program.avif",
+      primaryCtaLabel: "Explore the mobilization model",
+      primaryCtaHref: "#cmp-model",
+      secondaryCtaLabel: "Where we work",
+      secondaryCtaHref: "/who-we-are/where-we-work",
+      statusLabel: "Programme mode",
+      statusValue: "Community",
+      placeLabel: "Primary setting",
+      placeValue: "Local networks",
+      themeLabel: "Core focus",
+      themeValue: "Rights, protection & access",
+    },
+    voice: {
+      label: "Community perspective",
+      isVisible: true,
+      eyebrow: "Start with community voice",
+      title: "Local knowledge identifies",
+      highlightedTitle: "what change must address.",
+      description:
+        "Community mobilization begins by listening to lived experience, recognizing local strengths and barriers, and creating inclusive spaces where people can understand issues, shape priorities, and act together.",
+      image: "/assets/Community mobilization for rights.jpg",
+      statement: "People are not only participants in change—they are sources of knowledge, leadership, accountability, and collective action.",
+      items: ["Listen to lived experience", "Recognize local strengths", "Include different voices", "Build shared ownership"],
+    },
+    model: {
+      label: "Mobilization model",
+      isVisible: true,
+      eyebrow: "How community power expands",
+      title: "From individual awareness",
+      highlightedTitle: "to connected local action.",
+      description:
+        "Mobilization grows through connected layers. People build understanding and confidence, groups create shared support, networks coordinate action, and institutions become more responsive to community priorities.",
+      centerLabel: "Community",
+      items: [
+        { level: "01", title: "People", description: "Knowledge, confidence, voice, choices, and the ability to seek support.", keyword: "Awareness" },
+        { level: "02", title: "Groups", description: "Shared dialogue, mutual support, collective priorities, and community leadership.", keyword: "Participation" },
+        { level: "03", title: "Networks", description: "Coordination, communication, referral connections, and joint community action.", keyword: "Mobilization" },
+        { level: "04", title: "Systems", description: "Engagement with services and institutions around access, protection, response, and accountability.", keyword: "Influence" },
+      ],
+    },
+    actionAreas: {
+      label: "Community action areas",
+      isVisible: true,
+      eyebrow: "Mobilization in practice",
+      title: "Shared action around",
+      highlightedTitle: "rights, safety, and access.",
+      description:
+        "Community mobilization connects learning and dialogue with practical action, local coordination, referral, and engagement with wider systems.",
+      items: [
+        { number: "01", title: "Rights awareness", description: "Make rights and relevant information clearer so people can recognize issues, choices, and available pathways.", icon: "Scale", size: "large" },
+        { number: "02", title: "Protection dialogue", description: "Create safer spaces to discuss protection concerns, prevention, safeguarding, and community responsibility.", icon: "ShieldCheck", size: "small" },
+        { number: "03", title: "Community leadership", description: "Support people and groups to facilitate dialogue, coordinate action, and represent community priorities.", icon: "UsersRound", size: "small" },
+        { number: "04", title: "Service connections", description: "Strengthen awareness and navigation of relevant services, support, and appropriate referral pathways.", icon: "Route", size: "large" },
+        { number: "05", title: "Collective advocacy", description: "Bring lived experience and community priorities into dialogue with service providers and institutions.", icon: "Megaphone", size: "large" },
+        { number: "06", title: "Feedback & accountability", description: "Use community feedback and shared reflection to improve response, trust, and future action.", icon: "MessageCircleMore", size: "small" },
+      ],
+    },
+    connections: {
+      label: "Connection map",
+      isVisible: true,
+      eyebrow: "What mobilization connects",
+      title: "Voice becomes stronger",
+      highlightedTitle: "when pathways stay connected.",
+      description:
+        "Community action links everyday experience with information, peer support, services, local leadership, and institutional response.",
+      items: [
+        { from: "Experience", to: "Dialogue", description: "Lived experience helps communities identify shared issues and priorities." },
+        { from: "Dialogue", to: "Action", description: "Discussion becomes useful when people can plan and act together." },
+        { from: "Action", to: "Services", description: "Community networks can make information and referral pathways easier to navigate." },
+        { from: "Services", to: "Accountability", description: "Feedback and engagement can support more responsive local systems." },
+      ],
+    },
+    principles: {
+      label: "Mobilization principles",
+      isVisible: true,
+      eyebrow: "How community work should happen",
+      title: "Inclusive by design.",
+      highlightedTitle: "Locally owned in practice.",
+      description:
+        "PSTC's programme framing keeps participation, inclusion, safeguarding, dignity, shared ownership, practical action, and accountability visible.",
+      items: ["Start by listening", "Build on local strengths", "Include voices facing greater barriers", "Keep safeguarding and do-no-harm central", "Connect dialogue with practical action", "Share learning and accountability"],
+    },
+    related: {
+      label: "Related pathways",
+      isVisible: true,
+      eyebrow: "Explore connected PSTC work",
+      title: "Community action across",
+      highlightedTitle: "rights, governance, and services.",
+      description:
+        "Explore PSTC's related approaches to gender and governance, health access, and geographic community presence.",
+      items: [
+        { title: "Gender & Governance", description: "Explore equality, voice, inclusive participation, leadership, protection, and accountable systems.", href: "/what-we-do/thematic-areas/gender-governance", linkLabel: "Explore GAG", tag: "Rights & participation" },
+        { title: "Urban Health Care", description: "Learn about inclusive primary health access and referral support for urban communities.", href: "/what-we-do/projects/urban-health-care", linkLabel: "Explore urban health", tag: "Service access" },
+        { title: "Where We Work", description: "View PSTC's geographic presence and available office and programme information.", href: "/who-we-are/where-we-work", linkLabel: "View locations", tag: "Community presence" },
+      ],
+    },
+    cta: {
+      label: "Community action CTA",
+      isVisible: true,
+      eyebrow: "Mobilize local action",
+      title: "Listen locally, connect people, and turn shared priorities into action.",
+      description:
+        "Explore PSTC's community presence or contact the team for programme, service-pathway, and collaboration enquiries.",
+      primaryCtaLabel: "Where we work",
+      primaryCtaHref: "/who-we-are/where-we-work",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -1694,6 +1816,7 @@ export const cmsPageDefaults = {
   "urban-health-care": urbanHealthCareDefaultContent,
   focus: focusProjectDefaultContent,
   "person-who-uses-drugs": personWhoUsesDrugsDefaultContent,
+  "community-mobilization-program": communityMobilizationProgramDefaultContent,
 } as const;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {

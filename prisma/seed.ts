@@ -17,6 +17,7 @@ import {
   urbanHealthCareDefaultContent,
   focusProjectDefaultContent,
   personWhoUsesDrugsDefaultContent,
+  communityMobilizationProgramDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -669,6 +670,7 @@ async function main() {
     ["urban-health-care", "Urban Health Care", urbanHealthCareDefaultContent],
     ["focus", "FOCUS", focusProjectDefaultContent],
     ["person-who-uses-drugs", "Person Who Uses Drugs (PUD)", personWhoUsesDrugsDefaultContent],
+    ["community-mobilization-program", "Community Mobilization Program (CMP)", communityMobilizationProgramDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {
