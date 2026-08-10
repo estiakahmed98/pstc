@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -722,11 +723,13 @@ function SidebarTreeNode({
   node,
   activeHref,
   onHover,
+  onNavigate,
   level = 0,
 }: {
   node: MenuNode;
   activeHref?: string;
   onHover: (node: MenuNode) => void;
+  onNavigate: () => void;
   level?: number;
 }) {
   const [open, setOpen] = useState(false);
@@ -801,6 +804,7 @@ function SidebarTreeNode({
 
         <Link
           href={node.href}
+          onClick={onNavigate}
           onMouseEnter={() => onHover(node)}
           className="min-w-0 flex-1 leading-snug"
         >
@@ -824,6 +828,7 @@ function SidebarTreeNode({
                 node={child}
                 activeHref={activeHref}
                 onHover={onHover}
+                onNavigate={onNavigate}
                 level={level + 1}
               />
             ))}
@@ -1077,6 +1082,13 @@ export default function HeaderMegaMenu() {
   const [previewNode, setPreviewNode] = useState<MenuNode | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const logoSrc = usePstcLogo();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setActiveMenu(null);
+    setPreviewNode(null);
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (!activeMenu && !mobileOpen) {
@@ -1134,7 +1146,7 @@ export default function HeaderMegaMenu() {
               </IconMovingButton>
             </div>
 
-            <Link href="/" className="group flex min-w-0 items-center">
+            <Link href="/" onClick={closeMenu} className="group flex min-w-0 items-center">
               <img
                 src={logoSrc}
                 alt="PSTC Logo"
@@ -1149,6 +1161,7 @@ export default function HeaderMegaMenu() {
                 key={menu.href}
                 href={menu.href}
                 onMouseEnter={() => openMenu(menu)}
+                onClick={closeMenu}
                 className={cn(
                   "pstc-nav-link flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2 py-2.5 text-xs font-black text-foreground transition hover:bg-primary/15 hover:text-primary lg:px-2.5 lg:text-[13px] xl:gap-1 xl:px-3 xl:py-3 xl:text-sm 2xl:gap-1.5 2xl:px-3.5 2xl:text-lg",
                   activeMenu?.href === menu.href &&
@@ -1164,6 +1177,7 @@ export default function HeaderMegaMenu() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={closeMenu}
+                onClick={closeMenu}
                 className="pstc-nav-link shrink-0 whitespace-nowrap rounded-full px-2 py-2.5 text-xs font-black text-foreground transition hover:bg-secondary/15 hover:text-secondary lg:px-2.5 lg:text-[13px] xl:px-3 xl:py-3 xl:text-sm 2xl:px-3.5 2xl:text-base"
               >
                 {link.label}
@@ -1201,6 +1215,7 @@ export default function HeaderMegaMenu() {
                       </p>
                       <Link
                         href={activeMenu.href}
+                        onClick={closeMenu}
                         className="whitespace-nowrap text-xs font-black text-secondary transition hover:text-primary"
                       >
                         View All
@@ -1215,6 +1230,7 @@ export default function HeaderMegaMenu() {
                           onHover={(hoveredNode) => {
                             setPreviewNode(hoveredNode);
                           }}
+                          onNavigate={closeMenu}
                         />
                       ))}
                     </MegaMenuScrollArea>
@@ -1241,6 +1257,7 @@ export default function HeaderMegaMenu() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <MovingLinkButton
                     href={preview.href}
+                    onClick={closeMenu}
                     containerClassName="h-11 min-w-[160px]"
                     className="px-5"
                   >
@@ -1249,6 +1266,7 @@ export default function HeaderMegaMenu() {
                   </MovingLinkButton>
                   <MovingLinkButton
                     href="/contact-us"
+                    onClick={closeMenu}
                     variant="outline"
                     containerClassName="h-11 min-w-[160px]"
                     className="px-5"
