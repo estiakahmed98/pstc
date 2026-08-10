@@ -9,6 +9,8 @@ export const cmsPageKeySchema = z.enum([
   "where-we-work",
   "about-us",
   "strategic-plan",
+  "population-health-nutrition",
+  "youth-adolescent-development",
 ]);
 
 export const updateCmsPageSchema = z.object({

@@ -779,6 +779,213 @@ export const strategicPlanDefaultContent: CmsPageContent = {
   },
 };
 
+export const populationHealthNutritionDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & thematic overview",
+      isVisible: true,
+      eyebrow: "Population Health & Nutrition",
+      shortCode: "PHN",
+      title: "Healthier lives begin with",
+      highlightedTitle: "inclusive access.",
+      description:
+        "PSTC advances inclusive quality health, sexual and reproductive health and rights, nutrition, and community-based service access for people across different stages of life.",
+      image: "/images/population-health-nutrition.jpg",
+      primaryCtaLabel: "Explore our approach",
+      primaryCtaHref: "#phn-approach",
+      secondaryCtaLabel: "Find a model clinic",
+      secondaryCtaHref: "/what-we-do/initiatives/pmc",
+      tags: ["Health", "Nutrition", "SRHR", "Community access"],
+    },
+    overview: {
+      label: "Why PHN matters",
+      isVisible: true,
+      eyebrow: "Why this area matters",
+      title: "Quality care should be",
+      highlightedTitle: "accessible and respectful.",
+      description:
+        "Health and nutrition are shaped by information, rights, services, social conditions, and the ability to make informed choices. PSTC connects clinic- and community-based delivery with education, referral, advocacy, and capacity-building.",
+      image: "/assets/Urban Health Care project image.jpeg",
+      imageCaption: "Connecting quality services with community knowledge, trust, and referral pathways.",
+      items: [
+        { title: "People-centered", description: "Services and information respond to people’s needs, choices, dignity, and circumstances." },
+        { title: "Rights-based", description: "Health approaches recognize autonomy, inclusion, safety, and sexual and reproductive rights." },
+        { title: "Community-connected", description: "Local engagement supports awareness, trust, access, referral, and continuity of care." },
+      ],
+    },
+    focusAreas: {
+      label: "PHN focus areas",
+      isVisible: true,
+      eyebrow: "Our focus",
+      title: "Connected priorities for",
+      highlightedTitle: "health and wellbeing.",
+      description:
+        "PHN brings together services, information, nutrition, rights, prevention, and community capacity rather than treating them as separate concerns.",
+      items: [
+        { number: "01", title: "Sexual & reproductive health and rights", description: "Support access to rights-based information, services, choices, referral, and advocacy.", icon: "HeartPulse" },
+        { number: "02", title: "Maternal, child & adolescent health", description: "Strengthen health information and service pathways for mothers, children, adolescents, and young people.", icon: "Baby" },
+        { number: "03", title: "Nutrition & healthy practices", description: "Promote practical nutrition knowledge and healthier practices through services and community engagement.", icon: "Apple" },
+        { number: "04", title: "Community health access", description: "Bring health information, service connections, and referral support closer to communities.", icon: "MapPin" },
+        { number: "05", title: "Prevention & health education", description: "Use communication, education, and behaviour-change approaches to strengthen informed action.", icon: "BookOpenCheck" },
+        { number: "06", title: "Health systems & capacity", description: "Build skills, partnerships, evidence, and institutional capacity for more responsive health delivery.", icon: "Stethoscope" },
+      ],
+    },
+    approach: {
+      label: "Service approach",
+      isVisible: true,
+      eyebrow: "How we work",
+      title: "From information to service.",
+      highlightedTitle: "From service to continuity.",
+      description:
+        "PSTC’s approach connects multiple points in a person’s health journey so that awareness can lead to appropriate support and learning can improve future delivery.",
+      items: [
+        { step: "01", title: "Inform", description: "Share clear, relevant, and rights-based health and nutrition information." },
+        { step: "02", title: "Engage", description: "Listen and work with communities to understand needs, barriers, and local context." },
+        { step: "03", title: "Serve", description: "Provide or connect people with quality clinic- and community-based services." },
+        { step: "04", title: "Refer", description: "Support appropriate referral and connection across available service pathways." },
+        { step: "05", title: "Learn", description: "Use evidence and feedback to strengthen quality, access, and responsiveness." },
+      ],
+    },
+    delivery: {
+      label: "Where delivery happens",
+      isVisible: true,
+      eyebrow: "Delivery channels",
+      title: "Care and knowledge",
+      highlightedTitle: "closer to people.",
+      description:
+        "PHN work is delivered through complementary channels that connect formal services with community reach and institutional learning.",
+      items: [
+        { title: "Model clinics", description: "PSTC Model Clinic locations provide dedicated points for service information and access.", href: "/what-we-do/initiatives/pmc", linkLabel: "Explore PMC", image: "/images/pmc-aftabnagar.jpg" },
+        { title: "Community-based delivery", description: "Community engagement and outreach help connect information and services with local needs.", href: "/who-we-are/where-we-work", linkLabel: "Where we work", image: "/images/where-we-work.jpg" },
+        { title: "Health projects", description: "Focused projects extend inclusive health services and protection approaches in specific contexts.", href: "/what-we-do/projects/urban-health-care", linkLabel: "Explore projects", image: "/images/urban-health-care.jpg" },
+      ],
+    },
+    commitments: {
+      label: "Quality commitments",
+      isVisible: true,
+      eyebrow: "Our commitments",
+      title: "Quality grounded in",
+      highlightedTitle: "rights and dignity.",
+      description:
+        "Across PHN work, PSTC aims to keep people, protection, inclusion, evidence, and accountability at the center.",
+      items: ["Respect and confidentiality", "Inclusion and accessibility", "Safeguarding and do-no-harm", "Quality information and services", "Community voice and feedback", "Learning and accountability"],
+    },
+    cta: {
+      label: "PHN action CTA",
+      isVisible: true,
+      eyebrow: "Explore PHN in action",
+      title: "Connect with PSTC’s health services, clinics, and projects.",
+      description:
+        "Explore PSTC Model Clinics, learn about health-related projects, or contact the team for programme and partnership information.",
+      primaryCtaLabel: "Explore model clinics",
+      primaryCtaHref: "/what-we-do/initiatives/pmc",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const youthAdolescentDevelopmentDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & thematic overview",
+      isVisible: true,
+      eyebrow: "Youth & Adolescent Development",
+      shortCode: "YAD",
+      title: "Young people are not waiting",
+      highlightedTitle: "for the future.",
+      description:
+        "PSTC supports young people to learn, participate, lead, advocate, and shape positive change through youth-friendly information, skills, platforms, networks, and meaningful opportunities.",
+      image: "/images/youth-adolescent-development.jpg",
+      primaryCtaLabel: "Explore youth development",
+      primaryCtaHref: "#yad-focus",
+      secondaryCtaLabel: "Visit uCon",
+      secondaryCtaHref: "/ucon",
+      words: ["Voice", "Learn", "Create", "Lead"],
+    },
+    perspective: {
+      label: "Our youth perspective",
+      isVisible: true,
+      eyebrow: "Our perspective",
+      title: "Work with young people.",
+      highlightedTitle: "Not only for them.",
+      description:
+        "Meaningful youth development recognizes young people as rights-holders, partners, creators, and leaders. PSTC’s approach connects accurate information and practical learning with participation, confidence, relationships, and opportunities to act.",
+      image: "/images/ucon.jpg",
+      imageCaption: "Youth development grows through safe spaces, useful knowledge, shared power, and opportunities to contribute.",
+      statements: ["Youth voice matters", "Participation must be meaningful", "Learning should be youth-friendly", "Leadership grows through practice"],
+    },
+    focusAreas: {
+      label: "YAD focus areas",
+      isVisible: true,
+      eyebrow: "What development includes",
+      title: "Knowledge, confidence,",
+      highlightedTitle: "voice, and opportunity.",
+      description:
+        "Youth and adolescent development is multidimensional. It connects personal wellbeing with skills, participation, rights, relationships, leadership, and collective action.",
+      items: [
+        { number: "01", title: "Rights & information", description: "Support access to accurate, age-appropriate, youth-friendly information about rights, health, protection, and opportunity.", icon: "BookOpenText" },
+        { number: "02", title: "Life skills & confidence", description: "Create practical learning opportunities that strengthen communication, decision-making, resilience, and self-belief.", icon: "Sparkles" },
+        { number: "03", title: "Voice & participation", description: "Make space for young people to ask, express, contribute, and influence the issues that affect them.", icon: "MessageCircleMore" },
+        { number: "04", title: "Leadership", description: "Help young people practice responsibility, teamwork, initiative, and community leadership.", icon: "Flag" },
+        { number: "05", title: "Advocacy & creativity", description: "Support youth-led ideas, communication, advocacy, and creative approaches to positive social change.", icon: "Megaphone" },
+        { number: "06", title: "Networks & opportunity", description: "Connect young people with peers, platforms, learning pathways, partnerships, and opportunities to contribute.", icon: "Network" },
+      ],
+    },
+    journey: {
+      label: "Youth development journey",
+      isVisible: true,
+      eyebrow: "A pathway for participation",
+      title: "Discover. Learn. Participate.",
+      highlightedTitle: "Lead. Influence.",
+      description:
+        "The journey is not always linear, but each stage can create a stronger foundation for informed participation and youth-led action.",
+      items: [
+        { step: "01", verb: "Discover", title: "Find trusted spaces", description: "Connect with youth-friendly information, platforms, networks, and opportunities." },
+        { step: "02", verb: "Learn", title: "Build knowledge and skills", description: "Explore relevant topics and strengthen practical capabilities for life and participation." },
+        { step: "03", verb: "Participate", title: "Use voice and ideas", description: "Ask questions, join dialogue, collaborate with peers, and contribute meaningfully." },
+        { step: "04", verb: "Lead", title: "Take responsibility", description: "Shape activities, support others, organize action, and practice accountable leadership." },
+        { step: "05", verb: "Influence", title: "Create wider change", description: "Use evidence, creativity, networks, and advocacy to help improve communities and systems." },
+      ],
+    },
+    platforms: {
+      label: "Youth platforms",
+      isVisible: true,
+      eyebrow: "Platforms for youth action",
+      title: "Places to learn, connect,",
+      highlightedTitle: "and take the next step.",
+      description:
+        "PSTC’s youth-facing platforms connect information and learning with questions, advocacy, networks, participation, and leadership opportunities.",
+      items: [
+        { badge: "Digital youth platform", title: "uCon", description: "A youth-focused space for questions, ideas, advocacy, knowledge sharing, CSE learning, assessment, and certification.", image: "/images/ucon.jpg", href: "/ucon", linkLabel: "Explore uCon" },
+        { badge: "National youth network", title: "NaYoN", description: "A network inviting Bangladeshi youth to learn, lead, connect, and create lasting community impact with PSTC.", image: "/images/youth-adolescent-development.jpg", href: "/what-we-do/youth-engagement/nayon", linkLabel: "Explore NaYoN" },
+      ],
+    },
+    principles: {
+      label: "Youth engagement principles",
+      isVisible: true,
+      eyebrow: "How engagement should feel",
+      title: "Safe enough to ask.",
+      highlightedTitle: "Open enough to lead.",
+      description:
+        "Youth participation is stronger when people feel respected, informed, included, protected, and able to contribute without tokenism.",
+      items: ["Respectful and non-judgmental", "Safe and safeguarding-aware", "Inclusive and accessible", "Accurate and youth-friendly", "Participatory, not tokenistic", "Connected to real opportunities"],
+    },
+    cta: {
+      label: "Youth action CTA",
+      isVisible: true,
+      eyebrow: "Your next step",
+      title: "Ask a question, explore an idea, or join a youth network.",
+      description:
+        "Visit uCon for youth-friendly learning and dialogue, or explore NaYoN for network and leadership opportunities.",
+      primaryCtaLabel: "Explore uCon",
+      primaryCtaHref: "/ucon",
+      secondaryCtaLabel: "Discover NaYoN",
+      secondaryCtaHref: "/what-we-do/youth-engagement/nayon",
+    },
+  },
+};
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -788,6 +995,8 @@ export const cmsPageDefaults = {
   "where-we-work": whereWeWorkDefaultContent,
   "about-us": aboutUsDefaultContent,
   "strategic-plan": strategicPlanDefaultContent,
+  "population-health-nutrition": populationHealthNutritionDefaultContent,
+  "youth-adolescent-development": youthAdolescentDevelopmentDefaultContent,
 } as const;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {

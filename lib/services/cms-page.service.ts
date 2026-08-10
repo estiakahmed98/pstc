@@ -10,6 +10,8 @@ const pageTitles: Record<string, string> = {
   "where-we-work": "Where We Work",
   "about-us": "About Us",
   "strategic-plan": "Strategic Plan",
+  "population-health-nutrition": "Population Health & Nutrition",
+  "youth-adolescent-development": "Youth & Adolescent Development",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

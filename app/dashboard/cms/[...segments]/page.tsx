@@ -124,6 +124,28 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/thematic-areas/population-health-nutrition") {
+    return (
+      <ContentPageManager
+        pageKey="population-health-nutrition"
+        pageTitle="Population Health & Nutrition"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["population-health-nutrition"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/thematic-areas/youth-adolescent-development") {
+    return (
+      <ContentPageManager
+        pageKey="youth-adolescent-development"
+        pageTitle="Youth & Adolescent Development"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["youth-adolescent-development"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

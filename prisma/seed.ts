@@ -9,6 +9,8 @@ import {
   whereWeWorkDefaultContent,
   aboutUsDefaultContent,
   strategicPlanDefaultContent,
+  populationHealthNutritionDefaultContent,
+  youthAdolescentDevelopmentDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -653,6 +655,8 @@ async function main() {
     ["where-we-work", "Where We Work", whereWeWorkDefaultContent],
     ["about-us", "About Us", aboutUsDefaultContent],
     ["strategic-plan", "Strategic Plan", strategicPlanDefaultContent],
+    ["population-health-nutrition", "Population Health & Nutrition", populationHealthNutritionDefaultContent],
+    ["youth-adolescent-development", "Youth & Adolescent Development", youthAdolescentDevelopmentDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {
@@ -676,7 +680,7 @@ async function main() {
 
   console.log(`Admin user is ready: ${email}`);
   console.log("Landing CMS foundation is ready with 9 sections.");
-  console.log("Governance, Leadership, Mission, Vision & Values, Policies, Organogram, Where We Work, About Us, and Strategic Plan CMS pages are ready.");
+  console.log("Content page CMS defaults are ready, including PHN and YAD.");
 }
 
 main()

@@ -357,7 +357,7 @@ export function ContentPageManager({
   publicPath,
   defaultContent,
 }: {
-  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan";
+  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan" | "population-health-nutrition" | "youth-adolescent-development";
   pageTitle: string;
   publicPath: string;
   defaultContent: CmsPageContent;
