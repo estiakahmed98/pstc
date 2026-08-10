@@ -15,6 +15,9 @@ const pageTitles: Record<string, string> = {
   "gender-governance": "Gender & Governance",
   "climate-change-adaptation": "Climate Change Adaptation",
   "skills-education-training": "Skills, Education & Training",
+  "urban-health-care": "Urban Health Care",
+  focus: "FOCUS",
+  "person-who-uses-drugs": "Person Who Uses Drugs (PUD)",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

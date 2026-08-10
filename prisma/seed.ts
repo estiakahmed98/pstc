@@ -14,6 +14,9 @@ import {
   genderGovernanceDefaultContent,
   climateChangeAdaptationDefaultContent,
   skillsEducationTrainingDefaultContent,
+  urbanHealthCareDefaultContent,
+  focusProjectDefaultContent,
+  personWhoUsesDrugsDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -663,6 +666,9 @@ async function main() {
     ["gender-governance", "Gender & Governance", genderGovernanceDefaultContent],
     ["climate-change-adaptation", "Climate Change Adaptation", climateChangeAdaptationDefaultContent],
     ["skills-education-training", "Skills, Education & Training", skillsEducationTrainingDefaultContent],
+    ["urban-health-care", "Urban Health Care", urbanHealthCareDefaultContent],
+    ["focus", "FOCUS", focusProjectDefaultContent],
+    ["person-who-uses-drugs", "Person Who Uses Drugs (PUD)", personWhoUsesDrugsDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {

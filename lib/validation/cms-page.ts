@@ -14,6 +14,9 @@ export const cmsPageKeySchema = z.enum([
   "gender-governance",
   "climate-change-adaptation",
   "skills-education-training",
+  "urban-health-care",
+  "focus",
+  "person-who-uses-drugs",
 ]);
 
 export const updateCmsPageSchema = z.object({

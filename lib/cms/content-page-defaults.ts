@@ -1308,6 +1308,375 @@ export const skillsEducationTrainingDefaultContent: CmsPageContent = {
   },
 };
 
+export const urbanHealthCareDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & project overview",
+      isVisible: true,
+      eyebrow: "PSTC Project",
+      title: "Urban Health Care",
+      highlightedTitle: "Closer care. Stronger connections.",
+      description:
+        "PSTC's Urban Health Care project focuses on strengthening inclusive primary health access and referral support for urban communities through people-centered information, engagement, services, and care connections.",
+      image: "/images/urban-health-care.jpg",
+      primaryCtaLabel: "Explore the care pathway",
+      primaryCtaHref: "#urban-care-pathway",
+      secondaryCtaLabel: "Find a model clinic",
+      secondaryCtaHref: "/what-we-do/initiatives/pmc",
+      statusLabel: "Project status",
+      statusValue: "Active",
+      placeLabel: "Focus setting",
+      placeValue: "Urban communities",
+      themeLabel: "Primary theme",
+      themeValue: "Inclusive health access",
+    },
+    overview: {
+      label: "Project perspective",
+      isVisible: true,
+      eyebrow: "Why urban health access matters",
+      title: "Care works better when",
+      highlightedTitle: "people can reach and trust it.",
+      description:
+        "Urban communities can experience overlapping barriers related to information, affordability, mobility, time, social exclusion, and navigating available services. A connected approach helps people move from awareness to appropriate care and onward referral when needed.",
+      image: "/images/urban-health-care.jpg",
+      imageCaption: "Connecting people with clear information, responsive primary care, and appropriate referral support.",
+      items: [
+        { title: "People-centered", description: "Begin with people's needs, choices, dignity, circumstances, and experience of care." },
+        { title: "Community-connected", description: "Use engagement and trusted communication to make health information and pathways easier to navigate." },
+        { title: "Continuity-focused", description: "Link primary care, follow-up, and referral so support does not end at the first contact." },
+      ],
+    },
+    pathway: {
+      label: "Urban care pathway",
+      isVisible: true,
+      eyebrow: "A connected care journey",
+      title: "From health information",
+      highlightedTitle: "to the right next step.",
+      description:
+        "The project approach connects multiple touchpoints so people can understand options, seek support, receive appropriate services, and navigate referrals with greater clarity.",
+      items: [
+        { step: "01", verb: "Reach", title: "Connect with communities", description: "Share relevant health information and engage around needs, questions, and barriers." },
+        { step: "02", verb: "Listen", title: "Understand the concern", description: "Create respectful space to identify priorities, circumstances, and appropriate support." },
+        { step: "03", verb: "Care", title: "Support primary health needs", description: "Provide or connect people with responsive information and primary care services." },
+        { step: "04", verb: "Refer", title: "Navigate onward support", description: "Help connect people with an appropriate service pathway when additional care is needed." },
+        { step: "05", verb: "Learn", title: "Improve access and quality", description: "Use experience and feedback to strengthen how care connections work over time." },
+      ],
+    },
+    components: {
+      label: "Project components",
+      isVisible: true,
+      eyebrow: "What the approach connects",
+      title: "Different parts of access,",
+      highlightedTitle: "working as one system.",
+      description:
+        "Inclusive urban health care depends on more than a single service point. Information, engagement, quality practice, referral, and learning reinforce one another.",
+      items: [
+        { number: "01", title: "Health information", description: "Clear, practical communication that supports awareness, prevention, informed choices, and timely care-seeking.", icon: "BookOpenCheck" },
+        { number: "02", title: "Community engagement", description: "Dialogue and outreach that help identify local needs, strengthen trust, and reduce access barriers.", icon: "MessagesSquare" },
+        { number: "03", title: "Primary care access", description: "People-centered connection with relevant primary health information and services.", icon: "Stethoscope" },
+        { number: "04", title: "Referral support", description: "Clearer navigation toward appropriate onward services when needs go beyond available primary care.", icon: "Route" },
+        { number: "05", title: "Quality & dignity", description: "Respectful, confidential, inclusive, and safeguarding-aware interactions throughout the care journey.", icon: "ShieldCheck" },
+        { number: "06", title: "Feedback & learning", description: "Attention to community experience and service learning to improve responsiveness and continuity.", icon: "RefreshCcw" },
+      ],
+    },
+    access: {
+      label: "Access lens",
+      isVisible: true,
+      eyebrow: "An inclusive access lens",
+      title: "Access is more than",
+      highlightedTitle: "an open door.",
+      description:
+        "People also need understandable information, respectful treatment, practical navigation, and confidence that their needs and circumstances will be considered.",
+      items: [
+        { title: "Information", description: "Can people understand what support is available and when to seek it?", keyword: "Know" },
+        { title: "Approachability", description: "Does the care environment feel respectful, safe, and non-judgmental?", keyword: "Trust" },
+        { title: "Navigation", description: "Can people identify and reach the appropriate next point of care?", keyword: "Connect" },
+        { title: "Responsiveness", description: "Does support recognize differing needs, barriers, choices, and feedback?", keyword: "Respond" },
+      ],
+    },
+    principles: {
+      label: "Care principles",
+      isVisible: true,
+      eyebrow: "How care should feel",
+      title: "Quality grounded in",
+      highlightedTitle: "respect and continuity.",
+      description:
+        "The project approach keeps dignity, inclusion, confidentiality, safeguarding, appropriate referral, and learning at the center of urban health access.",
+      items: ["Respectful and non-judgmental", "Inclusive and accessible", "Confidentiality-conscious", "Rights- and safeguarding-aware", "Connected to referral support", "Responsive to feedback and learning"],
+    },
+    connections: {
+      label: "Related health pathways",
+      isVisible: true,
+      eyebrow: "Explore connected work",
+      title: "Urban health within",
+      highlightedTitle: "PSTC's wider care ecosystem.",
+      description:
+        "Explore thematic health work, model clinic initiatives, and where PSTC works to understand related service and community pathways.",
+      items: [
+        { title: "Population Health & Nutrition", description: "Explore PSTC's wider thematic approach to inclusive health, nutrition, rights, prevention, and capacity.", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "Thematic area" },
+        { title: "PSTC Model Clinic", description: "Learn about PSTC's dedicated clinic initiative and available location pathways.", href: "/what-we-do/initiatives/pmc", linkLabel: "Explore PMC", tag: "Initiative" },
+        { title: "Where We Work", description: "View PSTC's geographic presence and connect with available office and programme information.", href: "/who-we-are/where-we-work", linkLabel: "View locations", tag: "PSTC presence" },
+      ],
+    },
+    cta: {
+      label: "Urban health CTA",
+      isVisible: true,
+      eyebrow: "Connect with care",
+      title: "Find health information, a clinic pathway, or the right contact.",
+      description:
+        "Explore PSTC Model Clinics for service information or contact the team for project, referral, and partnership enquiries.",
+      primaryCtaLabel: "Explore model clinics",
+      primaryCtaHref: "/what-we-do/initiatives/pmc",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const focusProjectDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & project overview",
+      isVisible: true,
+      eyebrow: "PSTC Project",
+      shortCode: "FOCUS",
+      title: "Fortifying Organizational Capacity",
+      highlightedTitle: "to uphold the SRHR movement in Bangladesh.",
+      description:
+        "FOCUS centers organizational capability as a foundation for a stronger, more connected, rights-based sexual and reproductive health and rights movement in Bangladesh.",
+      image: "/images/focus.webp",
+      primaryCtaLabel: "Explore the capacity approach",
+      primaryCtaHref: "#focus-capacity",
+      secondaryCtaLabel: "Explore SRHR work",
+      secondaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      statusLabel: "Project status",
+      statusValue: "Active",
+      placeLabel: "Geographic focus",
+      placeValue: "Bangladesh",
+      themeLabel: "Core focus",
+      themeValue: "SRHR movement capacity",
+    },
+    mandate: {
+      label: "Project mandate",
+      isVisible: true,
+      eyebrow: "Why capacity matters",
+      title: "Movements endure when",
+      highlightedTitle: "organizations can adapt and act.",
+      description:
+        "Sustained SRHR progress depends on organizations that can lead with purpose, manage responsibly, learn from evidence, communicate clearly, collaborate across differences, and remain accountable to the people and rights they serve.",
+      image: "/assets/FOCUS project image.jpg",
+      statement: "Stronger organizations can contribute more consistently to stronger rights movements.",
+      items: ["Purpose and strategy", "People and leadership", "Systems and accountability", "Learning and collaboration"],
+    },
+    capacities: {
+      label: "Capacity areas",
+      isVisible: true,
+      eyebrow: "What FOCUS seeks to fortify",
+      title: "Capability across",
+      highlightedTitle: "strategy, systems, and movement practice.",
+      description:
+        "Organizational capacity is interconnected. Progress in one area becomes more durable when leadership, systems, learning, communication, partnership, and accountability strengthen together.",
+      items: [
+        { number: "01", title: "Strategic direction", description: "Connect mission, context, priorities, choices, and resources through clear organizational direction.", icon: "Compass" },
+        { number: "02", title: "Leadership & people", description: "Support inclusive leadership, shared responsibility, team capability, wellbeing, and continuity.", icon: "UsersRound" },
+        { number: "03", title: "Governance & accountability", description: "Strengthen roles, oversight, ethical practice, policy, transparency, and answerable decision-making.", icon: "Landmark" },
+        { number: "04", title: "Programme quality & learning", description: "Use reflection, evidence, documentation, and feedback to improve relevance and delivery.", icon: "BookOpenCheck" },
+        { number: "05", title: "Communication & advocacy", description: "Build clearer narratives, rights-based communication, influence, and public engagement capability.", icon: "Megaphone" },
+        { number: "06", title: "Partnership & movement connection", description: "Strengthen trust, coordination, knowledge sharing, solidarity, and collective contribution across the SRHR ecosystem.", icon: "Network" },
+      ],
+    },
+    pathway: {
+      label: "Capacity pathway",
+      isVisible: true,
+      eyebrow: "A cycle of organizational growth",
+      title: "Assess. Prioritize. Strengthen.",
+      highlightedTitle: "Apply. Learn together.",
+      description:
+        "Capacity development is most useful when it starts with context, focuses on relevant priorities, supports practical application, and creates space to review and adapt.",
+      items: [
+        { step: "01", verb: "Assess", title: "Understand the starting point", description: "Reflect on strengths, needs, context, risks, and opportunities across the organization." },
+        { step: "02", verb: "Prioritize", title: "Choose what matters now", description: "Identify focused capacity goals that connect with mission and movement contribution." },
+        { step: "03", verb: "Strengthen", title: "Build skills and systems", description: "Use learning, coaching, tools, dialogue, and organizational practice to develop capability." },
+        { step: "04", verb: "Apply", title: "Put change into practice", description: "Integrate learning into decisions, programmes, policies, relationships, and daily work." },
+        { step: "05", verb: "Learn", title: "Review and adapt", description: "Use evidence and experience to refine practice and sustain organizational growth." },
+      ],
+    },
+    ecosystem: {
+      label: "Movement ecosystem",
+      isVisible: true,
+      eyebrow: "From organization to movement",
+      title: "Capacity creates value",
+      highlightedTitle: "at more than one level.",
+      description:
+        "Organizational development can strengthen internal practice while also improving collaboration, public engagement, accountability, and contribution to wider SRHR goals.",
+      items: [
+        { title: "Inside the organization", description: "Clearer direction, stronger systems, capable teams, reflective practice, and accountable leadership.", keyword: "Organize" },
+        { title: "Across relationships", description: "More intentional partnership, communication, coordination, trust, and mutual learning.", keyword: "Connect" },
+        { title: "Within the movement", description: "Greater consistency, solidarity, shared knowledge, advocacy capability, and collective resilience.", keyword: "Contribute" },
+        { title: "For rights-holders", description: "More responsive, inclusive, ethical, and sustainable work connected to SRHR rights and needs.", keyword: "Uphold" },
+      ],
+    },
+    principles: {
+      label: "Capacity-building principles",
+      isVisible: true,
+      eyebrow: "How strengthening should happen",
+      title: "Context-led, practical,",
+      highlightedTitle: "participatory, and accountable.",
+      description:
+        "FOCUS frames capacity as an ongoing organizational practice rather than a one-time training event.",
+      items: ["Start with organizational context and ownership", "Connect learning with real work and decisions", "Value participation and diverse experience", "Keep rights, inclusion, and safeguarding visible", "Strengthen systems alongside individual skills", "Use reflection and evidence to keep adapting"],
+    },
+    connections: {
+      label: "Related pathways",
+      isVisible: true,
+      eyebrow: "Explore connected PSTC work",
+      title: "Capacity connected with",
+      highlightedTitle: "rights, governance, and learning.",
+      description:
+        "Explore PSTC's related thematic and institutional pathways for SRHR, organizational governance, and skills development.",
+      items: [
+        { title: "Population Health & Nutrition", description: "Explore PSTC's thematic work across inclusive health, SRHR, nutrition, services, and community access.", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "SRHR pathway" },
+        { title: "Governance", description: "Learn how PSTC approaches oversight, responsibility, accountability, and institutional stewardship.", href: "/who-we-are/governance", linkLabel: "Explore governance", tag: "Institutional practice" },
+        { title: "Skills, Education & Training", description: "Explore practical learning, organizational capability, and pathways for continued development.", href: "/what-we-do/thematic-areas/skills-education-training", linkLabel: "Explore SET", tag: "Capacity pathway" },
+      ],
+    },
+    cta: {
+      label: "FOCUS CTA",
+      isVisible: true,
+      eyebrow: "Strengthen the movement",
+      title: "Build organizational capacity that can sustain rights-based action.",
+      description:
+        "Explore PSTC's SRHR and capacity-building work, or contact the team for project and collaboration enquiries.",
+      primaryCtaLabel: "Explore SRHR work",
+      primaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const personWhoUsesDrugsDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & programme overview",
+      isVisible: true,
+      eyebrow: "PSTC Programme",
+      shortCode: "PUD",
+      title: "Support without stigma.",
+      highlightedTitle: "Pathways built around people.",
+      description:
+        "PSTC's work with people who use drugs focuses on supportive service pathways for people who use drugs and vulnerable populations through dignity, informed engagement, care connections, referral, and continuity.",
+      image: "/images/person-who-uses-drugs.jpeg",
+      primaryCtaLabel: "Explore the support pathway",
+      primaryCtaHref: "#pud-support-pathway",
+      secondaryCtaLabel: "Explore health work",
+      secondaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      statusLabel: "Programme type",
+      statusValue: "Program",
+      placeLabel: "Delivery setting",
+      placeValue: "Community based",
+      themeLabel: "Core focus",
+      themeValue: "Supportive service pathways",
+    },
+    perspective: {
+      label: "Dignity-first perspective",
+      isVisible: true,
+      eyebrow: "Start with the person",
+      title: "A person is more than",
+      highlightedTitle: "a label or circumstance.",
+      description:
+        "Stigma can deepen isolation and make support harder to reach. A person-centered approach listens without judgment, respects dignity and choice, recognizes different needs, and helps people navigate appropriate services and support.",
+      image: "/assets/Supportive service pathways for persons.jpg",
+      statement: "Respect opens the door. Trust makes engagement possible. Connection helps support continue.",
+      items: ["Use person-first language", "Listen without judgment", "Respect choice and confidentiality", "Connect support with real circumstances"],
+    },
+    pathway: {
+      label: "Support pathway",
+      isVisible: true,
+      eyebrow: "A connected support journey",
+      title: "Reach. Listen. Connect.",
+      highlightedTitle: "Refer. Stay engaged.",
+      description:
+        "Supportive pathways help people move from first contact toward relevant information, appropriate services, onward referral, and continued connection without reducing the person to a single need.",
+      items: [
+        { step: "01", verb: "Reach", title: "Create a safe first contact", description: "Use respectful community engagement and accessible information to reduce distance from support." },
+        { step: "02", verb: "Listen", title: "Understand needs and priorities", description: "Make space for the person's circumstances, questions, choices, strengths, and immediate concerns." },
+        { step: "03", verb: "Connect", title: "Identify relevant support", description: "Help navigate available information and services that respond to identified needs." },
+        { step: "04", verb: "Refer", title: "Support the next step", description: "Facilitate appropriate onward connection when needs require another service or provider." },
+        { step: "05", verb: "Continue", title: "Keep pathways connected", description: "Encourage follow-up, feedback, and continuity so people are not left to navigate alone." },
+      ],
+    },
+    pillars: {
+      label: "Programme pillars",
+      isVisible: true,
+      eyebrow: "What supportive pathways require",
+      title: "Care, connection, and",
+      highlightedTitle: "dignity at every touchpoint.",
+      description:
+        "A supportive service pathway brings together respectful engagement, clear information, appropriate navigation, protection, referral, and learning.",
+      items: [
+        { number: "01", title: "Dignified engagement", description: "Meet people with respect, empathy, person-first language, and attention to their own priorities.", icon: "HeartHandshake" },
+        { number: "02", title: "Accessible information", description: "Share practical, understandable information that supports informed choices and service navigation.", icon: "BookOpenCheck" },
+        { number: "03", title: "Health & wellbeing connections", description: "Recognize interconnected health, protection, psychosocial, and social support needs without making assumptions.", icon: "HeartPulse" },
+        { number: "04", title: "Referral navigation", description: "Help people identify and connect with an appropriate next point of support when needed.", icon: "Route" },
+        { number: "05", title: "Protection & confidentiality", description: "Keep safety, privacy, consent, safeguarding, and do-no-harm practice visible throughout engagement.", icon: "ShieldCheck" },
+        { number: "06", title: "Community learning", description: "Use experience and feedback to reduce barriers, strengthen trust, and improve supportive pathways.", icon: "MessagesSquare" },
+      ],
+    },
+    access: {
+      label: "Barriers & responses",
+      isVisible: true,
+      eyebrow: "An access lens",
+      title: "Better pathways respond",
+      highlightedTitle: "to the barriers people face.",
+      description:
+        "Support can become difficult to reach when stigma, unclear information, fragmented services, or fear of judgment stand between a person and the next step.",
+      items: [
+        { barrier: "Stigma and judgment", response: "Use respectful language, non-judgmental engagement, privacy, and dignity-first practice.", keyword: "Respect" },
+        { barrier: "Unclear information", response: "Make options and pathways understandable, relevant, and easier to navigate.", keyword: "Clarify" },
+        { barrier: "Disconnected support", response: "Strengthen referral and communication between appropriate points of care and assistance.", keyword: "Connect" },
+        { barrier: "Different circumstances", response: "Listen to the individual and avoid treating every person, need, or pathway as the same.", keyword: "Respond" },
+      ],
+    },
+    principles: {
+      label: "Practice principles",
+      isVisible: true,
+      eyebrow: "How support should feel",
+      title: "Human, respectful,",
+      highlightedTitle: "safe, and connected.",
+      description:
+        "PSTC's programme framing keeps personhood, rights, confidentiality, inclusion, safeguarding, appropriate referral, and learning at the center.",
+      items: ["Person-first and non-stigmatizing", "Respectful and non-judgmental", "Consent- and confidentiality-conscious", "Inclusive and context-aware", "Safeguarding and do-no-harm oriented", "Connected to appropriate referral and follow-up"],
+    },
+    connections: {
+      label: "Related pathways",
+      isVisible: true,
+      eyebrow: "Explore connected PSTC work",
+      title: "Support connected with",
+      highlightedTitle: "health, community, and rights.",
+      description:
+        "Explore PSTC's wider health, urban care, and community-based pathways related to information, service access, referral, and inclusion.",
+      items: [
+        { title: "Population Health & Nutrition", description: "Explore PSTC's thematic work across inclusive health, rights, community access, prevention, and capacity.", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "Health pathway" },
+        { title: "Urban Health Care", description: "Learn about PSTC's project approach to inclusive primary health access and referral support in urban communities.", href: "/what-we-do/projects/urban-health-care", linkLabel: "Explore urban health", tag: "Care pathway" },
+        { title: "Community Mobilization Program", description: "Explore community mobilization around rights, protection, awareness, and access to services.", href: "/what-we-do/projects/community-mobilization-program", linkLabel: "Explore CMP", tag: "Community pathway" },
+      ],
+    },
+    cta: {
+      label: "Support pathway CTA",
+      isVisible: true,
+      eyebrow: "Connect with PSTC",
+      title: "Support begins with dignity, listening, and the right connection.",
+      description:
+        "Explore PSTC's related health work or contact the team for programme, referral-pathway, and collaboration enquiries.",
+      primaryCtaLabel: "Explore health work",
+      primaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -1322,6 +1691,9 @@ export const cmsPageDefaults = {
   "gender-governance": genderGovernanceDefaultContent,
   "climate-change-adaptation": climateChangeAdaptationDefaultContent,
   "skills-education-training": skillsEducationTrainingDefaultContent,
+  "urban-health-care": urbanHealthCareDefaultContent,
+  focus: focusProjectDefaultContent,
+  "person-who-uses-drugs": personWhoUsesDrugsDefaultContent,
 } as const;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {

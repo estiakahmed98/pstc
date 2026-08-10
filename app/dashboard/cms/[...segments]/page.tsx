@@ -179,6 +179,39 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/projects/urban-health-care") {
+    return (
+      <ContentPageManager
+        pageKey="urban-health-care"
+        pageTitle="Urban Health Care"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["urban-health-care"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/projects/focus") {
+    return (
+      <ContentPageManager
+        pageKey="focus"
+        pageTitle="FOCUS"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.focus}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/projects/person-who-uses-drugs") {
+    return (
+      <ContentPageManager
+        pageKey="person-who-uses-drugs"
+        pageTitle="Person Who Uses Drugs (PUD)"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["person-who-uses-drugs"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

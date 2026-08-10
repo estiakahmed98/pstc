@@ -357,7 +357,7 @@ export function ContentPageManager({
   publicPath,
   defaultContent,
 }: {
-  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan" | "population-health-nutrition" | "youth-adolescent-development" | "gender-governance" | "climate-change-adaptation" | "skills-education-training";
+  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan" | "population-health-nutrition" | "youth-adolescent-development" | "gender-governance" | "climate-change-adaptation" | "skills-education-training" | "urban-health-care" | "focus" | "person-who-uses-drugs";
   pageTitle: string;
   publicPath: string;
   defaultContent: CmsPageContent;
