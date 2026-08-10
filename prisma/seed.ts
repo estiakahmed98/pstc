@@ -3,6 +3,12 @@ import { hash } from "bcryptjs";
 import {
   governanceDefaultContent,
   leadershipDefaultContent,
+  missionVisionValuesDefaultContent,
+  policiesDefaultContent,
+  organogramDefaultContent,
+  whereWeWorkDefaultContent,
+  aboutUsDefaultContent,
+  strategicPlanDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -641,6 +647,12 @@ async function main() {
   const contentPages = [
     ["governance", "Governance", governanceDefaultContent],
     ["leadership", "Leadership", leadershipDefaultContent],
+    ["mission-vision-values", "Mission, Vision & Values", missionVisionValuesDefaultContent],
+    ["policies", "Policies", policiesDefaultContent],
+    ["organogram", "Organogram", organogramDefaultContent],
+    ["where-we-work", "Where We Work", whereWeWorkDefaultContent],
+    ["about-us", "About Us", aboutUsDefaultContent],
+    ["strategic-plan", "Strategic Plan", strategicPlanDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {
@@ -664,7 +676,7 @@ async function main() {
 
   console.log(`Admin user is ready: ${email}`);
   console.log("Landing CMS foundation is ready with 9 sections.");
-  console.log("Governance and Leadership CMS pages are ready.");
+  console.log("Governance, Leadership, Mission, Vision & Values, Policies, Organogram, Where We Work, About Us, and Strategic Plan CMS pages are ready.");
 }
 
 main()

@@ -243,60 +243,56 @@ export default async function GovernancePage() {
 
   return (
     <div className="overflow-hidden bg-background text-foreground">
-      <section hidden={!hero.isVisible} className="relative isolate min-h-[640px] overflow-hidden bg-[#062d52] text-white lg:min-h-[720px]">
-        <Image
-          src={hero.image}
-          alt="PSTC governance and institutional leadership"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-45"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,33,61,0.98)_0%,rgba(4,44,78,0.91)_42%,rgba(4,44,78,0.35)_78%,rgba(4,44,78,0.15)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(148,202,81,0.30),transparent_25%)]" />
-        <div className="pstc-hero-grid absolute inset-0 opacity-35" />
+      <section hidden={!hero.isVisible} className="relative isolate min-h-[690px] overflow-hidden bg-[#eee9df] text-[#102a43] dark:bg-[#091f32] dark:text-white lg:min-h-[760px]">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,42,67,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(16,42,67,0.055)_1px,transparent_1px)] bg-[size:32px_32px] dark:bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)]" />
+        <div className="absolute right-0 top-0 hidden h-full w-[46%] lg:block">
+          <Image src={hero.image} alt="PSTC governance and institutional leadership" fill priority sizes="46vw" className="object-cover grayscale-[20%]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#eee9df] via-[#eee9df]/15 to-transparent dark:from-[#091f32]" />
+          <div className="absolute inset-0 bg-[#0b579e]/15 mix-blend-multiply" />
+        </div>
+        <div className="absolute bottom-0 left-0 top-0 w-2 bg-[linear-gradient(to_bottom,#0b579e_0_34%,#94ca51_34%_67%,#d13d34_67%)]" />
 
-        <div className="container-pstc relative z-10 flex min-h-[640px] flex-col justify-between py-8 lg:min-h-[720px] lg:py-12">
+        <div className="container-pstc relative z-10 flex min-h-[690px] flex-col justify-between py-8 pl-5 lg:min-h-[760px] lg:py-12 lg:pl-0">
           <nav
             aria-label="Breadcrumb"
-            className="flex flex-wrap items-center gap-2 text-xs font-bold text-white/70"
+            className="flex flex-wrap items-center gap-2 text-xs font-bold text-current/55"
           >
-            <Link href="/" className="transition hover:text-white">
+            <Link href="/" className="transition hover:text-primary">
               Home
             </Link>
             <ChevronRight className="size-3.5" />
-            <Link href="/who-we-are" className="transition hover:text-white">
+            <Link href="/who-we-are" className="transition hover:text-primary">
               Who We Are
             </Link>
             <ChevronRight className="size-3.5" />
-            <span className="text-[var(--pstc-secondary)]">Governance</span>
+            <span className="text-primary dark:text-[#b9ec7a]">Governance</span>
           </nav>
 
-          <div className="max-w-4xl py-16 lg:py-20">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.24em] backdrop-blur-md">
-              <ShieldCheck className="size-4 text-[var(--pstc-secondary)]" />
+          <div className="max-w-3xl py-14 lg:max-w-[58%] lg:py-20">
+            <div className="mb-7 inline-flex items-center gap-2 border-b-2 border-primary pb-2 text-[11px] font-black uppercase tracking-[0.26em] text-primary dark:border-[#94ca51] dark:text-[#b9ec7a]">
+              <ShieldCheck className="size-4" />
               {hero.eyebrow}
             </div>
-            <h1 className="max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+            <h1 className="max-w-3xl font-serif text-5xl font-black leading-[0.97] tracking-[-0.05em] sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
               {hero.title}
-              <span className="block text-[var(--pstc-secondary)]">
+              <span className="block text-primary dark:text-[#b9ec7a]">
                 {hero.highlightedTitle}
               </span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/78 sm:text-lg sm:leading-8">
+            <p className="mt-7 max-w-xl border-l-2 border-secondary pl-5 text-base leading-8 text-current/65 sm:text-lg">
               {hero.description}
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href={hero.primaryCtaHref}
-                className="group inline-flex items-center gap-3 rounded-full bg-[var(--pstc-secondary)] px-6 py-3.5 text-sm font-black text-[#10210b] shadow-[0_16px_40px_rgba(148,202,81,0.25)] transition hover:-translate-y-1 hover:bg-white"
+                className="group inline-flex items-center gap-3 bg-[#102a43] px-6 py-3.5 text-sm font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-primary dark:bg-[#94ca51] dark:text-[#10210b]"
               >
                 {hero.primaryCtaLabel}
                 <ArrowRight className="size-4 transition group-hover:translate-x-1" />
               </a>
               <Link
                 href={hero.secondaryCtaHref}
-                className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:text-[#062d52]"
+                className="inline-flex items-center gap-3 border border-current/20 bg-white/40 px-6 py-3.5 text-sm font-black backdrop-blur transition hover:-translate-y-1 hover:border-primary hover:text-primary dark:bg-white/[0.06]"
               >
                 {hero.secondaryCtaLabel}
                 <ArrowUpRight className="size-4" />
@@ -304,13 +300,13 @@ export default async function GovernancePage() {
             </div>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 backdrop-blur-xl sm:grid-cols-3">
+          <div className="grid border-y border-current/15 bg-[#eee9df]/80 backdrop-blur-xl dark:bg-[#091f32]/80 sm:grid-cols-3">
             {(hero.stats ?? []).map((stat: { value: string; label: string }) => (
-              <div key={`${stat.value}-${stat.label}`} className="bg-[#062d52]/65 px-6 py-5">
-                <p className="text-2xl font-black text-[var(--pstc-secondary)]">
+              <div key={`${stat.value}-${stat.label}`} className="border-current/10 px-6 py-5 sm:border-r sm:last:border-r-0">
+                <p className="font-serif text-3xl font-black text-primary dark:text-[#b9ec7a]">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-xs font-bold text-white/65">{stat.label}</p>
+                <p className="mt-1 text-xs font-bold text-current/50">{stat.label}</p>
               </div>
             ))}
           </div>

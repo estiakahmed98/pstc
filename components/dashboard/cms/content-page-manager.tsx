@@ -357,7 +357,7 @@ export function ContentPageManager({
   publicPath,
   defaultContent,
 }: {
-  pageKey: "governance" | "leadership";
+  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan";
   pageTitle: string;
   publicPath: string;
   defaultContent: CmsPageContent;
@@ -422,7 +422,7 @@ export function ContentPageManager({
 
   if (error || !page) {
     return (
-      <div className="min-h-screen bg-slate-50 p-4 md:p-6">
+      <div className="min-h-full bg-slate-50 p-4 md:p-6">
         <Card className="mx-auto mt-12 max-w-2xl rounded-3xl border border-red-100 p-8 text-center">
           <AlertCircle className="mx-auto h-10 w-10 text-red-500" />
           <h1 className="mt-4 text-xl font-black text-slate-900">{pageTitle} CMS is not available</h1>
@@ -437,7 +437,7 @@ export function ContentPageManager({
   const sections = Object.entries(content.sections);
 
   return (
-    <div className="min-h-screen space-y-6 bg-slate-50 p-4 md:p-6">
+    <div className="min-h-full space-y-6 bg-slate-50 p-4 md:p-6">
       <section className="overflow-hidden rounded-3xl bg-[#0193CD] p-6 text-white shadow-lg md:p-8">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex items-start gap-4">
@@ -468,7 +468,7 @@ export function ContentPageManager({
       </Card>
 
       <div className="grid gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
-        <Card className="h-fit rounded-3xl border border-slate-200 bg-white p-3 shadow-sm xl:sticky xl:top-4 xl:max-h-[calc(100dvh-2rem)] xl:self-start xl:overflow-y-auto xl:[scrollbar-color:#cbd5e1_transparent] xl:[scrollbar-width:thin]">
+        <Card className="h-fit rounded-3xl border border-slate-200 bg-white p-3 shadow-sm xl:sticky xl:top-4 xl:self-start">
           <p className="px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-slate-400">Page sections</p>
           <div className="space-y-1">
             {sections.map(([key, section], index) => (

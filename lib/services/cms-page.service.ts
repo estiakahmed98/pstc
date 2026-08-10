@@ -4,6 +4,12 @@ import { prisma } from "@/lib/prisma";
 const pageTitles: Record<string, string> = {
   governance: "Governance",
   leadership: "Leadership",
+  "mission-vision-values": "Mission, Vision & Values",
+  policies: "Policies",
+  organogram: "Organogram",
+  "where-we-work": "Where We Work",
+  "about-us": "About Us",
+  "strategic-plan": "Strategic Plan",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

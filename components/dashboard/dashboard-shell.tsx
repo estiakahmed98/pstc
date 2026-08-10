@@ -19,7 +19,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   }, [mobileSidebarOpen]);
 
   return (
-    <div className="flex h-dvh overflow-hidden bg-background">
+    <div className="fixed inset-0 flex overflow-hidden bg-background">
       {mobileSidebarOpen ? (
         <button
           type="button"
@@ -34,7 +34,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         onClose={() => setMobileSidebarOpen(false)}
       />
 
-      <div className="flex h-dvh min-w-0 flex-1 flex-col overflow-hidden">
+      <div className="flex h-full min-w-0 flex-1 flex-col overflow-hidden">
         <DashboardTopbar onMenuClick={() => setMobileSidebarOpen(true)} />
         <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           {children}

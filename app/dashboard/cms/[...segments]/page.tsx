@@ -58,6 +58,72 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/who-we-are/mission-vision-values") {
+    return (
+      <ContentPageManager
+        pageKey="mission-vision-values"
+        pageTitle="Mission, Vision & Values"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["mission-vision-values"]}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/policies") {
+    return (
+      <ContentPageManager
+        pageKey="policies"
+        pageTitle="Policies"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.policies}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/organogram") {
+    return (
+      <ContentPageManager
+        pageKey="organogram"
+        pageTitle="Organogram"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.organogram}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/where-we-work") {
+    return (
+      <ContentPageManager
+        pageKey="where-we-work"
+        pageTitle="Where We Work"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["where-we-work"]}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/about-us") {
+    return (
+      <ContentPageManager
+        pageKey="about-us"
+        pageTitle="About Us"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["about-us"]}
+      />
+    );
+  }
+
+  if (publicPath === "/who-we-are/strategic-plan") {
+    return (
+      <ContentPageManager
+        pageKey="strategic-plan"
+        pageTitle="Strategic Plan"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["strategic-plan"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

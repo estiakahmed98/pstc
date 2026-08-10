@@ -173,74 +173,66 @@ export default async function LeadershipPage() {
 
   return (
     <div className="overflow-hidden bg-background text-foreground">
-      <section hidden={!hero.isVisible} className="relative isolate min-h-[650px] overflow-hidden bg-[#062d52] text-white lg:min-h-[730px]">
-        <Image
-          src={hero.image}
-          alt="PSTC leadership and teamwork"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-55"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,33,61,0.98)_0%,rgba(4,44,78,0.90)_44%,rgba(4,44,78,0.35)_76%,rgba(4,44,78,0.18)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_16%,rgba(148,202,81,0.32),transparent_24%)]" />
-        <div className="pstc-hero-grid absolute inset-0 opacity-35" />
-
-        <div className="container-pstc relative z-10 flex min-h-[650px] flex-col justify-between py-8 lg:min-h-[730px] lg:py-12">
+      <section hidden={!hero.isVisible} className="relative isolate min-h-[690px] overflow-hidden bg-[#f5fbff] text-[#072c4a] dark:bg-[#071e31] dark:text-white lg:min-h-[760px]">
+        <div className="absolute -left-32 top-24 size-80 rounded-full bg-sky-300/20 blur-3xl" />
+        <div className="absolute -right-24 bottom-10 size-96 rounded-full bg-lime-300/20 blur-3xl" />
+        <div className="container-pstc relative z-10 flex min-h-[690px] flex-col py-8 lg:min-h-[760px] lg:py-12">
           <nav
             aria-label="Breadcrumb"
-            className="flex flex-wrap items-center gap-2 text-xs font-bold text-white/70"
+            className="flex flex-wrap items-center gap-2 text-xs font-bold text-current/50"
           >
-            <Link href="/" className="transition hover:text-white">
+            <Link href="/" className="transition hover:text-sky-600">
               Home
             </Link>
             <ChevronRight className="size-3.5" />
-            <Link href="/who-we-are" className="transition hover:text-white">
+            <Link href="/who-we-are" className="transition hover:text-sky-600">
               Who We Are
             </Link>
             <ChevronRight className="size-3.5" />
-            <span className="text-[var(--pstc-secondary)]">Leadership</span>
+            <span className="text-sky-600 dark:text-sky-300">Leadership</span>
           </nav>
 
-          <div className="max-w-4xl py-16 lg:py-20">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] font-black uppercase tracking-[0.24em] backdrop-blur-md">
-              <UsersRound className="size-4 text-[var(--pstc-secondary)]" />
-              {hero.eyebrow}
+          <div className="grid flex-1 items-center gap-14 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-[11px] font-black uppercase tracking-[0.24em] text-sky-700 dark:bg-sky-400/10 dark:text-sky-300">
+                <UsersRound className="size-4" />
+                {hero.eyebrow}
+              </div>
+              <h1 className="max-w-4xl text-5xl font-black leading-[0.97] tracking-[-0.05em] sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
+                {hero.title}
+                <span className="block bg-gradient-to-r from-sky-600 to-lime-600 bg-clip-text text-transparent dark:from-sky-300 dark:to-lime-300">
+                  {hero.highlightedTitle}
+                </span>
+              </h1>
+              <p className="mt-7 max-w-xl text-base leading-8 text-current/60 sm:text-lg">
+                {hero.description}
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a href={hero.primaryCtaHref} className="group inline-flex items-center gap-3 rounded-full bg-sky-600 px-6 py-3.5 text-sm font-black text-white shadow-[0_16px_40px_rgba(2,132,199,0.22)] transition hover:-translate-y-1 hover:bg-lime-500 hover:text-[#10210b]">
+                  {hero.primaryCtaLabel}<ArrowRight className="size-4 transition group-hover:translate-x-1" />
+                </a>
+                <Link href={hero.secondaryCtaHref} className="inline-flex items-center gap-3 rounded-full border border-sky-200 bg-white/70 px-6 py-3.5 text-sm font-black transition hover:-translate-y-1 hover:border-sky-500 hover:text-sky-600 dark:border-white/15 dark:bg-white/[0.06]">
+                  {hero.secondaryCtaLabel}<ArrowUpRight className="size-4" />
+                </Link>
+              </div>
             </div>
-            <h1 className="max-w-4xl text-5xl font-black leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-              {hero.title}
-              <span className="block text-[var(--pstc-secondary)]">
-                {hero.highlightedTitle}
-              </span>
-            </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/78 sm:text-lg sm:leading-8">
-              {hero.description}
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={hero.primaryCtaHref}
-                className="group inline-flex items-center gap-3 rounded-full bg-[var(--pstc-secondary)] px-6 py-3.5 text-sm font-black text-[#10210b] shadow-[0_16px_40px_rgba(148,202,81,0.25)] transition hover:-translate-y-1 hover:bg-white"
-              >
-                {hero.primaryCtaLabel}
-                <ArrowRight className="size-4 transition group-hover:translate-x-1" />
-              </a>
-              <Link
-                href={hero.secondaryCtaHref}
-                className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-black text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:text-[#062d52]"
-              >
-                {hero.secondaryCtaLabel}
-                <ArrowUpRight className="size-4" />
-              </Link>
+            <div className="relative mx-auto w-full max-w-lg">
+              <div className="absolute -inset-5 rounded-[48%_52%_42%_58%/58%_40%_60%_42%] border border-sky-300/40" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[48%_52%_42%_58%/58%_40%_60%_42%] shadow-[0_30px_90px_rgba(7,44,74,0.2)]">
+                <Image src={hero.image} alt="PSTC leadership and teamwork" fill priority sizes="(max-width:1024px) 90vw,42vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#072c4a]/55 via-transparent to-transparent" />
+              </div>
+              <div className="absolute -bottom-5 -left-5 grid size-24 place-items-center rounded-full border-8 border-[#f5fbff] bg-lime-500 text-center text-[10px] font-black uppercase tracking-[0.12em] text-[#10210b] shadow-xl dark:border-[#071e31]">
+                Lead<br />together
+              </div>
             </div>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 backdrop-blur-xl sm:grid-cols-3">
+          <div className="grid gap-3 border-t border-sky-200/60 pt-5 dark:border-white/10 sm:grid-cols-3">
             {(hero.stats ?? []).map((stat: { value: string; label: string }) => (
-              <div key={`${stat.value}-${stat.label}`} className="bg-[#062d52]/65 px-6 py-5">
-                <p className="text-xl font-black text-[var(--pstc-secondary)]">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-xs font-bold text-white/65">{stat.label}</p>
+              <div key={`${stat.value}-${stat.label}`} className="rounded-2xl bg-white/65 px-5 py-4 shadow-sm dark:bg-white/[0.055]">
+                <p className="text-xl font-black text-sky-600 dark:text-lime-300">{stat.value}</p>
+                <p className="mt-1 text-xs font-bold text-current/45">{stat.label}</p>
               </div>
             ))}
           </div>
