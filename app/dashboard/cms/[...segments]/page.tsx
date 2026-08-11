@@ -300,6 +300,72 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/initiatives/pmc") {
+    return (
+      <ContentPageManager
+        pageKey="pmc"
+        pageTitle="PSTC Model Clinic (PMC)"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.pmc}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/cpti") {
+    return (
+      <ContentPageManager
+        pageKey="cpti"
+        pageTitle="Community Paramedic Training Institute (CPTI)"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.cpti}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pies") {
+    return (
+      <ContentPageManager
+        pageKey="pies"
+        pageTitle="PSTC Institute for Employment Support (PIES)"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.pies}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/caregivers") {
+    return (
+      <ContentPageManager
+        pageKey="caregivers"
+        pageTitle="Caregivers"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.caregivers}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pstc-complex") {
+    return (
+      <ContentPageManager
+        pageKey="pstc-complex"
+        pageTitle="PSTC Complex"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["pstc-complex"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pstc-bhaban") {
+    return (
+      <ContentPageManager
+        pageKey="pstc-bhaban"
+        pageTitle="PSTC Bhaban"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["pstc-bhaban"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

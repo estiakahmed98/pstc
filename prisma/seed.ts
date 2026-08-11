@@ -25,6 +25,12 @@ import {
   pmcAftabnagarDefaultContent,
   pmcGazipurDefaultContent,
   pmcKushtiaDefaultContent,
+  pmcDefaultContent,
+  cptiDefaultContent,
+  piesDefaultContent,
+  caregiversDefaultContent,
+  pstcComplexDefaultContent,
+  pstcBhabanDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -685,6 +691,12 @@ async function main() {
     ["pmc-aftabnagar", "PMC - Aftabnagar", pmcAftabnagarDefaultContent],
     ["pmc-gazipur", "PMC - Gazipur", pmcGazipurDefaultContent],
     ["pmc-kushtia", "PMC - Kushtia", pmcKushtiaDefaultContent],
+    ["pmc", "PSTC Model Clinic (PMC)", pmcDefaultContent],
+    ["cpti", "Community Paramedic Training Institute (CPTI)", cptiDefaultContent],
+    ["pies", "PSTC Institute for Employment Support (PIES)", piesDefaultContent],
+    ["caregivers", "Caregivers", caregiversDefaultContent],
+    ["pstc-complex", "PSTC Complex", pstcComplexDefaultContent],
+    ["pstc-bhaban", "PSTC Bhaban", pstcBhabanDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {

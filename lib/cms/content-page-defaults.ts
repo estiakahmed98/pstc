@@ -2423,6 +2423,342 @@ export const pmcKushtiaDefaultContent = createPmcLocationDefaultContent({
   ],
 });
 
+type InitiativeDefaultOptions = {
+  name: string;
+  shortCode: string;
+  eyebrow: string;
+  title: string;
+  highlightedTitle: string;
+  description: string;
+  image: string;
+  signature: string;
+  overviewTitle: string;
+  overviewHighlight: string;
+  overviewDescription: string;
+  overviewStatement: string;
+  overviewItems: string[];
+  frameworkEyebrow: string;
+  frameworkTitle: string;
+  frameworkHighlight: string;
+  frameworkDescription: string;
+  frameworkItems: Array<{ number: string; title: string; description: string; icon: string }>;
+  promiseTitle: string;
+  promiseHighlight: string;
+  promiseDescription: string;
+  promises: Array<{ title: string; description: string }>;
+  related: Array<{ title: string; description: string; href: string; linkLabel: string; tag: string }>;
+};
+
+function createInitiativeDefaultContent(options: InitiativeDefaultOptions): CmsPageContent {
+  return {
+    sections: {
+      hero: {
+        label: "Hero & identity",
+        isVisible: true,
+        eyebrow: options.eyebrow,
+        shortCode: options.shortCode,
+        title: options.title,
+        highlightedTitle: options.highlightedTitle,
+        description: options.description,
+        image: options.image,
+        signature: options.signature,
+        primaryCtaLabel: "Explore the approach",
+        primaryCtaHref: "#initiative-framework",
+        secondaryCtaLabel: "Contact PSTC",
+        secondaryCtaHref: "/contact-us/contact-form",
+      },
+      overview: {
+        label: "Initiative overview",
+        isVisible: true,
+        eyebrow: `Inside ${options.shortCode}`,
+        title: options.overviewTitle,
+        highlightedTitle: options.overviewHighlight,
+        description: options.overviewDescription,
+        statement: options.overviewStatement,
+        image: options.image,
+        items: options.overviewItems,
+      },
+      framework: {
+        label: "Operating framework",
+        isVisible: true,
+        eyebrow: options.frameworkEyebrow,
+        title: options.frameworkTitle,
+        highlightedTitle: options.frameworkHighlight,
+        description: options.frameworkDescription,
+        items: options.frameworkItems,
+      },
+      commitments: {
+        label: "Institutional commitments",
+        isVisible: true,
+        eyebrow: "A responsible institutional culture",
+        title: options.promiseTitle,
+        highlightedTitle: options.promiseHighlight,
+        description: options.promiseDescription,
+        items: options.promises,
+      },
+      related: {
+        label: "Connected pathways",
+        isVisible: true,
+        eyebrow: "Across the PSTC network",
+        title: "Continue through",
+        highlightedTitle: "connected pathways.",
+        description: `Explore programmes, locations, and organizational routes connected with ${options.name}.`,
+        items: options.related,
+      },
+      cta: {
+        label: "Closing CTA",
+        isVisible: true,
+        eyebrow: `Connect with ${options.shortCode}`,
+        title: `Ready to learn more about ${options.name}?`,
+        description: "Contact PSTC for current, verified information, collaboration enquiries, or directions to the appropriate team.",
+        primaryCtaLabel: "Contact PSTC",
+        primaryCtaHref: "/contact-us/contact-form",
+        secondaryCtaLabel: "Explore all initiatives",
+        secondaryCtaHref: "/what-we-do/initiatives",
+      },
+    },
+  };
+}
+
+export const pmcDefaultContent = createInitiativeDefaultContent({
+  name: "PSTC Model Clinic",
+  shortCode: "PMC",
+  eyebrow: "Health access initiative",
+  title: "One clinic network.",
+  highlightedTitle: "Three local doors to care.",
+  description: "PSTC Model Clinic brings the organization’s health commitment into dedicated local settings, connecting people with clinic information and appropriate care pathways.",
+  image: "/images/pmc.gif",
+  signature: "Aftabnagar · Gazipur · Kushtia",
+  overviewTitle: "Local presence,",
+  overviewHighlight: "connected standards.",
+  overviewDescription: "The PMC network is presented through three location pages. Administrators can publish verified services, schedules, contact details, and directions for each clinic independently.",
+  overviewStatement: "A dependable clinic experience begins with respectful communication, accurate information, and a clear next step.",
+  overviewItems: ["Location-specific information", "CMS-managed clinic updates", "Connection to wider health pathways"],
+  frameworkEyebrow: "The clinic network",
+  frameworkTitle: "Choose a",
+  frameworkHighlight: "PMC location.",
+  frameworkDescription: "Each clinic has its own dedicated CMS-managed page and replaceable visual identity.",
+  frameworkItems: [
+    { number: "01", title: "Aftabnagar", description: "Explore the PSTC Model Clinic location in Aftabnagar, Dhaka.", icon: "Building2" },
+    { number: "02", title: "Gazipur", description: "Find the dedicated information pathway for PMC Gazipur.", icon: "MapPinned" },
+    { number: "03", title: "Kushtia", description: "Continue to the PMC Kushtia location page and official enquiry route.", icon: "Navigation" },
+  ],
+  promiseTitle: "Professional care information.",
+  promiseHighlight: "Human connection.",
+  promiseDescription: "PMC communication is framed around dignity, clarity, inclusion, and responsible handling of current clinic information.",
+  promises: [
+    { title: "Dignity", description: "Respect every person and their individual context." },
+    { title: "Clarity", description: "Publish practical, understandable, and current information." },
+    { title: "Inclusion", description: "Recognize different needs and access barriers." },
+    { title: "Connection", description: "Guide people toward an appropriate next step." },
+  ],
+  related: [
+    { title: "PMC Aftabnagar", description: "Open the dedicated Aftabnagar clinic page.", href: "/what-we-do/initiatives/pmc/aftabnagar", linkLabel: "Explore location", tag: "Dhaka" },
+    { title: "PMC Gazipur", description: "Open the dedicated Gazipur clinic page.", href: "/what-we-do/initiatives/pmc/gazipur", linkLabel: "Explore location", tag: "Gazipur" },
+    { title: "PMC Kushtia", description: "Open the dedicated Kushtia clinic page.", href: "/what-we-do/initiatives/pmc/kushtia", linkLabel: "Explore location", tag: "Kushtia" },
+  ],
+});
+
+export const cptiDefaultContent = createInitiativeDefaultContent({
+  name: "Community Paramedic Training Institute",
+  shortCode: "CPTI",
+  eyebrow: "Professional health training",
+  title: "Learn with discipline.",
+  highlightedTitle: "Serve with confidence.",
+  description: "CPTI is PSTC’s dedicated community paramedic training pathway, presented through a professional learning environment focused on knowledge, practice, responsibility, and service readiness.",
+  image: "/images/skills-education-training.jpg",
+  signature: "Knowledge · Practice · Professionalism",
+  overviewTitle: "Training that connects",
+  overviewHighlight: "theory with practice.",
+  overviewDescription: "This CMS-ready page provides a structured place for approved programme information, learning pathways, admission details, facilities, and institutional contacts.",
+  overviewStatement: "Professional confidence grows when structured learning, supervised practice, and ethical responsibility move together.",
+  overviewItems: ["Structured learning pathway", "Practice-oriented development", "Professional responsibility"],
+  frameworkEyebrow: "The learning journey",
+  frameworkTitle: "From orientation to",
+  frameworkHighlight: "professional readiness.",
+  frameworkDescription: "The stages below are an editable presentation framework and can be replaced with the institute’s approved curriculum journey.",
+  frameworkItems: [
+    { number: "01", title: "Orient", description: "Understand expectations, learning culture, and professional responsibilities.", icon: "Compass" },
+    { number: "02", title: "Learn", description: "Build a strong foundation through structured knowledge and guided discussion.", icon: "BookOpenCheck" },
+    { number: "03", title: "Practice", description: "Develop practical confidence in a supervised learning environment.", icon: "Stethoscope" },
+    { number: "04", title: "Reflect", description: "Use feedback to strengthen judgment, communication, and readiness.", icon: "NotebookPen" },
+  ],
+  promiseTitle: "Standards in learning.",
+  promiseHighlight: "Purpose in practice.",
+  promiseDescription: "The page expresses a corporate training culture built around quality, safety, ethics, and continuous learning.",
+  promises: [
+    { title: "Quality", description: "Keep learning content clear, relevant, and professionally presented." },
+    { title: "Safety", description: "Make responsible practice and learner wellbeing visible priorities." },
+    { title: "Ethics", description: "Connect technical confidence with dignity and accountability." },
+    { title: "Growth", description: "Create space for feedback, reflection, and continued development." },
+  ],
+  related: [
+    { title: "Skills, Education & Training", description: "Explore PSTC’s wider thematic approach to skills and learning.", href: "/what-we-do/thematic-areas/skills-education-training", linkLabel: "Explore SET", tag: "Thematic area" },
+    { title: "PSTC Model Clinic", description: "Explore PSTC’s dedicated model clinic network.", href: "/what-we-do/initiatives/pmc", linkLabel: "Explore PMC", tag: "Health pathway" },
+    { title: "Contact PSTC", description: "Request current and verified institute information.", href: "/contact-us/contact-form", linkLabel: "Send an enquiry", tag: "Official contact" },
+  ],
+});
+
+export const piesDefaultContent = createInitiativeDefaultContent({
+  name: "PSTC Institute for Employment Support",
+  shortCode: "PIES",
+  eyebrow: "Employment support initiative",
+  title: "Skills into confidence.",
+  highlightedTitle: "Confidence into opportunity.",
+  description: "PIES provides a dedicated institutional platform for presenting approved employment-support, readiness, and connection pathways in a focused professional environment.",
+  image: "/images/get-involved.jpg",
+  signature: "Prepare · Position · Progress",
+  overviewTitle: "A clearer route from",
+  overviewHighlight: "potential to participation.",
+  overviewDescription: "The page is designed for verified programme details, learner opportunities, support pathways, and employer or partner engagement to be managed from the CMS.",
+  overviewStatement: "Employment readiness is not a single event; it is the steady work of building skills, confidence, direction, and connection.",
+  overviewItems: ["Readiness and self-awareness", "Practical professional skills", "Connection and progression"],
+  frameworkEyebrow: "Opportunity pathway",
+  frameworkTitle: "Prepare, present,",
+  frameworkHighlight: "and progress.",
+  frameworkDescription: "An editable pathway for presenting approved PIES services and participation stages.",
+  frameworkItems: [
+    { number: "01", title: "Discover", description: "Recognize strengths, interests, priorities, and areas for development.", icon: "SearchCheck" },
+    { number: "02", title: "Prepare", description: "Build practical workplace habits, communication, and readiness.", icon: "BriefcaseBusiness" },
+    { number: "03", title: "Position", description: "Present experience and capability with greater clarity and confidence.", icon: "UserRoundCheck" },
+    { number: "04", title: "Connect", description: "Navigate appropriate opportunity and institutional pathways.", icon: "Network" },
+  ],
+  promiseTitle: "Professional preparation.",
+  promiseHighlight: "Inclusive opportunity.",
+  promiseDescription: "PIES is presented with an ambitious but responsible culture that avoids promising unverified jobs or outcomes.",
+  promises: [
+    { title: "Agency", description: "Help participants understand and communicate their own strengths." },
+    { title: "Relevance", description: "Keep learning connected with practical professional contexts." },
+    { title: "Inclusion", description: "Recognize different starting points and barriers to opportunity." },
+    { title: "Integrity", description: "Share opportunities and outcomes accurately without false promises." },
+  ],
+  related: [
+    { title: "Skills, Education & Training", description: "Explore PSTC’s wider skills development theme.", href: "/what-we-do/thematic-areas/skills-education-training", linkLabel: "Explore SET", tag: "Skills" },
+    { title: "Jobs", description: "Visit PSTC’s official jobs and opportunities route.", href: "/get-involved/jobs", linkLabel: "View jobs", tag: "Opportunities" },
+    { title: "Get Involved", description: "Explore additional ways to connect with PSTC.", href: "/get-involved", linkLabel: "Get involved", tag: "Participation" },
+  ],
+});
+
+export const caregiversDefaultContent = createInitiativeDefaultContent({
+  name: "Caregivers",
+  shortCode: "CARE",
+  eyebrow: "Care and support initiative",
+  title: "Capability in every action.",
+  highlightedTitle: "Dignity in every interaction.",
+  description: "The Caregivers initiative provides a professional space for presenting approved caregiver learning, support, and connection pathways with empathy and responsibility at the centre.",
+  image: "/images/uthan_boithok.jpg",
+  signature: "Respect · Safety · Compassion",
+  overviewTitle: "Care is both",
+  overviewHighlight: "skill and relationship.",
+  overviewDescription: "This CMS-managed page can hold verified programme details, learning information, service pathways, and contact guidance without exposing sensitive personal information.",
+  overviewStatement: "The strongest care culture combines practical capability with patience, respect, communication, and attention to individual needs.",
+  overviewItems: ["Person-centred communication", "Safe and responsible support", "Learning through reflection"],
+  frameworkEyebrow: "The care practice",
+  frameworkTitle: "Observe, support,",
+  frameworkHighlight: "communicate, improve.",
+  frameworkDescription: "A flexible presentation framework for approved caregiver training or support information.",
+  frameworkItems: [
+    { number: "01", title: "Observe", description: "Pay attention to individual needs, preferences, comfort, and context.", icon: "ScanSearch" },
+    { number: "02", title: "Support", description: "Use appropriate skills and safe practices with dignity at the centre.", icon: "HandHeart" },
+    { number: "03", title: "Communicate", description: "Share information clearly, respectfully, and through the right channels.", icon: "MessagesSquare" },
+    { number: "04", title: "Improve", description: "Reflect on feedback and continue building professional confidence.", icon: "RefreshCw" },
+  ],
+  promiseTitle: "Care with competence.",
+  promiseHighlight: "Support with respect.",
+  promiseDescription: "The visual and content system carries a warm professional culture grounded in dignity and safeguarding.",
+  promises: [
+    { title: "Respect", description: "Recognize each person’s voice, preferences, and dignity." },
+    { title: "Safety", description: "Keep responsible practice and wellbeing central to support." },
+    { title: "Privacy", description: "Handle personal information and sensitive situations carefully." },
+    { title: "Empathy", description: "Listen actively and respond without judgment." },
+  ],
+  related: [
+    { title: "Population Health & Nutrition", description: "Explore PSTC’s health and wellbeing thematic area.", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "Health" },
+    { title: "CPTI", description: "Explore PSTC’s professional community paramedic training institute.", href: "/what-we-do/initiatives/cpti", linkLabel: "Explore CPTI", tag: "Learning" },
+    { title: "Contact PSTC", description: "Request current caregiver initiative information.", href: "/contact-us/contact-form", linkLabel: "Send an enquiry", tag: "Contact" },
+  ],
+});
+
+export const pstcComplexDefaultContent = createInitiativeDefaultContent({
+  name: "PSTC Complex",
+  shortCode: "COMPLEX",
+  eyebrow: "Institutional platform",
+  title: "Space for programmes.",
+  highlightedTitle: "Structure for progress.",
+  description: "PSTC Complex is presented as an institutional platform where approved information about facilities, programme use, access, and organizational activity can be managed professionally.",
+  image: "/images/initiatives.avif",
+  signature: "People · Programmes · Possibility",
+  overviewTitle: "A platform designed for",
+  overviewHighlight: "connection and delivery.",
+  overviewDescription: "The CMS gives administrators a structured place to publish verified complex information, facility details, directions, availability, and relevant programme connections.",
+  overviewStatement: "Well-managed institutional space does more than host activity—it supports coordination, professionalism, and a consistent experience.",
+  overviewItems: ["Programme-ready environment", "Clear visitor information", "Connected organizational use"],
+  frameworkEyebrow: "How the platform works",
+  frameworkTitle: "Welcome, enable,",
+  frameworkHighlight: "connect, sustain.",
+  frameworkDescription: "A modular framework for describing verified uses and functions of the complex.",
+  frameworkItems: [
+    { number: "01", title: "Welcome", description: "Provide a clear, professional first point of information for visitors and partners.", icon: "DoorOpen" },
+    { number: "02", title: "Enable", description: "Support approved programme, learning, meeting, or coordination activity.", icon: "PanelsTopLeft" },
+    { number: "03", title: "Connect", description: "Bring relevant people, teams, and institutional pathways together.", icon: "Waypoints" },
+    { number: "04", title: "Sustain", description: "Manage information, access, and use with care and accountability.", icon: "Building2" },
+  ],
+  promiseTitle: "A professional environment.",
+  promiseHighlight: "A purposeful experience.",
+  promiseDescription: "The page carries a modern facilities and institutional culture without inventing unsupported amenities.",
+  promises: [
+    { title: "Order", description: "Make access and institutional information easy to understand." },
+    { title: "Hospitality", description: "Create a respectful and professional visitor experience." },
+    { title: "Function", description: "Present approved uses and facilities with clarity." },
+    { title: "Stewardship", description: "Connect space management with accountability and care." },
+  ],
+  related: [
+    { title: "PSTC Bhaban", description: "Explore PSTC’s head office and institutional contact route.", href: "/what-we-do/initiatives/pstc-bhaban", linkLabel: "Explore PSTC Bhaban", tag: "Institution" },
+    { title: "Where We Work", description: "View PSTC’s wider organizational presence.", href: "/who-we-are/where-we-work", linkLabel: "View locations", tag: "Presence" },
+    { title: "Office Location", description: "Find official location and direction information.", href: "/contact-us/office-location", linkLabel: "Plan a visit", tag: "Directions" },
+  ],
+});
+
+export const pstcBhabanDefaultContent = createInitiativeDefaultContent({
+  name: "PSTC Bhaban",
+  shortCode: "BHABAN",
+  eyebrow: "PSTC head office",
+  title: "An institutional home.",
+  highlightedTitle: "A shared direction.",
+  description: "PSTC Bhaban is the organization’s head-office address in Aftabnagar, providing a central route for institutional enquiries, coordination, and connection.",
+  image: "/images/about-us.jpeg",
+  signature: "PSTC Bhaban · Aftabnagar · Dhaka",
+  overviewTitle: "Where purpose meets",
+  overviewHighlight: "organizational practice.",
+  overviewDescription: "This CMS-ready page can present verified office information, visitor guidance, institutional functions, contact details, and organizational connections.",
+  overviewStatement: "A strong institutional home makes purpose visible through professional practice, clear communication, and accountable coordination.",
+  overviewItems: ["Institutional coordination", "Official enquiry pathway", "Professional visitor information"],
+  frameworkEyebrow: "Inside the institution",
+  frameworkTitle: "Direction, coordination,",
+  frameworkHighlight: "and connection.",
+  frameworkDescription: "An editable framework for approved head-office functions and visitor information.",
+  frameworkItems: [
+    { number: "01", title: "Direct", description: "Connect organizational purpose with planning and institutional priorities.", icon: "Landmark" },
+    { number: "02", title: "Coordinate", description: "Support communication and collaboration across relevant teams and functions.", icon: "Network" },
+    { number: "03", title: "Steward", description: "Maintain clear systems, records, responsibilities, and accountability.", icon: "ClipboardCheck" },
+    { number: "04", title: "Connect", description: "Provide an official route for visitors, partners, and public enquiries.", icon: "Handshake" },
+  ],
+  promiseTitle: "Corporate discipline.",
+  promiseHighlight: "Social purpose.",
+  promiseDescription: "PSTC Bhaban’s page balances an executive institutional tone with PSTC’s people-centred identity.",
+  promises: [
+    { title: "Accountability", description: "Keep institutional information clear and appropriately governed." },
+    { title: "Professionalism", description: "Present a consistent and respectful organizational experience." },
+    { title: "Collaboration", description: "Support connected work across programmes and functions." },
+    { title: "Purpose", description: "Keep organizational activity aligned with PSTC’s mission." },
+  ],
+  related: [
+    { title: "About PSTC", description: "Learn about PSTC’s institutional story and identity.", href: "/who-we-are/about-us", linkLabel: "About us", tag: "Organization" },
+    { title: "Governance", description: "Explore PSTC’s oversight and accountability framework.", href: "/who-we-are/governance", linkLabel: "Explore governance", tag: "Accountability" },
+    { title: "Office Location", description: "View the official address and available direction information.", href: "/contact-us/office-location", linkLabel: "View location", tag: "Visit" },
+  ],
+});
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -2448,6 +2784,12 @@ export const cmsPageDefaults = {
   "pmc-aftabnagar": pmcAftabnagarDefaultContent,
   "pmc-gazipur": pmcGazipurDefaultContent,
   "pmc-kushtia": pmcKushtiaDefaultContent,
+  pmc: pmcDefaultContent,
+  cpti: cptiDefaultContent,
+  pies: piesDefaultContent,
+  caregivers: caregiversDefaultContent,
+  "pstc-complex": pstcComplexDefaultContent,
+  "pstc-bhaban": pstcBhabanDefaultContent,
 } as const;
 
 export type CmsPageKey = keyof typeof cmsPageDefaults;

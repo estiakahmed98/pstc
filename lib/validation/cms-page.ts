@@ -25,6 +25,12 @@ export const cmsPageKeySchema = z.enum([
   "pmc-aftabnagar",
   "pmc-gazipur",
   "pmc-kushtia",
+  "pmc",
+  "cpti",
+  "pies",
+  "caregivers",
+  "pstc-complex",
+  "pstc-bhaban",
 ]);
 
 export const updateCmsPageSchema = z.object({

@@ -26,6 +26,12 @@ const pageTitles: Record<string, string> = {
   "pmc-aftabnagar": "PMC - Aftabnagar",
   "pmc-gazipur": "PMC - Gazipur",
   "pmc-kushtia": "PMC - Kushtia",
+  pmc: "PSTC Model Clinic (PMC)",
+  cpti: "Community Paramedic Training Institute (CPTI)",
+  pies: "PSTC Institute for Employment Support (PIES)",
+  caregivers: "Caregivers",
+  "pstc-complex": "PSTC Complex",
+  "pstc-bhaban": "PSTC Bhaban",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {
