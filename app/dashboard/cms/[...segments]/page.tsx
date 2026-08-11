@@ -366,6 +366,42 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do") {
+    return <ContentPageManager pageKey="what-we-do" pageTitle="What We Do" publicPath={publicPath} defaultContent={cmsPageDefaults["what-we-do"]} />;
+  }
+
+  if (publicPath === "/what-we-do/thematic-areas") {
+    return <ContentPageManager pageKey="thematic-areas" pageTitle="Our Thematic Areas" publicPath={publicPath} defaultContent={cmsPageDefaults["thematic-areas"]} />;
+  }
+
+  if (publicPath === "/what-we-do/projects") {
+    return <ContentPageManager pageKey="projects" pageTitle="Our Projects" publicPath={publicPath} defaultContent={cmsPageDefaults.projects} />;
+  }
+
+  if (publicPath === "/what-we-do/initiatives") {
+    return <ContentPageManager pageKey="initiatives" pageTitle="Our Initiatives" publicPath={publicPath} defaultContent={cmsPageDefaults.initiatives} />;
+  }
+
+  if (publicPath === "/what-we-do/priorities") {
+    return <ContentPageManager pageKey="priorities" pageTitle="Our Priorities" publicPath={publicPath} defaultContent={cmsPageDefaults.priorities} />;
+  }
+
+  if (publicPath === "/what-we-do/priorities/humanitarian-crisis") {
+    return <ContentPageManager pageKey="humanitarian-crisis" pageTitle="Humanitarian Crisis (Preparedness & Response)" publicPath={publicPath} defaultContent={cmsPageDefaults["humanitarian-crisis"]} />;
+  }
+
+  if (publicPath === "/what-we-do/priorities/climate-resilience") {
+    return <ContentPageManager pageKey="climate-resilience" pageTitle="Climate Resilience & Inclusiveness" publicPath={publicPath} defaultContent={cmsPageDefaults["climate-resilience"]} />;
+  }
+
+  if (publicPath === "/what-we-do/youth-engagement") {
+    return <ContentPageManager pageKey="youth-engagement" pageTitle="Youth Engagement" publicPath={publicPath} defaultContent={cmsPageDefaults["youth-engagement"]} />;
+  }
+
+  if (publicPath === "/what-we-do/youth-engagement/nayon") {
+    return <ContentPageManager pageKey="nayon" pageTitle="NaYoN" publicPath={publicPath} defaultContent={cmsPageDefaults.nayon} />;
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

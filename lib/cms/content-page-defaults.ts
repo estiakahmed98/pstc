@@ -2759,6 +2759,343 @@ export const pstcBhabanDefaultContent = createInitiativeDefaultContent({
   ],
 });
 
+type PortfolioPageOptions = {
+  shortCode: string;
+  eyebrow: string;
+  title: string;
+  highlightedTitle: string;
+  description: string;
+  image: string;
+  signal: string;
+  introTitle: string;
+  introHighlight: string;
+  introDescription: string;
+  statement: string;
+  principles: string[];
+  directoryEyebrow: string;
+  directoryTitle: string;
+  directoryHighlight: string;
+  directoryDescription: string;
+  directoryItems: Array<{ title: string; description: string; image: string; href: string; linkLabel: string; tag: string }>;
+  featureItems: Array<{ number: string; title: string; description: string; icon: string }>;
+};
+
+function createPortfolioPageContent(options: PortfolioPageOptions): CmsPageContent {
+  return {
+    sections: {
+      hero: {
+        label: "Hero & page identity",
+        isVisible: true,
+        eyebrow: options.eyebrow,
+        shortCode: options.shortCode,
+        title: options.title,
+        highlightedTitle: options.highlightedTitle,
+        description: options.description,
+        image: options.image,
+        signal: options.signal,
+        primaryCtaLabel: "Explore the portfolio",
+        primaryCtaHref: "#portfolio-directory",
+        secondaryCtaLabel: "Contact PSTC",
+        secondaryCtaHref: "/contact-us/contact-form",
+      },
+      intro: {
+        label: "Strategic introduction",
+        isVisible: true,
+        eyebrow: "Our institutional approach",
+        title: options.introTitle,
+        highlightedTitle: options.introHighlight,
+        description: options.introDescription,
+        statement: options.statement,
+        image: options.image,
+        items: options.principles,
+      },
+      features: {
+        label: "Operating framework",
+        isVisible: true,
+        eyebrow: "How the work connects",
+        title: "A framework for",
+        highlightedTitle: "responsible action.",
+        description: "This editable framework keeps strategy, participation, delivery, and learning connected without presenting unverified results.",
+        items: options.featureItems,
+      },
+      directory: {
+        label: "Portfolio directory",
+        isVisible: true,
+        eyebrow: options.directoryEyebrow,
+        title: options.directoryTitle,
+        highlightedTitle: options.directoryHighlight,
+        description: options.directoryDescription,
+        items: options.directoryItems,
+      },
+      principles: {
+        label: "Shared principles",
+        isVisible: true,
+        eyebrow: "Corporate culture in practice",
+        title: "Purpose with discipline.",
+        highlightedTitle: "Progress with accountability.",
+        description: "Across this portfolio, PSTC’s content is presented through a consistent culture of dignity, inclusion, collaboration, and learning.",
+        items: options.principles,
+      },
+      cta: {
+        label: "Closing CTA",
+        isVisible: true,
+        eyebrow: `Connect through ${options.shortCode}`,
+        title: "Find the programme, pathway, or team that fits your enquiry.",
+        description: "Explore the linked pages for detailed information or contact PSTC through the official channel.",
+        primaryCtaLabel: "Contact PSTC",
+        primaryCtaHref: "/contact-us/contact-form",
+        secondaryCtaLabel: "Where we work",
+        secondaryCtaHref: "/who-we-are/where-we-work",
+      },
+    },
+  };
+}
+
+const portfolioFramework = [
+  { number: "01", title: "Understand", description: "Listen to context, lived experience, institutional priorities, and emerging needs.", icon: "ScanSearch" },
+  { number: "02", title: "Co-design", description: "Shape practical pathways with relevant people, teams, and partners.", icon: "PanelsTopLeft" },
+  { number: "03", title: "Deliver", description: "Translate plans into responsible programmes, services, learning, or coordination.", icon: "Workflow" },
+  { number: "04", title: "Learn", description: "Use feedback and evidence to strengthen quality and future decisions.", icon: "BookOpenCheck" },
+];
+
+export const whatWeDoDefaultContent = createPortfolioPageContent({
+  shortCode: "WHAT WE DO",
+  eyebrow: "PSTC programme portfolio",
+  title: "One purpose.",
+  highlightedTitle: "Many connected pathways.",
+  description: "Explore PSTC’s thematic areas, projects, initiatives, priorities, and youth engagement platforms through one clear institutional portfolio.",
+  image: "/images/what-we-do.jpg",
+  signal: "Health · Rights · Climate · Skills · Youth",
+  introTitle: "Complex challenges need",
+  introHighlight: "connected responses.",
+  introDescription: "PSTC’s work brings thematic knowledge, focused projects, institutional initiatives, strategic priorities, and youth participation into a connected programme architecture.",
+  statement: "The portfolio is strongest when specialist work remains connected to organizational purpose, community realities, and accountable learning.",
+  principles: ["People-centred", "Rights-informed", "Inclusive by design", "Partnership-oriented", "Evidence-conscious", "Learning-led"],
+  directoryEyebrow: "Five ways into the portfolio",
+  directoryTitle: "Choose your",
+  directoryHighlight: "starting point.",
+  directoryDescription: "Each portfolio area opens a dedicated CMS-managed directory and its related detail pages.",
+  directoryItems: [
+    { title: "Thematic Areas", description: "Explore the knowledge areas that organize PSTC’s programme thinking and practice.", image: "/images/thematic-areas.jpg", href: "/what-we-do/thematic-areas", linkLabel: "Explore themes", tag: "5 thematic areas" },
+    { title: "Projects", description: "Browse focused project pages across health, rights, capacity, protection, and response.", image: "/images/projects.jpeg", href: "/what-we-do/projects", linkLabel: "Explore projects", tag: "8 project pathways" },
+    { title: "Initiatives", description: "Discover clinics, institutes, care, employment, and institutional platforms.", image: "/images/initiatives.avif", href: "/what-we-do/initiatives", linkLabel: "Explore initiatives", tag: "Institutional platforms" },
+    { title: "Priorities", description: "See how preparedness, resilience, and inclusion shape strategic attention.", image: "/images/climate-change-adaptation.jpeg", href: "/what-we-do/priorities", linkLabel: "Explore priorities", tag: "Strategic priorities" },
+    { title: "Youth Engagement", description: "Connect with youth participation, learning, dialogue, and network pathways.", image: "/images/youth-adolescent-development.jpg", href: "/what-we-do/youth-engagement", linkLabel: "Explore youth engagement", tag: "Youth platforms" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const thematicAreasIndexDefaultContent = createPortfolioPageContent({
+  shortCode: "THEMATIC AREAS",
+  eyebrow: "Five lenses for lasting change",
+  title: "Deep expertise.",
+  highlightedTitle: "Shared direction.",
+  description: "PSTC’s five thematic areas provide a clear structure for understanding interconnected health, youth, gender, climate, and skills priorities.",
+  image: "/images/thematic-areas.jpg",
+  signal: "PHN · YAD · GAG · CCA · SET",
+  introTitle: "Specialist themes,",
+  introHighlight: "one programme ecosystem.",
+  introDescription: "Each thematic area has a distinct professional identity while remaining connected to the wider PSTC portfolio and institutional mission.",
+  statement: "Thematic depth creates stronger decisions when knowledge travels across programmes rather than staying in separate silos.",
+  principles: ["Technical clarity", "Cross-theme learning", "Rights and dignity", "Inclusive participation", "Context awareness", "Adaptive practice"],
+  directoryEyebrow: "Explore all five themes",
+  directoryTitle: "Knowledge organized for",
+  directoryHighlight: "action and learning.",
+  directoryDescription: "Open each thematic page to explore its approach, priorities, related pathways, and CMS-managed content.",
+  directoryItems: [
+    { title: "Population Health & Nutrition", description: "Health, nutrition, rights, prevention, service access, and community connection.", image: "/images/population-health-nutrition.jpg", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "PHN" },
+    { title: "Youth & Adolescent Development", description: "Participation, wellbeing, agency, learning, and pathways for young people.", image: "/images/youth-adolescent-development.jpg", href: "/what-we-do/thematic-areas/youth-adolescent-development", linkLabel: "Explore YAD", tag: "YAD" },
+    { title: "Gender & Governance", description: "Rights, voice, power, accountability, inclusion, and institutional practice.", image: "/images/gender-governance.jpeg", href: "/what-we-do/thematic-areas/gender-governance", linkLabel: "Explore GAG", tag: "GAG" },
+    { title: "Climate Change & Adaptation", description: "Resilience, preparedness, inclusion, learning, and locally informed adaptation.", image: "/images/climate-change-adaptation.jpeg", href: "/what-we-do/thematic-areas/climate-change-adaptation", linkLabel: "Explore CCA", tag: "CCA" },
+    { title: "Skills, Education & Training", description: "Practical learning, capability, confidence, professional growth, and opportunity.", image: "/images/skills-education-training.jpg", href: "/what-we-do/thematic-areas/skills-education-training", linkLabel: "Explore SET", tag: "SET" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const projectsIndexDefaultContent = createPortfolioPageContent({
+  shortCode: "PROJECTS",
+  eyebrow: "Focused action portfolio",
+  title: "From mandate",
+  highlightedTitle: "to measurable practice.",
+  description: "Explore PSTC’s dedicated project pages without relying on unverified beneficiary figures, dates, funding claims, or outcome statistics.",
+  image: "/images/projects.jpeg",
+  signal: "8 dedicated project pathways",
+  introTitle: "Projects turn strategy into",
+  introHighlight: "focused delivery.",
+  introDescription: "Each project page provides a distinctive, CMS-managed environment for approved objectives, approaches, locations, partners, learning, and current information.",
+  statement: "A credible project portfolio communicates purpose and practice clearly while reserving claims, figures, and results for verified publication.",
+  principles: ["Clear mandate", "Responsible delivery", "Safeguarding conscious", "Partnership ready", "Transparent information", "Learning focused"],
+  directoryEyebrow: "Project directory",
+  directoryTitle: "Eight distinct projects.",
+  directoryHighlight: "One professional standard.",
+  directoryDescription: "Browse the complete project portfolio and open each dedicated page.",
+  directoryItems: [
+    { title: "Urban Health Care", description: "Inclusive primary health access, prevention, outreach, and referral pathways.", image: "/images/urban-health-care.jpg", href: "/what-we-do/projects/urban-health-care", linkLabel: "Explore project", tag: "Health access" },
+    { title: "FOCUS", description: "Fortifying organizational capacity to uphold the SRHR movement in Bangladesh.", image: "/images/focus.webp", href: "/what-we-do/projects/focus", linkLabel: "Explore project", tag: "Capacity" },
+    { title: "Person Who Uses Drugs", description: "A rights, dignity, inclusion, and connection-oriented project pathway.", image: "/images/person-who-uses-drugs.jpeg", href: "/what-we-do/projects/person-who-uses-drugs", linkLabel: "Explore project", tag: "Rights" },
+    { title: "Community Mobilization Program", description: "Community participation, dialogue, local action, and shared ownership.", image: "/images/community-mobilization-program.avif", href: "/what-we-do/projects/community-mobilization-program", linkLabel: "Explore project", tag: "Mobilization" },
+    { title: "SUFASEC", description: "A child-protection initiative against sexual exploitation of children.", image: "/images/sufasec.jpg", href: "/what-we-do/projects/sufasec", linkLabel: "Explore project", tag: "Protection" },
+    { title: "LEVIS", description: "Explore the dedicated LEVIS project approach and learning framework.", image: "/images/levis.webp", href: "/what-we-do/projects/levis", linkLabel: "Explore project", tag: "Learning" },
+    { title: "HOPE", description: "Health outreach and protection effort for inclusive service access.", image: "/images/hope.jpeg", href: "/what-we-do/projects/hope", linkLabel: "Explore project", tag: "Outreach" },
+    { title: "SPRINT", description: "Preparedness and response framed around coordinated, people-centred action.", image: "/images/sprint.avif", href: "/what-we-do/projects/sprint", linkLabel: "Explore project", tag: "Response" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const initiativesIndexDefaultContent = createPortfolioPageContent({
+  shortCode: "INITIATIVES",
+  eyebrow: "Institutional platforms",
+  title: "Built to serve.",
+  highlightedTitle: "Structured to endure.",
+  description: "PSTC initiatives connect clinic access, professional learning, employment support, caregiving, facilities, and institutional coordination.",
+  image: "/images/initiatives.avif",
+  signal: "Clinics · Institutes · Care · Places",
+  introTitle: "Platforms that strengthen",
+  introHighlight: "delivery and connection.",
+  introDescription: "Unlike time-bound project pages, initiatives are presented as organizational platforms with their own operational identity and official information pathways.",
+  statement: "Strong institutions create dependable environments where people, knowledge, services, and organizational purpose can connect.",
+  principles: ["Institutional quality", "Professional access", "Clear information", "Respectful experience", "Operational discipline", "Long-term value"],
+  directoryEyebrow: "Initiative directory",
+  directoryTitle: "Six platforms.",
+  directoryHighlight: "Multiple ways to connect.",
+  directoryDescription: "Explore every initiative and its related location or programme pathways.",
+  directoryItems: [
+    { title: "PSTC Model Clinic", description: "A three-location clinic network with dedicated information pages.", image: "/images/pmc.gif", href: "/what-we-do/initiatives/pmc", linkLabel: "Explore PMC", tag: "Clinic network" },
+    { title: "Community Paramedic Training Institute", description: "A professional community paramedic learning and development pathway.", image: "/images/skills-education-training.jpg", href: "/what-we-do/initiatives/cpti", linkLabel: "Explore CPTI", tag: "Training" },
+    { title: "PSTC Institute for Employment Support", description: "Readiness, confidence, professional skills, and opportunity connection.", image: "/images/get-involved.jpg", href: "/what-we-do/initiatives/pies", linkLabel: "Explore PIES", tag: "Employment" },
+    { title: "Caregivers", description: "Professional caregiving information with dignity and safety at the centre.", image: "/images/uthan_boithok.jpg", href: "/what-we-do/initiatives/caregivers", linkLabel: "Explore Caregivers", tag: "Care" },
+    { title: "PSTC Complex", description: "An institutional platform for approved programme and facility information.", image: "/images/initiatives.avif", href: "/what-we-do/initiatives/pstc-complex", linkLabel: "Explore Complex", tag: "Platform" },
+    { title: "PSTC Bhaban", description: "PSTC’s head-office route for institutional information and connection.", image: "/images/about-us.jpeg", href: "/what-we-do/initiatives/pstc-bhaban", linkLabel: "Explore Bhaban", tag: "Head office" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const prioritiesDefaultContent = createPortfolioPageContent({
+  shortCode: "PRIORITIES",
+  eyebrow: "Strategic attention",
+  title: "Prepare for change.",
+  highlightedTitle: "Include people in the response.",
+  description: "PSTC’s priority pages focus attention on humanitarian preparedness and climate resilience through an inclusive, responsible institutional lens.",
+  image: "/images/climate-change-adaptation.jpeg",
+  signal: "Preparedness · Resilience · Inclusion",
+  introTitle: "Priorities help institutions",
+  introHighlight: "act before urgency.",
+  introDescription: "They create a shared frame for readiness, coordination, adaptation, inclusion, and learning across related themes, projects, and programme decisions.",
+  statement: "Strategic priority means maintaining attention before, during, and after a challenge—not only when it becomes visible.",
+  principles: ["Anticipatory thinking", "Inclusive planning", "Local knowledge", "Coordinated response", "Adaptive learning", "Responsible communication"],
+  directoryEyebrow: "Two connected priorities",
+  directoryTitle: "Readiness and resilience.",
+  directoryHighlight: "Designed around people.",
+  directoryDescription: "Open each priority page to explore its distinctive framework and connected PSTC pathways.",
+  directoryItems: [
+    { title: "Humanitarian Crisis", description: "Preparedness and response through clear information, coordination, dignity, and learning.", image: "/images/sprint.avif", href: "/what-we-do/priorities/humanitarian-crisis", linkLabel: "Explore preparedness", tag: "Preparedness & response" },
+    { title: "Climate Resilience & Inclusiveness", description: "Adaptation, participation, inclusion, and long-term resilience thinking.", image: "/images/climate-change-adaptation.jpeg", href: "/what-we-do/priorities/climate-resilience", linkLabel: "Explore resilience", tag: "Climate & inclusion" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const humanitarianCrisisDefaultContent = createPortfolioPageContent({
+  shortCode: "HUMANITARIAN",
+  eyebrow: "Preparedness and response priority",
+  title: "Ready before crisis.",
+  highlightedTitle: "Responsive when it matters.",
+  description: "This priority frames humanitarian preparedness around people, information, coordination, responsible action, and learning—without unverified emergency claims.",
+  image: "/images/sprint.avif",
+  signal: "Anticipate · Prepare · Coordinate · Learn",
+  introTitle: "Preparedness creates",
+  introHighlight: "space for better decisions.",
+  introDescription: "A professional response culture clarifies roles, listens to changing conditions, communicates accessibly, and keeps dignity and inclusion central.",
+  statement: "The quality of a response is shaped by the relationships, information pathways, and practical readiness built before pressure rises.",
+  principles: ["People first", "Do no harm", "Accessible information", "Local coordination", "Protection conscious", "Learn after action"],
+  directoryEyebrow: "Preparedness pathway",
+  directoryTitle: "Four moments of",
+  directoryHighlight: "responsible response.",
+  directoryDescription: "Use this CMS-editable pathway to present approved preparedness and response information.",
+  directoryItems: [
+    { title: "Anticipate", description: "Listen to local signals, changing conditions, and community priorities.", image: "/images/climate-change-adaptation.jpeg", href: "/what-we-do/thematic-areas/climate-change-adaptation", linkLabel: "Explore climate theme", tag: "Before" },
+    { title: "Prepare", description: "Clarify information, responsibilities, and practical readiness.", image: "/images/strategic-plan.jpg", href: "/who-we-are/strategic-plan", linkLabel: "Explore strategy", tag: "Readiness" },
+    { title: "Respond", description: "Coordinate appropriate action with dignity, clarity, and inclusion.", image: "/images/sprint.avif", href: "/what-we-do/projects/sprint", linkLabel: "Explore SPRINT", tag: "Action" },
+    { title: "Learn", description: "Use feedback and experience to strengthen the next preparedness cycle.", image: "/images/our-impact.jpg", href: "/our-impact/reports/research", linkLabel: "Explore research", tag: "After" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const climateResilienceDefaultContent = createPortfolioPageContent({
+  shortCode: "RESILIENCE",
+  eyebrow: "Climate and inclusion priority",
+  title: "Adapt with insight.",
+  highlightedTitle: "Build resilience with everyone.",
+  description: "Climate resilience is presented as an inclusive institutional practice connecting local knowledge, preparedness, adaptive capacity, participation, and long-term learning.",
+  image: "/images/climate-change-adaptation.jpeg",
+  signal: "Adaptation · Capacity · Inclusion · Continuity",
+  introTitle: "Resilience is stronger when",
+  introHighlight: "participation is wider.",
+  introDescription: "An inclusive approach recognizes that climate risks and barriers are experienced differently and that meaningful adaptation needs varied perspectives.",
+  statement: "Resilience grows through the ability to anticipate, adapt, maintain connection, and learn while ensuring that no one is treated as an afterthought.",
+  principles: ["Locally informed", "Inclusive participation", "Risk aware", "Capacity focused", "Connected planning", "Long-term learning"],
+  directoryEyebrow: "Resilience pathway",
+  directoryTitle: "Understand risk.",
+  directoryHighlight: "Strengthen adaptive capacity.",
+  directoryDescription: "Explore the related theme, preparedness project, locations, and strategic planning routes.",
+  directoryItems: [
+    { title: "Climate Change & Adaptation", description: "Explore PSTC’s complete climate thematic framework.", image: "/images/climate-change-adaptation.jpeg", href: "/what-we-do/thematic-areas/climate-change-adaptation", linkLabel: "Explore CCA", tag: "Theme" },
+    { title: "SPRINT", description: "Explore preparedness and coordinated response through the SPRINT project.", image: "/images/sprint.avif", href: "/what-we-do/projects/sprint", linkLabel: "Explore SPRINT", tag: "Project" },
+    { title: "Where We Work", description: "View PSTC’s organizational presence and location pathways.", image: "/images/where-we-work.jpg", href: "/who-we-are/where-we-work", linkLabel: "View locations", tag: "Presence" },
+    { title: "Strategic Plan", description: "Explore how PSTC connects purpose, choices, and institutional direction.", image: "/images/strategic-plan.jpg", href: "/who-we-are/strategic-plan", linkLabel: "Explore strategy", tag: "Institution" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const youthEngagementDefaultContent = createPortfolioPageContent({
+  shortCode: "YOUTH ENGAGEMENT",
+  eyebrow: "Participation, dialogue, and agency",
+  title: "Young people as partners.",
+  highlightedTitle: "Participation with purpose.",
+  description: "PSTC’s youth engagement pathways connect learning, dialogue, questions, advocacy, peer networks, and meaningful participation.",
+  image: "/images/youth-adolescent-development.jpg",
+  signal: "Listen · Connect · Learn · Lead",
+  introTitle: "Engagement becomes meaningful",
+  introHighlight: "when voice shapes action.",
+  introDescription: "Youth participation is presented as a relationship built through safe spaces, accessible information, respect, feedback, and opportunities to contribute.",
+  statement: "Young people are not only an audience for programmes; they bring ideas, lived experience, leadership, and accountability into the work.",
+  principles: ["Youth-centred", "Safe participation", "Inclusive access", "Respectful dialogue", "Peer connection", "Shared learning"],
+  directoryEyebrow: "Youth platforms",
+  directoryTitle: "Two pathways for",
+  directoryHighlight: "connection and contribution.",
+  directoryDescription: "Explore uCon’s learning and advocacy environment or the NaYoN youth network pathway.",
+  directoryItems: [
+    { title: "uCon", description: "A youth-focused platform for information, questions, ideas, advocacy, learning modules, and certification pathways.", image: "/images/ucon.jpg", href: "/ucon", linkLabel: "Explore uCon", tag: "Youth platform" },
+    { title: "NaYoN", description: "A network-oriented pathway for youth connection, participation, learning, and collaborative action.", image: "/images/ucon image.png", href: "/what-we-do/youth-engagement/nayon", linkLabel: "Explore NaYoN", tag: "Youth network" },
+  ],
+  featureItems: portfolioFramework,
+});
+
+export const nayonDefaultContent = createPortfolioPageContent({
+  shortCode: "NaYoN",
+  eyebrow: "National Youth Network",
+  title: "Connect as peers.",
+  highlightedTitle: "Grow through action.",
+  description: "NaYoN is presented as a youth network pathway for connection, learning, participation, and collaborative action within PSTC’s wider youth engagement ecosystem.",
+  image: "/images/ucon image.png",
+  signal: "Readiness · Eagerness · Commitment",
+  introTitle: "A network built through",
+  introHighlight: "participation and trust.",
+  introDescription: "The page provides a CMS-managed environment for approved membership information, participation pathways, activities, safeguarding guidance, and official updates.",
+  statement: "A strong youth network creates room to listen, exchange ideas, learn from difference, and turn shared purpose into responsible participation.",
+  principles: ["Peer respect", "Open learning", "Safe participation", "Shared responsibility", "Inclusive voice", "Constructive action"],
+  directoryEyebrow: "Participation pathway",
+  directoryTitle: "Discover, connect,",
+  directoryHighlight: "and contribute.",
+  directoryDescription: "This editable pathway avoids publishing unverified eligibility, membership, or application claims.",
+  directoryItems: [
+    { title: "Discover", description: "Learn about the network, its purpose, and currently approved participation information.", image: "/images/youth-adolescent-development.jpg", href: "/what-we-do/youth-engagement", linkLabel: "Youth engagement overview", tag: "Step 01" },
+    { title: "Connect", description: "Use the official contact route to ask questions or express interest.", image: "/images/ucon image.png", href: "/contact-us/contact-form", linkLabel: "Contact PSTC", tag: "Step 02" },
+    { title: "Learn", description: "Explore uCon’s youth learning, questions, advocacy, and module pathways.", image: "/images/ucon.jpg", href: "/ucon", linkLabel: "Explore uCon", tag: "Step 03" },
+    { title: "Contribute", description: "Participate responsibly when approved opportunities and guidance are published.", image: "/images/get-involved.jpg", href: "/get-involved", linkLabel: "Get involved", tag: "Step 04" },
+  ],
+  featureItems: portfolioFramework,
+});
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -2790,6 +3127,15 @@ export const cmsPageDefaults = {
   caregivers: caregiversDefaultContent,
   "pstc-complex": pstcComplexDefaultContent,
   "pstc-bhaban": pstcBhabanDefaultContent,
+  "what-we-do": whatWeDoDefaultContent,
+  "thematic-areas": thematicAreasIndexDefaultContent,
+  projects: projectsIndexDefaultContent,
+  initiatives: initiativesIndexDefaultContent,
+  priorities: prioritiesDefaultContent,
+  "humanitarian-crisis": humanitarianCrisisDefaultContent,
+  "climate-resilience": climateResilienceDefaultContent,
+  "youth-engagement": youthEngagementDefaultContent,
+  nayon: nayonDefaultContent,
 } as const;
 
 export type CmsPageKey = keyof typeof cmsPageDefaults;

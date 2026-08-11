@@ -31,6 +31,15 @@ export const cmsPageKeySchema = z.enum([
   "caregivers",
   "pstc-complex",
   "pstc-bhaban",
+  "what-we-do",
+  "thematic-areas",
+  "projects",
+  "initiatives",
+  "priorities",
+  "humanitarian-crisis",
+  "climate-resilience",
+  "youth-engagement",
+  "nayon",
 ]);
 
 export const updateCmsPageSchema = z.object({

@@ -31,6 +31,15 @@ import {
   caregiversDefaultContent,
   pstcComplexDefaultContent,
   pstcBhabanDefaultContent,
+  whatWeDoDefaultContent,
+  thematicAreasIndexDefaultContent,
+  projectsIndexDefaultContent,
+  initiativesIndexDefaultContent,
+  prioritiesDefaultContent,
+  humanitarianCrisisDefaultContent,
+  climateResilienceDefaultContent,
+  youthEngagementDefaultContent,
+  nayonDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -697,6 +706,15 @@ async function main() {
     ["caregivers", "Caregivers", caregiversDefaultContent],
     ["pstc-complex", "PSTC Complex", pstcComplexDefaultContent],
     ["pstc-bhaban", "PSTC Bhaban", pstcBhabanDefaultContent],
+    ["what-we-do", "What We Do", whatWeDoDefaultContent],
+    ["thematic-areas", "Our Thematic Areas", thematicAreasIndexDefaultContent],
+    ["projects", "Our Projects", projectsIndexDefaultContent],
+    ["initiatives", "Our Initiatives", initiativesIndexDefaultContent],
+    ["priorities", "Our Priorities", prioritiesDefaultContent],
+    ["humanitarian-crisis", "Humanitarian Crisis (Preparedness & Response)", humanitarianCrisisDefaultContent],
+    ["climate-resilience", "Climate Resilience & Inclusiveness", climateResilienceDefaultContent],
+    ["youth-engagement", "Youth Engagement", youthEngagementDefaultContent],
+    ["nayon", "NaYoN", nayonDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {

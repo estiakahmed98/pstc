@@ -32,6 +32,15 @@ const pageTitles: Record<string, string> = {
   caregivers: "Caregivers",
   "pstc-complex": "PSTC Complex",
   "pstc-bhaban": "PSTC Bhaban",
+  "what-we-do": "What We Do",
+  "thematic-areas": "Our Thematic Areas",
+  projects: "Our Projects",
+  initiatives: "Our Initiatives",
+  priorities: "Our Priorities",
+  "humanitarian-crisis": "Humanitarian Crisis (Preparedness & Response)",
+  "climate-resilience": "Climate Resilience & Inclusiveness",
+  "youth-engagement": "Youth Engagement",
+  nayon: "NaYoN",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {
