@@ -223,6 +223,39 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/projects/sufasec") {
+    return (
+      <ContentPageManager
+        pageKey="sufasec"
+        pageTitle="SUFASEC"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.sufasec}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/projects/levis") {
+    return (
+      <ContentPageManager
+        pageKey="levis"
+        pageTitle="LEVIS"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.levis}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/projects/hope") {
+    return (
+      <ContentPageManager
+        pageKey="hope"
+        pageTitle="HOPE"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.hope}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

@@ -19,6 +19,9 @@ const pageTitles: Record<string, string> = {
   focus: "FOCUS",
   "person-who-uses-drugs": "Person Who Uses Drugs (PUD)",
   "community-mobilization-program": "Community Mobilization Program (CMP)",
+  sufasec: "SUFASEC",
+  levis: "LEVIS",
+  hope: "HOPE",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

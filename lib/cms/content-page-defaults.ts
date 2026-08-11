@@ -1799,6 +1799,377 @@ export const communityMobilizationProgramDefaultContent: CmsPageContent = {
   },
 };
 
+export const sufasecDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & initiative overview",
+      isVisible: true,
+      eyebrow: "PSTC Child Protection Initiative",
+      shortCode: "SUFASEC",
+      title: "Step Up the Fight Against",
+      highlightedTitle: "Sexual Exploitation of Children.",
+      description:
+        "SUFASEC is a child protection initiative focused on preventing sexual exploitation of children through awareness, safer environments, community responsibility, safeguarding, and connections with appropriate support pathways.",
+      image: "/images/sufasec.jpg",
+      primaryCtaLabel: "Explore the protection approach",
+      primaryCtaHref: "#sufasec-protection",
+      secondaryCtaLabel: "View safeguarding policy",
+      secondaryCtaHref: "/get-involved/training-certification/safeguarding-policy",
+      statusLabel: "Initiative focus",
+      statusValue: "Protection",
+      placeLabel: "Primary setting",
+      placeValue: "Target communities",
+      themeLabel: "Core commitment",
+      themeValue: "Child safety and dignity",
+    },
+    promise: {
+      label: "Protection promise",
+      isVisible: true,
+      eyebrow: "A child-centered commitment",
+      title: "Every child deserves",
+      highlightedTitle: "safety, dignity, and respect.",
+      description:
+        "Child protection requires adults, communities, services, and institutions to recognize risk, prevent harm, listen responsibly, protect privacy, respond without blame, and act in the best interests of the child.",
+      image: "/assets/A child protection initiative against.webp",
+      statement: "Protection is an adult and institutional responsibility—never a burden to place on a child.",
+      items: ["Prioritize the child's best interests", "Listen without blame", "Protect privacy and dignity", "Respond through safe pathways"],
+    },
+    layers: {
+      label: "Protection layers",
+      isVisible: true,
+      eyebrow: "A protective environment",
+      title: "Safety is strengthened",
+      highlightedTitle: "through connected layers.",
+      description:
+        "No single person or activity can create a protective environment alone. Children, trusted adults, communities, services, and institutions each need clear, appropriate roles.",
+      centerLabel: "Child safety",
+      items: [
+        { level: "01", title: "Child-centered practice", description: "Respect dignity, age, evolving capacity, privacy, safety, and the best interests of the child.", keyword: "Center" },
+        { level: "02", title: "Trusted adults", description: "Strengthen awareness and responsible action among caregivers, educators, facilitators, and other adults.", keyword: "Support" },
+        { level: "03", title: "Protective communities", description: "Build shared understanding, prevention, vigilance, non-stigmatizing dialogue, and community responsibility.", keyword: "Prevent" },
+        { level: "04", title: "Responsive systems", description: "Connect safeguarding responsibilities with appropriate reporting, referral, services, and accountability pathways.", keyword: "Respond" },
+      ],
+    },
+    practiceAreas: {
+      label: "Protection practice areas",
+      isVisible: true,
+      eyebrow: "What prevention requires",
+      title: "Awareness must connect with",
+      highlightedTitle: "safer practice and response.",
+      description:
+        "A child-protection approach links clear information and prevention with safe participation, responsible adult conduct, appropriate response, and continuous learning.",
+      items: [
+        { code: "P-01", title: "Prevention awareness", description: "Build age-appropriate and adult-focused awareness of protection, risk, boundaries, rights, and responsibility.", icon: "BookOpenCheck" },
+        { code: "P-02", title: "Safe participation", description: "Design activities and communication so children can participate with dignity, inclusion, supervision, and protection.", icon: "ShieldCheck" },
+        { code: "P-03", title: "Responsible adults", description: "Clarify expected conduct, safeguarding duties, appropriate boundaries, and responsibility to act on concerns.", icon: "UsersRound" },
+        { code: "P-04", title: "Sensitive listening", description: "Listen calmly and without blame while avoiding promises or actions that could increase risk.", icon: "Ear" },
+        { code: "P-05", title: "Safe referral", description: "Use appropriate organizational and service pathways when a concern requires reporting, protection, or specialized support.", icon: "Route" },
+        { code: "P-06", title: "Accountability & learning", description: "Review safeguards, feedback, incidents, gaps, and practice to strengthen prevention and responsibility.", icon: "ClipboardCheck" },
+      ],
+    },
+    response: {
+      label: "Responsible response lens",
+      isVisible: true,
+      eyebrow: "When a concern is raised",
+      title: "Calm, careful,",
+      highlightedTitle: "child-centered action.",
+      description:
+        "A concern should be handled through approved safeguarding procedures by responsible people. These principles describe a child-centered lens and do not replace an organization's formal reporting or referral protocol.",
+      items: [
+        { number: "01", title: "Receive calmly", description: "Take the concern seriously and respond without shock, blame, confrontation, or unnecessary questioning." },
+        { number: "02", title: "Prioritize immediate safety", description: "Consider the child's immediate wellbeing and avoid actions that could create additional risk." },
+        { number: "03", title: "Protect information", description: "Share only with responsible people who need the information for protection and approved action." },
+        { number: "04", title: "Use approved pathways", description: "Follow applicable safeguarding, reporting, documentation, and referral procedures." },
+        { number: "05", title: "Review responsibly", description: "Support appropriate follow-up and use learning to improve prevention and safeguarding practice." },
+      ],
+    },
+    principles: {
+      label: "Safeguarding principles",
+      isVisible: true,
+      eyebrow: "Non-negotiable principles",
+      title: "Protection before publicity.",
+      highlightedTitle: "Dignity before detail.",
+      description:
+        "Child-protection communication and action should minimize harm, avoid sensationalism, respect privacy, and remain accountable to the child's rights and best interests.",
+      items: ["Best interests of the child", "Do no harm", "Privacy and confidentiality", "Non-discrimination and inclusion", "Age-appropriate participation", "Responsible reporting and referral"],
+    },
+    related: {
+      label: "Related protection pathways",
+      isVisible: true,
+      eyebrow: "Explore connected PSTC work",
+      title: "Protection connected with",
+      highlightedTitle: "policy, community, and rights.",
+      description:
+        "Explore PSTC's safeguarding policy, community mobilization work, and gender and governance approach.",
+      items: [
+        { title: "Safeguarding Policy", description: "View PSTC's safeguarding policy learning and certification pathway.", href: "/get-involved/training-certification/safeguarding-policy", linkLabel: "View safeguarding policy", tag: "Policy" },
+        { title: "Community Mobilization Program", description: "Explore community action around rights, protection, awareness, participation, and service access.", href: "/what-we-do/projects/community-mobilization-program", linkLabel: "Explore CMP", tag: "Community" },
+        { title: "Gender & Governance", description: "Explore equality, voice, protection, inclusive participation, and accountable systems.", href: "/what-we-do/thematic-areas/gender-governance", linkLabel: "Explore GAG", tag: "Rights" },
+      ],
+    },
+    cta: {
+      label: "Child protection CTA",
+      isVisible: true,
+      eyebrow: "Strengthen safeguarding",
+      title: "Build environments where child safety is a shared responsibility.",
+      description:
+        "Explore PSTC's safeguarding policy or contact the team for initiative, training, policy, and collaboration enquiries.",
+      primaryCtaLabel: "View safeguarding policy",
+      primaryCtaHref: "/get-involved/training-certification/safeguarding-policy",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const levisDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & project overview",
+      isVisible: true,
+      eyebrow: "PSTC Skills Project",
+      shortCode: "LEVIS",
+      title: "Learn with purpose.",
+      highlightedTitle: "Build skills for what comes next.",
+      description:
+        "LEVIS focuses on learning, employability, vocational readiness, and practical skills development through relevant, applied, and confidence-building learning experiences.",
+      image: "/images/levis.webp",
+      primaryCtaLabel: "Open the skills blueprint",
+      primaryCtaHref: "#levis-blueprint",
+      secondaryCtaLabel: "Explore skills & training",
+      secondaryCtaHref: "/what-we-do/thematic-areas/skills-education-training",
+      statusLabel: "Project mode",
+      statusValue: "Training",
+      placeLabel: "Primary setting",
+      placeValue: "Institutional",
+      themeLabel: "Core focus",
+      themeValue: "Practical skills & employability",
+    },
+    brief: {
+      label: "Learning brief",
+      isVisible: true,
+      eyebrow: "The LEVIS learning brief",
+      title: "Capability grows where",
+      highlightedTitle: "knowledge meets practice.",
+      description:
+        "Vocational readiness is not only technical knowledge. It also involves confidence, communication, problem-solving, responsibility, adaptability, and the ability to apply learning in real situations.",
+      image: "/assets/Learning, employability, vocational readiness, and practical skills.jpg",
+      statement: "Useful learning should help a person understand, practise, demonstrate, and keep improving a capability.",
+      items: ["Relevant to real situations", "Practical and participatory", "Connected to employability", "Designed for continued growth"],
+    },
+    skillBench: {
+      label: "Skill bench",
+      isVisible: true,
+      eyebrow: "Capabilities on the workbench",
+      title: "Different skills,",
+      highlightedTitle: "built to work together.",
+      description:
+        "LEVIS connects practical learning with broader readiness so participants can approach tasks, teamwork, decisions, and future opportunities with greater capability.",
+      items: [
+        { code: "S-01", title: "Practical capability", description: "Build task-oriented skills through demonstration, guided practice, repetition, and application.", icon: "Wrench" },
+        { code: "S-02", title: "Work readiness", description: "Strengthen reliability, communication, teamwork, time awareness, responsibility, and professional conduct.", icon: "BriefcaseBusiness" },
+        { code: "S-03", title: "Problem-solving", description: "Develop the confidence to understand a challenge, consider options, test solutions, and learn from results.", icon: "Puzzle" },
+        { code: "S-04", title: "Digital & information confidence", description: "Support practical use of information and relevant tools for learning, communication, and opportunity navigation.", icon: "Laptop" },
+        { code: "S-05", title: "Personal agency", description: "Strengthen self-awareness, decision-making, resilience, initiative, and confidence to pursue next steps.", icon: "Sparkles" },
+        { code: "S-06", title: "Learning agility", description: "Build habits of reflection, feedback, adaptation, and continued skill development as needs change.", icon: "RefreshCcw" },
+      ],
+    },
+    blueprint: {
+      label: "Learning blueprint",
+      isVisible: true,
+      eyebrow: "How practical learning is assembled",
+      title: "A blueprint for",
+      highlightedTitle: "learning that can be used.",
+      description:
+        "The learning blueprint connects context, instruction, practice, feedback, and application instead of treating training as information transfer alone.",
+      items: [
+        { zone: "A", title: "Understand the context", description: "Connect learning with participants' goals, starting points, barriers, and relevant real-world situations.", coordinate: "01 / CONTEXT" },
+        { zone: "B", title: "See how it works", description: "Use clear instruction, examples, demonstration, and questions to make the capability understandable.", coordinate: "02 / DEMO" },
+        { zone: "C", title: "Practise the capability", description: "Create structured opportunities to try, repeat, collaborate, and build confidence safely.", coordinate: "03 / PRACTICE" },
+        { zone: "D", title: "Use feedback", description: "Reflect on performance, recognize strengths and gaps, and make focused improvements.", coordinate: "04 / FEEDBACK" },
+        { zone: "E", title: "Apply in context", description: "Transfer learning into realistic tasks, work-readiness situations, or a relevant next step.", coordinate: "05 / APPLY" },
+      ],
+    },
+    passport: {
+      label: "Capability passport",
+      isVisible: true,
+      eyebrow: "Evidence of readiness",
+      title: "What learners should be",
+      highlightedTitle: "more ready to demonstrate.",
+      description:
+        "Capability becomes visible through what a learner can explain, perform, communicate, improve, and carry into a new situation.",
+      items: [
+        { stamp: "KNOW", title: "Explain the task", description: "Describe relevant concepts, purpose, process, choices, and safety or quality considerations." },
+        { stamp: "DO", title: "Perform with practice", description: "Use the capability with growing confidence, care, consistency, and appropriate support." },
+        { stamp: "WORK", title: "Collaborate responsibly", description: "Communicate, participate, manage responsibilities, and contribute constructively with others." },
+        { stamp: "SOLVE", title: "Respond to challenges", description: "Recognize a problem, explore options, make a reasoned choice, and learn from the result." },
+        { stamp: "GROW", title: "Plan the next step", description: "Use feedback and self-reflection to identify further learning, practice, or opportunity pathways." },
+      ],
+    },
+    principles: {
+      label: "Learning quality checks",
+      isVisible: true,
+      eyebrow: "Workshop quality checks",
+      title: "Training should be",
+      highlightedTitle: "safe, relevant, and usable.",
+      description:
+        "LEVIS learning is framed around participation, accessibility, dignity, practical application, constructive feedback, and connection with future pathways.",
+      items: ["Relevant to learner goals and context", "Participatory and practice-oriented", "Inclusive and accessible", "Safe and safeguarding-aware", "Clear about feedback and progress", "Connected to realistic next steps"],
+    },
+    related: {
+      label: "Related learning pathways",
+      isVisible: true,
+      eyebrow: "Continue building capability",
+      title: "Learning connected with",
+      highlightedTitle: "training and opportunity.",
+      description:
+        "Explore PSTC's related skills, education, certification, and capacity-building pathways.",
+      items: [
+        { title: "Skills, Education & Training", description: "Explore PSTC's thematic approach to practical skills, learning, employability, leadership, and organizational capability.", href: "/what-we-do/thematic-areas/skills-education-training", linkLabel: "Explore SET", tag: "Thematic area" },
+        { title: "Training & Certification", description: "Browse PSTC's available policy-oriented and professional learning pathways.", href: "/get-involved/training-certification", linkLabel: "Explore training", tag: "Learning pathway" },
+        { title: "CPTI", description: "Discover PSTC's capacity-building and training initiative within its wider programme ecosystem.", href: "/what-we-do/initiatives/cpti", linkLabel: "Explore CPTI", tag: "Initiative" },
+      ],
+    },
+    cta: {
+      label: "Skills action CTA",
+      isVisible: true,
+      eyebrow: "Build the next capability",
+      title: "Make learning practical, confidence visible, and next steps clearer.",
+      description:
+        "Explore PSTC's training pathways or contact the team for LEVIS, skills development, and collaboration enquiries.",
+      primaryCtaLabel: "Explore training",
+      primaryCtaHref: "/get-involved/training-certification",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
+export const hopeDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & project overview",
+      isVisible: true,
+      eyebrow: "PSTC Health Project",
+      shortCode: "HOPE",
+      title: "Health Outreach and",
+      highlightedTitle: "Protection Effort.",
+      description:
+        "HOPE connects health outreach and protection with inclusive service access through community-clinic settings, clear information, respectful engagement, care navigation, and appropriate support pathways.",
+      image: "/images/hope.jpeg",
+      primaryCtaLabel: "Follow the outreach route",
+      primaryCtaHref: "#hope-route",
+      secondaryCtaLabel: "Explore health work",
+      secondaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      statusLabel: "Project mode",
+      statusValue: "Outreach",
+      placeLabel: "Primary setting",
+      placeValue: "Community clinics",
+      themeLabel: "Core focus",
+      themeValue: "Inclusive service access",
+    },
+    dispatch: {
+      label: "Outreach dispatch brief",
+      isVisible: true,
+      eyebrow: "The outreach brief",
+      title: "Bring information and",
+      highlightedTitle: "care pathways closer.",
+      description:
+        "Outreach can reduce distance between communities and services by listening to local needs, making health information easier to use, strengthening protection, and helping people understand an appropriate next step.",
+      image: "/assets/Health Outreach and Protection Effort for inclusive health service access.webp",
+      statement: "A useful outreach contact should leave a person better informed, respected, and clearer about where support can continue.",
+      items: ["Listen to local needs", "Share clear information", "Keep protection visible", "Connect the next step"],
+    },
+    route: {
+      label: "Outreach route",
+      isVisible: true,
+      eyebrow: "The HOPE route",
+      title: "A route from first contact",
+      highlightedTitle: "to continued support.",
+      description:
+        "HOPE's outreach lens connects community contact with understanding, relevant information, available service pathways, and learning from experience.",
+      originLabel: "Community",
+      destinationLabel: "Inclusive access",
+      items: [
+        { stop: "A", title: "Reach", description: "Create accessible points of contact through community and clinic-linked outreach." },
+        { stop: "B", title: "Listen", description: "Understand questions, circumstances, priorities, barriers, and protection concerns." },
+        { stop: "C", title: "Inform", description: "Share clear, relevant health and service information that supports informed choices." },
+        { stop: "D", title: "Connect", description: "Help navigate an appropriate available service, support, clinic, or referral pathway." },
+        { stop: "E", title: "Learn", description: "Use community experience and feedback to improve access and future outreach." },
+      ],
+    },
+    outreachKit: {
+      label: "Outreach toolkit",
+      isVisible: true,
+      eyebrow: "What effective outreach carries",
+      title: "A toolkit for",
+      highlightedTitle: "trust, access, and protection.",
+      description:
+        "Outreach quality depends on the way information, communication, inclusion, protection, navigation, and feedback are brought together.",
+      items: [
+        { code: "KIT-01", title: "Clear health information", description: "Practical communication that helps people understand issues, choices, prevention, and available pathways.", icon: "BookOpenCheck" },
+        { code: "KIT-02", title: "Respectful engagement", description: "Listening and communication that recognize dignity, choice, difference, and local context.", icon: "MessagesSquare" },
+        { code: "KIT-03", title: "Protection awareness", description: "Safeguarding, privacy, do-no-harm, and attention to risks or barriers affecting access.", icon: "ShieldCheck" },
+        { code: "KIT-04", title: "Inclusive communication", description: "Approaches that consider language, accessibility, confidence, and people facing greater barriers.", icon: "Accessibility" },
+        { code: "KIT-05", title: "Service navigation", description: "Clearer connection with relevant clinics, services, support, and appropriate referral options.", icon: "Signpost" },
+        { code: "KIT-06", title: "Feedback notes", description: "Responsible attention to questions, experience, gaps, and learning that can improve outreach.", icon: "NotebookPen" },
+      ],
+    },
+    fieldNotes: {
+      label: "Field notes",
+      isVisible: true,
+      eyebrow: "Questions to carry into the field",
+      title: "Outreach should adapt",
+      highlightedTitle: "to what communities reveal.",
+      description:
+        "Simple questions can help teams keep outreach relevant, inclusive, safe, and connected with realistic pathways.",
+      items: [
+        { prompt: "Who is not being reached?", note: "Look for practical, social, communication, and accessibility barriers." },
+        { prompt: "What information is unclear?", note: "Notice recurring questions, misconceptions, and gaps in service navigation." },
+        { prompt: "What could make engagement safer?", note: "Consider privacy, dignity, safeguarding, timing, location, and trusted communication." },
+        { prompt: "Where does the pathway break?", note: "Identify where people lose connection between outreach, clinics, services, referral, or follow-up." },
+        { prompt: "What should change next time?", note: "Use feedback and reflection to refine messages, methods, coordination, and access." },
+      ],
+    },
+    principles: {
+      label: "Outreach principles",
+      isVisible: true,
+      eyebrow: "Quality at every contact",
+      title: "Reach with respect.",
+      highlightedTitle: "Connect with care.",
+      description:
+        "HOPE's outreach framing keeps people, dignity, inclusion, protection, clarity, appropriate referral, and learning at the center.",
+      items: ["People-centered and non-judgmental", "Clear and accessible communication", "Inclusive of different needs and barriers", "Safeguarding and confidentiality-conscious", "Connected to appropriate service pathways", "Responsive to community feedback"],
+    },
+    related: {
+      label: "Connected care routes",
+      isVisible: true,
+      eyebrow: "Continue along the care network",
+      title: "Outreach connected with",
+      highlightedTitle: "clinics, health, and community.",
+      description:
+        "Explore PSTC's related health theme, clinic initiative, and urban care project.",
+      items: [
+        { routeCode: "H-01", title: "Population Health & Nutrition", description: "Explore PSTC's thematic approach to inclusive health, nutrition, rights, community access, and service quality.", href: "/what-we-do/thematic-areas/population-health-nutrition", linkLabel: "Explore PHN", tag: "Health theme" },
+        { routeCode: "C-02", title: "PSTC Model Clinic", description: "Learn about PSTC's dedicated clinic initiative and available location pathways.", href: "/what-we-do/initiatives/pmc", linkLabel: "Explore PMC", tag: "Clinic route" },
+        { routeCode: "U-03", title: "Urban Health Care", description: "Explore inclusive primary health access and referral support for urban communities.", href: "/what-we-do/projects/urban-health-care", linkLabel: "Explore urban health", tag: "Project route" },
+      ],
+    },
+    cta: {
+      label: "HOPE CTA",
+      isVisible: true,
+      eyebrow: "Connect with HOPE",
+      title: "Make every outreach contact a clearer route toward support.",
+      description:
+        "Explore PSTC's health and clinic pathways or contact the team for HOPE project and collaboration enquiries.",
+      primaryCtaLabel: "Explore model clinics",
+      primaryCtaHref: "/what-we-do/initiatives/pmc",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+    },
+  },
+};
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -1817,6 +2188,9 @@ export const cmsPageDefaults = {
   focus: focusProjectDefaultContent,
   "person-who-uses-drugs": personWhoUsesDrugsDefaultContent,
   "community-mobilization-program": communityMobilizationProgramDefaultContent,
+  sufasec: sufasecDefaultContent,
+  levis: levisDefaultContent,
+  hope: hopeDefaultContent,
 } as const;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {

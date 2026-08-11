@@ -18,6 +18,9 @@ import {
   focusProjectDefaultContent,
   personWhoUsesDrugsDefaultContent,
   communityMobilizationProgramDefaultContent,
+  sufasecDefaultContent,
+  levisDefaultContent,
+  hopeDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -671,6 +674,9 @@ async function main() {
     ["focus", "FOCUS", focusProjectDefaultContent],
     ["person-who-uses-drugs", "Person Who Uses Drugs (PUD)", personWhoUsesDrugsDefaultContent],
     ["community-mobilization-program", "Community Mobilization Program (CMP)", communityMobilizationProgramDefaultContent],
+    ["sufasec", "SUFASEC", sufasecDefaultContent],
+    ["levis", "LEVIS", levisDefaultContent],
+    ["hope", "HOPE", hopeDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {
