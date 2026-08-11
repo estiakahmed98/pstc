@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
-import type { CmsPageContent, CmsRecord } from "@/lib/cms/content-page-defaults";
+import type { CmsPageContent, CmsPageKey, CmsRecord } from "@/lib/cms/content-page-defaults";
 
 type CmsPageResponse = {
   id: string;
@@ -357,7 +357,7 @@ export function ContentPageManager({
   publicPath,
   defaultContent,
 }: {
-  pageKey: "governance" | "leadership" | "mission-vision-values" | "policies" | "organogram" | "where-we-work" | "about-us" | "strategic-plan" | "population-health-nutrition" | "youth-adolescent-development" | "gender-governance" | "climate-change-adaptation" | "skills-education-training" | "urban-health-care" | "focus" | "person-who-uses-drugs" | "community-mobilization-program" | "sufasec" | "levis" | "hope";
+  pageKey: CmsPageKey;
   pageTitle: string;
   publicPath: string;
   defaultContent: CmsPageContent;

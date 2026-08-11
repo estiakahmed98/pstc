@@ -256,6 +256,50 @@ export default async function CmsPlaceholderPage({
     );
   }
 
+  if (publicPath === "/what-we-do/projects/sprint") {
+    return (
+      <ContentPageManager
+        pageKey="sprint"
+        pageTitle="SPRINT"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults.sprint}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pmc/aftabnagar") {
+    return (
+      <ContentPageManager
+        pageKey="pmc-aftabnagar"
+        pageTitle="PMC - Aftabnagar"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["pmc-aftabnagar"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pmc/gazipur") {
+    return (
+      <ContentPageManager
+        pageKey="pmc-gazipur"
+        pageTitle="PMC - Gazipur"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["pmc-gazipur"]}
+      />
+    );
+  }
+
+  if (publicPath === "/what-we-do/initiatives/pmc/kushtia") {
+    return (
+      <ContentPageManager
+        pageKey="pmc-kushtia"
+        pageTitle="PMC - Kushtia"
+        publicPath={publicPath}
+        defaultContent={cmsPageDefaults["pmc-kushtia"]}
+      />
+    );
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

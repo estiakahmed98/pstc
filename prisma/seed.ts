@@ -21,6 +21,10 @@ import {
   sufasecDefaultContent,
   levisDefaultContent,
   hopeDefaultContent,
+  sprintDefaultContent,
+  pmcAftabnagarDefaultContent,
+  pmcGazipurDefaultContent,
+  pmcKushtiaDefaultContent,
 } from "../lib/cms/content-page-defaults";
 
 const prisma = new PrismaClient();
@@ -677,6 +681,10 @@ async function main() {
     ["sufasec", "SUFASEC", sufasecDefaultContent],
     ["levis", "LEVIS", levisDefaultContent],
     ["hope", "HOPE", hopeDefaultContent],
+    ["sprint", "SPRINT", sprintDefaultContent],
+    ["pmc-aftabnagar", "PMC - Aftabnagar", pmcAftabnagarDefaultContent],
+    ["pmc-gazipur", "PMC - Gazipur", pmcGazipurDefaultContent],
+    ["pmc-kushtia", "PMC - Kushtia", pmcKushtiaDefaultContent],
   ] as const;
 
   for (const [key, title, content] of contentPages) {

@@ -22,6 +22,10 @@ const pageTitles: Record<string, string> = {
   sufasec: "SUFASEC",
   levis: "LEVIS",
   hope: "HOPE",
+  sprint: "SPRINT",
+  "pmc-aftabnagar": "PMC - Aftabnagar",
+  "pmc-gazipur": "PMC - Gazipur",
+  "pmc-kushtia": "PMC - Kushtia",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

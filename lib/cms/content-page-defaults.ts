@@ -2170,6 +2170,259 @@ export const hopeDefaultContent: CmsPageContent = {
   },
 };
 
+export const sprintDefaultContent: CmsPageContent = {
+  sections: {
+    hero: {
+      label: "Hero & project snapshot",
+      isVisible: true,
+      eyebrow: "Preparedness and response",
+      shortCode: "SPRINT",
+      title: "Move early.",
+      highlightedTitle: "Respond together.",
+      description:
+        "SPRINT is presented as a preparedness and response project that helps connect practical readiness, coordinated action, and people-centred support in crisis contexts.",
+      image: "/images/sprint.avif",
+      primaryCtaLabel: "Explore the response cycle",
+      primaryCtaHref: "#sprint-cycle",
+      secondaryCtaLabel: "Contact PSTC",
+      secondaryCtaHref: "/contact-us/contact-form",
+      statusLabel: "Project mode",
+      statusValue: "Preparedness & response",
+      placeLabel: "Context",
+      placeValue: "Crisis-affected settings",
+      themeLabel: "Core lens",
+      themeValue: "Climate resilience",
+    },
+    brief: {
+      label: "Project brief",
+      isVisible: true,
+      eyebrow: "Readiness before urgency",
+      title: "Preparedness creates",
+      highlightedTitle: "room to respond well.",
+      description:
+        "A strong response begins before a crisis. SPRINT brings attention to readiness, clear communication, local coordination, and responsive support without making unverified claims about a specific geography or result.",
+      statement:
+        "Prepared communities and connected teams can make faster, clearer, and more inclusive choices when conditions change.",
+      image: "/images/sprint.avif",
+      items: ["Anticipate changing conditions", "Connect people and information", "Support coordinated action", "Learn and adapt after response"],
+    },
+    cycle: {
+      label: "Response cycle",
+      isVisible: true,
+      eyebrow: "From signal to learning",
+      title: "A practical cycle for",
+      highlightedTitle: "prepared action.",
+      description:
+        "The project page organizes SPRINT around a clear cycle that can be updated as approved project information becomes available.",
+      items: [
+        { number: "01", title: "Listen", description: "Notice local signals, changing risks, and the priorities voiced by communities.", icon: "RadioTower" },
+        { number: "02", title: "Prepare", description: "Clarify roles, information pathways, and practical readiness before urgency rises.", icon: "ClipboardCheck" },
+        { number: "03", title: "Coordinate", description: "Connect teams, local actors, and available support around shared priorities.", icon: "Network" },
+        { number: "04", title: "Respond", description: "Act with care, inclusion, clarity, and attention to immediate needs.", icon: "HandHeart" },
+        { number: "05", title: "Recover", description: "Support continuity and a responsible transition beyond immediate response.", icon: "RefreshCw" },
+        { number: "06", title: "Learn", description: "Use feedback and experience to strengthen the next cycle of readiness.", icon: "BookOpenCheck" },
+      ],
+    },
+    pillars: {
+      label: "Response pillars",
+      isVisible: true,
+      eyebrow: "What holds the work together",
+      title: "Four connected",
+      highlightedTitle: "response pillars.",
+      description:
+        "These pillars provide a flexible, CMS-editable framework for presenting approved SPRINT activities and priorities.",
+      items: [
+        { code: "P-01", title: "People", description: "Keep dignity, inclusion, protection, and lived experience at the centre of decisions." },
+        { code: "P-02", title: "Preparedness", description: "Build practical awareness and readiness before a situation becomes urgent." },
+        { code: "P-03", title: "Partnership", description: "Coordinate information and action across relevant community and institutional actors." },
+        { code: "P-04", title: "Practice", description: "Reflect on what worked, identify gaps, and improve future preparedness." },
+      ],
+    },
+    principles: {
+      label: "Working principles",
+      isVisible: true,
+      eyebrow: "How SPRINT approaches response",
+      title: "Fast enough to matter.",
+      highlightedTitle: "Careful enough to include.",
+      description:
+        "The page frames responsible response through adaptable principles rather than unapproved operational claims.",
+      items: ["People-centred and dignity-led", "Accessible and timely communication", "Inclusive of different needs and barriers", "Locally informed coordination", "Protection and safeguarding conscious", "Adaptive learning after action"],
+    },
+    related: {
+      label: "Connected pathways",
+      isVisible: true,
+      eyebrow: "Continue exploring",
+      title: "SPRINT connects with",
+      highlightedTitle: "resilience and response.",
+      description: "Explore related PSTC themes, priorities, and contact pathways.",
+      items: [
+        { title: "Climate Change Adaptation", description: "Explore PSTC's thematic framing for resilience, adaptation, and inclusive action.", href: "/what-we-do/thematic-areas/climate-change-adaptation", linkLabel: "Explore the theme", tag: "Thematic area" },
+        { title: "Humanitarian Crisis", description: "Continue to PSTC's preparedness and response priority page.", href: "/what-we-do/priorities/humanitarian-crisis", linkLabel: "Explore the priority", tag: "Priority" },
+        { title: "Where We Work", description: "See PSTC's wider organizational presence and location pathways.", href: "/who-we-are/where-we-work", linkLabel: "View locations", tag: "Presence" },
+      ],
+    },
+    cta: {
+      label: "SPRINT CTA",
+      isVisible: true,
+      eyebrow: "Start a conversation",
+      title: "Preparedness grows through shared understanding and coordinated action.",
+      description: "Contact PSTC for verified SPRINT project information, collaboration, or programme enquiries.",
+      primaryCtaLabel: "Contact PSTC",
+      primaryCtaHref: "/contact-us/contact-form",
+      secondaryCtaLabel: "Explore all projects",
+      secondaryCtaHref: "/what-we-do/projects",
+    },
+  },
+};
+
+type PmcLocationDefaults = {
+  key: string;
+  location: string;
+  locationLine: string;
+  image: string;
+  nearby: Array<{ title: string; href: string }>;
+};
+
+function createPmcLocationDefaultContent({
+  key,
+  location,
+  locationLine,
+  image,
+  nearby,
+}: PmcLocationDefaults): CmsPageContent {
+  return {
+    sections: {
+      hero: {
+        label: "Location hero",
+        isVisible: true,
+        eyebrow: "PSTC Model Clinic",
+        title: `Care starts closer to home.`,
+        highlightedTitle: `Welcome to PMC ${location}.`,
+        description: `Explore the PSTC Model Clinic presence in ${location}, with clear pathways to location information, service enquiries, and the wider PSTC health network.`,
+        image,
+        location: locationLine,
+        locationLabel: "Clinic location",
+        primaryCtaLabel: "Explore clinic pathways",
+        primaryCtaHref: `#${key}-pathways`,
+        secondaryCtaLabel: "Contact PSTC",
+        secondaryCtaHref: "/contact-us/contact-form",
+      },
+      welcome: {
+        label: "Clinic introduction",
+        isVisible: true,
+        eyebrow: "A local point of connection",
+        title: "Information, guidance,",
+        highlightedTitle: "and a route to care.",
+        description: `PMC ${location} is part of PSTC's model clinic initiative. This page is designed to share approved clinic information while helping visitors find the right contact and next step.`,
+        statement: "Every care journey should begin with clear information, respectful communication, and an accessible next step.",
+        image,
+        items: ["Clear clinic information", "Respectful first contact", "Guidance toward appropriate next steps"],
+      },
+      pathways: {
+        label: "Clinic pathways",
+        isVisible: true,
+        eyebrow: "Plan your next step",
+        title: "A simple route from",
+        highlightedTitle: "question to connection.",
+        description: "Use these pathways as an editable framework. Clinic-specific services, schedules, and contact details should be added by the CMS team only when verified.",
+        items: [
+          { number: "01", title: "Learn", description: "Review the clinic and location information available on this page.", icon: "BookOpen" },
+          { number: "02", title: "Ask", description: "Use PSTC's official contact route for current and verified clinic details.", icon: "MessageCircleQuestion" },
+          { number: "03", title: "Connect", description: "Receive guidance about the appropriate clinic or organizational pathway.", icon: "Waypoints" },
+          { number: "04", title: "Continue", description: "Explore related health programmes and other model clinic locations.", icon: "ArrowUpRight" },
+        ],
+      },
+      commitments: {
+        label: "Care commitments",
+        isVisible: true,
+        eyebrow: "The experience we aim to support",
+        title: "Care information with",
+        highlightedTitle: "dignity at the centre.",
+        description: "These principles describe how clinic information and connection pathways should be presented.",
+        items: [
+          { title: "Respect", description: "Welcome every person with dignity and without judgment." },
+          { title: "Clarity", description: "Share information in language that is practical and understandable." },
+          { title: "Inclusion", description: "Recognize different needs, circumstances, and access barriers." },
+          { title: "Privacy", description: "Treat personal questions and information with appropriate care." },
+        ],
+      },
+      visit: {
+        label: "Plan a visit",
+        isVisible: true,
+        eyebrow: "Before you visit",
+        title: `Find PMC ${location}.`,
+        highlightedTitle: "Confirm current details first.",
+        description: "Clinic hours, services, and direct contact details can change. Please use PSTC's official contact channel to confirm current information before travelling.",
+        locationLabel: "Location",
+        location: locationLine,
+        noteLabel: "Helpful note",
+        note: "Ask the CMS team to add verified hours, phone details, directions, and a map link here when they are approved.",
+        image,
+        primaryCtaLabel: "Contact for current details",
+        primaryCtaHref: "/contact-us/contact-form",
+        secondaryCtaLabel: "View PSTC locations",
+        secondaryCtaHref: "/who-we-are/where-we-work",
+      },
+      network: {
+        label: "PMC network",
+        isVisible: true,
+        eyebrow: "Part of a connected initiative",
+        title: "Explore the wider",
+        highlightedTitle: "PMC network.",
+        description: "Continue to the PMC overview or visit another location page.",
+        items: [
+          { title: "PSTC Model Clinic", description: "See the overview of PSTC's model clinic initiative.", href: "/what-we-do/initiatives/pmc", linkLabel: "PMC overview", tag: "Initiative" },
+          ...nearby.map((item) => ({ title: `PMC ${item.title}`, description: `Explore the PSTC Model Clinic location page for ${item.title}.`, href: item.href, linkLabel: "Explore location", tag: "Clinic location" })),
+        ],
+      },
+      cta: {
+        label: "Location CTA",
+        isVisible: true,
+        eyebrow: `Connect with PMC ${location}`,
+        title: "Need current clinic information or help finding the right route?",
+        description: "Contact PSTC through the official enquiry channel for verified information about this clinic location.",
+        primaryCtaLabel: "Contact PSTC",
+        primaryCtaHref: "/contact-us/contact-form",
+        secondaryCtaLabel: "Explore health programmes",
+        secondaryCtaHref: "/what-we-do/thematic-areas/population-health-nutrition",
+      },
+    },
+  };
+}
+
+export const pmcAftabnagarDefaultContent = createPmcLocationDefaultContent({
+  key: "pmc-aftabnagar",
+  location: "Aftabnagar",
+  locationLine: "Aftabnagar, Badda, Dhaka",
+  image: "/images/pmc-aftabnagar.jpg",
+  nearby: [
+    { title: "Gazipur", href: "/what-we-do/initiatives/pmc/gazipur" },
+    { title: "Kushtia", href: "/what-we-do/initiatives/pmc/kushtia" },
+  ],
+});
+
+export const pmcGazipurDefaultContent = createPmcLocationDefaultContent({
+  key: "pmc-gazipur",
+  location: "Gazipur",
+  locationLine: "Gazipur, Bangladesh",
+  image: "/images/pmc-gazipur.jpg",
+  nearby: [
+    { title: "Aftabnagar", href: "/what-we-do/initiatives/pmc/aftabnagar" },
+    { title: "Kushtia", href: "/what-we-do/initiatives/pmc/kushtia" },
+  ],
+});
+
+export const pmcKushtiaDefaultContent = createPmcLocationDefaultContent({
+  key: "pmc-kushtia",
+  location: "Kushtia",
+  locationLine: "Kushtia, Bangladesh",
+  image: "/images/pmc-kushtia.jpg",
+  nearby: [
+    { title: "Aftabnagar", href: "/what-we-do/initiatives/pmc/aftabnagar" },
+    { title: "Gazipur", href: "/what-we-do/initiatives/pmc/gazipur" },
+  ],
+});
+
 export const cmsPageDefaults = {
   governance: governanceDefaultContent,
   leadership: leadershipDefaultContent,
@@ -2191,7 +2444,13 @@ export const cmsPageDefaults = {
   sufasec: sufasecDefaultContent,
   levis: levisDefaultContent,
   hope: hopeDefaultContent,
+  sprint: sprintDefaultContent,
+  "pmc-aftabnagar": pmcAftabnagarDefaultContent,
+  "pmc-gazipur": pmcGazipurDefaultContent,
+  "pmc-kushtia": pmcKushtiaDefaultContent,
 } as const;
+
+export type CmsPageKey = keyof typeof cmsPageDefaults;
 
 export function mergeCmsContent<T extends CmsPageContent>(defaults: T, value: unknown): T {
   if (!value || typeof value !== "object" || Array.isArray(value)) return defaults;
