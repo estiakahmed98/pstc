@@ -40,6 +40,16 @@ export const cmsPageKeySchema = z.enum([
   "climate-resilience",
   "youth-engagement",
   "nayon",
+  "projanmo-kotha",
+  "annual-report",
+  "audit-report",
+  "research",
+  "events-media",
+  "jobs",
+  "safeguarding-policy",
+  "gender-policy",
+  "shape-policy",
+  "hr-policy",
 ]);
 
 export const updateCmsPageSchema = z.object({

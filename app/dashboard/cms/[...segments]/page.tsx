@@ -402,6 +402,46 @@ export default async function CmsPlaceholderPage({
     return <ContentPageManager pageKey="nayon" pageTitle="NaYoN" publicPath={publicPath} defaultContent={cmsPageDefaults.nayon} />;
   }
 
+  if (publicPath === "/our-impact/publications/projanmo-kotha") {
+    return <ContentPageManager pageKey="projanmo-kotha" pageTitle="Projanmo Kotha" publicPath={publicPath} defaultContent={cmsPageDefaults["projanmo-kotha"]} />;
+  }
+
+  if (publicPath === "/our-impact/reports/annual-report") {
+    return <ContentPageManager pageKey="annual-report" pageTitle="Annual Report" publicPath={publicPath} defaultContent={cmsPageDefaults["annual-report"]} />;
+  }
+
+  if (publicPath === "/our-impact/reports/audit-report") {
+    return <ContentPageManager pageKey="audit-report" pageTitle="Audit Report" publicPath={publicPath} defaultContent={cmsPageDefaults["audit-report"]} />;
+  }
+
+  if (publicPath === "/our-impact/reports/research") {
+    return <ContentPageManager pageKey="research" pageTitle="Research" publicPath={publicPath} defaultContent={cmsPageDefaults.research} />;
+  }
+
+  if (publicPath === "/our-impact/events-media") {
+    return <ContentPageManager pageKey="events-media" pageTitle="Events & Media" publicPath={publicPath} defaultContent={cmsPageDefaults["events-media"]} />;
+  }
+
+  if (publicPath === "/get-involved/jobs") {
+    return <ContentPageManager pageKey="jobs" pageTitle="Jobs" publicPath={publicPath} defaultContent={cmsPageDefaults.jobs} />;
+  }
+
+  if (publicPath === "/get-involved/training-certification/safeguarding-policy") {
+    return <ContentPageManager pageKey="safeguarding-policy" pageTitle="Safeguarding Policy" publicPath={publicPath} defaultContent={cmsPageDefaults["safeguarding-policy"]} />;
+  }
+
+  if (publicPath === "/get-involved/training-certification/gender-policy") {
+    return <ContentPageManager pageKey="gender-policy" pageTitle="Gender Policy" publicPath={publicPath} defaultContent={cmsPageDefaults["gender-policy"]} />;
+  }
+
+  if (publicPath === "/get-involved/training-certification/shape-policy") {
+    return <ContentPageManager pageKey="shape-policy" pageTitle="SHaPE Policy" publicPath={publicPath} defaultContent={cmsPageDefaults["shape-policy"]} />;
+  }
+
+  if (publicPath === "/get-involved/training-certification/hr-policy") {
+    return <ContentPageManager pageKey="hr-policy" pageTitle="HR Policy" publicPath={publicPath} defaultContent={cmsPageDefaults["hr-policy"]} />;
+  }
+
   const match = findCmsNavigationItem(publicPath);
   const title = match?.item.title ?? humanizeSegment(segments.at(-1) ?? "Page");
   const children = match?.item.children ?? [];

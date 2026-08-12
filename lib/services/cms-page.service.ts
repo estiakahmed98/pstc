@@ -41,6 +41,16 @@ const pageTitles: Record<string, string> = {
   "climate-resilience": "Climate Resilience & Inclusiveness",
   "youth-engagement": "Youth Engagement",
   nayon: "NaYoN",
+  "projanmo-kotha": "Projanmo Kotha",
+  "annual-report": "Annual Report",
+  "audit-report": "Audit Report",
+  research: "Research",
+  "events-media": "Events & Media",
+  jobs: "Jobs",
+  "safeguarding-policy": "Safeguarding Policy",
+  "gender-policy": "Gender Policy",
+  "shape-policy": "SHaPE Policy",
+  "hr-policy": "HR Policy",
 };
 
 function asInputJson(value: unknown): Prisma.InputJsonValue {

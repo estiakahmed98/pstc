@@ -1,3 +1,18 @@
+import {
+  annualReportDefaultContent,
+  auditReportDefaultContent,
+  eventsMediaDefaultContent,
+  projanmoKothaDefaultContent,
+  researchDefaultContent,
+} from "@/lib/cms/impact-page-defaults";
+import {
+  genderPolicyDefaultContent,
+  hrPolicyDefaultContent,
+  jobsPageDefaultContent,
+  safeguardingPolicyDefaultContent,
+  shapePolicyDefaultContent,
+} from "@/lib/cms/get-involved-page-defaults";
+
 export type CmsRecord = Record<string, unknown>;
 
 export type CmsSection = CmsRecord & {
@@ -3136,6 +3151,16 @@ export const cmsPageDefaults = {
   "climate-resilience": climateResilienceDefaultContent,
   "youth-engagement": youthEngagementDefaultContent,
   nayon: nayonDefaultContent,
+  "projanmo-kotha": projanmoKothaDefaultContent,
+  "annual-report": annualReportDefaultContent,
+  "audit-report": auditReportDefaultContent,
+  research: researchDefaultContent,
+  "events-media": eventsMediaDefaultContent,
+  jobs: jobsPageDefaultContent,
+  "safeguarding-policy": safeguardingPolicyDefaultContent,
+  "gender-policy": genderPolicyDefaultContent,
+  "shape-policy": shapePolicyDefaultContent,
+  "hr-policy": hrPolicyDefaultContent,
 } as const;
 
 export type CmsPageKey = keyof typeof cmsPageDefaults;
